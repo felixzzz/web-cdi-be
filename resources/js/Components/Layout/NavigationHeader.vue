@@ -5,6 +5,7 @@
             'top-0 z-[99] w-full',
             stickyScroll ? 'sticky' : '',
             fixed ? '!fixed' : '',
+            absolute ? '!absolute' : '',
             transparant ? '' : 'bg-white',
         ]"
     >
@@ -17,13 +18,13 @@
             id="nav-header"
         >
             <container class="flex justify-between">
-                <img src="assets/frontend/logo_cdi_white.svg" alt="" class="h-12" v-show="isHome ? !scrolledPastHomeBlue : (!scrolledPast && transparant)">
-                <img src="assets/frontend/logo_cdi_colored.svg" alt="" class="h-12" v-show="isHome ? scrolledPastHomeBlue : (scrolledPast || !transparant)">
+                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-12" v-show="isHome ? !scrolledPastHomeBlue : (!scrolledPast && transparant)">
+                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12" v-show="isHome ? scrolledPastHomeBlue : (scrolledPast || !transparant)">
 
                 <div class="hidden lg:flex items-center gap-6 font-normal text-base">
                     <template v-for="menu in MENU">
                         <Link
-                            :href="menu.route" v-if="!menu.external && !menu.subs.length" :key="menu.active" class="nav-item"
+                            :href="menu.route" v-if="!menu.external && !menu.subs.length && menu.name" :key="menu.active" class="nav-item"
                             :class="{
                                 'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant,
                                 'nav-blue-base': !transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue)),
@@ -60,7 +61,7 @@
                                 x-transition:leave-start="opacity-100 transform translate-y-0"
                                 x-transition:leave-end="opacity-0 transform -translate-y-2"
                             >
-                                <img src="assets/frontend/icons/polygon.svg" alt="" class="mx-auto -mb-[6px]">
+                                <img :src="asset('assets/frontend/icons/polygon.svg')" alt="" class="mx-auto -mb-[6px]">
                                 <div class="p-4 rounded-xl bg-white flex flex-col gap-6 whitespace-nowrap">
                                     <template v-for="(sub, index) in menu.subs" :key="index">
                                         <Link :href="sub.route" class="text-neutral-13 nav-item nav-blue-base justify-start!" x-on:click="open_menu=false"
@@ -90,7 +91,7 @@
                         x-on:mouseleave="open_menu = false"
                         x-on:mouseover="open_menu = true"
                     >
-                        <img src="assets/frontend/icons/flag_en.svg" alt="" class="w-[18px] rounded-full border border-white">
+                        <img :src="asset('assets/frontend/icons/flag_en.svg')" alt="" class="w-[18px] rounded-full border border-white">
                         <span>EN</span>
                         <i class="isax icon-arrow-down-1"></i>
 
@@ -104,14 +105,14 @@
                             x-transition:leave-start="opacity-100 transform translate-y-0"
                             x-transition:leave-end="opacity-0 transform -translate-y-2"
                         >
-                            <img src="assets/frontend/icons/polygon.svg" alt="" class="mx-auto -mb-[6px]">
+                            <img :src="asset('assets/frontend/icons/polygon.svg')" alt="" class="mx-auto -mb-[6px]">
                             <div class="p-4 rounded-xl bg-white flex flex-col gap-6 whitespace-nowrap">
                                 <div class="text-neutral-13 flex items-center gap-1 cursor-pointer" x-on:click="open_menu=false">
-                                    <img src="assets/frontend/icons/flag_en.svg" alt="" class="w-[18px] rounded-full border border-neutral-13">
+                                    <img :src="asset('assets/frontend/icons/flag_en.svg')" alt="" class="w-[18px] rounded-full border border-neutral-13">
                                     <span>English</span>
                                 </div>
                                 <div class="text-neutral-13 flex items-center gap-1 cursor-pointer" x-on:click="open_menu=false">
-                                    <img src="assets/frontend/icons/flag_id.svg" alt="" class="w-[18px] rounded-full border border-neutral-13">
+                                    <img :src="asset('assets/frontend/icons/flag_id.svg')" alt="" class="w-[18px] rounded-full border border-neutral-13">
                                     <span>Indonesia</span>
                                 </div>
                             </div>
@@ -136,7 +137,7 @@
             <div class="py-5 bg-white h-full">
                 <div class="flex flex-col h-full">
                     <div class="flex justify-between items-center px-[1rem] md:px-[2rem]">
-                        <img src="assets/frontend/logo_cdi_colored.svg" alt="" class="h-12">
+                        <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12">
 
                         <i class="isax icon-close-circle text-2xl cursor-pointer" x-on:click="mobile_menu=false"></i>
                     </div>
@@ -196,6 +197,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { MENU } from "@/Constanta/Menu";
 import Container from "../Section/Container.vue";
 import { Link, usePage } from "@inertiajs/vue3";
+import { asset } from "@/Lib/utils";
 
 const careerUrl = usePage().props.career_url
 
@@ -207,6 +209,7 @@ const lastScrollY = ref(0)
 const props = withDefaults(
     defineProps<{
         fixed?: boolean;
+        absolute?: boolean;
         transparant?: boolean;
         stickyScroll?: boolean;
         isHome?: boolean;

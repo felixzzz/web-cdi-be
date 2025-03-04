@@ -1,10 +1,15 @@
 <template>
-    <div class="py-12 bg-blue-dark text-white bg-[url(assets/frontend/images/footer.webp)] bg-contain bg-no-repeat bg-center">
+    <div
+        class="py-12 bg-blue-dark text-white bg-contain bg-no-repeat bg-center"
+        :style="{
+            'backgroundImage': `url(${asset('assets/frontend/images/footer.webp')})`
+        }"
+    >
         <container>
             <div class="flex items-center justify-between mb-10">
                 <div>
                     <p class="text-base mb-4 font-medium">A member of</p>
-                    <img src="assets/frontend/logo_cdi_footer.svg" alt="" class="h-12">
+                    <img :src="asset('assets/frontend/logo_cdi_footer.svg')" alt="" class="h-12">
                 </div>
                 <div>
                     <Link href="" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
@@ -85,31 +90,32 @@
     import { Link } from '@inertiajs/vue3'
     import Container from '../Section/Container.vue'
     import { ref } from 'vue'
+    import { asset } from '@/Lib/utils'
 
     const socials = ref([
         {
             url: '',
-            icon: 'assets/frontend/icons/ic_youtube.svg'
+            icon: asset('assets/frontend/icons/ic_youtube.svg')
         },
         {
             url: '',
-            icon: 'assets/frontend/icons/ic_linkedin.svg'
+            icon: asset('assets/frontend/icons/ic_linkedin.svg')
         },
         {
             url: '',
-            icon: 'assets/frontend/icons/ic_tiktok.svg'
+            icon: asset('assets/frontend/icons/ic_tiktok.svg')
         },
         {
             url: '',
-            icon: 'assets/frontend/icons/ic_x.svg'
+            icon: asset('assets/frontend/icons/ic_x.svg')
         },
         {
             url: '',
-            icon: 'assets/frontend/icons/ic_instagram.svg'
+            icon: asset('assets/frontend/icons/ic_instagram.svg')
         },
         {
             url: '',
-            icon: 'assets/frontend/icons/ic_facebook.svg'
+            icon: asset('assets/frontend/icons/ic_facebook.svg')
         }
     ])
 

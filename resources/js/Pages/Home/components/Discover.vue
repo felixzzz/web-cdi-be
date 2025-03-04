@@ -1,7 +1,7 @@
 <template>
     <div class="pt-20 pb-28 bg-blue-dark text-white">
         <container>
-            <h1 class="mb-10 text-2xl lg:text-[38px] leading-[44px] font-medium max-w-2xl mx-auto text-center">Discover the Latest Thing</h1>
+            <h1 class="mb-10 text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-2xl mx-auto text-center">Discover the Latest Thing</h1>
         </container>
         <div class="grid grid-cols-2 lg:grid-cols-4">
             <div
@@ -38,6 +38,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { asset } from '@/Lib/utils'
     import { ref } from 'vue'
 
     const tabs = ref([
@@ -45,25 +46,25 @@
             name: 'Sustainability',
             route: '',
             description: 'Long-term sustainability initiatives to achieve climate resilience and enhance societal well-being',
-            image: 'assets/frontend/images/homepage/discover_sustainability.webp'
+            image: asset('assets/frontend/images/homepage/discover_sustainability.webp')
         },
         {
             name: 'Our Business',
             route: '',
             description: 'Essential chemicals and infrastructure solutions to support key sectors across Indonesia.',
-            image: 'assets/frontend/images/homepage/discover_our_business.webp'
+            image: asset('assets/frontend/images/homepage/discover_our_business.webp')
         },
         {
             name: 'Investors',
             route: '',
             description: 'Timely, reliable, and relevant investment information for institutional and individual investors.',
-            image: 'assets/frontend/images/homepage/discover_investors.webp'
+            image: asset('assets/frontend/images/homepage/discover_investors.webp')
         },
         {
             name: 'Careers',
             route: '',
             description: 'Discover your purpose and make an impact as you grow what truly matters in your career.',
-            image: 'assets/frontend/images/homepage/discover_careers.webp'
+            image: asset('assets/frontend/images/homepage/discover_careers.webp')
         }
     ])
 </script>

@@ -44,14 +44,20 @@
     --color-neutral-6: #BFBFBF;
     --color-neutral-7: #888A8A;
     --color-neutral-8: #676869;
-    --color-neutral-13: #151718;
+    --color-neutral-9: #575959;
     --color-neutral-10: #383A3B;
+    --color-neutral-13: #151718;
 
+    --color-blue-dark-black: #051119;
     --color-blue-dark: #091A24;
     --color-blue-base: #2474A5;
     --color-blue-lighter: #47C1EA;
 
+    --color-light-blue-1: #ECF8FF;
+    --color-light-blue-2: #C6E6F6;
+
     --color-red-6: #D3312C;
+    --color-yellow: #ECDA19;
     --font-sans: 'GT Eesti Pro Display';
 }
 
@@ -77,6 +83,15 @@
 
 .text-shadow-1 {
     text-shadow: 0px 0px 8px 0px #00000047;
+}
+
+.button-gradient-custom {
+    background: linear-gradient(180deg, rgba(214, 245, 255, 0.16) 0%, rgba(9, 26, 36, 0.16) 100%);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 16px;
+    color: white;
+    @apply flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0 border border-neutral-8/40;
 }
 
 
@@ -158,3 +173,127 @@
 .custom-pagination-media .swiper-pagination-bullet-active {
     background-color: #2474A5;
 }
+
+.tab-gradient {
+    height: 100%;
+    position: relative;
+}
+
+.tab-gradient:hover, .tab-gradient.active {
+    background: linear-gradient(360deg, rgba(71, 193, 234, 0.32) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.tab-gradient::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 4px;
+    background-color: #47C1EA;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.tab-gradient:hover::after, .tab-gradient.active::after {
+    width: 100%;
+    left: 0;
+}
+
+
+.content {
+    @apply text-sm lg:text-base text-neutral-6 lg:leading-8;
+}
+
+.content ol, .content ul {
+    @apply ms-[18px];
+}
+
+.content p {
+    @apply mb-3;
+}
+
+
+.bg-gradient-dark-black {
+    background: linear-gradient(180deg, #051119 0%, #091A24 100%);
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(180deg, #2474A5 0%, #206894 100%);
+}
+
+.table-explanation {
+    @apply w-full overflow-x-auto;
+}
+
+.table-explanation table {
+    @apply w-full;
+}
+
+.table-explanation td, .table-explanation th {
+    @apply px-3 py-[10px] border border-neutral-6;
+}
+
+.table-explanation tbody td {
+    @apply text-base text-neutral-10;
+}
+
+.table-explanation tbody td.group {
+    @apply text-base text-neutral-13 italic font-bold;
+}
+
+.table-explanation thead tr {
+    @apply bg-blue-base text-white;
+}
+
+.border-l-before::after, .border-l-before-hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    width: 0px;
+    transition: width 0.2s ease, left 0.2s ease;
+}
+
+.border-l-before::after, .border-l-before-hover:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    width: 6px;
+    @apply lg:bg-blue-base;
+}
+
+@keyframes colorChange {
+    0% {
+        width: 0;
+        left: 0;
+        background-color: #BFBFBF;
+    }
+    20% {
+        width: 100%;
+        left: 0;
+        background-color: #47C1EA;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+        background-color: #47C1EA;
+    }
+    80% {
+        width: 100%;
+        left: 100%;
+        background-color: #BFBFBF;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+        background-color: #BFBFBF;
+    }
+}
+
+.animate-colorChange {
+    animation: colorChange 4s ease-in-out infinite;
+}
+

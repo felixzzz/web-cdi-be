@@ -4,7 +4,7 @@
             <div class="grid lg:grid-cols-3 gap-16">
                 <div
                     class="min-h-[675px] lg:max-w-[456px] h-full bg-cover rounded-xl flex flex-col p-6 justify-between"
-                    :style="{ backgroundImage: `url(assets/frontend/images/contactpage/contact_hero_image.webp)` }"
+                    :style="{ backgroundImage: `url(${asset('assets/frontend/images/contactpage/contact_hero_image.webp')})` }"
                 >
                     <p class="mb-0 text-[22px] font-medium text-white">#Your Growth Partner</p>
 
@@ -17,12 +17,12 @@
 
                             <div class="flex items-center gap-4 text-neutral-8">
                                 <div class="flex items-center text-sm gap-2">
-                                    <img src="assets/frontend/icons/ic_phone.svg" alt="">
+                                    <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
                                     (62-21) 530 7950
                                 </div>
 
                                 <div class="flex items-center text-sm gap-2">
-                                    <img src="assets/frontend/icons/ic_printer.svg" alt="">
+                                    <img :src="asset('assets/frontend/icons/ic_printer.svg')" alt="">
                                     (62-21) 530 7950
                                 </div>
                             </div>
@@ -113,5 +113,6 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { asset } from '@/Lib/utils'
 
 </script>

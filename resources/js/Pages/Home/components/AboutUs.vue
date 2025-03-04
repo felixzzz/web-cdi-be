@@ -1,5 +1,10 @@
 <template>
-    <div class="pb-[88px] pt-28 bg-blue-dark relative overflow-hidden bg-[url(assets/frontend/images/homepage/expanding_business.webp)] bg-cover bg-no-repeat">
+    <div
+        class="pb-[88px] pt-28 bg-blue-dark relative overflow-hidden bg-cover bg-no-repeat"
+        :style="{
+            'backgroundImage': `url(${asset('assets/frontend/images/homepage/expanding_business.webp')})`
+        }"
+    >
         <container class="grid lg:grid-cols-2 gap-10 relative">
             <div>
                 <h2 class="font-medium text-blue-lighter text-4xl lg:text-[52px] max-w-2xl">
@@ -25,6 +30,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
 
 </script>

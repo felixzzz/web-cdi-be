@@ -5,6 +5,23 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+export function asset(prefix: string) {
+    const url = document.querySelector('meta[name="application-url"]')?.getAttribute('content')
+    return `${url}/${prefix}`
+}
+export function scrollToElement(elementName: string) {
+    setTimeout(()=>{
+        const element = document.querySelector(elementName)
+        if (element) {
+        const y = element.getBoundingClientRect().top + window.scrollY;
+        window.scroll({
+            top: y,
+            behavior: 'smooth'
+        });
+        }
+    },0)
+}
+
 export const routeAppendParam = (params: any) => {
     const newUrl = new URL(window.location.href);
     for (const key in params) {

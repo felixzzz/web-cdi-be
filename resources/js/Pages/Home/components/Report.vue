@@ -4,11 +4,11 @@
             <div class="flex lg:items-center justify-between mb-2 flex-col lg:flex-row">
                 <div>
                     <p class="text-neutral-7 text-base mb-4">LATEST DOCUMENTS</p>
-                    <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] leading-[44px] mb-0">Financial Reports</p>
+                    <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-0">Financial Reports</p>
                 </div>
                 <div class="flex items-center gap-4 justify-start lg:justify-center mt-4 lg:mt-0">
                     <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
-                        Download All <img src="/assets/frontend/icons/ic_download.svg" alt="">
+                        Download All <img :src="asset('assets/frontend/icons/ic_download.svg')" alt="">
                     </Link>
                     <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
                         See All <i class="isax icon-arrow-right-1"></i>
@@ -27,16 +27,19 @@
                             <span>7MB</span>
                             <span>.</span>
                         </div>
-                        <img src="/assets/frontend/icons/ic_filepdf.svg" alt="">
+                        <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
                     </div>
                 </div>
 
                 <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                    <Link href="" class="flex items-center gap-2 text-blue-base">
-                        <img src="/assets/frontend/icons/ic_eye.svg" alt=""> View Report
+                    <Link href="" class="flex items-center gap-2 text-blue-base font-medium">
+                        <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> View Report
                     </Link>
-                    <Link href="" class="flex items-center gap-2 text-blue-base">
-                        <img src="/assets/frontend/icons/ic_download_file.svg" alt=""> Download
+                    <Link href="" class="flex items-center gap-2 text-blue-base font-medium">
+                        <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> Download-EN
+                    </Link>
+                    <Link href="" class="flex items-center gap-2 text-blue-base font-medium">
+                        <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> Download-ID
                     </Link>
                 </div>
             </div>
@@ -47,5 +50,6 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
 </script>

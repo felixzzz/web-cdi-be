@@ -17,12 +17,12 @@
 
                             <div class="flex items-center gap-4 text-neutral-8">
                                 <div class="flex items-center text-sm gap-2">
-                                    <img src="assets/frontend/icons/ic_phone.svg" alt="">
+                                    <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
                                     (62-21) 530 7950
                                 </div>
 
                                 <div class="flex items-center text-sm gap-2">
-                                    <img src="assets/frontend/icons/ic_printer.svg" alt="">
+                                    <img :src="asset('assets/frontend/icons/ic_printer.svg')" alt="">
                                     (62-21) 530 7950
                                 </div>
                             </div>
@@ -37,5 +37,6 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { asset } from '@/Lib/utils'
 
 </script>

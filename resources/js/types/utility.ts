@@ -4,3 +4,12 @@ export type PaginateLink = {
     active: boolean
     params?: object
 }
+
+
+export type News = {
+    id: string;
+    title: string;
+    image: string;
+    date: string;
+    category?: string;
+}

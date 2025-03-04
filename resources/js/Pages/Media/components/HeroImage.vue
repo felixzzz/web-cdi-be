@@ -1,7 +1,7 @@
 <template>
     <div
         class="py-28 lg:py-40"
-        :style="{ backgroundImage: `url(assets/frontend/images/media/media_hero_image.webp)` }"
+        :style="{ backgroundImage: `url(${asset('assets/frontend/images/media/media_hero_image.webp')})` }"
     >
         <container>
             <swiper
@@ -68,5 +68,6 @@
     import 'swiper/css/navigation';
     import 'swiper/css/pagination';
     import { Navigation, Pagination } from 'swiper/modules';
+    import { asset } from '@/Lib/utils'
 
 </script>

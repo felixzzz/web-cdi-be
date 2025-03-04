@@ -1,11 +1,16 @@
 <template>
-    <div class="bg-blue-dark py-28 text-white bg-[url(assets/frontend/images/homepage/journey.png)] bg-contain bg-no-repeat bg-right relative">
+    <div
+        class="bg-blue-dark py-28 text-white bg-contain bg-no-repeat bg-right relative"
+        :style="{
+            'backgroundImage': `url(${asset('assets/frontend/images/homepage/journey.png')})`
+        }"
+    >
         <container class="relative z-[1]">
             <p class="text-neutral-4 mb-4">
                 Journey
             </p>
             <div class="mb-20 max-w-lg">
-                <h2 class="font-medium text-2xl lg:text-[38px] leading-[44px] mb-6">
+                <h2 class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-6">
                     Expanding Infrastructure, Powering Progress
                 </h2>
                 <p class="text-neutral-5 mb-0">
@@ -41,6 +46,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
     import { ref } from 'vue'
 

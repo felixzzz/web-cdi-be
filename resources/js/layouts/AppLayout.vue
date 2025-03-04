@@ -1,5 +1,6 @@
 <template>
     <navigation-header
+        :absolute="navAbsolute"
         :fixed="navFixed"
         :transparant="navTransparant"
         :sticky-scroll="navStickyScroll"
@@ -17,6 +18,7 @@
 
     withDefaults(defineProps<{
         navFixed?: boolean;
+        navAbsolute?: boolean;
         navTransparant?: boolean;
         navStickyScroll?: boolean;
         navIsHome?: boolean;

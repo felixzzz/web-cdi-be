@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class MediaPageController extends Controller
+class ContactUsController extends Controller
 {
     public function index()
     {
-        return Inertia::render("Media/MediaPage");
+        return Inertia::render("ContactUs/ContactUsPage");
     }
 }

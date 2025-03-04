@@ -61,26 +61,26 @@ export const MENU = [
         subs: [
             {
                 name: 'Report',
-                route: ''
+                route: route('investor.report')
             },
             {
                 name: 'Financial Information',
-                route: ''
+                route: route('investor.financial-information')
             },
             {
                 name: 'Shares Information',
-                route: ''
+                route: route('investor.shares-information')
             },
             {
                 name: 'Publications for Investors',
-                route: ''
+                route: route('investor.publications-for-investors')
             }
         ],
         external: false
     },
     {
         name: 'Governance',
-        route: '',
+        route: route('governance'),
         active: 'governance',
         subs: [],
         external: false

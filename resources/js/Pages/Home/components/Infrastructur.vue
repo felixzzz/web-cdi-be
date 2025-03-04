@@ -44,6 +44,7 @@
 </template>
 
 <script setup lang="ts">
+    import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
     import { ref } from 'vue'
 
@@ -52,25 +53,25 @@
             name: 'Energy',
             route: '',
             description: 'Our energy business and operations are managed by CDI and run by PT. Krakatau Chandra Energi (KCE)',
-            image: 'assets/frontend/images/homepage/energy.webp'
+            image: asset('assets/frontend/images/homepage/energy.webp')
         },
         {
             name: 'Water',
             route: '',
             description: 'We have a 49% stake acquired from PT Krakatau Sarana Infrastruktur who handled our water business',
-            image: 'assets/frontend/images/homepage/water.webp'
+            image: asset('assets/frontend/images/homepage/water.webp')
         },
         {
             name: 'Ports & Storage',
             route: '',
             description: 'Provides ports and tank services business for refined chemical and petroleum products',
-            image: 'assets/frontend/images/homepage/ports_storage.webp'
+            image: asset('assets/frontend/images/homepage/ports_storage.webp')
         },
         {
             name: 'Logistics',
             route: '',
             description: 'CDI pioneers in shipping and warehousing, serving company needs and future customers',
-            image: 'assets/frontend/images/homepage/logistics.webp'
+            image: asset('assets/frontend/images/homepage/logistics.webp')
         }
     ])
 

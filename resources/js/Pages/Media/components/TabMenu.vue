@@ -15,6 +15,8 @@
         </div>
 
         <content-news v-if="tabActive == 'news'" />
+        <content-blog v-if="tabActive == 'blog'" />
+        <content-press-release v-if="tabActive == 'press-release'"/>
     </container>
 
 </template>
@@ -25,6 +27,8 @@
     import { Link } from '@inertiajs/vue3'
     import { ref } from 'vue'
     import ContentNews from './ContentNews.vue'
+    import ContentBlog from './ContentBlog.vue'
+    import ContentPressRelease from './ContentPressRelease.vue'
 
     const tabActive = ref(getQueryParam('tab') || 'news')
 
