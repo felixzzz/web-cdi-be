@@ -35,4 +35,6 @@ return [
         ],
     ],
 
+    'career_url' => env("CAREER_URL", "https://careers.capcx.com/")
+
 ];

@@ -13,9 +13,9 @@
     "framework": "laravel",
     "aliases": {
         "components": "resources/js/Components",
-        "utils": "@/lib/utils",
+        "utils": "@/Lib/utils",
         "ui": "resources/js/Components/ui",
-        "lib": "@/lib",
+        "lib": "@/Lib",
         "hooks": "@/hooks"
     }
 }

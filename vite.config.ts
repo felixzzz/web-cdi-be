@@ -2,7 +2,7 @@ import vue from '@vitejs/plugin-vue';
 import autoprefixer from 'autoprefixer';
 import laravel from 'laravel-vite-plugin';
 import path from 'path';
-import tailwindcss from 'tailwindcss';
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -19,6 +19,7 @@ export default defineConfig({
                 },
             },
         }),
+        tailwindcss()
     ],
     resolve: {
         alias: {
@@ -27,7 +28,7 @@ export default defineConfig({
     },
     css: {
         postcss: {
-            plugins: [tailwindcss, autoprefixer],
+            plugins: [autoprefixer],
         },
     },
 });

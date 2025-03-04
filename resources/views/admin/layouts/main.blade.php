@@ -8,10 +8,10 @@
 
 
     @portalUI
-    {{-- <link rel="stylesheet" href="{{ asset('assets/dist/style.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/dist/style.css') }}">
     @stack('css')
 </head>
-<body>
+<body class="bg-background text-foreground">
     <x-sidebar.provider>
 
         <x-sidebar>

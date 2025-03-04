@@ -6,6 +6,9 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
+import Alpine from 'alpinejs'
+Alpine.start()
+
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
     interface ImportMetaEnv {
@@ -22,7 +25,7 @@ declare module 'vite/client' {
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${appName} | ${title}`,
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         const app = createApp({ render: () => h(App, props) })
@@ -32,6 +35,6 @@ createInertiaApp({
             app.mount(el);
     },
     progress: {
-        color: '#4B5563',
+        color: '#2474A5',
     },
 });
