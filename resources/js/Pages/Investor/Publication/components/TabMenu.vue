@@ -1,8 +1,8 @@
 <template>
     <div class="py-20">
         <container>
-            <div class="grid grid-cols-5 gap-10">
-                <div class="flex flex-col lg:items-start w-full border-t-2 border-t-neutral-4">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+                <div class="flex lg:flex-col lg:items-start w-full lg:border-t-2 border-t-neutral-4 max-lg:border-b-2 border-b-neutral-4">
                     <Link
                         v-for="tab in tabs"
                         :key="tab.id"

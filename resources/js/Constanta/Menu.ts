@@ -13,15 +13,15 @@ export const MENU = [
         subs: [
             {
                 name: 'Who We Are',
-                route: ''
+                route: route('about-us.who-we-are')
             },
             {
                 name: 'Management',
-                route: ''
+                route: route('about-us.management')
             },
             {
                 name: 'Awards & Certification',
-                route: ''
+                route: route('about-us.awards')
             }
         ],
         external: false

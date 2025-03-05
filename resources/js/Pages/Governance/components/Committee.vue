@@ -61,7 +61,7 @@
                 <div class="flex gap-8">
                     <div class="flex flex-col items-center text-center w-[282px] group transition-all duration-300" v-for="(audit, i) in audits" :key="i">
                         <div class="flex flex-col items-center text-center">
-                            <img ::src="audit.image" alt="" class="aspect-square overflow-hidden rounded-full object-cover shadow-article mb-5 border-2 border-transparent outline-2 outline-transparent group-hover:outline-blue-lighter ">
+                            <img :src="audit.image" alt="" class="aspect-square overflow-hidden rounded-full object-cover shadow-article mb-5 border-2 border-transparent outline-2 outline-transparent group-hover:outline-blue-lighter ">
                             <p class="text-lg font-medium group-hover:text-blue-lighter">{{ audit.name }}</p>
                             <p class="text-base font-normal text-neutral-6">{{ audit.position }}</p>
                         </div>

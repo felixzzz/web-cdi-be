@@ -3,7 +3,7 @@
         <container>
             <p class="text-end text-red-6 text-sm mb-2">*in thousands US$</p>
 
-            <div class="table-explanation">
+            <div class="table-main">
                 <table>
                     <thead>
                         <tr>

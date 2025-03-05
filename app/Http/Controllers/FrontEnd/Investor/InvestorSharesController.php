@@ -10,6 +10,6 @@ class InvestorSharesController extends Controller
 {
     public function index()
     {
-        return Inertia::render("InvestorShare/InvestorSharePage");
+        return Inertia::render("Investor/Share/SharePage");
     }
 }

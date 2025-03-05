@@ -16,7 +16,7 @@
 
         <div v-show="tabActive == 'top-10-shareholders'">
             <p class="my-10 text-2xl lg:text-[28px] font-medium text-neutral-13">Top 10 Shareholders</p>
-            <div class="table-explanation">
+            <div class="table-main">
                 <table>
                     <thead>
                         <tr>
@@ -49,7 +49,7 @@
                 <p>Prior to the end of a financial year, an interim dividend may be distributed so long as it is permitted under the Company’s Articles of Association and provided that the interim dividend does not result in its net assets becoming less than the total issued and paid up capital and the compulsory reserves. Such distribution is determined by the Board of Directors after first being approved by the Board of Commissioners. If, after the end of the relevant financial year, the Company suffers losses, the distributed interim dividend must be returned by the shareholders to the Company, and the Board of Directors and Board of Commissioners will be jointly and severally responsible if the interim dividend is not returned.</p>
                 <p>To the extent a decision is made to declare dividends, dividends will be paid in Indonesian Rupiah. Shareholders on the applicable recording date will be entitled to the full amount of dividends approved, subject to any Indonesian withholding tax imposed. Dividends received by non-Indonesian shareholders will be subject to 20% Indonesian withholding tax.</p>
             </div>
-            <div class="table-explanation">
+            <div class="table-main">
                 <table>
                     <thead>
                         <tr>
@@ -57,7 +57,7 @@
                             <th>Dividend/Share US$ (Rp)</th>
                             <th>Total Dividend US$</th>
                             <th>Distribution Date</th>
-                            <th>Distribution Date</th>
+                            <th>Dividend Payout Ratio</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,6 @@
                             <td>IDR300,000</td>
                             <td>9.00% p.a</td>
                             <td>1 Mar 2025</td>
-                            <td>idAA- (PEFINDO)</td>
                         </tr>
                     </tbody>
                 </table>

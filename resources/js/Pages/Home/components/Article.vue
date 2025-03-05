@@ -31,7 +31,7 @@
             <swiper
                 :modules="[Navigation, Pagination]"
                 :slides-per-view="4"
-                :space-between="20"
+                :space-between="24"
                 :pagination="{ clickable: true, el: '.custom-pagination' }"
                 :navigation="{ nextEl: '.custom-next', prevEl: '.custom-prev' }"
                 class="custom-swiper"

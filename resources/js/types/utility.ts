@@ -13,3 +13,18 @@ export type News = {
     date: string;
     category?: string;
 }
+
+
+export type Award = {
+    title: string;
+    image: string;
+    date: string;
+    categories?: string;
+    awarder?: string;
+}
+
+export type Certification = {
+    title: string;
+    image: string;
+    approvals: string[];
+}

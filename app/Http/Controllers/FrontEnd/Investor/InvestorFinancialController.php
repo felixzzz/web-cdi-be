@@ -10,6 +10,6 @@ class InvestorFinancialController extends Controller
 {
     public function index()
     {
-        return Inertia::render("InvestorFinancial/InvestorFinancialPage");
+        return Inertia::render("Investor/Financial/FinancialPage");
     }
 }

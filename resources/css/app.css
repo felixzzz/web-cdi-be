@@ -85,6 +85,19 @@
     text-shadow: 0px 0px 8px 0px #00000047;
 }
 
+.text-shadow-2 {
+    text-shadow: 0px 1px 2px 0px #0000001A;
+}
+
+.overlay-awards-banner {
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(7,21,30,0.4458158263305322) 85%, rgba(7,22,31,0.8) 92%, rgba(9,26,36,1) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(7,21,30,0.4458158263305322) 85%, rgba(7,22,31,0.8) 92%, rgba(9,26,36,1) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(7,21,30,0.4458158263305322) 85%, rgba(7,22,31,0.8) 92%, rgba(9,26,36,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#091a24",GradientType=1);
+}
+
+
 .button-gradient-custom {
     background: linear-gradient(180deg, rgba(214, 245, 255, 0.16) 0%, rgba(9, 26, 36, 0.16) 100%);
     backdrop-filter: blur(8px);
@@ -92,6 +105,28 @@
     padding: 16px;
     color: white;
     @apply flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0 border border-neutral-8/40;
+}
+
+.bg-gradient-1 {
+    background: linear-gradient(180deg, rgba(214, 245, 255, 0.16) 0%, rgba(9, 26, 36, 0.16) 100%);
+    @apply border border-neutral-8/40;
+}
+
+.tab-gradient-awards {
+    @apply rounded-t-lg transition;
+}
+
+.tab-gradient-awards:hover, .tab-gradient-awards.active {
+    @apply text-neutral-13 font-medium;
+    background: linear-gradient(90deg, #B38D2C 0%, #F7EF8A 35%, #D1AB46 65%, #EAC666 100%);
+}
+
+.text-awards {
+    background: linear-gradient(90deg, #B38D2C 0%, #F7EF8A 35%, #D1AB46 65%, #EAC666 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium;
 }
 
 
@@ -212,6 +247,10 @@
     @apply mb-3;
 }
 
+.content b, .content strong {
+    @apply !text-white;
+}
+
 
 .bg-gradient-dark-black {
     background: linear-gradient(180deg, #051119 0%, #091A24 100%);
@@ -221,28 +260,32 @@
     background: linear-gradient(180deg, #2474A5 0%, #206894 100%);
 }
 
-.table-explanation {
+.table-main {
     @apply w-full overflow-x-auto;
 }
 
-.table-explanation table {
+.table-main table {
     @apply w-full;
 }
 
-.table-explanation td, .table-explanation th {
+.table-main td, .table-main th {
     @apply px-3 py-[10px] border border-neutral-6;
 }
 
-.table-explanation tbody td {
+.table-main tbody td {
     @apply text-base text-neutral-10;
 }
 
-.table-explanation tbody td.group {
+.table-main tbody td.group {
     @apply text-base text-neutral-13 italic font-bold;
 }
 
-.table-explanation thead tr {
+.table-main thead tr {
     @apply bg-blue-base text-white;
+}
+
+.table-main tbody tr {
+    @apply even:bg-neutral-8/4;
 }
 
 .border-l-before::after, .border-l-before-hover::after {
@@ -263,6 +306,15 @@
     left: 0;
     width: 6px;
     @apply lg:bg-blue-base;
+}
+
+.overlay-history {
+    background: rgb(9,26,36);
+    background: -moz-linear-gradient(180deg, rgba(9,26,36,1) 0%, rgba(9,26,36,0.8) 10%, rgba(0,0,0,0.5) 50%, rgba(9,26,36,0.8) 90%, rgba(9,26,36,1) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(9,26,36,1) 0%, rgba(9,26,36,0.8) 10%, rgba(0,0,0,0.5) 50%, rgba(9,26,36,0.8) 90%, rgba(9,26,36,1) 100%);
+    background: linear-gradient(180deg, rgba(9,26,36,1) 0%, rgba(9,26,36,0.8) 10%, rgba(0,0,0,0.5) 50%, rgba(9,26,36,0.8) 90%, rgba(9,26,36,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#091a24",endColorstr="#091a24",GradientType=1);
+    @apply absolute top-0 left-0 bottom-0 right-0;
 }
 
 @keyframes colorChange {

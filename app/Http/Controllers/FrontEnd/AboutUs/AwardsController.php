@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers\FrontEnd\AboutUs;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class AwardsController extends Controller
+{
+    public function index()
+    {
+        return Inertia::render("AboutUs/Awards/AwardsPage");
+    }
+}

@@ -2,7 +2,12 @@
     <div
         class="bg-gradient-dark-black py-20 text-white bg-contain bg-no-repeat bg-right relative" id="risk-management"
     >
-        <div class="absolute top-0 left-0 right-0 bottom-0 bg-[url(assets/frontend/images/governance/risk_management.webp)] bg-contain bg-no-repeat bg-right">
+        <div
+            class="absolute top-0 left-0 right-0 bottom-0 bg-contain bg-no-repeat bg-right"
+            :style="{
+                'backgroundImage': `url(${asset('assets/frontend/images/governance/risk_management.webp')})`
+            }"
+        >
 
         </div>
         <container class="relative z-[1]">
