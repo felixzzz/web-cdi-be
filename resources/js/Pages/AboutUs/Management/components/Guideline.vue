@@ -36,6 +36,7 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import { asset } from '@/Lib/utils'
+    import { Link } from '@inertiajs/vue3'
 
 
 </script>

@@ -33,23 +33,23 @@ export const MENU = [
         subs: [
             {
                 name: 'What We Do',
-                route: ''
+                route: route('our-business.what-we-do')
             },
             {
                 name: 'Energy',
-                route: ''
+                route: route('our-business.energy')
             },
             {
                 name: 'Water',
-                route: ''
+                route: route('our-business.water')
             },
             {
                 name: 'Ports & Storage',
-                route: ''
+                route: route('our-business.port-storage')
             },
             {
                 name: 'Logistic',
-                route: ''
+                route: route('our-business.logistic')
             }
         ],
         external: false

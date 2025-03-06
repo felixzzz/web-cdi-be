@@ -13,13 +13,21 @@
             :class="[
                 'w-full h-[88px] flex justify-between items-center left-0 right-0 text-white',
                 transparant ? 'nav-transparent' : '!text-neutral-13 nav-shadow',
-                scrolledPast ? (isHome && !scrolledPastHomeBlue ? '!bg-[#09202EB8]/72 backdrop-blur-2xl border-b border-b-white/12' : '!bg-white !bg-none nav-shadow !text-neutral-13') : ''
+                scrolledPast ? (
+                    isHome && !scrolledPastHomeBlue
+                        ? '!bg-[#09202EB8]/72 backdrop-blur-2xl border-b border-b-white/12'
+                        : (
+                            stickyBlur
+                            ? '!bg-[#09202EB8]/72 backdrop-blur-2xl border-b border-b-white/12'
+                            : '!bg-white !bg-none nav-shadow !text-neutral-13'
+                        )
+                ) : ''
             ]"
             id="nav-header"
         >
             <container class="flex justify-between">
-                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-12" v-show="isHome ? !scrolledPastHomeBlue : (!scrolledPast && transparant)">
-                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12" v-show="isHome ? scrolledPastHomeBlue : (scrolledPast || !transparant)">
+                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-12" v-show="isHome ? !scrolledPastHomeBlue : ((!scrolledPast && transparant) || (scrolledPast && stickyBlur))">
+                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12" v-show="isHome ? scrolledPastHomeBlue : ((scrolledPast || !transparant) && !stickyBlur)">
 
                 <div class="hidden lg:flex items-center gap-6 font-normal text-base">
                     <template v-for="menu in MENU">
@@ -213,6 +221,7 @@ const props = withDefaults(
         transparant?: boolean;
         stickyScroll?: boolean;
         isHome?: boolean;
+        stickyBlur?: boolean;
     }>(),
     {
         stickyScroll: true,

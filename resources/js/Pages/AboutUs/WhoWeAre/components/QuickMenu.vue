@@ -5,7 +5,7 @@
                 <div
                     v-for="tab in tabs"
                     :key="tab.id"
-                    class="text-base font-normal text-white py-3 border-b-2 border-b-transparent cursor-pointer"
+                    class="text-base font-normal text-white py-3 border-b-2 border-b-transparent cursor-pointer whitespace-nowrap"
                     :class="{
                         '!border-b-blue-lighter': tabActive == tab.id
                     }"

@@ -5,6 +5,7 @@
         :transparant="navTransparant"
         :sticky-scroll="navStickyScroll"
         :is-home="navIsHome"
+        :sticky-blur="navStickyBlur"
     />
     <slot />
     <quick-links v-if="showQuickLink" />
@@ -22,7 +23,8 @@
         navTransparant?: boolean;
         navStickyScroll?: boolean;
         navIsHome?: boolean;
-        showQuickLink?: boolean
+        showQuickLink?: boolean;
+        navStickyBlur?: boolean;
     }>(), {
         navStickyScroll: true,
         showQuickLink: false

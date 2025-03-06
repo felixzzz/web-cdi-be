@@ -1,9 +1,4 @@
 <template>
-    <div class="px-6 py-2 rounded-full border border-white text-white flex items-center gap-2 w-fit mb-8">
-        All Year
-        <i class="isax icon-arrow-down-1"></i>
-    </div>
-
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-7 gap-y-16 text-white">
         <certification-card
             v-for="(item, i) in data" :key="i"

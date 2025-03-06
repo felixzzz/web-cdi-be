@@ -1,5 +1,5 @@
 <template>
-    <app-layout :nav-absolute="true" :nav-transparant="true" :nav-sticky-scroll="false" :show-quick-link="true">
+    <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true" :show-quick-link="true">
         <Head title="Awards & Certification" />
         <hero-image />
         <tab-menu />
