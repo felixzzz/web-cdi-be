@@ -10,7 +10,7 @@
                     <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
                         Download All <img :src="asset('assets/frontend/icons/ic_download.svg')" alt="">
                     </Link>
-                    <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
+                    <Link :href="route('investor.financial-information')" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
                         See All <i class="isax icon-arrow-right-1"></i>
                     </Link>
                 </div>

@@ -10,7 +10,7 @@
                 <h2 class="font-medium text-blue-lighter text-4xl lg:text-[52px] max-w-2xl">
                     Expanding Business Horizons In Infrastructure Development
                 </h2>
-                <Link href="" class="bg-white text-blue-base px-6 py-2 border border-neutral-13 rounded-full whitespace-nowrap gap-3 flex items-center w-fit mt-10">
+                <Link :href="route('about-us.who-we-are')" class="bg-white text-blue-base px-6 py-2 border border-neutral-13 rounded-full whitespace-nowrap gap-3 flex items-center w-fit mt-10">
                     About Us <i class="isax icon-arrow-right-1 -rotate-45 text-xl"></i>
                 </Link>
             </div>

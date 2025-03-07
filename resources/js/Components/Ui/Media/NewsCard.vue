@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-xl shadow-article border border-neutral-5 overflow-hidden">
+    <Link :href="link" class="flex bg-white rounded-xl shadow-article border border-neutral-5 overflow-hidden">
         <div class="flex flex-col text-neutral-13 group cursor-pointer">
             <div class="w-full aspect-square overflow-hidden">
                 <div
@@ -17,13 +17,13 @@
                 <h3 class="text-[22px] font-medium mt-4 mb-7 line-clamp-3">
                     {{ item.title }}
                 </h3>
-                <Link href="" class="text-blue-base flex items-center gap-2">
+                <div class="text-blue-base flex items-center gap-2 cursor-pointer">
                     Read full article
                     <i class="isax icon-arrow-right-3 text-2xl"></i>
-                </Link>
+                </div>
             </div>
         </div>
-    </div>
+    </Link>
 
 </template>
 
@@ -32,7 +32,8 @@
     import { Link } from '@inertiajs/vue3'
 
     defineProps<{
-        item: News
+        item: News,
+        link?: any
     }>()
 
 </script>

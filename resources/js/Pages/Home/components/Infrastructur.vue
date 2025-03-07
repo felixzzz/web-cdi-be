@@ -51,25 +51,25 @@
     const tabs = ref([
         {
             name: 'Energy',
-            route: '',
+            route: route('our-business.energy'),
             description: 'Our energy business and operations are managed by CDI and run by PT. Krakatau Chandra Energi (KCE)',
             image: asset('assets/frontend/images/homepage/energy.webp')
         },
         {
             name: 'Water',
-            route: '',
+            route: route('our-business.water'),
             description: 'We have a 49% stake acquired from PT Krakatau Sarana Infrastruktur who handled our water business',
             image: asset('assets/frontend/images/homepage/water.webp')
         },
         {
             name: 'Ports & Storage',
-            route: '',
+            route: route('our-business.ports-and-storage'),
             description: 'Provides ports and tank services business for refined chemical and petroleum products',
             image: asset('assets/frontend/images/homepage/ports_storage.webp')
         },
         {
             name: 'Logistics',
-            route: '',
+            route: route('our-business.logistics'),
             description: 'CDI pioneers in shipping and warehousing, serving company needs and future customers',
             image: asset('assets/frontend/images/homepage/logistics.webp')
         }

@@ -2,7 +2,7 @@
     <app-layout :nav-transparant="true" :nav-fixed="true">
         <Head title="Media" />
         <hero-image />
-        <tab-menu />
+        <tab-menu :type="type" />
 
 
     </app-layout>
@@ -13,5 +13,9 @@
     import { Head } from '@inertiajs/vue3'
     import HeroImage from './components/HeroImage.vue'
     import TabMenu from './components/TabMenu.vue'
+
+    defineProps<{
+        type: string
+    }>()
 
 </script>

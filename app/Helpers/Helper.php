@@ -33,4 +33,26 @@ class Helper
             return (object) $item;
         }, $items);
     }
+
+    public static function getTitleTypeGovernance($type)
+    {
+        switch ($type) {
+            case 'policy':
+                return 'Policy';
+                break;
+            case 'risk-management':
+                return 'Risk Management';
+                break;
+            case 'code-of-conduct':
+                return 'Code of Conduct';
+                break;
+            case 'she-regulation':
+                return 'SHE Regulation';
+                break;
+
+            default:
+                return '';
+                break;
+        }
+    }
 }

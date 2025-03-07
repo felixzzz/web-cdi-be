@@ -34,8 +34,8 @@
                         <Link
                             :href="menu.route" v-if="!menu.external && !menu.subs.length && menu.name" :key="menu.active" class="nav-item"
                             :class="{
-                                'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant,
-                                'nav-blue-base': !transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue)),
+                                'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant || stickyBlur,
+                                'nav-blue-base': (!transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue))) && !stickyBlur,
                                 '': !scrolledPast && isHome && !scrolledPastHomeBlue && !transparant
                             }"
                         >
@@ -48,8 +48,8 @@
                             x-on:mouseleave="open_menu = false"
                             x-on:mouseover="open_menu = true"
                             :class="{
-                                'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant,
-                                'nav-blue-base': !transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue)),
+                                'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant || stickyBlur,
+                                'nav-blue-base': (!transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue))) && !stickyBlur,
                                 '': !scrolledPast && isHome && !scrolledPastHomeBlue && !transparant
                             }"
                         >
@@ -82,8 +82,8 @@
                         </div>
                         <a :href="menu.active == 'career' ? careerUrl : menu.route" target="_blank" v-if="menu.external" :key="menu.active" class="nav-item"
                             :class="{
-                                'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant,
-                                'nav-blue-base': !transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue)),
+                                'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant || stickyBlur,
+                                'nav-blue-base': (!transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue))) && !stickyBlur,
                                 '': !scrolledPast && isHome && !scrolledPastHomeBlue && !transparant
                             }"
                         >

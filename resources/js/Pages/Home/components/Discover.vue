@@ -12,6 +12,7 @@
                 x-data="{show_overlay: false}"
                 x-on:mouseleave="show_overlay = false"
                 x-on:mouseover="show_overlay = true"
+                @click="resolveDirective(tab)"
             >
                 <div class="absolute inset-0 overlay-card-1"></div>
                 <div class="absolute inset-0 flex flex-col gap-4 p-5 lg:p-8 text-white z-10">
@@ -39,32 +40,46 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import { asset } from '@/Lib/utils'
+    import { router, usePage } from '@inertiajs/vue3'
     import { ref } from 'vue'
+    const careerUrl = usePage().props.career_url
 
     const tabs = ref([
         {
             name: 'Sustainability',
             route: '',
             description: 'Long-term sustainability initiatives to achieve climate resilience and enhance societal well-being',
-            image: asset('assets/frontend/images/homepage/discover_sustainability.webp')
+            image: asset('assets/frontend/images/homepage/discover_sustainability.webp'),
+            external: false
         },
         {
             name: 'Our Business',
-            route: '',
+            route: route('our-business.what-we-do'),
             description: 'Essential chemicals and infrastructure solutions to support key sectors across Indonesia.',
-            image: asset('assets/frontend/images/homepage/discover_our_business.webp')
+            image: asset('assets/frontend/images/homepage/discover_our_business.webp'),
+            external: false
         },
         {
             name: 'Investors',
-            route: '',
+            route: route('investor.report'),
             description: 'Timely, reliable, and relevant investment information for institutional and individual investors.',
-            image: asset('assets/frontend/images/homepage/discover_investors.webp')
+            image: asset('assets/frontend/images/homepage/discover_investors.webp'),
+            external: false
         },
         {
             name: 'Careers',
-            route: '',
+            route: careerUrl,
             description: 'Discover your purpose and make an impact as you grow what truly matters in your career.',
-            image: asset('assets/frontend/images/homepage/discover_careers.webp')
+            image: asset('assets/frontend/images/homepage/discover_careers.webp'),
+            external: true
         }
     ])
+
+    const resolveDirective = (data: any) => {
+        if (data.external) {
+            window.open(data.route, '_blank')
+        } else {
+            router.visit(data.route)
+        }
+    }
 </script>

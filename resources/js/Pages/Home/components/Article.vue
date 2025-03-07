@@ -7,7 +7,7 @@
                     <p class="text-neutral-13 font-medium text-2xl lg:text-[28px] mb-0 max-w-sm">Discover the latest from the energy industry</p>
                 </div>
                 <div class="flex items-center gap-4 justify-start lg:justify-center mt-4 lg:mt-0">
-                    <Link href="" class="py-2 rounded-full whitespace-nowrap  flex items-center gap-2 text-blue-base">
+                    <Link :href="route('media.index', { type: 'news' })" class="py-2 rounded-full whitespace-nowrap  flex items-center gap-2 text-blue-base">
                         See All <i class="isax icon-arrow-right-1"></i>
                     </Link>
                 </div>
@@ -43,7 +43,7 @@
                 }"
             >
                 <swiper-slide v-for="(item, index) in items" :key="index">
-                    <news-card :item="item" />
+                    <news-card :item="item" :link="route('media.detail', { type: 'news', id: 'slug' })" />
                 </swiper-slide>
             </swiper>
 

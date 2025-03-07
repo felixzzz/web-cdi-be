@@ -263,6 +263,9 @@
     @apply list-disc;
 }
 
+.content img {
+    @apply w-full rounded-xl;
+}
 
 .content p {
     @apply mb-3;

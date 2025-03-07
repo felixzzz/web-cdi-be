@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
         <div v-for="(item, index) in items" :key="index">
-            <news-card :item="item" />
+            <news-card :item="item" :link="route('media.detail', { type: 'blog', id: 'slug' })" />
         </div>
     </div>
 

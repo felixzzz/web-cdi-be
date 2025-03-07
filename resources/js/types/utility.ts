@@ -28,3 +28,9 @@ export type Certification = {
     image: string;
     approvals: string[];
 }
+
+
+export type BreadcrumbLink = {
+    route: any;
+    title: string;
+}

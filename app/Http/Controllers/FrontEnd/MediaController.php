@@ -8,8 +8,17 @@ use Inertia\Inertia;
 
 class MediaController extends Controller
 {
-    public function index()
+    public function index($type)
     {
-        return Inertia::render("Media/MediaPage");
+        return Inertia::render("Media/MediaPage", [
+            'type' => $type
+        ]);
+    }
+
+    public function detail($type, $id)
+    {
+        return Inertia::render("MediaDetail/MediaDetailPage", [
+            'type' => $type
+        ]);
     }
 }

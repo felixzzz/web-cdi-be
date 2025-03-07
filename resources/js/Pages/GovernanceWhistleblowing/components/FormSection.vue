@@ -1,10 +1,11 @@
 <template>
-    <div class="bg-neutral-2 py-20">
+    <div class="bg-neutral-2 pb-20 pt-11">
         <container>
-            <div class="grid lg:grid-cols-3 gap-16">
+            <breadcrumb :route="route('governance.index')" base="Governance" current="Whistleblowing" />
+            <div class="grid lg:grid-cols-3 gap-16 mt-8">
                 <div
                     class="lg:max-h-[675px] lg:max-w-[456px] h-full bg-cover rounded-xl flex flex-col p-6 justify-between bg-center"
-                    :style="{ backgroundImage: `url(${asset('assets/frontend/images/contactpage/contact_hero_image.webp')})` }"
+                    :style="{ backgroundImage: `url(${asset('assets/frontend/images/governance/whistleblowing_hero_image.webp')})` }"
                 >
                     <p class="mb-0 text-[22px] font-medium text-white">#Your Growth Partner</p>
 
@@ -30,7 +31,8 @@
                     </div>
                 </div>
                 <div class="lg:col-span-2">
-                    <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] mb-8">Thank you for your interest in CDI</p>
+                    <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] mb-4">Whistleblowing</p>
+                    <p class="text-neutral-13 text-sm mb-8">The Whistleblowing Management Policy reflects our dedication to upholding our Code of Conduct. This system is designed as a tool to assist all Chandra Asri Group employees, including those in our subsidiaries and joint ventures and stakeholder including but not limited to business partner, supplier or vendor, customer, contractor, agent, consultant and/or any other third party who works with, for or represents Chandra Asri Group in are also encouraged to consult with or report any suspected violations to Chandra Asri Group management.</p>
 
                     <div class="flex flex-col gap-8">
                         <div class="grid grid-cols-2 gap-8">
@@ -113,6 +115,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import Breadcrumb from '@/Components/Ui/Utils/Breadcrumb.vue'
     import { asset } from '@/Lib/utils'
 
 </script>

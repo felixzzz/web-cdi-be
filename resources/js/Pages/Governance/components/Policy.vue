@@ -10,7 +10,7 @@
                         <p>Chandra Asri Group is committed to implementing the Chandra Asri Code of Ethics, as well as upholding and complying with relevant provisions that apply both domestically and internationally. This policy is supported by good business practices and ethical corporate governance to fulfil our obligations to shareholders and stakeholders and must be followed to by all Chandra Asri Group employees</p>
                     </div>
 
-                    <Link href="" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
+                    <Link :href="route('governance.type', { type: 'policy' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
                         See All <i class="isax icon-arrow-right-1 -rotate-45"></i>
                     </Link>
                 </div>

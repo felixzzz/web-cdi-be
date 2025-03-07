@@ -4,7 +4,7 @@
             <Link
                 v-for="tab in tabs"
                 :key="tab.id"
-                :href="route('media', { tab: tab.id })"
+                :href="route('media.index', { type: tab.id })"
                 class="border-b-2 border-b-neutral-6 text-neutral-13 text-lg text-center p-4 hover:border-b-blue-base hover:border-b-4 hover:font-medium transition"
                 :class="{
                     'border-b-4 !border-b-blue-base font-medium': tabActive == tab.id
@@ -23,14 +23,17 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { getQueryParam } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
     import { ref } from 'vue'
     import ContentNews from './ContentNews.vue'
     import ContentBlog from './ContentBlog.vue'
     import ContentPressRelease from './ContentPressRelease.vue'
 
-    const tabActive = ref(getQueryParam('tab') || 'news')
+    const props = defineProps<{
+        type: string
+    }>()
+
+    const tabActive = ref(props.type || 'news')
 
 
     const tabs = ref([

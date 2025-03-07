@@ -45,11 +45,11 @@ export const MENU = [
             },
             {
                 name: 'Ports & Storage',
-                route: route('our-business.port-storage')
+                route: route('our-business.ports-and-storage')
             },
             {
                 name: 'Logistic',
-                route: route('our-business.logistic')
+                route: route('our-business.logistics')
             }
         ],
         external: false
@@ -80,7 +80,7 @@ export const MENU = [
     },
     {
         name: 'Governance',
-        route: route('governance'),
+        route: route('governance.index'),
         active: 'governance',
         subs: [],
         external: false
@@ -119,7 +119,7 @@ export const MENU = [
     },
     {
         name: 'Media',
-        route: route('media'),
+        route: route('media.index', { type: 'news' }),
         active: 'media',
         subs: [],
         external: false

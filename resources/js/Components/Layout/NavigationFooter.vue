@@ -12,7 +12,7 @@
                     <img :src="asset('assets/frontend/logo_cdi_footer.svg')" alt="" class="h-12">
                 </div>
                 <div>
-                    <Link href="" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
+                    <Link :href="route('contact-us')" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
                         Contact Us
                     </Link>
                 </div>
@@ -36,11 +36,11 @@
                 </div>
 
                 <div class="flex flex-col gap-8">
-                    <Link href="" class="font-medium">
+                    <Link :href="route('about-us.who-we-are')" class="font-medium">
                         Who We Are
                     </Link>
 
-                    <Link href="" class="font-medium">
+                    <Link :href="route('our-business.what-we-do')" class="font-medium">
                         Our Bussiness
                     </Link>
 
@@ -48,7 +48,7 @@
                         Sustainability
                     </Link>
 
-                    <Link href="" class="font-medium">
+                    <Link :href="route('investor.report')" class="font-medium">
                         Investor
                     </Link>
                 </div>

@@ -35,7 +35,7 @@
                 <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-white">
                     Join with Us
                 </Link>
-                <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-white">
+                <Link :href="route('about-us.awards')" class="px-6 py-2 rounded-full whitespace-nowrap border border-white">
                     All Awards
                 </Link>
             </div>

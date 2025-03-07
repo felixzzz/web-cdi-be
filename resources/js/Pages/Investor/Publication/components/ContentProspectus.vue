@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="grid lg:grid-cols-2 gap-2 mb-10">
+        <div class="grid lg:grid-cols-2 gap-2 pb-10 border-b border-b-neutral-5">
             <div>
                 <p class="text-2xl lg:text-[28px] font-medium text-neutral-13">Prospectus</p>
             </div>
