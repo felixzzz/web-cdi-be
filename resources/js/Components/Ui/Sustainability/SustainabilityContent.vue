@@ -77,8 +77,8 @@
                             class="flex gap-4 items-start relative bg-cover bg-no-repeat"
                             :class="{
                                 'flex-col': item.grid_type == 'icon_content_card' || item.grid_type == 'image_content_card',
-                                'border border-white/16 bg-[#25405029] p-2 rounded-xl !gap-0 backdrop:blur-sm': item.grid_type == 'image_content_card',
-                                'p-6 bg-[#BFCDD414] rounded-lg border border-[#2A404E]/80': item.grid_type == 'box_icon_card',
+                                'border border-white/16 bg-[#25405029] p-2 rounded-xl !gap-0 backdrop-blur-sm': item.grid_type == 'image_content_card',
+                                'p-6 bg-[#BFCDD414] rounded-lg border border-[#2A404E]/80 backdrop-blur-sm': item.grid_type == 'box_icon_card',
                                 'lg:col-span-2': item.grid_pattern !== 'zig-zag'
                                     && item.grid_type === 'box_icon_card'
                                     && item.content_grid
@@ -87,7 +87,7 @@
                                     && contentIndex === row.length - 1,
                                 'lg:col-span-4': (item.grid_pattern === 'zig-zag' && rowIndex % 2 === 0 && contentIndex === 0) || (item.grid_pattern === 'zig-zag' && rowIndex % 2 !== 0 && contentIndex === 1),
                                 'lg:col-span-3': (item.grid_pattern === 'zig-zag' && rowIndex % 2 === 0 && contentIndex === 1) || item.grid_pattern === 'zig-zag' && rowIndex % 2 !== 0 && contentIndex === 0,
-                                'border border-white/16 bg-[#25405029] rounded-xl !gap-0 backdrop:blur-sm min-h-[328px] !items-end': item.grid_type == 'featured_image_card',
+                                'border border-white/16 bg-[#25405029] rounded-xl !gap-0 backdrop-blur-sm min-h-[328px] !items-end': item.grid_type == 'featured_image_card',
                             }"
                             :style="{
                                 'backgroundImage': `url(${content.icon && item.grid_type == 'featured_image_card' ? content.icon : ''})`
