@@ -11,14 +11,14 @@
     >
         <header
             :class="[
-                'w-full h-[88px] flex justify-between items-center left-0 right-0 text-white',
+                'w-full h-[88px] flex justify-between items-center left-0 right-0 text-white transition-all border-b-0 border-b-transparent',
                 transparant ? 'nav-transparent' : '!text-neutral-13 nav-shadow',
                 scrolledPast ? (
                     isHome && !scrolledPastHomeBlue
-                        ? '!bg-[#09202EB8]/72 backdrop-blur-2xl border-b border-b-white/12'
+                        ? '!bg-[#09202EB8]/72 backdrop-blur-2xl !border-b !border-b-white/12'
                         : (
                             stickyBlur
-                            ? '!bg-[#09202EB8]/72 backdrop-blur-2xl border-b border-b-white/12'
+                            ? '!bg-[#09202EB8]/72 backdrop-blur-2xl !border-b !border-b-white/12'
                             : '!bg-white !bg-none nav-shadow !text-neutral-13'
                         )
                 ) : ''
@@ -39,7 +39,7 @@
                                 '': !scrolledPast && isHome && !scrolledPastHomeBlue && !transparant
                             }"
                         >
-                            {{ menu.name }}
+                            {{ $t(menu.name) }}
                         </Link>
                         <div
                             v-if="!menu.external && menu.subs.length" :key="menu.active"
@@ -53,7 +53,7 @@
                                 '': !scrolledPast && isHome && !scrolledPastHomeBlue && !transparant
                             }"
                         >
-                            <span>{{ menu.name }}</span>
+                            <span>{{ $t(menu.name) }}</span>
                             <i
                                 class="isax icon-arrow-down-1 transition-all"
                                 x-bind:class="{ 'rotate-180': open_menu }"
@@ -74,7 +74,7 @@
                                     <template v-for="(sub, index) in menu.subs" :key="index">
                                         <Link :href="sub.route" class="text-neutral-13 nav-item nav-blue-base justify-start!" x-on:click="open_menu=false"
                                         >
-                                            {{ sub.name }}
+                                            {{ $t(sub.name) }}
                                         </Link>
                                     </template>
                                 </div>
@@ -87,7 +87,7 @@
                                 '': !scrolledPast && isHome && !scrolledPastHomeBlue && !transparant
                             }"
                         >
-                            {{ menu.name }}
+                            {{ $t(menu.name) }}
                         </a>
                     </template>
                 </div>
@@ -99,8 +99,14 @@
                         x-on:mouseleave="open_menu = false"
                         x-on:mouseover="open_menu = true"
                     >
-                        <img :src="asset('assets/frontend/icons/flag_en.svg')" alt="" class="w-[18px] rounded-full border border-white">
-                        <span>EN</span>
+                        <template v-if="currentLang == 'en'">
+                            <img :src="asset('assets/frontend/icons/flag_en.svg')" alt="" class="w-[18px] rounded-full border border-white">
+                            <span>EN</span>
+                        </template>
+                        <template v-else>
+                            <img :src="asset('assets/frontend/icons/flag_id.svg')" alt="" class="w-[18px] rounded-full border border-white">
+                            <span>ID</span>
+                        </template>
                         <i class="isax icon-arrow-down-1"></i>
 
                         <div
@@ -115,11 +121,11 @@
                         >
                             <img :src="asset('assets/frontend/icons/polygon.svg')" alt="" class="mx-auto -mb-[6px]">
                             <div class="p-4 rounded-xl bg-white flex flex-col gap-6 whitespace-nowrap">
-                                <div class="text-neutral-13 flex items-center gap-1 cursor-pointer" x-on:click="open_menu=false">
+                                <div class="text-neutral-13 flex items-center gap-1 cursor-pointer" x-on:click="open_menu=false" @click="changeLanguage('en')">
                                     <img :src="asset('assets/frontend/icons/flag_en.svg')" alt="" class="w-[18px] rounded-full border border-neutral-13">
                                     <span>English</span>
                                 </div>
-                                <div class="text-neutral-13 flex items-center gap-1 cursor-pointer" x-on:click="open_menu=false">
+                                <div class="text-neutral-13 flex items-center gap-1 cursor-pointer" x-on:click="open_menu=false" @click="changeLanguage('id')">
                                     <img :src="asset('assets/frontend/icons/flag_id.svg')" alt="" class="w-[18px] rounded-full border border-neutral-13">
                                     <span>Indonesia</span>
                                 </div>
@@ -206,8 +212,10 @@ import { MENU } from "@/Constanta/Menu";
 import Container from "../Section/Container.vue";
 import { Link, usePage } from "@inertiajs/vue3";
 import { asset } from "@/Lib/utils";
+import { switchLang } from "@/Composables/useTranslation";
 
 const careerUrl = usePage().props.career_url
+const currentLang = usePage().props.locale
 
 const scrolledPast = ref(false)
 const scrolledPastHomeBlue = ref(false)
@@ -258,14 +266,28 @@ const checkScroll = () => {
         }
 
     } else {
-        scrolledPast.value = currentScrollY > SCROLL_THRESHOLD
+        const homeBanner = document.getElementById("home_banner_title")
+        if (homeBanner) {
+            const rect = homeBanner.getBoundingClientRect()
+            scrolledPast.value = (rect.top + 20) < 88
 
-        if (scrollingUp && currentScrollY < SCROLL_THRESHOLD) {
-            scrolledPast.value = false
+            if (scrollingUp && currentScrollY < SCROLL_THRESHOLD) {
+                scrolledPast.value = false
+            }
+        } else {
+            scrolledPast.value = currentScrollY > SCROLL_THRESHOLD
+
+            if (scrollingUp && currentScrollY < SCROLL_THRESHOLD) {
+                scrolledPast.value = false
+            }
         }
     }
 
     lastScrollY.value = currentScrollY
+}
+
+const changeLanguage = (lang: string) => {
+    return switchLang(lang)
 }
 
 

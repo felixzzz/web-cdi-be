@@ -12,7 +12,7 @@
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium max-w-2xl" id="home_banner_title">
                         Tap into Sustainable Growth
                     </h1>
-                    <h2 class="max-w-md text-xs lg:text-base">
+                    <h2 class="max-w-md text-xs lg:text-base text-neutral-4">
                         Chandra Daya Investasi is a prime investment choice for institutional and retail investors looking to tap into Indonesia’s long-term growth potential
                     </h2>
                 </div>

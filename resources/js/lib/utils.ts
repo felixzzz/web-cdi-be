@@ -46,3 +46,10 @@ export const getQueryParam = (key: string, defaultValue?: string) => {
 export const triggerClick = (element: string) => {
     (document.querySelector(element) as any)?.click()
 }
+
+
+export const chunkArray = (array: any, chunkSize: any) => {
+    return Array.from({ length: Math.ceil(array.length / chunkSize) }, (_, i) =>
+        array.slice(i * chunkSize, i * chunkSize + chunkSize)
+    );
+}

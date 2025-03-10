@@ -12,4 +12,6 @@ export interface InertiaSharedProps {
         defaults: Record<string, unknown>;
         routes: Record<string, string>;
     };
+    locale: string;
+    translations: any;
 }

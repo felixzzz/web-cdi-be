@@ -1,6 +1,6 @@
 <template>
     <div
-        class="py-28 lg:py-40"
+        class="py-28 lg:py-40 bg-cover"
         :style="{ backgroundImage: `url(${asset('assets/frontend/images/media/media_hero_image.webp')})` }"
     >
         <container>

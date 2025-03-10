@@ -1,0 +1,40 @@
+{
+    "navbar": {
+        "home": "Beranda",
+        "about_us": "Tentang Kami",
+        "who_we_are": "Siapa Kami",
+        "management": "Manajemen",
+        "awards_certification": "Penghargaan & Sertifikasi",
+        "our_business": "Bisnis Kami",
+        "what_we_do": "Apa yang Kami Lakukan",
+        "energy": "Energi",
+        "water": "Air",
+        "ports_storage": "Pelabuhan & Penyimpanan",
+        "logistic": "Logistik",
+        "investor": "Investor",
+        "report": "Laporan",
+        "financial_information": "Informasi Keuangan",
+        "shares_information": "Informasi Saham",
+        "publications_for_investors": "Publikasi untuk Investor",
+        "governance": "Tata Kelola",
+        "sustainability": "Keberlanjutan",
+        "overview": "Gambaran Umum",
+        "environment": "Lingkungan",
+        "social": "Sosial",
+        "governance_section": "Tata Kelola",
+        "sustainability_in_action": "Keberlanjutan dalam Aksi",
+        "report_publication": "Laporan & Publikasi",
+        "media": "Media",
+        "career": "Karier",
+        "contact_us": "Hubungi Kami"
+    },
+    "footer": {
+        "head_office": "Head Office",
+        "contact_us": "Contact Us",
+        "a_member_of": "A member of",
+        "who_we_are": "Who We Are",
+        "our_bussiness": "Our Bussiness",
+        "sustainability": "Sustainability",
+        "investor": "Investor"
+    }
+}

@@ -1,6 +1,6 @@
 <template>
     <Link :href="link" class="flex bg-white rounded-xl shadow-article border border-neutral-5 overflow-hidden">
-        <div class="flex flex-col text-neutral-13 group cursor-pointer">
+        <div class="flex flex-col text-neutral-13 group cursor-pointer w-full">
             <div class="w-full aspect-square overflow-hidden">
                 <div
                     class="w-full aspect-square bg-cover bg-center transition-transform duration-300 ease-in-out group-hover:scale-150"

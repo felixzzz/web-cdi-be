@@ -11,7 +11,7 @@
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium lg:mb-6 max-w-2xl" id="home_banner_title">
                         Sustainable Infrastructure for a Better Tomorrow
                     </h1>
-                    <h2 class="max-w-md text-xs lg:text-base">
+                    <h2 class="max-w-md text-xs lg:text-base text-neutral-4">
                         We invest in projects that deliver long-term value for communities and the environment
                     </h2>
                 </div>

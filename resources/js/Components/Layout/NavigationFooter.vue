@@ -8,12 +8,12 @@
         <container>
             <div class="flex items-center justify-between mb-10">
                 <div>
-                    <p class="text-base mb-4 font-medium">A member of</p>
+                    <p class="text-base mb-4 font-medium">{{ $t('footer.a_member_of') }}</p>
                     <img :src="asset('assets/frontend/logo_cdi_footer.svg')" alt="" class="h-12">
                 </div>
                 <div>
                     <Link :href="route('contact-us')" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
-                        Contact Us
+                        {{ $t('footer.contact_us') }}
                     </Link>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="flex flex-col gap-6 max-w-sm">
                     <p class="font-medium text-[22px]">PT Chandra Daya Investasi Tbk</p>
                     <div class="text-base">
-                        <span class="font-medium">Head Office</span>
+                        <span class="font-medium">{{ $t('footer.head_office') }}</span>
                         <span class="text-neutral-6 block">Wisma Barito Pacific Tower A, 7th Floor Jl. Let.Jend. S. Parman kav.62-63 Jakarta 11410, Indonesia</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -37,19 +37,19 @@
 
                 <div class="flex flex-col gap-8">
                     <Link :href="route('about-us.who-we-are')" class="font-medium">
-                        Who We Are
+                        {{ $t('footer.who_we_are') }}
                     </Link>
 
                     <Link :href="route('our-business.what-we-do')" class="font-medium">
-                        Our Bussiness
+                        {{ $t('footer.our_bussiness') }}
                     </Link>
 
                     <Link href="" class="font-medium">
-                        Sustainability
+                        {{ $t('footer.sustainability') }}
                     </Link>
 
                     <Link :href="route('investor.report')" class="font-medium">
-                        Investor
+                        {{ $t('footer.investor') }}
                     </Link>
                 </div>
             </div>

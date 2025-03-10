@@ -12,7 +12,7 @@
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium max-w-2xl" id="home_banner_title">
                         Eco-friendly Electricity and Renewable Energy Provider
                     </h1>
-                    <!-- <h2 class="max-w-md text-xs lg:text-base mt-6">
+                    <!-- <h2 class="max-w-md text-xs lg:text-base mt-6 text-neutral-4">
 
                     </h2> -->
                 </div>

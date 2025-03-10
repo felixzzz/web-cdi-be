@@ -8,7 +8,7 @@
         >
             <div class="absolute inset-0 overlay-business"></div>
             <container class="relative z-[1]">
-                <div class="max-w-[45%] ms-auto">
+                <div class="lg:max-w-[45%] ms-auto">
                     <div class="content !text-neutral-5" v-html="content"></div>
                 </div>
             </container>

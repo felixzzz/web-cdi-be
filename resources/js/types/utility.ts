@@ -34,3 +34,31 @@ export type BreadcrumbLink = {
     route: any;
     title: string;
 }
+
+export type SustainabilityFile = {
+    id: string | number;
+    title: string;
+    image?: string;
+    description: string;
+    size: string;
+}
+
+type SustainabilityContentGrid = {
+    icon: string;
+    title?: string;
+    description: string;
+}
+
+export type SustainabilityContent = {
+    background?: '' | 'normal' | 'darkest',
+    type?: 'content' | 'grid'  | 'simple_text_information' | 'file_information' | 'list_information';
+    title?: string;
+    image?: string;
+    align?: string;
+    grid_direction?: string | 'row' | 'col';
+    grid_pattern?: '' | 'normal' | 'zig-zag';
+    grid_type?: '' | 'icon_content_card' | 'icon_list_card' | 'box_icon_card' | 'image_content_card' | 'featured_image_card';
+    content?: string;
+    content_grid?: SustainabilityContentGrid[],
+    file_information?: SustainabilityFile
+}

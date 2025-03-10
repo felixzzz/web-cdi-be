@@ -5,7 +5,7 @@
         <div>
             <img
                 :src="item.image" alt=""
-                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-[#f8f192c4]"
+                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-gold-1"
             >
         </div>
         <div>

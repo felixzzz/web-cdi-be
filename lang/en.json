@@ -1,0 +1,40 @@
+{
+    "navbar": {
+        "home": "Home",
+        "about_us": "About Us",
+        "who_we_are": "Who We Are",
+        "management": "Management",
+        "awards_certification": "Awards & Certification",
+        "our_business": "Our Business",
+        "what_we_do": "What We Do",
+        "energy": "Energy",
+        "water": "Water",
+        "ports_storage": "Ports & Storage",
+        "logistic": "Logistic",
+        "investor": "Investor",
+        "report": "Report",
+        "financial_information": "Financial Information",
+        "shares_information": "Shares Information",
+        "publications_for_investors": "Publications for Investors",
+        "governance": "Governance",
+        "sustainability": "Sustainability",
+        "overview": "Overview",
+        "environment": "Environment",
+        "social": "Social",
+        "governance_section": "Governance",
+        "sustainability_in_action": "Sustainability in Action",
+        "report_publication": "Report & Publication",
+        "media": "Media",
+        "career": "Career",
+        "contact_us": "Contact Us"
+    },
+    "footer": {
+        "head_office": "Head Office",
+        "contact_us": "Contact Us",
+        "a_member_of": "A member of",
+        "who_we_are": "Who We Are",
+        "our_bussiness": "Our Bussiness",
+        "sustainability": "Sustainability",
+        "investor": "Investor"
+    }
+}

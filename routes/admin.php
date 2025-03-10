@@ -13,16 +13,16 @@ Route::prefix('admin')
 ->as("admin.")
 ->group(function () {
     Route::middleware(GuestSession::class)->group(function () {
-        Route::get('auth/login', [AuthenticatedSessionController::class, 'create'])
+        Route::get('login', [AuthenticatedSessionController::class, 'create'])
             ->name('login');
 
-        Route::post('auth/login', [AuthenticatedSessionController::class, 'store']);
+        Route::post('login', [AuthenticatedSessionController::class, 'store']);
     });
 
     Route::middleware(AuthSession::class)->group(function () {
         Route::get("/dashboard", [HomeController::class, 'index'])->name("dashboard");
 
-        Route::post('auth/logout', [AuthenticatedSessionController::class, 'destroy'])
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
         Route::resource('roles', AdminRoleController::class)->middleware([OnlySuperadminMiddleware::class]);

@@ -18,6 +18,11 @@ use App\Http\Controllers\FrontEnd\OurBusiness\LogisticController;
 use App\Http\Controllers\FrontEnd\OurBusiness\OurBusinessController;
 use App\Http\Controllers\FrontEnd\OurBusiness\PortStorageController;
 use App\Http\Controllers\FrontEnd\OurBusiness\WaterController;
+use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityController;
+use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityEnvironmentController;
+use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityInActionController;
+use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityReportPublicationController;
+use App\Http\Controllers\FrontEnd\Sustainability\SustainabilitySocialController;
 use App\Http\Controllers\FrontEnd\UtilityController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
@@ -65,6 +70,17 @@ Route::prefix('our-business')
     Route::get('/ports-and-storage', [PortStorageController::class, 'index'])->name('ports-and-storage');
 });
 
+Route::prefix('sustainability')
+->as("sustainability.")
+->group(function () {
+    Route::get('/', [SustainabilityController::class, 'index'])->name('overview');
+    Route::get('/sustainability-in-action', [SustainabilityInActionController::class, 'index'])->name('sustainability-in-action');
+    Route::get('/report-and-publication', [SustainabilityReportPublicationController::class, 'index'])->name('report-and-publication');
+    Route::get('/environment', [SustainabilityEnvironmentController::class, 'index'])->name('environment');
+    Route::get('/social', [SustainabilitySocialController::class, 'index'])->name('social');
+});
+
 Route::get('/storage/{file}', [FileStorageController::class, 'preview'])->name('preview.storage');
+Route::get('/switch-lang/{locale}', [UtilityController::class, 'switchLang'])->name('switch-lang');
 
 require __DIR__.'/admin.php';

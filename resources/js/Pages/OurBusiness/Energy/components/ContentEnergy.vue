@@ -7,7 +7,7 @@
             >{{ heading }}</p>
 
             <div class="py-20">
-                <div class="flex items-center gap-6 border-b-2 border-b-neutral-6 justify-between">
+                <div class="flex items-center gap-6 border-b-2 border-b-neutral-6 justify-between max-lg:flex-col">
                     <div
                         v-for="(tab, index) in tabs"
                         :key="index"
@@ -57,7 +57,7 @@
                     <div class="absolute inset-0 overlay-business"></div>
                     <container class="relative z-[1]">
                         <div
-                            class="max-w-[45%]"
+                            class="lg:max-w-[45%]"
                             :class="{
                                 'me-auto': content.align == 'left',
                                 'ms-auto': content.align == 'right',

@@ -1,141 +1,141 @@
 export const MENU = [
     {
-        name: 'Home',
+        name: 'navbar.home',
         route: route('home'),
         active: 'home',
         subs: [],
         external: false
     },
     {
-        name: 'About Us',
+        name: 'navbar.about_us',
         route: '',
         active: 'about-us',
         subs: [
             {
-                name: 'Who We Are',
+                name: 'navbar.who_we_are',
                 route: route('about-us.who-we-are')
             },
             {
-                name: 'Management',
+                name: 'navbar.management',
                 route: route('about-us.management')
             },
             {
-                name: 'Awards & Certification',
+                name: 'navbar.awards_certification',
                 route: route('about-us.awards')
             }
         ],
         external: false
     },
     {
-        name: 'Our Business',
+        name: 'navbar.our_business',
         route: '',
         active: 'our-business',
         subs: [
             {
-                name: 'What We Do',
+                name: 'navbar.what_we_do',
                 route: route('our-business.what-we-do')
             },
             {
-                name: 'Energy',
+                name: 'navbar.energy',
                 route: route('our-business.energy')
             },
             {
-                name: 'Water',
+                name: 'navbar.water',
                 route: route('our-business.water')
             },
             {
-                name: 'Ports & Storage',
+                name: 'navbar.ports_storage',
                 route: route('our-business.ports-and-storage')
             },
             {
-                name: 'Logistic',
+                name: 'navbar.logistic',
                 route: route('our-business.logistics')
             }
         ],
         external: false
     },
     {
-        name: 'Investor',
+        name: 'navbar.investor',
         route: '',
         active: 'investor',
         subs: [
             {
-                name: 'Report',
+                name: 'navbar.report',
                 route: route('investor.report')
             },
             {
-                name: 'Financial Information',
+                name: 'navbar.financial_information',
                 route: route('investor.financial-information')
             },
             {
-                name: 'Shares Information',
+                name: 'navbar.shares_information',
                 route: route('investor.shares-information')
             },
             {
-                name: 'Publications for Investors',
+                name: 'navbar.publications_for_investors',
                 route: route('investor.publications-for-investors')
             }
         ],
         external: false
     },
     {
-        name: 'Governance',
+        name: 'navbar.governance',
         route: route('governance.index'),
         active: 'governance',
         subs: [],
         external: false
     },
     {
-        name: 'Sustainability',
+        name: 'navbar.sustainability',
         route: '',
         active: 'sustainability',
         subs: [
             {
-                name: 'Overview',
+                name: 'navbar.overview',
+                route: route('sustainability.overview')
+            },
+            {
+                name: 'navbar.environment',
+                route: route('sustainability.environment')
+            },
+            {
+                name: 'navbar.social',
+                route: route('sustainability.social')
+            },
+            {
+                name: 'navbar.governance_section',
                 route: ''
             },
             {
-                name: 'Environment',
-                route: ''
+                name: 'navbar.sustainability_in_action',
+                route: route('sustainability.sustainability-in-action')
             },
             {
-                name: 'Social',
-                route: ''
-            },
-            {
-                name: 'Governance',
-                route: ''
-            },
-            {
-                name: 'Sustainablitity in Action',
-                route: ''
-            },
-            {
-                name: 'Report & Publication',
-                route: ''
+                name: 'navbar.report_publication',
+                route: route('sustainability.report-and-publication')
             }
         ],
         external: false
     },
     {
-        name: 'Media',
+        name: 'navbar.media',
         route: route('media.index', { type: 'news' }),
         active: 'media',
         subs: [],
         external: false
     },
     {
-        name: 'Career',
+        name: 'navbar.career',
         route: '',
         active: 'career',
         subs: [],
         external: true
     },
     {
-        name: 'Contact Us',
+        name: 'navbar.contact_us',
         route: route('contact-us'),
         active: 'contact-us',
         subs: [],
         external: false
     }
-]
+];
