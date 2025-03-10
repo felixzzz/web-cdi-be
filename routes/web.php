@@ -20,6 +20,7 @@ use App\Http\Controllers\FrontEnd\OurBusiness\PortStorageController;
 use App\Http\Controllers\FrontEnd\OurBusiness\WaterController;
 use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityController;
 use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityEnvironmentController;
+use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityGovernanceController;
 use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityInActionController;
 use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityReportPublicationController;
 use App\Http\Controllers\FrontEnd\Sustainability\SustainabilitySocialController;
@@ -78,9 +79,14 @@ Route::prefix('sustainability')
     Route::get('/report-and-publication', [SustainabilityReportPublicationController::class, 'index'])->name('report-and-publication');
     Route::get('/environment', [SustainabilityEnvironmentController::class, 'index'])->name('environment');
     Route::get('/social', [SustainabilitySocialController::class, 'index'])->name('social');
+    Route::get('/governance', [SustainabilityGovernanceController::class, 'index'])->name('governance');
 });
 
 Route::get('/storage/{file}', [FileStorageController::class, 'preview'])->name('preview.storage');
+Route::get('/privacy-policy', [UtilityController::class, 'privacy'])->name('privacy-policy');
+Route::get('/cookies-notice', [UtilityController::class, 'cookie'])->name('cookies-notice');
+Route::get('/terms-and-conditions', [UtilityController::class, 'term'])->name('terms-and-conditions');
+Route::get('/disclaimer', [UtilityController::class, 'disclaimer'])->name('disclaimer');
 Route::get('/switch-lang/{locale}', [UtilityController::class, 'switchLang'])->name('switch-lang');
 
 require __DIR__.'/admin.php';

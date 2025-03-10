@@ -7,15 +7,29 @@
         :is-home="navIsHome"
         :sticky-blur="navStickyBlur"
     />
-    <slot />
+    <section class="min-h-[35vh]">
+        <slot />
+    </section>
     <quick-links v-if="showQuickLink" />
     <navigation-footer />
+    <cookie-request
+        v-if="
+            !route().current('privacy-policy') &&
+            !route().current('cookies-notice') &&
+            !cookie.getCookie(cookie.applicationCookieConsent)
+        "
+        :applicationCookie="cookie.applicationCookie"
+        @accept="cookie.accept"
+        @decline="cookie.decline"
+    />
 </template>
 
 <script lang="ts" setup>
     import NavigationHeader from '@/Components/Layout/NavigationHeader.vue'
     import NavigationFooter from '@/Components/Layout/NavigationFooter.vue'
     import QuickLinks from '@/Components/Layout/QuickLinks.vue'
+    import CookieRequest from '@/Components/Layout/CookieRequest.vue'
+    import useCookie from '@/Composables/useCookie'
 
     withDefaults(defineProps<{
         navFixed?: boolean;
@@ -29,4 +43,6 @@
         navStickyScroll: true,
         showQuickLink: false
     })
+
+    const cookie = useCookie()
 </script>

@@ -30,11 +30,16 @@
     },
     "footer": {
         "head_office": "Head Office",
+        "phone": "Phone",
         "contact_us": "Contact Us",
         "a_member_of": "A member of",
         "who_we_are": "Who We Are",
         "our_bussiness": "Our Bussiness",
         "sustainability": "Sustainability",
-        "investor": "Investor"
+        "investor": "Investor",
+        "terms_and_conditions": "Terms & Conditions",
+        "privacy_policy": "Privacy Policy",
+        "cookies_consent": "Cookies Consent",
+        "disclaimer": "Disclaimer"
     }
 }

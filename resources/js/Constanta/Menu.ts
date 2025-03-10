@@ -104,7 +104,7 @@ export const MENU = [
             },
             {
                 name: 'navbar.governance_section',
-                route: ''
+                route: route('sustainability.governance')
             },
             {
                 name: 'navbar.sustainability_in_action',

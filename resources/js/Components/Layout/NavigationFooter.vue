@@ -26,7 +26,7 @@
                         <span class="text-neutral-6 block">Wisma Barito Pacific Tower A, 7th Floor Jl. Let.Jend. S. Parman kav.62-63 Jakarta 11410, Indonesia</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-neutral-6">Phone</span>
+                        <span class="text-neutral-6">{{ $t('footer.phone') }}</span>
                         <span>(62-21) 530 7950</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -74,7 +74,7 @@
 
                 <!-- Menu Links -->
                 <div class="flex gap-4 items-center justify-center lg:justify-end lg:col-start-3 lg:row-start-1">
-                    <Link v-for="(item, index) in menus" :key="index" class="text-xs text-neutral-3" :href="item.url">
+                    <Link v-for="(item, index) in menus" :key="index" class="text-xs text-neutral-3 whitespace-nowrap" :href="item.url">
                         {{ item.name }}
                     </Link>
                 </div>
@@ -121,20 +121,20 @@
 
     const menus = ref([
         {
-            url: '',
-            name: 'Terms & Conditions'
+            url: route('terms-and-conditions'),
+            name: $t('footer.terms_and_conditions')
         },
         {
-            url: '',
-            name: 'Privacy Policy'
+            url: route('privacy-policy'),
+            name: $t('footer.privacy_policy')
         },
         {
-            url: '',
-            name: 'Cookies Consent'
+            url: route('cookies-notice'),
+            name: $t('footer.cookies_consent')
         },
         {
-            url: '',
-            name: 'Disclaimer'
+            url: route('disclaimer'),
+            name: $t('footer.disclaimer')
         }
     ])
 </script>

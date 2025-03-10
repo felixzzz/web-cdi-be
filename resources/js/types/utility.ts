@@ -44,6 +44,7 @@ export type SustainabilityFile = {
 }
 
 type SustainabilityContentGrid = {
+    number?: number;
     icon: string;
     title?: string;
     description: string;
@@ -51,7 +52,7 @@ type SustainabilityContentGrid = {
 
 export type SustainabilityContent = {
     background?: '' | 'normal' | 'darkest',
-    type?: 'content' | 'grid'  | 'simple_text_information' | 'file_information' | 'list_information';
+    type?: 'content' | 'grid'  | 'simple_text_information' | 'file_information' | 'list_information' | 'content_points' | 'content_swiper';
     title?: string;
     image?: string;
     align?: string;

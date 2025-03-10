@@ -10,7 +10,7 @@
             }"
             v-if="item.type == 'content'"
         >
-            <div class="absolute inset-0 overlay-business"></div>
+            <div class="absolute inset-0" :class="item.background == 'darkest' ? 'overlay-business-darkest' : 'overlay-business'"></div>
             <container class="relative z-[1]">
                 <div
                     class="lg:max-w-[45%]"
@@ -37,7 +37,7 @@
                 'backgroundImage': `url(${item.image})`
             }"
         >
-            <div class="absolute inset-0 overlay-business" v-if="item.image"></div>
+            <div class="absolute inset-0" :class="item.background == 'darkest' ? 'overlay-business-darkest' : 'overlay-business'" v-if="item.image"></div>
             <container class="relative z-[1]">
                 <div
                     class="mb-16 grid grid-cols-1 gap-4"
@@ -150,7 +150,7 @@
                 'backgroundImage': `url(${item.image})`
             }"
         >
-            <div class="absolute inset-0 overlay-business" v-if="item.image"></div>
+            <div class="absolute inset-0" :class="item.background == 'darkest' ? 'overlay-business-darkest' : 'overlay-business'" v-if="item.image"></div>
             <container class="relative z-[1]">
                 <div
                     class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:items-center"
@@ -189,7 +189,7 @@
                 'backgroundImage': `url(${item.image})`
             }"
         >
-            <div class="absolute inset-0 overlay-business" v-if="item.image"></div>
+            <div class="absolute inset-0" :class="item.background == 'darkest' ? 'overlay-business-2-darkest' : 'overlay-business-2'" v-if="item.image"></div>
             <container class="relative z-[1]">
                 <div
                     class=""
@@ -233,6 +233,70 @@
                 </div>
             </container>
         </div>
+        <div
+            v-else-if="item.type == 'content_swiper'"
+            class="py-20 text-white bg-blue-dark bg-cover relative bg-center"
+            :class="{
+                '!bg-blue-dark-black': item.background == 'darkest'
+            }"
+            :style="{
+                'backgroundImage': `url(${item.image})`
+            }"
+        >
+            <div class="absolute inset-0" :class="item.background == 'darkest' ? 'overlay-business-2-darkest' : 'overlay-business-2'" v-if="item.image"></div>
+            <container class="relative z-[1]">
+                <div class="flex max-lg:flex-col items-center gap-8 mb-16 justify-between">
+                    <div class="flex flex-col gap-1">
+                        <p class="text-2xl lg:text-[28px] font-medium">{{ item.title }}</p>
+                        <div class="content !text-neutral-4" v-html="item.content"></div>
+                    </div>
+                    <div class="">
+                        <div class="flex items-center justify-end gap-4">
+                            <div class="custom-prev cursor-pointer text-white text-2xl w-12 h-12 rounded-full border border-white flex items-center justify-center" :id="`swiper-prev-${index}`">
+                                <i class="isax icon-arrow-left"></i>
+                            </div>
+                            <div class="custom-next cursor-pointer text-white text-2xl w-12 h-12 rounded-full border border-white flex items-center justify-center" :id="`swiper-next-${index}`">
+                                <i class="isax icon-arrow-right-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <swiper
+                    :modules="[Navigation]"
+                    :slides-per-view="4"
+                    :space-between="24"
+                    :navigation="{ nextEl: `#swiper-next-${index}`, prevEl: `#swiper-prev-${index}` }"
+                    class="custom-swiper"
+                    :breakpoints="{
+                        320: { slidesPerView: 1 },
+                        640: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                        1280: { slidesPerView: 4 }
+                    }"
+                >
+                    <swiper-slide v-for="(content, contentIndex) in item.content_grid" :key="contentIndex">
+                        <div
+                            class="rounded-3xl p-6 overflow-hidden w-full aspect-[3/4] flex flex-col gap-4 justify-between bg-cover bg-center relative"
+                            :style="{
+                                'backgroundImage': `url(${content.icon})`
+                            }"
+                        >
+                            <div class="absolute inset-0 overlay-card-sustainability"></div>
+                            <div class="flex items-center gap-2 relative z-[1]">
+                                <p class="text-white/40 text-4xl lg:text-[68px]">
+                                    {{ content.number }}
+                                </p>
+                                <p class="text-2xl lg:text-[28px] font-medium text-white">
+                                    {{ content.title }}
+                                </p>
+                            </div>
+
+                            <div v-html="content.description" class="!text-neutral-5 relative z-[1]"></div>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+            </container>
+        </div>
     </section>
 
 </template>
@@ -242,6 +306,11 @@
     import { asset, chunkArray } from '@/Lib/utils'
     import { SustainabilityContent } from '@/types/utility'
     import { onMounted, ref } from 'vue'
+    import { Swiper, SwiperSlide } from 'swiper/vue'
+    import 'swiper/css'
+    import 'swiper/css/navigation'
+    import { Navigation } from 'swiper/modules'
+    import { Link } from '@inertiajs/vue3'
 
     const props = defineProps<{
         type: 'environment' | 'social' | 'governance'
@@ -564,6 +633,137 @@
                             `
                         }
                     ]
+                }
+            ]
+        } else if (props.type == 'governance') {
+            items.value = [
+                {
+                    type: 'file_information',
+                    background: 'normal',
+                    grid_type: '',
+                    grid_direction: 'row',
+                    image: asset('assets/frontend/images/sustainability/business_ethics.webp'),
+                    title: 'Business Ethics',
+                    align: 'left',
+                    content: `
+                        <p>PT Chandra Daya Investasi Tbk (CDI) upholds strong Business Ethics standards to ensure integrity, transparency, and accountability across all operations. Guided by a Code of Conduct emphasizing honesty, fairness, and respect, employees undergo training to uphold ethical standards and report any concerns through the Company's Whistleblowing System. Individual behaviour is regulated by our iSTAR values and internal Code of Conduct, both of which emphasize professionalism, integrity, and ethical conduct at every level. This commitment to Business Ethics and the Code of Conduct fosters a culture of responsibility, compliance, and ethical business practices essential for optimal governance and sustainable operations.</p>
+                    `,
+                    file_information: {
+                        id: '1',
+                        title: 'Our Code of Conduct',
+                        description: '',
+                        size: '12MB'
+                    }
+                },
+                {
+                    type: 'content',
+                    grid_type: '',
+                    image: asset('assets/frontend/images/sustainability/grievance_mechanism.webp'),
+                    title: 'Grievance Mechanism',
+                    align: 'left',
+                    content: `
+                        <p>Grievance System provides employees with a confidential mechanism to address concerns within the realm of industrial relations. The Company ensures informant confidentiality, allowing individuals to report complaints without fear of repercussions. Reports are taken seriously and investigated promptly, with appropriate sanctions enforced for proven violations.</p>
+                        <p>We promptly and fairly address grievances to create a transparent and supportive work environment. We have established clear procedures for submitting complaints, conducting investigations, and providing resolution guidelines. We believe that effective grievance mechanisms help us identify and resolve issues, enhance employee satisfaction, and ensure compliance with legal and ethical standards.</p>
+                    `
+                },
+                {
+                    type: 'grid',
+                    background: 'darkest',
+                    grid_type: 'box_icon_card',
+                    grid_direction: 'row',
+                    grid_pattern: '',
+                    image: '',
+                    title: 'Sustainable Procurement',
+                    align: '',
+                    content: 'CDI places a strong emphasis on sustainable procurement by integrating ESG (Environmental, Social, and Governance) considerations into its supply chain processes.',
+                    content_grid: [
+                        {
+                            icon: asset('assets/frontend/icons/ic_product_loading.svg'),
+                            title: '',
+                            description: `
+                                <p>In terms of governance, we ensure equal treatment for all potential suppliers, regardless of their origin, and expects compliance with our Code of Conduct. The procurement process involves the Contracts and Procurement Department working in conjunction with the Contracts Committee, overseen by the Board of Directors. Prospective suppliers undergo a pre-qualification stage before participating in the tender process, with evaluations based on various criteria like legal suitability, quality control systems, and adherence to safety regulations.</p>
+                            `
+                        },
+                        {
+                            icon: asset('assets/frontend/icons/ic_health.svg'),
+                            title: '',
+                            description: `
+                                <p>Additionally, Chandra Daya Investasi maintains a Contractor Safety, Health, and Environment Plan to prioritize operational safety for workers and mitigate environmental impacts. We require our work partners to abide by environmental regulations and uphold safety standards, demonstrating a commitment to human rights and workplace justice in all business partnerships.</p>
+                            `
+                        }
+                    ]
+                },
+                {
+                    type: 'grid',
+                    background: 'darkest',
+                    grid_type: 'box_icon_card',
+                    grid_direction: 'col',
+                    grid_pattern: '',
+                    image: asset('assets/frontend/images/sustainability/sustainable_procurement_background.webp'),
+                    title: 'Cyber Security',
+                    align: '',
+                    content: 'Chandra Daya Investasi prioritizes information security within its governance framework, recognizing the critical importance of information and IT systems as essential business assets. We emphasize the availability, integrity, and confidentiality of information to ensure our competitive edge, profitability, legal compliance, and reputation.',
+                    content_grid: [
+                        {
+                            icon: asset('assets/frontend/icons/ic_security_password.svg'),
+                            title: 'Policy Management',
+                            description: `
+                                <p>We have implemented IT policies and a User Access and Security Policy to ensure business continuity, minimize the impact of security incidents as well as to protect the privacy of personal information.</p>
+                            `
+                        },
+                        {
+                            icon: asset('assets/frontend/icons/ic_computer_protection.svg'),
+                            title: 'Security Operation System Initiatives',
+                            description: `
+                                <p>A key initiative to enhance cybersecurity is the establishment of a Security Operations Center. This center proactively monitors the IT infrastructure, allowing for the timely detection of cybersecurity alerts and incidents.</p>
+                            `
+                        }
+                    ]
+                },
+                {
+                    type: 'content_swiper',
+                    grid_type: '',
+                    image: '',
+                    title: 'Three fundamental components of information security management',
+                    align: '',
+                    content: ``,
+                    content_grid: [
+                        {
+                            number: 1,
+                            icon: asset('assets/frontend/images/sustainability/three_fundamental_security_confidentiality.webp'),
+                            title: 'Confidentiality',
+                            description: 'Safeguarding sensitive information from unauthorized access or disclosure.'
+                        },
+                        {
+                            number: 2,
+                            icon: asset('assets/frontend/images/sustainability/three_fundamental_security_integrity.webp'),
+                            title: 'Integrity',
+                            description: 'Ensuring the accuracy and completeness of information and software.'
+                        },
+                        {
+                            number: 3,
+                            icon: asset('assets/frontend/images/sustainability/three_fundamental_security_availability.webp'),
+                            title: 'Availability',
+                            description: 'Making certain that critical information and services are accessible to users only when required.'
+                        },
+                        {
+                            number: 4,
+                            icon: asset('assets/frontend/images/sustainability/three_fundamental_4.webp'),
+                            title: 'Accountability',
+                            description: 'Ensuring that actions and changes in the system can be traced back to responsible entities, preventing denial of responsibility'
+                        }
+                    ]
+                },
+                {
+                    type: 'content',
+                    grid_type: '',
+                    image: asset('assets/frontend/images/sustainability/governance_performance.webp'),
+                    title: 'Governance Performance',
+                    align: 'right',
+                    content: `
+                        <p>In terms of governance, our performance is guided by our Code of Conduct and includes thorough supply chain assessments to ensure ethical practices across our operations.</p>
+                        <p>We are committed to maintaining high governance standards by regularly evaluating compliance with our ethical guidelines, which enhances transparency and accountability while mitigating risks.</p>
+                    `
                 }
             ]
         }

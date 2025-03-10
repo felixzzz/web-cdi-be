@@ -28,6 +28,7 @@ Alpine.start()
 window.route = (name: string, params?: any, absolute?: boolean) => route(name, params, absolute, Ziggy)
 window.axios = axios
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+window.$t = translate;
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

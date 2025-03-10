@@ -29,12 +29,17 @@
         "contact_us": "Hubungi Kami"
     },
     "footer": {
-        "head_office": "Head Office",
-        "contact_us": "Contact Us",
-        "a_member_of": "A member of",
-        "who_we_are": "Who We Are",
-        "our_bussiness": "Our Bussiness",
-        "sustainability": "Sustainability",
-        "investor": "Investor"
+        "head_office": "Kantor Pusat",
+        "phone": "Telepon",
+        "contact_us": "Hubungi Kami",
+        "a_member_of": "Anggota dari",
+        "who_we_are": "Siapa Kami",
+        "our_bussiness": "Bisnis Kami",
+        "sustainability": "Keberlanjutan",
+        "investor": "Investor",
+        "terms_and_conditions": "Syarat & Ketentuan",
+        "privacy_policy": "Kebijakan Privasi",
+        "cookies_consent": "Persetujuan Cookies",
+        "disclaimer": "Pernyataan Penyangkalan"
     }
 }

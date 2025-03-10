@@ -5,7 +5,7 @@
             'backgroundImage': `url(${asset('assets/frontend/images/sustainability/sustainability_overview_hero_image.webp')})`
         }"
     >
-        <div class="overlay-awards-banner h-full w-full absolute left-0 right-0 top-0 bottom-0"></div>
+        <div class="overlay-business-banner h-full w-full absolute left-0 right-0 top-0 bottom-0"></div>
         <container>
             <div class="text-white grid lg:grid-cols-2 gap-2 relative z-[1] items-end">
                 <div>
