@@ -19,6 +19,7 @@ class StorageFile
             'image/jpg',
             'image/png',
             'image/gif',
+            'image/webp',
             'application/pdf',
             'application/msword',
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -39,8 +40,50 @@ class StorageFile
         $filename = Str::slug(str_replace($extension, "", $name)) . $extension;
         $fileUrl = Storage::disk('local')->putFileAs("{$location}", $file, $filename);
 
-        return encrypt($fileUrl);
+        return Helper::shortEncrypt($fileUrl);
     }
+
+    public static function uploadWithDetails($file, $location = "")
+    {
+        if (!$file) {
+            return null;
+        }
+
+        $mimeType = $file->getMimeType();
+        $allowedMimeTypes = [
+            'image/jpeg',
+            'image/jpg',
+            'image/png',
+            'image/gif',
+            'image/webp',
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.ms-excel',
+        ];
+
+        if (!in_array($mimeType, $allowedMimeTypes)) {
+            throw new \Exception('Invalid file type');
+        }
+
+        $name = $file->getClientOriginalName();
+        if (str_contains($name, '.php')) {
+            throw new \Exception('Invalid file type');
+        }
+
+        $extension = $file->getClientOriginalExtension();
+        $filename = Str::slug(pathinfo($name, PATHINFO_FILENAME)) . '.' . $extension;
+        $filePath = Storage::disk('local')->putFileAs("{$location}", $file, $filename);
+        $fileSize = self::formatSize($file->getSize());
+
+        return [
+            'path' => Helper::shortEncrypt($filePath),
+            'size' => $fileSize,
+            'format' => $extension,
+        ];
+    }
+
 
     public static function preview($filename)
     {
@@ -75,4 +118,16 @@ class StorageFile
                 'Content-disposition' => 'filename="'.$fileName.'"'
             ]);
     }
+
+    private static function formatSize($size)
+    {
+        if ($size >= 1048576) { // Lebih dari 1MB
+            return round($size / 1048576, 2) . ' MB';
+        } elseif ($size >= 1024) { // Lebih dari 1KB
+            return round($size / 1024, 2) . ' KB';
+        }
+        return $size . ' B'; // Dalam byte
+    }
+
+
 }

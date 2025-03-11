@@ -88,5 +88,3 @@ Route::get('/cookies-notice', [UtilityController::class, 'cookie'])->name('cooki
 Route::get('/terms-and-conditions', [UtilityController::class, 'term'])->name('terms-and-conditions');
 Route::get('/disclaimer', [UtilityController::class, 'disclaimer'])->name('disclaimer');
 Route::get('/switch-lang/{locale}', [UtilityController::class, 'switchLang'])->name('switch-lang');
-
-require __DIR__.'/admin.php';

@@ -13,7 +13,8 @@
 <body>
     <section class="flex flex-col h-screen items-center justify-center bg-gray-300">
         <x-portal::card class="w-[350px] space-y-6">
-            <div class="space-y-1">
+            <div class="space-y-1 text-center">
+                <img src="{{ asset('assets/frontend/logo_cdi_colored.svg') }}" alt="" class="w-1/2 text-center mx-auto mb-2">
                 <x-portal::heading size="lg">Log in to your account</x-portal::heading>
                 <x-portal::heading.sub>Welcome back!</x-portal::heading.sub>
             </div>

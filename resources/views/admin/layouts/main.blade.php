@@ -16,9 +16,7 @@
 
         <x-sidebar>
             <x-sidebar.logo
-                :title="env('APP_NAME')"
-                :description="auth()->user()->role->name"
-                logo="{{ asset('logo.jpg') }}"
+                logo="{{ asset('assets/frontend/logo_cdi_white.svg') }}"
             />
             <x-sidebar.content>
                 <x-sidebar.item.group>
@@ -31,7 +29,9 @@
                                     :label="$menu->name"
                                     :active="isset($pageActive) && $pageActive == $menu->active ? true : false"
                                 >
-                                    @svg('tabler-{{ $menu->icon }}', ['class' => 'icon'])
+                                    @svg('tabler-' . $menu->icon, [
+                                        'class' => 'icon',
+                                    ])
                                     {{ $menu->name }}
                                 </x-sidebar.item>
                             @else

@@ -42,6 +42,10 @@
             </tbody>
         </x-portal::table>
 
+        <div class="mt-5">
+            {{ $data->links() }}
+        </div>
+
         <x-layouts.alert-delete />
     </div>
 @endsection

@@ -12,3 +12,57 @@ if (!function_exists('itcan')) {
         return in_array($action, $permission);
     }
 }
+
+
+if (!function_exists('previewFile')) {
+    function previewFile($prefix)
+    {
+        return route('preview.storage', $prefix).".webp";
+    }
+}
+
+
+if (!function_exists('decryptBase64')) {
+    function decryptBase64($str)
+    {
+        if(!$str){
+            return null;
+        }
+        try{
+            return base64_decode(urldecode($str));
+        }catch(\Exception $e){
+            return null;
+        }
+    }
+}
+
+if (!function_exists('urlFilterColumn')) {
+    function urlFilterColumn($key, $value)
+    {
+        $params = request()->all();
+        $mainPath = request()->url();
+
+        if (@$params['filter_column']) {
+            unset($params['filter_column']);
+        }
+
+        $params['filter_column'][$key] = $value;
+
+        if (isset($params)) {
+            return $mainPath . '?' . http_build_query($params);
+        } else {
+            return $mainPath . '?filter_column[' . $key . ']=' . $value;
+        }
+    }
+}
+
+
+if (!function_exists('getQueryParam')) {
+    function getQueryParam($url)
+    {
+        $queryString = parse_url($url, PHP_URL_QUERY);
+        $queryParams = [];
+        parse_str($queryString, $queryParams);
+        return $queryParams ? $queryParams : null;
+    }
+}

@@ -90,6 +90,10 @@
             </tbody>
         </x-portal::table>
 
+        <div class="mt-5">
+            {{ $data->links() }}
+        </div>
+
         <section id="dialog-form-edit-popup">
             <x-portal::alert-dialog id="dialog-form-edit-popup">
                 <x-portal::alert-dialog.content method="POST" class="z-[99]">

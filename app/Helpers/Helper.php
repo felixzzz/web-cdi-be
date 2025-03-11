@@ -55,4 +55,22 @@ class Helper
                 break;
         }
     }
+
+    public static function shortEncrypt($value)
+    {
+        $key = substr(config('app.key'), 0, 16); // Ambil 16 karakter pertama dari APP_KEY
+        $iv = '1234567890123456'; // IV tetap, pastikan 16 karakter
+        $encrypted = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+
+        return rtrim(strtr(base64_encode($encrypted), '+/', '-_'), '='); // Buat lebih pendek
+    }
+
+    public static function shortDecrypt($encryptedValue)
+    {
+        $key = substr(config('app.key'), 0, 16);
+        $iv = '1234567890123456';
+        $decoded = base64_decode(strtr($encryptedValue, '-_', '+/'));
+
+        return openssl_decrypt($decoded, 'AES-128-CBC', $key, 0, $iv);
+    }
 }
