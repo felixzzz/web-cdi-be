@@ -40,21 +40,21 @@
 
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_id" :value="old('title_id')" type="text" required />
-                <x-portal::form.group
-                    label="Content"
+            <x-portal::form.group
+                label="Content"
+                name="content_id"
+                description=""
+                description-trailing=""
+            >
+                <x-editor.ckeditor
+                    placeholder=""
                     name="content_id"
-                    description=""
-                    description-trailing=""
+                    height="150"
+                    uploadUrl="{{ route('admin.editor.upload') }}"
                 >
-                    <x-editor.ckeditor
-                        placeholder=""
-                        name="content_id"
-                        height="150"
-                        uploadUrl="{{ route('admin.editor.upload') }}"
-                    >
-                    {!! old('content_id') !!}
-                    </x-editor.ckeditor>
-                </x-portal::form.group>
+                {!! old('content_id') !!}
+                </x-editor.ckeditor>
+            </x-portal::form.group>
 
             <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description" :value="old('meta_description')" type="text" />
             <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword" :value="old('meta_keyword')" type="text" />

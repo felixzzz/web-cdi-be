@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Utility;
 
 use App\Models\Utility\QuickLink;
 

@@ -1,1 +1,1 @@
-<x-portal::editor.quill {{ $attributes }} />
+<x-editor.quill {{ $attributes }} />

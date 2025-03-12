@@ -48,4 +48,8 @@ class PressReleaseAction
 
         return PressRelease::whereUlid($ulid)->update($data);
     }
+
+    public function delete($ulid){
+        return PressRelease::where('ulid', $ulid)->delete();
+    }
 }

@@ -48,4 +48,8 @@ class InvestorReportAction
 
         return InvestorReport::whereUlid($ulid)->update($data);
     }
+
+    public function delete($ulid){
+        return InvestorReport::where('ulid', $ulid)->delete();
+    }
 }

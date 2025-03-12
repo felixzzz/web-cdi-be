@@ -1,15 +1,25 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUs\AdminAwardController;
+use App\Http\Controllers\Admin\AboutUs\AdminCertificateCategoryController;
+use App\Http\Controllers\Admin\AboutUs\AdminCertificateController;
+use App\Http\Controllers\Admin\AboutUs\AdminMembershipController;
 use App\Http\Controllers\Admin\Article\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\Article\AdminBlogController;
 use App\Http\Controllers\Admin\Article\AdminNewsController;
 use App\Http\Controllers\Admin\Article\AdminPressReleaseController;
+use App\Http\Controllers\Admin\Data\AdminOfficeController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\Inbox\AdminContactUsController;
+use App\Http\Controllers\Admin\Inbox\AdminWhistleblowingController;
 use App\Http\Controllers\Admin\Investor\AdminInvestorReportController;
 use App\Http\Controllers\Admin\Role\AdminRoleController;
+use App\Http\Controllers\Admin\Sustainability\AdminRatingRecognitionController;
 use App\Http\Controllers\Admin\User\AdminUserController;
+use App\Http\Controllers\Admin\Utility\AdminCountryController;
 use App\Http\Controllers\Admin\Utility\AdminEditorController;
 use App\Http\Controllers\Admin\Utility\AdminQuickLinkController;
+use App\Http\Controllers\Admin\Utility\AdminTopicController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Middleware\AuthSession;
 use App\Http\Middleware\GuestSession;
@@ -49,6 +59,27 @@ Route::prefix('admin')
         Route::prefix('investor/')->as('investor.')->group(function () {
             Route::resource('reports', AdminInvestorReportController::class)->except(['show']);
         });
+
+        Route::resource('topics', AdminTopicController::class)->except(['show']);
+        Route::resource('countries', AdminCountryController::class)->except(['show']);
+
+        Route::prefix('inbox/')->as('inbox.')->group(function () {
+            Route::resource('contact-us', AdminContactUsController::class)->only(['index', 'show', 'destroy']);
+            Route::resource('whistleblowing', AdminWhistleblowingController::class)->only(['index', 'show', 'destroy']);
+        });
+
+        Route::prefix('awards-and-certificates/')->as('awards-and-certificates.')->group(function () {
+            Route::resource('certificate-categories', AdminCertificateCategoryController::class)->except(["show"]);
+            Route::resource('certificates', AdminCertificateController::class)->except(["show"]);
+            Route::post('certificates/delete-image', [AdminCertificateController::class, 'deleteImage'])->name("certificates.deleteImage");
+            Route::resource('awards', AdminAwardController::class)->except(["show"]);
+            Route::resource('memberships', AdminMembershipController::class)->except(["show"]);
+        });
+
+        Route::resource('rating-recognitions', AdminRatingRecognitionController::class)->except(['show']);
+        Route::post('/rating-recognitions/sort', [AdminRatingRecognitionController::class, 'updateSort'])->name('rating-recognitions.sort');
+
+        Route::resource('offices', AdminOfficeController::class)->except(['show']);
 
         Route::controller(AdminEditorController::class)
             ->prefix('editor')

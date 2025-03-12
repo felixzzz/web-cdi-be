@@ -8,6 +8,7 @@
 
 
     @portalUI
+    <link rel="stylesheet" href="https://muhammadlailil.github.io/iconsax/style/iconsax.css"/>
     <link rel="stylesheet" href="{{ asset('assets/dist/style.css') }}">
     @stack('css')
 </head>
@@ -132,5 +133,6 @@
 
     <script src="{{ asset('assets/dist/global.js') }}"></script>
     @stack('js')
+    @stack('bottom')
 </body>
 </html>

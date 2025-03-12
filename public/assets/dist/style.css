@@ -37,3 +37,7 @@
 * {
     border-color: hsl(var(--sidebar-border));
 }
+
+.border-sidebar {
+    border-color: hsl(var(--sidebar-border));
+}

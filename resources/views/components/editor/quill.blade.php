@@ -8,7 +8,31 @@
 </div>
 @push('scripts')
     <script>
-        window.addEventListener("load",(function(){window["wysiwyg_{{ $name }}"],window["quill_{{ $name }}"]=new Quill("#quill_editor_{{ $name }}",{modules:{toolbar:[[{font:[]}],[{header:[1,2,3,4,5,6,!1]}],["bold","italic","underline","strike"],["blockquote"],[{list:"ordered"},{list:"bullet"}],[{indent:"-1"},{indent:"+1"}],[{direction:"rtl"}],[{color:[]},{background:[]}],[{align:[]}],["clean","image"]]},placeholder:"{{ $attributes->get('placeholder') }}",theme:"snow"}),window["quill_{{ $name }}"].on("text-change",(function(e,n,l){document.getElementById("quill_editor_{{ $name }}_value").value=window["quill_{{ $name }}"].container.firstChild.innerHTML}))}));
+        window.addEventListener("load", (function () {
+            window["wysiwyg_{{ $name }}"];
+            window["quill_{{ $name }}"] = new Quill("#quill_editor_{{ $name }}", {
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                        ["bold", "italic", "underline", "strike"],
+                        ["blockquote"],
+                        [{ list: "ordered" }, { list: "bullet" }],
+                        [{ indent: "-1" }, { indent: "+1" }],
+                        [{ direction: "rtl" }],
+                        [{ color: [] }, { background: [] }],
+                        [{ align: [] }],
+                        ["clean"]
+                    ]
+                },
+                placeholder: "{{ $attributes->get('placeholder') }}",
+                theme: "snow"
+            });
+
+            window["quill_{{ $name }}"].on("text-change", (function (e, n, l) {
+                document.getElementById("quill_editor_{{ $name }}_value").value =
+                    window["quill_{{ $name }}"].container.firstChild.innerHTML;
+            }));
+        }));
     </script>
 @endpush
 

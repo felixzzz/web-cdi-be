@@ -15,11 +15,29 @@ class StorageFile
 
         $mimeType = $file->getMimeType();
         $allowedMimeTypes = [
+            // Image
             'image/jpeg',
             'image/jpg',
             'image/png',
             'image/gif',
             'image/webp',
+            'image/svg+xml',
+            'image/bmp',
+            'image/tiff',
+            'image/x-icon',
+
+            // Video
+            'video/mp4',
+            'video/mpeg',
+            'video/ogg',
+            'video/webm',
+            'video/x-msvideo', // AVI
+            'video/quicktime', // MOV
+            'video/x-ms-wmv',  // WMV
+            'video/3gpp',
+            'video/3gpp2',
+
+            // Document
             'application/pdf',
             'application/msword',
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

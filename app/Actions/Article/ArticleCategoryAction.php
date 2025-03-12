@@ -28,4 +28,8 @@ class ArticleCategoryAction
         ];
         return ArticleCategory::whereUlid($ulid)->update($data);
     }
+
+    public function delete($ulid){
+        return ArticleCategory::where('ulid', $ulid)->delete();
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Utility;
 
 use Illuminate\Http\Request;
 use App\Models\Utility\QuickLink;
@@ -37,5 +37,9 @@ class QuickLinkAction
         foreach ($data as $item) {
             QuickLink::where('id', $item['id'])->update(['sort' => $item['sort']]);
         }
+    }
+
+    public function delete($ulid){
+        return QuickLink::where('ulid', $ulid)->delete();
     }
 }

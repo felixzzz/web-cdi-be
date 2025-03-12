@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Admin\Utility;
 
-use App\Actions\QuickLinkAction;
+use App\Actions\Utility\QuickLinkAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuickLinkRequest;
 use App\Models\Utility\QuickLink;
-use App\Repositories\QuickLinkRepository;
+use App\Repositories\Utility\QuickLinkRepository;
 use Illuminate\Http\Request;
 
 class AdminQuickLinkController extends AdminController
 {
     protected $routePath = 'admin.quick-links';
-    protected $pageActive = 'quick-links';
+    protected $pageActive = 'master';
+    protected $subPageActive = 'quick-links';
     protected $pageTitle = 'Quick Link';
 
     /**

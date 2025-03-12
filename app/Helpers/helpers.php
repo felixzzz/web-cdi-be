@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (!function_exists('itcan')) {
     function itcan($action)
     {
@@ -64,5 +66,13 @@ if (!function_exists('getQueryParam')) {
         $queryParams = [];
         parse_str($queryString, $queryParams);
         return $queryParams ? $queryParams : null;
+    }
+}
+
+
+if (!function_exists('parseDate')) {
+    function parseDate($date)
+    {
+        return Carbon::parse($date);
     }
 }

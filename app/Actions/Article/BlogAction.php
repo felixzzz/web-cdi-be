@@ -52,4 +52,8 @@ class BlogAction
         $article->save();
         return $article;
     }
+
+    public function delete($ulid){
+        return Article::where('ulid', $ulid)->delete();
+    }
 }
