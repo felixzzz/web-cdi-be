@@ -21,38 +21,40 @@
             />
             <x-sidebar.content>
                 <x-sidebar.item.group>
-                    <x-sidebar.item.label>Menu</x-sidebar.item.label>
-                    <x-sidebar.items>
-                        @foreach ($menus as $menu)
-                            @if(count($menu->sub) == 0)
-                                <x-sidebar.item
-                                    :href="$menu->route"
-                                    :label="$menu->name"
-                                    :active="isset($pageActive) && $pageActive == $menu->active ? true : false"
-                                >
-                                    @svg('tabler-' . $menu->icon, [
-                                        'class' => 'icon',
-                                    ])
-                                    {{ $menu->name }}
-                                </x-sidebar.item>
-                            @else
-                                <x-sidebar.item.dropdown
-                                    :label="$menu->name"
-                                    :icon="$menu->icon"
-                                    :active="isset($pageActive) && $pageActive == $menu->active ? true : false"
-                                >
-                                    @foreach($menu->sub as $sub)
-                                        <x-sidebar.item
-                                            :href="$sub->route"
-                                            :active="isset($subPageActive) && $subPageActive == $sub->active ? true : false"
-                                        >
-                                            {{ $sub->name }}
-                                        </x-sidebar.item>
-                                    @endforeach
-                                </x-sidebar.item.dropdown>
-                            @endif
-                        @endforeach
-                    </x-sidebar.items>
+                    @foreach ($menus as $groupIndex => $groupMenu)
+                        <x-sidebar.item.label>{{ $groupIndex }}</x-sidebar.item.label>
+                        <x-sidebar.items>
+                            @foreach ($groupMenu as $menu)
+                                @if(count($menu->sub) == 0)
+                                    <x-sidebar.item
+                                        :href="$menu->route"
+                                        :label="$menu->name"
+                                        :active="isset($pageActive) && $pageActive == $menu->active ? true : false"
+                                    >
+                                        @svg('tabler-' . $menu->icon, [
+                                            'class' => 'icon',
+                                        ])
+                                        {{ $menu->name }}
+                                    </x-sidebar.item>
+                                @else
+                                    <x-sidebar.item.dropdown
+                                        :label="$menu->name"
+                                        :icon="$menu->icon"
+                                        :active="isset($pageActive) && $pageActive == $menu->active ? true : false"
+                                    >
+                                        @foreach($menu->sub as $sub)
+                                            <x-sidebar.item
+                                                :href="$sub->route"
+                                                :active="isset($subPageActive) && $subPageActive == $sub->active ? true : false"
+                                            >
+                                                {{ $sub->name }}
+                                            </x-sidebar.item>
+                                        @endforeach
+                                    </x-sidebar.item.dropdown>
+                                @endif
+                            @endforeach
+                        </x-sidebar.items>
+                    @endforeach
                 </x-sidebar.item.group>
 
             </x-sidebar.content>

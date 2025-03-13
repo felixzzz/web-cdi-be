@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'admin' => [
+    'Menu' => [
         [
             'name' => 'Dashboard',
             'active' => 'dashboard',
@@ -133,5 +133,15 @@ return [
                 ]
             ]
         ]
+    ],
+    'Page Management' => [
+        [
+            'name' => 'Home',
+            'active' => 'home-content',
+            'route' => 'admin.page-management.home-content.index',
+            'icon' => 'home-edit',
+            'sub' => []
+        ],
     ]
+
 ];

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Inbox\AdminContactUsController;
 use App\Http\Controllers\Admin\Inbox\AdminWhistleblowingController;
 use App\Http\Controllers\Admin\Investor\AdminInvestorReportController;
+use App\Http\Controllers\Admin\PageManagement\AdminHomeContentController;
 use App\Http\Controllers\Admin\Role\AdminRoleController;
 use App\Http\Controllers\Admin\Sustainability\AdminRatingRecognitionController;
 use App\Http\Controllers\Admin\User\AdminUserController;
@@ -82,12 +83,18 @@ Route::prefix('admin')
         Route::resource('offices', AdminOfficeController::class)->except(['show']);
 
         Route::controller(AdminEditorController::class)
-            ->prefix('editor')
-            ->as('editor.')
-            ->group(function () {
-                Route::get('/token', 'token')->name('token');
-                Route::post('/upload', 'upload')->name('upload')->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);;
-            });
+        ->prefix('editor')
+        ->as('editor.')
+        ->group(function () {
+            Route::get('/token', 'token')->name('token');
+            Route::post('/upload', 'upload')->name('upload')->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);;
+        });
+
+
+        Route::prefix('page-management/')->as('page-management.')->group(function () {
+            Route::get("/home-content", [AdminHomeContentController::class, 'index'])->name("home-content.index");
+            Route::post("/home-content", [AdminHomeContentController::class, 'store'])->name("home-content.store");
+        });
 
     });
 });

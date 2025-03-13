@@ -14,9 +14,13 @@ class Helper
 
     public static function menuAdmin()
     {
-        $menuItems = config('menus.admin');
+        $menuItems = config('menus');
 
-        return self::menuToObjects($menuItems);
+        foreach ($menuItems as $key => $value) {
+            $menuItems[$key] = self::menuToObjects($value); // Simpan hasil konversi
+        }
+
+        return $menuItems;
     }
 
     private static function menuToObjects(array $items)

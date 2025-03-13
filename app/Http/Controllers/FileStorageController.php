@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class FileStorageController extends Controller
 {
     public function preview(Request $request,$file){
+        if (!$file) return null;
         try{
             $file = str_replace('.webp','',$file);
             $file = Helper::shortDecrypt($file);
