@@ -9,6 +9,9 @@ enum PreferenceType: string
     case TextContentVideo = 'text_content_video';
     case TextContentImage = 'text_content_image';
     case TextImage = 'text_image';
+    case Image = 'image';
+    case FileJson = 'file_json';
+    case Table = 'table';
 
 
     public function word()

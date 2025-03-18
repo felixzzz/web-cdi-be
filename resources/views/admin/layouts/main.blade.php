@@ -43,12 +43,29 @@
                                         :active="isset($pageActive) && $pageActive == $menu->active ? true : false"
                                     >
                                         @foreach($menu->sub as $sub)
-                                            <x-sidebar.item
-                                                :href="$sub->route"
-                                                :active="isset($subPageActive) && $subPageActive == $sub->active ? true : false"
-                                            >
-                                                {{ $sub->name }}
-                                            </x-sidebar.item>
+                                            @if (count(@$sub->sub) == 0)
+                                                <x-sidebar.item
+                                                    :href="$sub->route"
+                                                    :active="isset($subPageActive) && $subPageActive == $sub->active ? true : false"
+                                                >
+                                                    {{ $sub->name }}
+                                                </x-sidebar.item>
+                                            @else
+                                                <x-sidebar.item.dropdown
+                                                    :label="$sub->name"
+                                                    icon=""
+                                                    :active="isset($subPageActive) && $subPageActive == $sub->active ? true : false"
+                                                >
+                                                    @foreach($sub->sub as $xsub)
+                                                        <x-sidebar.item
+                                                            :href="$xsub->route"
+                                                            :active="isset($xsubPageActive) && $xsubPageActive == $xsub->active ? true : false"
+                                                        >
+                                                            {{ $xsub->name }}
+                                                        </x-sidebar.item>
+                                                    @endforeach
+                                                </x-sidebar.item.dropdown>
+                                            @endif
                                         @endforeach
                                     </x-sidebar.item.dropdown>
                                 @endif

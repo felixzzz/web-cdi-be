@@ -14,8 +14,9 @@ use Illuminate\Http\Request;
 class AdminCertificateCategoryController extends AdminController
 {
     protected $routePath = 'admin.awards-and-certificates.certificate-categories';
-    protected $pageActive = 'awards-and-certificates';
-    protected $subPageActive = 'certificate-categories';
+    protected $pageActive = 'about-us-content';
+    protected $subPageActive = 'awards-and-certificates';
+    protected $xsubPageActive = 'certificate-categories';
     protected $pageTitle = 'Certificate Category';
 
     /**

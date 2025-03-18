@@ -3,6 +3,7 @@
 ])
 
 <!-- Home Section -->
+<img src="{{ asset("assets/frontend/icons/flag_{$lang}.svg") }}" alt="" class="w-5">
 <x-portal::heading size="lg" class="!font-bold">Home Banner</x-portal::heading>
 @if ($lang == 'en')
     <x-portal::form.group

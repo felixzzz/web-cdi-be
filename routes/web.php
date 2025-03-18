@@ -82,7 +82,7 @@ Route::prefix('sustainability')
     Route::get('/governance', [SustainabilityGovernanceController::class, 'index'])->name('governance');
 });
 
-Route::get('/storage/{file?}', [FileStorageController::class, 'preview'])->name('preview.storage');
+Route::get('/file-storage/{file?}', [FileStorageController::class, 'preview'])->name('preview.storage');
 Route::get('/privacy-policy', [UtilityController::class, 'privacy'])->name('privacy-policy');
 Route::get('/cookies-notice', [UtilityController::class, 'cookie'])->name('cookies-notice');
 Route::get('/terms-and-conditions', [UtilityController::class, 'term'])->name('terms-and-conditions');

@@ -13,6 +13,7 @@ class AdminController extends Controller
     protected $routePath;
     protected $pageActive;
     protected $subPageActive;
+    protected $xsubPageActive;
     protected $pageTitle;
     protected $pageDescription;
 
@@ -24,6 +25,7 @@ class AdminController extends Controller
             'menus' => Helper::menuAdmin(),
             'pageActive' => $this->pageActive,
             'subPageActive' => $this->subPageActive,
+            'xsubPageActive' => $this->xsubPageActive,
             'pageTitle' => $this->pageTitle,
             'pageDescription' => $this->pageDescription
         ]);

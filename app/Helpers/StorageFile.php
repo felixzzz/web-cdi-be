@@ -123,7 +123,7 @@ class StorageFile
         }
 
 
-        if (str_contains($mimeType, 'image/')) {
+        if (str_contains($mimeType, 'image/') && $mimeType != 'image/svg+xml') {
             $mimeType = 'image/webp';
         }
         $filenames = explode('/',$filename);

@@ -32,7 +32,7 @@
         $el.classList.remove('border-primary', 'border-solid')
     }
 }">
-    <div {{ $attributes->merge(['class' => 'border-2 border-dashed bg-center bg-contain bg-no-repeat border-gray-200 relative rounded-lg flex flex-col gap-1 p-6 items-center text-center justify-center cursor-pointer w-[400px] h-[150px]']) }}
+    <div {{ $attributes->merge(['class' => 'bg-[#eee] border-2 border-dashed bg-center bg-contain bg-no-repeat border-gray-200 relative rounded-lg flex flex-col gap-1 p-6 items-center text-center justify-center cursor-pointer w-[400px] h-[150px]']) }}
        x-on:dragover="$el.classList.add('border-primary','border-solid')"
         x-on:dragleave="$el.classList.remove('border-primary','border-solid')" x-on:drop="dropListener($el,$event)"
         x-bind:style="{ backgroundImage: `url(${preview})` }"

@@ -1,19 +1,30 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUs\AdminAboutUsController;
 use App\Http\Controllers\Admin\AboutUs\AdminAwardController;
 use App\Http\Controllers\Admin\AboutUs\AdminCertificateCategoryController;
 use App\Http\Controllers\Admin\AboutUs\AdminCertificateController;
+use App\Http\Controllers\Admin\AboutUs\AdminCompanyProfileController;
+use App\Http\Controllers\Admin\AboutUs\AdminGuidelineController;
 use App\Http\Controllers\Admin\AboutUs\AdminMembershipController;
+use App\Http\Controllers\Admin\AboutUs\AdminMilestoneController;
+use App\Http\Controllers\Admin\AboutUs\AdminOurHistoryController;
 use App\Http\Controllers\Admin\Article\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\Article\AdminBlogController;
 use App\Http\Controllers\Admin\Article\AdminNewsController;
 use App\Http\Controllers\Admin\Article\AdminPressReleaseController;
+use App\Http\Controllers\Admin\Data\AdminInstitutionController;
 use App\Http\Controllers\Admin\Data\AdminOfficeController;
+use App\Http\Controllers\Admin\Data\AdminTeamController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Inbox\AdminContactUsController;
 use App\Http\Controllers\Admin\Inbox\AdminWhistleblowingController;
 use App\Http\Controllers\Admin\Investor\AdminInvestorReportController;
+use App\Http\Controllers\Admin\PageManagement\AdminGovernanceContentController;
+use App\Http\Controllers\Admin\PageManagement\AdminGovernanceFileController;
 use App\Http\Controllers\Admin\PageManagement\AdminHomeContentController;
+use App\Http\Controllers\Admin\PageManagement\AdminInvestorController;
+use App\Http\Controllers\Admin\PageManagement\AdminOurBusinessContentController;
 use App\Http\Controllers\Admin\Role\AdminRoleController;
 use App\Http\Controllers\Admin\Sustainability\AdminRatingRecognitionController;
 use App\Http\Controllers\Admin\User\AdminUserController;
@@ -69,18 +80,11 @@ Route::prefix('admin')
             Route::resource('whistleblowing', AdminWhistleblowingController::class)->only(['index', 'show', 'destroy']);
         });
 
-        Route::prefix('awards-and-certificates/')->as('awards-and-certificates.')->group(function () {
-            Route::resource('certificate-categories', AdminCertificateCategoryController::class)->except(["show"]);
-            Route::resource('certificates', AdminCertificateController::class)->except(["show"]);
-            Route::post('certificates/delete-image', [AdminCertificateController::class, 'deleteImage'])->name("certificates.deleteImage");
-            Route::resource('awards', AdminAwardController::class)->except(["show"]);
-            Route::resource('memberships', AdminMembershipController::class)->except(["show"]);
-        });
-
         Route::resource('rating-recognitions', AdminRatingRecognitionController::class)->except(['show']);
         Route::post('/rating-recognitions/sort', [AdminRatingRecognitionController::class, 'updateSort'])->name('rating-recognitions.sort');
 
         Route::resource('offices', AdminOfficeController::class)->except(['show']);
+        Route::resource('teams', AdminTeamController::class)->except(['show']);
 
         Route::controller(AdminEditorController::class)
         ->prefix('editor')
@@ -90,11 +94,48 @@ Route::prefix('admin')
             Route::post('/upload', 'upload')->name('upload')->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);;
         });
 
+        Route::resource('milestones', AdminMilestoneController::class)->except(['show']);
+        Route::resource('our-histories', AdminOurHistoryController::class)->except(['show']);
+        Route::resource('company-profiles', AdminCompanyProfileController::class)->except(['show']);
+        Route::resource('guidelines', AdminGuidelineController::class)->except(['show']);
+        Route::prefix('awards-and-certificates/')->as('awards-and-certificates.')->group(function () {
+            Route::resource('certificate-categories', AdminCertificateCategoryController::class)->except(["show"]);
+            Route::resource('certificates', AdminCertificateController::class)->except(["show"]);
+            Route::post('certificates/delete-image', [AdminCertificateController::class, 'deleteImage'])->name("certificates.deleteImage");
+            Route::resource('awards', AdminAwardController::class)->except(["show"]);
+            Route::resource('memberships', AdminMembershipController::class)->except(["show"]);
+        });
+
+
+        Route::resource('institutions', AdminInstitutionController::class)->except(['show']);
 
         Route::prefix('page-management/')->as('page-management.')->group(function () {
             Route::get("/home-content", [AdminHomeContentController::class, 'index'])->name("home-content.index");
             Route::post("/home-content", [AdminHomeContentController::class, 'store'])->name("home-content.store");
-        });
 
+            Route::prefix('about-us/')->as('about-us-content.')->group(function () {
+                Route::get("who-we-are", [AdminAboutUsController::class, 'whoWeAre'])->name("who-we-are.index");
+                Route::post("who-we-are", [AdminAboutUsController::class, 'postWhoWeAre'])->name("who-we-are.store");
+
+                Route::get("management", [AdminAboutUsController::class, 'management'])->name("management.index");
+                Route::post("management", [AdminAboutUsController::class, 'postManagement'])->name("management.store");
+
+                Route::get("award", [AdminAboutUsController::class, 'award'])->name("award.index");
+                Route::post("award", [AdminAboutUsController::class, 'postAward'])->name("award.store");
+            });
+
+            Route::get("/investor-content", [AdminInvestorController::class, 'index'])->name("investor-content.index");
+            Route::post("/investor-content", [AdminInvestorController::class, 'store'])->name("investor-content.store");
+
+            Route::get("/governance-content", [AdminGovernanceContentController::class, 'index'])->name("governance-content.index");
+            Route::post("/governance-content", [AdminGovernanceContentController::class, 'store'])->name("governance-content.store");
+
+            Route::resource("governance-files", AdminGovernanceFileController::class);
+            Route::post('/governance-files/sort', [AdminGovernanceFileController::class, 'updateSort'])->name('governance-files.sort');
+
+            Route::get("/our-business-content", [AdminOurBusinessContentController::class, 'index'])->name("our-business-content.index");
+            Route::post("/our-business-content", [AdminOurBusinessContentController::class, 'store'])->name("our-business-content.store");
+
+        });
     });
 });

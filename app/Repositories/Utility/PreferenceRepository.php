@@ -15,11 +15,35 @@ class PreferenceRepository
         //
     }
 
-    public function getAllContentPage($type)
+    public function getAllContentPage($type, $paramKeys = [])
     {
         $keys = [];
         if ($type == 'home') {
             $keys = PreferenceKey::getAllHomeKey();
+        }
+
+        if ($type == 'about-us-who-we-are') {
+            $keys = PreferenceKey::getAllAboutUsKey('who-we-are');
+        }
+
+        if ($type == 'about-us-management') {
+            $keys = PreferenceKey::getAllAboutUsKey('management');
+        }
+
+        if ($type == 'about-us-award') {
+            $keys = PreferenceKey::getAllAboutUsKey('award');
+        }
+
+        if ($type == 'investor') {
+            $keys = PreferenceKey::getAllInvestorKey();
+        }
+
+        if ($type == 'governance') {
+            $keys = PreferenceKey::getAllGovernanceKey();
+        }
+
+        if ($type == '') {
+            $keys = $paramKeys;
         }
 
         $data = [];

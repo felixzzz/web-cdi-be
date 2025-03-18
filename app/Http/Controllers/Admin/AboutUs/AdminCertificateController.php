@@ -18,8 +18,9 @@ use App\Repositories\AboutUs\CertificateCategoryRepository;
 class AdminCertificateController extends AdminController
 {
     protected $routePath = 'admin.awards-and-certificates.awards';
-    protected $pageActive = 'awards-and-certificates';
-    protected $subPageActive = 'certificates';
+    protected $pageActive = 'about-us-content';
+    protected $subPageActive = 'awards-and-certificates';
+    protected $xsubPageActive = 'certificates';
     protected $pageTitle = 'Certificate';
 
     /**

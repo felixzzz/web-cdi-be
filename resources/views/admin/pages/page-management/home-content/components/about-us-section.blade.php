@@ -1,6 +1,7 @@
 @props([
     'lang' => 'en',
 ])
+<img src="{{ asset("assets/frontend/icons/flag_{$lang}.svg") }}" alt="" class="w-5">
 <!-- About Section -->
 <x-portal::heading size="lg" class="!font-bold">About Us Section</x-portal::heading>
 @if ($lang == 'en')

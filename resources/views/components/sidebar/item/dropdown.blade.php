@@ -1,11 +1,13 @@
-@props(['icon', 'label', 'active' => false])
+@props(['icon' => '', 'label', 'active' => false])
 <li class="group/menu-item relative" x-data="{ collapse: Boolean('{{ $active }}'), menuOpen: false }">
     <button type="button" x-on:click="collapse=!collapse;menuOpen=!menuOpen;openDropdown()"
         x-on:mouseover="showTooltip('{{ $label }}',$el)" x-on:mouseleave="tooltip=false;" x-ref="dropdownTrigger"
         {{ $attributes->merge(['class' => '[&>svg]:shrink-0 cursor-pointer text-sm flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring hover:bg-sidebar-accent [&>.icon]:h-4.5 [&>.icon]:w-4.5 relative']) }}>
-        @svg('tabler-' . $icon, [
-            'class' => 'icon',
-        ])
+        @if ($icon)
+            @svg('tabler-' . $icon, [
+                'class' => 'icon',
+            ])
+        @endif
         {{ $label }}
         <x-tabler-chevron-right
             class="absolute right-2 top-2 h-4.5 w-4.5 transition-all dura group-data-[state=collapsed]:opacity-0"

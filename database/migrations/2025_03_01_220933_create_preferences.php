@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("type");
             $table->longText("content_en")->nullable();
             $table->longText("content_id")->nullable();
-            $table->string("file")->nullable();
+            $table->string("file", 500)->nullable();
             $table->timestamps();
         });
     }

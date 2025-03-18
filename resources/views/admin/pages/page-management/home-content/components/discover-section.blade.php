@@ -1,5 +1,7 @@
 @props(['lang' => 'en'])
 
+
+<img src="{{ asset("assets/frontend/icons/flag_{$lang}.svg") }}" alt="" class="w-5">
 <div x-data="{ tab: 'sustainability' }" class="flex flex-col gap-4">
     <x-portal::heading size="lg" class="!font-bold">Discover Section</x-portal::heading>
     <x-portal::form.input

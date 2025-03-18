@@ -15,8 +15,9 @@ use Illuminate\Http\Request;
 class AdminAwardController extends AdminController
 {
     protected $routePath = 'admin.awards-and-certificates.awards';
-    protected $pageActive = 'awards-and-certificates';
-    protected $subPageActive = 'awards';
+    protected $pageActive = 'about-us-content';
+    protected $subPageActive = 'awards-and-certificates';
+    protected $xsubPageActive = 'awards';
     protected $pageTitle = 'Award';
 
     /**

@@ -14,7 +14,7 @@ class Helper
 
     public static function menuAdmin()
     {
-        $menuItems = config('menus');
+        $menuItems = config('menu');
 
         foreach ($menuItems as $key => $value) {
             $menuItems[$key] = self::menuToObjects($value); // Simpan hasil konversi
@@ -28,11 +28,18 @@ class Helper
         return array_map(function ($item) {
             // Convert sub items if they exist
             if (isset($item['sub']) && is_array($item['sub'])) {
-                $item['sub'] = self::menuToObjects($item['sub']);
+                $sub = self::menuToObjects($item['sub']);
+                $item['sub'] = $sub;
+            } else {
+                $item['sub'] = [];
             }
             // Convert route name to URL if route is specified
             if (!empty($item['route'])) {
-                $item['route'] = route($item['route']);
+                if (!empty($item['route_params'])) {
+                    $item['route'] = route($item['route'], @$item['route_params']);
+                } else {
+                    $item['route'] = route($item['route']);
+                }
             }
             return (object) $item;
         }, $items);

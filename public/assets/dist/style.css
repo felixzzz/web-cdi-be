@@ -41,3 +41,47 @@
 .border-sidebar {
     border-color: hsl(var(--sidebar-border));
 }
+
+.table-json {
+    width: 100%;
+    overflow-x: auto;
+
+}
+
+.table-json table {
+    width: 100%;
+    font-size: 14px;
+}
+
+.table-json td, .table-json th {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #BFBFBF;
+}
+
+.table-json tbody td.group {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.table-json thead tr {
+    background-color: #2474A5;
+    color: white;
+}
+
+.table-json tbody tr:nth-child(even) {
+    background-color: #6768691a;
+}
+
+
+.color-picker img {
+    width: 16px !important;
+}
+
+.color-picker {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
