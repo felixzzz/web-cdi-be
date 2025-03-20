@@ -71,6 +71,19 @@ enum PreferenceKey: string
     case our_business_banner = 'our_business_banner';
     case our_business_overview = 'our_business_overview';
 
+    case sustainability_overview_banner = 'sustainability_overview_banner';
+    case sustainability_overview_content = 'sustainability_overview_content';
+    case sustainability_environment_policy_framework = 'sustainability_environment_policy_framework';
+    case sustainability_environment_policy_framework_file = 'sustainability_environment_policy_framework_file';
+    case sustainability_environment_banner = 'sustainability_environment_banner';
+    case sustainability_environment_overview = 'sustainability_environment_overview';
+    case sustainability_social_banner = 'sustainability_social_banner';
+    case sustainability_social_overview = 'sustainability_social_overview';
+    case sustainability_governance_banner = 'sustainability_governance_banner';
+    case sustainability_governance_overview = 'sustainability_governance_overview';
+    case sustainability_report_banner = 'sustainability_report_banner';
+    case sustainability_report_overview = 'sustainability_report_overview';
+
     public function type()
     {
         return match ($this->value) {
@@ -134,6 +147,23 @@ enum PreferenceKey: string
 
             'our_business_banner' => PreferenceType::TextContentImage,
             'our_business_overview' => PreferenceType::TextContent,
+
+            'sustainability_overview_banner' => PreferenceType::TextContentImage,
+            'sustainability_overview_content' => PreferenceType::TextContent,
+
+            'sustainability_environment_banner' => PreferenceType::TextContentImage,
+            'sustainability_environment_overview' => PreferenceType::TextContent,
+            'sustainability_environment_policy_framework' => PreferenceType::TextContent,
+            'sustainability_environment_policy_framework_file' => PreferenceType::FileJson,
+
+            'sustainability_social_banner' => PreferenceType::TextContentImage,
+            'sustainability_social_overview' => PreferenceType::TextContent,
+
+            'sustainability_governance_banner' => PreferenceType::TextContentImage,
+            'sustainability_governance_overview' => PreferenceType::TextContent,
+
+            'sustainability_report_banner' => PreferenceType::TextContentImage,
+            'sustainability_report_overview' => PreferenceType::TextContent,
 
             default => PreferenceType::Text
         };
@@ -252,4 +282,51 @@ enum PreferenceKey: string
             self::our_business_overview->value
         ];
     }
+
+    public static function getSustainabilityKey($type)
+    {
+        switch ($type) {
+            case 'overview':
+                return [
+                    self::sustainability_overview_banner->value,
+                    self::sustainability_overview_content->value,
+                    self::sustainability_environment_policy_framework->value,
+                    self::sustainability_environment_policy_framework_file->value,
+                ];
+                break;
+
+            case 'environment':
+                return [
+                    self::sustainability_environment_banner->value,
+                    self::sustainability_environment_overview->value
+                ];
+                break;
+
+            case 'social':
+                return [
+                    self::sustainability_social_banner->value,
+                    self::sustainability_social_overview->value
+                ];
+                break;
+
+            case 'governance':
+                return [
+                    self::sustainability_governance_banner->value,
+                    self::sustainability_governance_overview->value
+                ];
+                break;
+
+            case 'report':
+                return [
+                    self::sustainability_report_banner->value,
+                    self::sustainability_report_overview->value
+                ];
+                break;
+
+            default:
+                return [];
+                break;
+        }
+    }
+
 }

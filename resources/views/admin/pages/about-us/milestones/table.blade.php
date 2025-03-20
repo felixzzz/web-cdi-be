@@ -7,7 +7,7 @@
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
                     <x-portal::table.head sortable key="name_en">Year</x-portal::table.head>
-                    <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                    <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
             <tbody class="divide-y divide-border">

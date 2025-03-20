@@ -11,7 +11,7 @@
                     <x-portal::table.head>Name ID</x-portal::table.head>
                     <x-portal::table.head>File Information</x-portal::table.head>
                     <x-portal::table.head>Show on Governance Page?</x-portal::table.head>
-                    <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                    <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
             <tbody class="divide-y divide-border sortable">
@@ -90,12 +90,17 @@
                     ghostClass: "bg-gray-100",
                     onEnd: function (evt) {
                         let order = [];
+                        let currentPage = parseInt("{{ $data->currentPage() }}");
+                        let perPage = parseInt("{{ $data->perPage() }}");
+                        let offset = (currentPage - 1) * perPage; // Hitung offset berdasarkan halaman
+
                         table.querySelectorAll("tr").forEach((row, index) => {
                             let id = row.getAttribute("data-id");
                             if (id) {
-                                order.push({ id: id, sort: index + 1 });
+                                order.push({ id: id, sort: offset + index + 1 }); // Sesuaikan index dengan offset
                             }
                         });
+
 
                         fetch("{{ route('admin.page-management.governance-files.sort', ['type' => $type]) }}", {
                             method: "POST",

@@ -65,7 +65,9 @@
         branchElement.classList.add('p-4', 'border', 'rounded-lg', 'space-y-4', 'relative');
 
         branchElement.innerHTML = `
-            <button type="button" class="bg-red-500 text-white px-2 py-1 rounded text-sm ms-auto mb-2 flex" onclick="removeBranch(this)">Delete</button>
+            <button type="button" class="bg-red-500 text-white text-sm flex w-6 h-6 rounded-full items-center justify-center" onclick="removeBranch(this)">
+                <i class="isax icon-trash"></i>
+            </button>
 
             <x-portal::form.input label="Phone" placeholder="Phone" name="branch_phone[]" type="text" required />
             <x-portal::form.input label="Fax" placeholder="Fax" name="branch_fax[]" type="text" required />

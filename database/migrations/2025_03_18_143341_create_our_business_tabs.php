@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('our_business_id')->nullable();
             $table->string("title_en");
             $table->string("title_id");
-            $table->string("sub_title_en");
-            $table->string("sub_title_id");
+            $table->string("sub_title_en")->nullable();
+            $table->string("sub_title_id")->nullable();
             $table->longText("description_en")->nullable();
             $table->longText("description_id")->nullable();
             $table->string("image", 500)->default('');

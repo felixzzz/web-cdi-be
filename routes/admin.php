@@ -20,13 +20,22 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Inbox\AdminContactUsController;
 use App\Http\Controllers\Admin\Inbox\AdminWhistleblowingController;
 use App\Http\Controllers\Admin\Investor\AdminInvestorReportController;
+use App\Http\Controllers\Admin\OurBusiness\AdminOurBusinessListController;
+use App\Http\Controllers\Admin\OurBusiness\AdminOurBusinessTabContentController;
+use App\Http\Controllers\Admin\OurBusiness\AdminOurBusinessTabController;
 use App\Http\Controllers\Admin\PageManagement\AdminGovernanceContentController;
 use App\Http\Controllers\Admin\PageManagement\AdminGovernanceFileController;
 use App\Http\Controllers\Admin\PageManagement\AdminHomeContentController;
 use App\Http\Controllers\Admin\PageManagement\AdminInvestorController;
 use App\Http\Controllers\Admin\PageManagement\AdminOurBusinessContentController;
+use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityEnvironmentController;
+use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityGovernanceController;
+use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityOverviewController;
+use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityReportController;
+use App\Http\Controllers\Admin\PageManagement\AdminSustainabilitySocialController;
 use App\Http\Controllers\Admin\Role\AdminRoleController;
 use App\Http\Controllers\Admin\Sustainability\AdminRatingRecognitionController;
+use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityResponsibleController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Admin\Utility\AdminCountryController;
 use App\Http\Controllers\Admin\Utility\AdminEditorController;
@@ -82,6 +91,7 @@ Route::prefix('admin')
 
         Route::resource('rating-recognitions', AdminRatingRecognitionController::class)->except(['show']);
         Route::post('/rating-recognitions/sort', [AdminRatingRecognitionController::class, 'updateSort'])->name('rating-recognitions.sort');
+        Route::resource('responsibles', AdminSustainabilityResponsibleController::class)->except(['show', 'create', 'store', 'destroy']);
 
         Route::resource('offices', AdminOfficeController::class)->except(['show']);
         Route::resource('teams', AdminTeamController::class)->except(['show']);
@@ -135,7 +145,42 @@ Route::prefix('admin')
 
             Route::get("/our-business-content", [AdminOurBusinessContentController::class, 'index'])->name("our-business-content.index");
             Route::post("/our-business-content", [AdminOurBusinessContentController::class, 'store'])->name("our-business-content.store");
+            Route::resource("/our-business-list", AdminOurBusinessListController::class)->except(["create", "store", "destroy", "show"]);
 
+            Route::prefix("{id}/our-business-tabs")->as("our-business-tabs.")->group(function () {
+                Route::get("/", [AdminOurBusinessTabController::class, "index"])->name("index");
+                Route::get("/create", [AdminOurBusinessTabController::class, "create"])->name("create");
+                Route::post("/", [AdminOurBusinessTabController::class, "store"])->name("store");
+                Route::get("/{ourBusinessTab}/edit", [AdminOurBusinessTabController::class, "edit"])->name("edit");
+                Route::put("/{ourBusinessTab}", [AdminOurBusinessTabController::class, "update"])->name("update");
+                Route::delete("/{ourBusinessTab}", [AdminOurBusinessTabController::class, "destroy"])->name("destroy");
+                Route::post('/sort', [AdminOurBusinessTabController::class, 'updateSort'])->name('sort');
+
+                Route::prefix("{ourBusinessTab}/contents")->as("contents.")->group(function () {
+                    Route::get("/", [AdminOurBusinessTabContentController::class, "index"])->name("index");
+                    Route::get("/create", [AdminOurBusinessTabContentController::class, "create"])->name("create");
+                    Route::post("/", [AdminOurBusinessTabContentController::class, "store"])->name("store");
+                    Route::get("/{contentId}/edit", [AdminOurBusinessTabContentController::class, "edit"])->name("edit");
+                    Route::put("/{contentId}", [AdminOurBusinessTabContentController::class, "update"])->name("update");
+                    Route::delete("/{contentId}", [AdminOurBusinessTabContentController::class, "destroy"])->name("destroy");
+                    Route::post('/sort', [AdminOurBusinessTabContentController::class, 'updateSort'])->name('sort');
+                });
+            });
+
+            Route::get("/sustainability-overview", [AdminSustainabilityOverviewController::class, 'index'])->name("sustainability-overview.index");
+            Route::post("/sustainability-overview", [AdminSustainabilityOverviewController::class, 'store'])->name("sustainability-overview.store");
+
+            Route::get("/sustainability-environment", [AdminSustainabilityEnvironmentController::class, 'index'])->name("sustainability-environment.index");
+            Route::post("/sustainability-environment", [AdminSustainabilityEnvironmentController::class, 'store'])->name("sustainability-environment.store");
+
+            Route::get("/sustainability-social", [AdminSustainabilitySocialController::class, 'index'])->name("sustainability-social.index");
+            Route::post("/sustainability-social", [AdminSustainabilitySocialController::class, 'store'])->name("sustainability-social.store");
+
+            Route::get("/sustainability-governance", [AdminSustainabilityGovernanceController::class, 'index'])->name("sustainability-governance.index");
+            Route::post("/sustainability-governance", [AdminSustainabilityGovernanceController::class, 'store'])->name("sustainability-governance.store");
+
+            Route::get("/sustainability-report", [AdminSustainabilityReportController::class, 'index'])->name("sustainability-report.index");
+            Route::post("/sustainability-report", [AdminSustainabilityReportController::class, 'store'])->name("sustainability-report.store");
         });
     });
 });

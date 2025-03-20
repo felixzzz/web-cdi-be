@@ -11,7 +11,7 @@
                     <x-portal::table.head sortable key="position">Position</x-portal::table.head>
                     <x-portal::table.head>Image</x-portal::table.head>
                     <x-portal::table.head>Image Hero</x-portal::table.head>
-                    <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                    <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
             <tbody class="divide-y divide-border">

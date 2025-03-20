@@ -90,11 +90,22 @@ return [
             'sub' => []
         ],
         [
-            'name' => 'Ratings & Recognitions',
-            'active' => 'rating-recognitions',
-            'route' => 'admin.rating-recognitions.index',
-            'icon' => 'topology-star-3',
-            'sub' => []
+            'name' => 'Sustainability',
+            'active' => 'sustainability-content',
+            'route' => '',
+            'icon' => 'recycle',
+            'sub' => [
+                [
+                    'name' => 'Responsible',
+                    'active' => 'responsibles',
+                    'route' => 'admin.responsibles.index',
+                ],
+                [
+                    'name' => 'Ratings & Recognitions',
+                    'active' => 'rating-recognitions',
+                    'route' => 'admin.rating-recognitions.index',
+                ]
+            ]
         ],
         [
             'name' => 'Master',
@@ -208,9 +219,20 @@ return [
         [
             'name' => 'Our Business',
             'active' => 'our-business-content',
-            'route' => 'admin.page-management.our-business-content.index',
+            'route' => '',
             'icon' => 'building-carousel',
-            'sub' => []
+            'sub' => [
+                [
+                    'name' => 'What We Do',
+                    'active' => 'what-we-do',
+                    'route' => 'admin.page-management.our-business-content.index'
+                ],
+                [
+                    'name' => 'List',
+                    'active' => 'our-business-list',
+                    'route' => 'admin.page-management.our-business-list.index'
+                ],
+            ]
         ],
         [
             'name' => 'Investor',
@@ -285,6 +307,39 @@ return [
                         ],
                     ]
                 ],
+            ]
+        ],
+        [
+            'name' => 'Sustainability',
+            'active' => 'sustainability-content',
+            'route' => '',
+            'icon' => 'recycle',
+            'sub' => [
+                [
+                    'name' => 'Overview',
+                    'active' => 'sustainability-overview',
+                    'route' => 'admin.page-management.sustainability-overview.index'
+                ],
+                [
+                    'name' => 'Environment',
+                    'active' => 'sustainability-environment',
+                    'route' => 'admin.page-management.sustainability-environment.index'
+                ],
+                [
+                    'name' => 'Social',
+                    'active' => 'sustainability-social',
+                    'route' => 'admin.page-management.sustainability-social.index'
+                ],
+                [
+                    'name' => 'Governance',
+                    'active' => 'sustainability-governance',
+                    'route' => 'admin.page-management.sustainability-governance.index'
+                ],
+                [
+                    'name' => 'Report',
+                    'active' => 'sustainability-report',
+                    'route' => 'admin.page-management.sustainability-report.index'
+                ]
             ]
         ],
 

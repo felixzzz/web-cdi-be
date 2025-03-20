@@ -19,7 +19,7 @@
                                 <x-portal::table.head sortable key="name_en">Name EN</x-portal::table.head>
                                 <x-portal::table.head sortable key="name_id">Name ID</x-portal::table.head>
                                 <x-portal::table.head sortable key="url">URL</x-portal::table.head>
-                                <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                                <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                             </x-portal::table.row>
                         </thead>
                         <tbody class="divide-y divide-border sortable" id="sortable-{{ $group->category->value }}">

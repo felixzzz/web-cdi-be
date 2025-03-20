@@ -9,7 +9,7 @@
                     <x-portal::table.head key="image">Image</x-portal::table.head>
                     <x-portal::table.head sortable key="title_en">Title EN</x-portal::table.head>
                     <x-portal::table.head sortable key="title_id">Title ID</x-portal::table.head>
-                    <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                    <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
             <tbody class="divide-y divide-border">

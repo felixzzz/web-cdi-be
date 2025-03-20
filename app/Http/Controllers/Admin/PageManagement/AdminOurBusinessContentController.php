@@ -13,7 +13,7 @@ class AdminOurBusinessContentController extends AdminController
 {
     protected $routePath = 'admin.page-management.our-business-content';
     protected $pageActive = 'our-business-content';
-    protected $subPageActive = '';
+    protected $subPageActive = 'what-we-do';
     protected $pageTitle = 'Our Business Content';
 
 

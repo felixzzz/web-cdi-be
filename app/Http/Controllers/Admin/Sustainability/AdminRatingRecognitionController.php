@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 class AdminRatingRecognitionController extends AdminController
 {
     protected $routePath = 'admin.rating-recognitions';
-    protected $pageActive = 'rating-recognitions';
-    protected $subPageActive = '';
+    protected $pageActive = 'sutainability';
+    protected $subPageActive = 'rating-recognitions';
     protected $pageTitle = 'Rating Recognition';
 
     /**

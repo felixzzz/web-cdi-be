@@ -11,7 +11,7 @@
                     <x-portal::table.head sortable key="first_name">Name</x-portal::table.head>
                     <x-portal::table.head>Topic</x-portal::table.head>
                     <x-portal::table.head>Country</x-portal::table.head>
-                    <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                    <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
             <tbody class="divide-y divide-border">

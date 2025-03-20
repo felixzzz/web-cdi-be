@@ -54,7 +54,7 @@
                     <x-portal::table.head sortable key="users.email">Email</x-portal::table.head>
                     <x-portal::table.head sortable key="roles.name">Role</x-portal::table.head>
                     <x-portal::table.head sortable key="users.status">Status</x-portal::table.head>
-                    <x-portal::table.head class="text-right">Action</x-portal::table.head>
+                    <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
             <tbody class="divide-y divide-border">

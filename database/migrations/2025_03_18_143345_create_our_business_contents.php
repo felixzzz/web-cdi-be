@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('our_business_contents', function (Blueprint $table) {
             $table->id();
             $table->ulid()->unique()->index();
+            $table->string("name")->nullable();
             $table->unsignedBigInteger('our_business_id')->nullable();
             $table->unsignedBigInteger('our_business_tab_id')->nullable();
             $table->string("heading_en")->nullable();
