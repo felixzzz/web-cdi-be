@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityReportControlle
 use App\Http\Controllers\Admin\PageManagement\AdminSustainabilitySocialController;
 use App\Http\Controllers\Admin\Role\AdminRoleController;
 use App\Http\Controllers\Admin\Sustainability\AdminRatingRecognitionController;
+use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityContentController;
 use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityResponsibleController;
 use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityTabController;
 use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityTabItemController;
@@ -139,6 +140,17 @@ Route::prefix('admin')
                 Route::delete("/{itemId}", [AdminSustainabilityTabItemController::class, "destroy"])->name("destroy");
                 Route::post('/sort', [AdminSustainabilityTabItemController::class, 'updateSort'])->name('sort');
             });
+        })->whereIn("category", ["environment", "social", "governance"]);
+
+        Route::prefix("/sustainability-contents/{category}")->as("sustainability-contents.")->group(function () {
+            Route::get("/", [AdminSustainabilityContentController::class, "index"])->name("index");
+            Route::get("/create", [AdminSustainabilityContentController::class, "create"])->name("create");
+            Route::post("/", [AdminSustainabilityContentController::class, "store"])->name("store");
+            Route::get("/{tabId}/edit", [AdminSustainabilityContentController::class, "edit"])->name("edit");
+            Route::put("/{tabId}", [AdminSustainabilityContentController::class, "update"])->name("update");
+            Route::delete("/{tabId}", [AdminSustainabilityContentController::class, "destroy"])->name("destroy");
+            Route::post('/sort', [AdminSustainabilityContentController::class, 'updateSort'])->name('sort');
+            Route::post('/element/{type}', [AdminSustainabilityContentController::class, 'element'])->name('element');
         })->whereIn("category", ["environment", "social", "governance"]);
 
         Route::prefix('page-management/')->as('page-management.')->group(function () {

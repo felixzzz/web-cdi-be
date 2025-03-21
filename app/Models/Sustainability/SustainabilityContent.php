@@ -42,6 +42,7 @@ class SustainabilityContent extends Model
             'grid_type' => GridType::class,
             'content_json_en' => 'array',
             'content_json_id' => 'array',
+            'file_information' => 'array'
         ];
     }
 

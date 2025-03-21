@@ -8,6 +8,7 @@ enum GridType: string
     case IconListCard = 'icon_list_card';
     case BoxIconCard = 'box_icon_card';
     case ImageContentCard = 'image_content_card';
+    case default = '';
 
     public function word()
     {

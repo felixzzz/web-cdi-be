@@ -69,7 +69,6 @@ class AdminSustainabilityTabController extends AdminController
     public function edit(string $category, $id)
     {
         $data = SustainabilityTab::findByUlid($id, true);
-        $category = request("category", "environment");
         return view("admin.pages.sustainability-tabs.edit", [
             'data' => $data,
             'category' => $category,

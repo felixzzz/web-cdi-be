@@ -24,6 +24,7 @@ return new class extends Migration
             $table->longText("content_id")->nullable();
             $table->json("content_json_en")->nullable();
             $table->json("content_json_id")->nullable();
+            $table->string("align")->default('left');
             $table->string("image", 500)->default('');
             $table->json("file_information")->nullable();
             $table->string("background")->default("normal")->comment("normal or darkest");

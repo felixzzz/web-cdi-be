@@ -1,16 +1,16 @@
-@props(['name', 'height' => '450'])
+@props(['name', 'height' => '450', 'id' => ''])
 <div>
     <div id="quill_editor_{{ $name }}" style="height: {{ $height }}px"
         class="!border-input rounded-b-md">
         {{ $slot }}
     </div>
-    <textarea name="{{ $name }}" id="quill_editor_{{ $name }}_value" class="hidden">{{ $slot }}</textarea>
+    <textarea name="{{ $name }}" id="quill_editor_{{ $id ? $id : $name }}_value" class="hidden">{{ $slot }}</textarea>
 </div>
 @push('scripts')
     <script>
         window.addEventListener("load", (function () {
             window["wysiwyg_{{ $name }}"];
-            window["quill_{{ $name }}"] = new Quill("#quill_editor_{{ $name }}", {
+            window["quill_{{ $name }}"] = new Quill("#quill_editor_{{ $id ? $id : $name }}", {
                 modules: {
                     toolbar: [
                         [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -29,7 +29,7 @@
             });
 
             window["quill_{{ $name }}"].on("text-change", (function (e, n, l) {
-                document.getElementById("quill_editor_{{ $name }}_value").value =
+                document.getElementById("quill_editor_{{ $id ? $id : $name }}_value").value =
                     window["quill_{{ $name }}"].container.firstChild.innerHTML;
             }));
         }));

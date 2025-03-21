@@ -356,6 +356,31 @@ return [
                             'route_params' => ['category' => 'governance']
                         ]
                     ]
+                ],
+                [
+                    'name' => 'Contents',
+                    'active' => 'sustainability-contents',
+                    'route' => '',
+                    'sub' => [
+                        [
+                            'name' => 'Environment',
+                            'active' => 'sustainability-contents-environment',
+                            'route' => 'admin.sustainability-contents.index',
+                            'route_params' => ['category' => 'environment']
+                        ],
+                        [
+                            'name' => 'Social',
+                            'active' => 'sustainability-contents-social',
+                            'route' => 'admin.sustainability-contents.index',
+                            'route_params' => ['category' => 'social']
+                        ],
+                        [
+                            'name' => 'Governance',
+                            'active' => 'sustainability-contents-governance',
+                            'route' => 'admin.sustainability-contents.index',
+                            'route_params' => ['category' => 'governance']
+                        ]
+                    ]
                 ]
             ]
         ],

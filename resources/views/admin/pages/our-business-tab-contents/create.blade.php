@@ -42,7 +42,7 @@
             </x-portal::form.select>
 
             <div class="flex gap-4 w-full">
-                <div class="flex flex-col gap-4 lg:max-w-[48%]">
+                <div class="flex flex-col gap-4 w-full lg:max-w-[48%]">
                     <!-- EN -->
                     <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
                     <x-portal::form.input label="Header Text" placeholder="Header Text" name="heading_en" :value="old('heading_en')" type="text" />
@@ -60,7 +60,7 @@
                 <div class="max-lg:hidden">
                     <x-portal::separator orientation="vertical" />
                 </div>
-                <div class="flex flex-col gap-4 lg:max-w-[48%]">
+                <div class="flex flex-col gap-4 w-full lg:max-w-[48%]">
                     <!-- ID -->
                     <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
                     <x-portal::form.input label="Header Text" placeholder="Header Text" name="heading_id" :value="old('heading_id')" type="text" />
