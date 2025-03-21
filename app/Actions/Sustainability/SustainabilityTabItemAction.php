@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Actions\Data;
+namespace App\Actions\Sustainability;
 
 use App\Helpers\StorageFile;
+use App\Models\Sustainability\SustainabilityTab;
 use Illuminate\Http\Request;
-use App\Models\OurBusiness\OurBusinessContent;
-use App\Models\OurBusiness\OurBusinessTab;
+use App\Models\Sustainability\SustainabilityTabItem;
 
-class OurBusinessTabContentAction
+class SustainabilityTabItemAction
 {
     /**
      * Create a new class instance.
@@ -17,8 +17,8 @@ class OurBusinessTabContentAction
         //
     }
 
-    public function store(Request $request, $id, $tabId){
-        $tab = OurBusinessTab::whereUlid($tabId)->first();
+    public function store(Request $request, $tabId){
+        $tab = SustainabilityTab::whereUlid($tabId)->first();
         $data = [
             ...$request->only([
                 'name',
@@ -29,22 +29,21 @@ class OurBusinessTabContentAction
                 'tagline_id',
                 'title_en',
                 'title_id',
-                'description_en',
-                'description_id',
+                'content_en',
+                'content_id',
                 'align'
             ]),
-            'our_business_id' => $tab->our_business_id,
-            'our_business_tab_id' => $tab->id
+            'sustainability_tab_id' => $tab->id
         ];
 
         if ($request->hasFile('image')) {
-            $data['image'] = StorageFile::upload($request->file('image'), 'our-business/contents');
+            $data['image'] = StorageFile::upload($request->file('image'), 'sustainability/tabs');
         }
 
-        return OurBusinessContent::create($data);
+        return SustainabilityTabItem::create($data);
     }
 
-    public function update(Request $request, $id, $tabId, $ulid){
+    public function update(Request $request, $ulid, $tabId){
         $data = [
             ...$request->only([
                 'name',
@@ -55,21 +54,21 @@ class OurBusinessTabContentAction
                 'tagline_id',
                 'title_en',
                 'title_id',
-                'description_en',
-                'description_id',
+                'content_en',
+                'content_id',
                 'align'
             ]),
         ];
 
         if ($request->hasFile('image')) {
-            $data['image'] = StorageFile::upload($request->file('image'), 'our-business/contents');
+            $data['image'] = StorageFile::upload($request->file('image'), 'sustainability/tabs');
         }
 
-        OurBusinessContent::whereUlid($ulid)->update($data);
+        SustainabilityTabItem::whereUlid($ulid)->update($data);
     }
 
     public function delete($ulid){
-        return OurBusinessContent::where('ulid', $ulid)->delete();
+        return SustainabilityTabItem::where('ulid', $ulid)->delete();
     }
 
     public function updateSort(Request $request)
@@ -77,7 +76,7 @@ class OurBusinessTabContentAction
         $data = $request->input('order');
 
         foreach ($data as $item) {
-            OurBusinessContent::where('id', $item['id'])->update(['sort' => $item['sort']]);
+            SustainabilityTabItem::where('id', $item['id'])->update(['sort' => $item['sort']]);
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Actions\Data;
 
 use App\Helpers\StorageFile;
+use App\Models\OurBusiness\OurBusiness;
 use App\Models\OurBusiness\OurBusinessTab;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,10 @@ class OurBusinessTabAction
     }
 
     public function store(Request $request, $id){
+        $business = OurBusiness::whereUlid($id)->first();
         $data = [
             ...$request->only(['title_en', 'title_id', 'sub_title_en', 'sub_title_id', 'description_en', 'description_id']),
-            'our_business_id' => $id
+            'our_business_id' => $business->id
         ];
 
         if ($request->hasFile('image')) {

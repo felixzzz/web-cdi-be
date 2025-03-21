@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class AdminRatingRecognitionController extends AdminController
 {
     protected $routePath = 'admin.rating-recognitions';
-    protected $pageActive = 'sutainability';
+    protected $pageActive = 'sustainability-content';
     protected $subPageActive = 'rating-recognitions';
     protected $pageTitle = 'Rating Recognition';
 

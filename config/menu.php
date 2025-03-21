@@ -90,24 +90,6 @@ return [
             'sub' => []
         ],
         [
-            'name' => 'Sustainability',
-            'active' => 'sustainability-content',
-            'route' => '',
-            'icon' => 'recycle',
-            'sub' => [
-                [
-                    'name' => 'Responsible',
-                    'active' => 'responsibles',
-                    'route' => 'admin.responsibles.index',
-                ],
-                [
-                    'name' => 'Ratings & Recognitions',
-                    'active' => 'rating-recognitions',
-                    'route' => 'admin.rating-recognitions.index',
-                ]
-            ]
-        ],
-        [
             'name' => 'Master',
             'active' => 'master',
             'route' => '',
@@ -339,6 +321,41 @@ return [
                     'name' => 'Report',
                     'active' => 'sustainability-report',
                     'route' => 'admin.page-management.sustainability-report.index'
+                ],
+                [
+                    'name' => 'Responsible',
+                    'active' => 'responsibles',
+                    'route' => 'admin.responsibles.index',
+                ],
+                [
+                    'name' => 'Ratings & Recognitions',
+                    'active' => 'rating-recognitions',
+                    'route' => 'admin.rating-recognitions.index',
+                ],
+                [
+                    'name' => 'Tabs',
+                    'active' => 'sustainability-tabs',
+                    'route' => '',
+                    'sub' => [
+                        [
+                            'name' => 'Environment',
+                            'active' => 'sustainability-tabs-environment',
+                            'route' => 'admin.sustainability-tabs.index',
+                            'route_params' => ['category' => 'environment']
+                        ],
+                        [
+                            'name' => 'Social',
+                            'active' => 'sustainability-tabs-social',
+                            'route' => 'admin.sustainability-tabs.index',
+                            'route_params' => ['category' => 'social']
+                        ],
+                        [
+                            'name' => 'Governance',
+                            'active' => 'sustainability-tabs-governance',
+                            'route' => 'admin.sustainability-tabs.index',
+                            'route_params' => ['category' => 'governance']
+                        ]
+                    ]
                 ]
             ]
         ],

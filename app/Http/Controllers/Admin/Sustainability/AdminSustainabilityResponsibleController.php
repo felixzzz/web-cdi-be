@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class AdminSustainabilityResponsibleController extends AdminController
 {
     protected $routePath = 'admin.responsibles';
-    protected $pageActive = 'sutainability';
+    protected $pageActive = 'sustainability-content';
     protected $subPageActive = 'responsibles';
     protected $pageTitle = 'Responsible';
 

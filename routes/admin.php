@@ -36,6 +36,8 @@ use App\Http\Controllers\Admin\PageManagement\AdminSustainabilitySocialControlle
 use App\Http\Controllers\Admin\Role\AdminRoleController;
 use App\Http\Controllers\Admin\Sustainability\AdminRatingRecognitionController;
 use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityResponsibleController;
+use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityTabController;
+use App\Http\Controllers\Admin\Sustainability\AdminSustainabilityTabItemController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Admin\Utility\AdminCountryController;
 use App\Http\Controllers\Admin\Utility\AdminEditorController;
@@ -89,10 +91,6 @@ Route::prefix('admin')
             Route::resource('whistleblowing', AdminWhistleblowingController::class)->only(['index', 'show', 'destroy']);
         });
 
-        Route::resource('rating-recognitions', AdminRatingRecognitionController::class)->except(['show']);
-        Route::post('/rating-recognitions/sort', [AdminRatingRecognitionController::class, 'updateSort'])->name('rating-recognitions.sort');
-        Route::resource('responsibles', AdminSustainabilityResponsibleController::class)->except(['show', 'create', 'store', 'destroy']);
-
         Route::resource('offices', AdminOfficeController::class)->except(['show']);
         Route::resource('teams', AdminTeamController::class)->except(['show']);
 
@@ -118,6 +116,30 @@ Route::prefix('admin')
 
 
         Route::resource('institutions', AdminInstitutionController::class)->except(['show']);
+
+        Route::resource('rating-recognitions', AdminRatingRecognitionController::class)->except(['show']);
+        Route::post('/rating-recognitions/sort', [AdminRatingRecognitionController::class, 'updateSort'])->name('rating-recognitions.sort');
+        Route::resource('responsibles', AdminSustainabilityResponsibleController::class)->except(['show', 'create', 'store', 'destroy']);
+
+        Route::prefix("/sustainability-tabs/{category}")->as("sustainability-tabs.")->group(function () {
+            Route::get("/", [AdminSustainabilityTabController::class, "index"])->name("index");
+            Route::get("/create", [AdminSustainabilityTabController::class, "create"])->name("create");
+            Route::post("/", [AdminSustainabilityTabController::class, "store"])->name("store");
+            Route::get("/{tabId}/edit", [AdminSustainabilityTabController::class, "edit"])->name("edit");
+            Route::put("/{tabId}", [AdminSustainabilityTabController::class, "update"])->name("update");
+            Route::delete("/{tabId}", [AdminSustainabilityTabController::class, "destroy"])->name("destroy");
+            Route::post('/sort', [AdminSustainabilityTabController::class, 'updateSort'])->name('sort');
+
+            Route::prefix("{tabId}/items")->as("items.")->group(function () {
+                Route::get("/", [AdminSustainabilityTabItemController::class, "index"])->name("index");
+                Route::get("/create", [AdminSustainabilityTabItemController::class, "create"])->name("create");
+                Route::post("/", [AdminSustainabilityTabItemController::class, "store"])->name("store");
+                Route::get("/{itemId}/edit", [AdminSustainabilityTabItemController::class, "edit"])->name("edit");
+                Route::put("/{itemId}", [AdminSustainabilityTabItemController::class, "update"])->name("update");
+                Route::delete("/{itemId}", [AdminSustainabilityTabItemController::class, "destroy"])->name("destroy");
+                Route::post('/sort', [AdminSustainabilityTabItemController::class, 'updateSort'])->name('sort');
+            });
+        })->whereIn("category", ["environment", "social", "governance"]);
 
         Route::prefix('page-management/')->as('page-management.')->group(function () {
             Route::get("/home-content", [AdminHomeContentController::class, 'index'])->name("home-content.index");
