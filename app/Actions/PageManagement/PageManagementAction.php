@@ -25,7 +25,7 @@ class PageManagementAction
             ? StorageFile::upload($request->file("{$key}_file"), $path)
             : null;
 
-            $type = PreferenceKey::{$key}->type();
+            $type = constant(PreferenceKey::class . "::$key")?->type();
 
             $data = [
                 'type' => $type,
