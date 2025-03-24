@@ -26,7 +26,7 @@
                                     <x-tabler-dots class="h-4.5" />
                                 </x-portal::dropdown-menu.trigger>
                                 <x-portal::dropdown-menu.content class="w-fit" align="end">
-                                    <x-portal::dropdown-menu.item :href="route('admin.page-management.our-business-tabs.contents.edit', ['ourBusinessTab' => $tabId, 'id' => $businessId, 'contentId' => $row->id])" as="a" >
+                                    <x-portal::dropdown-menu.item :href="route('admin.page-management.our-business-tabs.contents.edit', ['ourBusinessTab' => $tabId, 'id' => $businessId, 'contentId' => $row->ulid])" as="a" >
                                         Edit
                                     </x-portal::dropdown-menu.item>
                                     <x-dropdown-menu.item variant="danger" x-on:click="alertDialog='dialog-form-delete-popup';menuOpen=false" onclick="showPopupDelete('{{ route('admin.page-management.our-business-tabs.contents.destroy', ['ourBusinessTab' => $tabId, 'id' => $businessId, 'contentId' => $row->ulid]) }}')">

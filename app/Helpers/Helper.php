@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 class Helper
 {
     /**
@@ -83,5 +86,26 @@ class Helper
         $decoded = base64_decode(strtr($encryptedValue, '-_', '+/'));
 
         return openssl_decrypt($decoded, 'AES-128-CBC', $key, 0, $iv);
+    }
+
+    public static function handleMoveImage($value, $path)
+    {
+        if (!empty($value)) {
+            // Ambil nama file asli
+            $originalPath = parse_url($value, PHP_URL_PATH);
+            $filename = pathinfo($originalPath, PATHINFO_BASENAME);
+
+            // Buat nama file baru yang dienkripsi
+            $newFilename = Str::random(40) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+
+            // Copy file ke storage lokal
+            $storagePath = "{$path}/{$newFilename}";
+            $localPath = public_path($originalPath); // Path asli dari public folder
+
+            if (file_exists($localPath)) {
+                Storage::disk('local')->put($storagePath, file_get_contents($localPath));
+                return self::shortEncrypt($storagePath);
+            }
+        }
     }
 }

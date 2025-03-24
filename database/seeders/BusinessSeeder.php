@@ -105,8 +105,8 @@ class BusinessSeeder extends Seeder
             [
                 "image" => asset('assets/frontend/images/ourbusiness/our_business_what_we_do_logistic.webp'),
                 "type" => "logistic",
-                "title_en" => 'Energy',
-                "title_id" => 'Energi',
+                "title_en" => 'Logistic',
+                "title_id" => 'Logistik',
                 "description_en" => "
                     <p>We are advancing in the shipping and warehousing sector, focusing on meeting the needs of Chandra Asri Group, with plans to extend services to potential external clients in the future. Our logistics operation include <b>PT Chandra Shipping International (CSI), PT Marina Indah Maritim (MIM), and PT Chandra Cold Chain (CCC).</b></p>
                 ",
@@ -114,7 +114,7 @@ class BusinessSeeder extends Seeder
                     <p>Kami tengah bergerak maju di sektor perkapalan dan pergudangan, dengan fokus pada pemenuhan kebutuhan Chandra Asri Group, dengan rencana untuk memperluas layanan kepada klien eksternal potensial di masa mendatang. Operasi logistik kami meliputi <b>PT Chandra Shipping International (CSI), PT Marina Indah Maritim (MIM), dan PT Chandra Cold Chain (CCC).</b></p>
                 ",
                 "banner_image" => asset('assets/frontend/images/ourbusiness/our_business_logistics_hero_image.webp'),
-                "banner_title_en" => "Logistics",
+                "banner_title_en" => "LOGISTICS",
                 "banner_title_id" => "Logistik",
                 "overview_title_en" => "Overview",
                 "overview_title_id" => "Overview",

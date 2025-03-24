@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\OurBusiness;
 use App\Actions\Data\OurBusinessTabContentAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
+use App\Models\OurBusiness\OurBusinessContent;
 use App\Repositories\Data\OurBusinessRepository;
 use Illuminate\Http\Request;
 
@@ -58,7 +59,7 @@ class AdminOurBusinessTabContentController extends AdminController
      */
     public function edit(string $id, $tabId, $contentId)
     {
-        $data = OurBusinessTab::findByUlid($contentId, true);
+        $data = OurBusinessContent::findByUlid($contentId, true);
         return view("admin.pages.our-business-tab-contents.edit", [
             'data' => $data,
             'businessId' => $id,

@@ -22,8 +22,8 @@ class ResponsibleAction
                 'title_id',
                 'description_en',
                 'description_id',
-                'list_en' => 'list_en',
-                'list_id' => 'list_id',
+                'list_en',
+                'list_id',
             ])
         ];
 
