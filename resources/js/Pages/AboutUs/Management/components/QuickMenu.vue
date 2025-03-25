@@ -21,11 +21,9 @@
         <container>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-16">
                 <h2 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium text-blue-lighter">
-                    The People Behind Our Success
+                    {{ content.about_us_management_overview?.title }}
                 </h2>
-                <p class="text-neutral-4 text-base">
-                    Chandra Daya Investasi leadership team made up of seasoned professionals from diverse backgrounds, brings extensive expertise to guide strategic corporate actions and foster innovation. Meanwhile, our well-defined management structure is crucial ensuring effective decision-making, clear lines of accountability, and the efficient execution of strategic initiatives. All of these drive our overall growth.
-                </p>
+                <div class="content !text-neutral-4 text-base" v-html="content.about_us_management_overview?.content"></div>
             </div>
         </container>
     </div>
@@ -36,15 +34,21 @@
     import Container from '@/Components/Section/Container.vue'
     import { onMounted, onUnmounted, ref } from 'vue'
 
+    import { PreferenceAboutManagement } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceAboutManagement
+    }>()
+
     const tabActive = ref('board-of-directors')
     const lastScrollY = ref(window.scrollY)
 
     const tabs = ref([
-        { id: 'board-of-directors', name: 'Board of Directors' },
-        { id: 'board-of-commissioners', name: 'Board of Commissioners' },
-        { id: 'organization-structure', name: 'Organization Structure' },
-        { id: 'corporate-structure', name: 'Corporate Structure' },
-        { id: 'guidelines-of-work', name: 'Guidelines of Work' }
+        { id: 'board-of-directors', name: $t('Board of Directors') },
+        { id: 'board-of-commissioners', name: $t('Board of Commissioners') },
+        { id: 'organization-structure', name: $t('Organization Structure') },
+        { id: 'corporate-structure', name: $t('Corporate Structure') },
+        { id: 'guidelines-of-work', name: $t('Guidelines of Work') },
     ])
 
     const scrollToSection = (id: string) => {

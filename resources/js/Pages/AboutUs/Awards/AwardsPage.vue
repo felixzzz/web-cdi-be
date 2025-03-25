@@ -1,8 +1,8 @@
 <template>
-    <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true" :show-quick-link="true">
+    <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true" :show-quick-link="true" quick-link-type="about-us">
         <Head title="Awards & Certification" />
-        <hero-image />
-        <tab-menu />
+        <hero-image :content="content.aboutAward" />
+        <tab-menu :content="content.aboutAward" />
 
     </app-layout>
 </template>
@@ -14,4 +14,12 @@
     import HeroImage from './components/HeroImage.vue'
     import TabMenu from './components/TabMenu.vue'
 
+    import { onBeforeMount } from 'vue'
+    import { useContentStore } from "@/Composables/useContentStore"
+
+    const content = useContentStore()
+
+    onBeforeMount(() => {
+        content.getAboutUsAward()
+    })
 </script>

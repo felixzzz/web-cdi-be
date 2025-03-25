@@ -5,6 +5,22 @@
 <!-- Home Section -->
 <img src="{{ asset("assets/frontend/icons/flag_{$lang}.svg") }}" alt="" class="w-5">
 <x-portal::heading size="lg" class="!font-bold">Milestone</x-portal::heading>
+@if ($lang == 'en')
+    <x-portal::form.group
+        label="Background"
+        name="about_us_milestone_file"
+        description=""
+        description-trailing=""
+        >
+        <x-file-upload.image
+            :value="previewFile(@$data->about_us_milestone->file)"
+            maxsize="5"
+            name="about_us_milestone_file"
+            class="w-full"
+        />
+    </x-portal::form.group>
+
+@endif
 <x-portal::form.input label="Title" placeholder="Title" name="about_us_milestone_title_{{ $lang }}" :value="@$data->about_us_milestone->{'title_' . $lang}" type="text"  />
 <x-portal::form.group
     label="Description"

@@ -10,7 +10,7 @@
     <section class="min-h-[35vh]">
         <slot />
     </section>
-    <quick-links v-if="showQuickLink" />
+    <quick-links v-if="showQuickLink" :type="quickLinkType" />
     <navigation-footer />
     <cookie-request
         v-if="
@@ -38,6 +38,7 @@
         navStickyScroll?: boolean;
         navIsHome?: boolean;
         showQuickLink?: boolean;
+        quickLinkType?: string;
         navStickyBlur?: boolean;
     }>(), {
         navStickyScroll: true,

@@ -1,13 +1,13 @@
 <template>
-    <app-layout :nav-fixed="true" :nav-is-home="true" :nav-transparant="true" :show-quick-link="true">
+    <app-layout :nav-fixed="true" :nav-is-home="true" :nav-transparant="true" :show-quick-link="true" quick-link-type="home">
         <Head title="Home" />
-        <home-banner />
-        <about-us />
-        <infrastructur />
-        <discover />
-        <journey />
-        <report />
-        <Article />
+        <home-banner :content="content.home" />
+        <about-us :content="content.home" />
+        <infrastructur v-bind:content="content.home" />
+        <discover v-bind:content="content.home" />
+        <journey v-bind:content="content.home" />
+        <report :content="content.home" />
+        <Article :content="content.home" />
 
     </app-layout>
 </template>
@@ -23,5 +23,12 @@
     import Article from './components/Article.vue'
 
     import { Head } from '@inertiajs/vue3'
+    import { onBeforeMount } from 'vue'
+    import { useContentStore } from "@/Composables/useContentStore"
 
+    const content = useContentStore()
+
+    onBeforeMount(() => {
+        content.getHome()
+    })
 </script>

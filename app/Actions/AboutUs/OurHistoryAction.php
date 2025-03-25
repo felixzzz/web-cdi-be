@@ -3,8 +3,9 @@
 namespace App\Actions\AboutUs;
 
 use App\Helpers\StorageFile;
-use App\Http\Requests\AboutUs\OurHistoryRequest;
+use Illuminate\Http\Request;
 use App\Models\AboutUs\OurHistory;
+use App\Http\Requests\AboutUs\OurHistoryRequest;
 
 class OurHistoryAction
 {
@@ -56,5 +57,14 @@ class OurHistoryAction
 
     public function delete($ulid){
         return OurHistory::where('ulid', $ulid)->delete();
+    }
+
+    public function updateSort(Request $request)
+    {
+        $data = $request->input('order');
+
+        foreach ($data as $item) {
+            OurHistory::where('id', $item['id'])->update(['sort' => $item['sort']]);
+        }
     }
 }

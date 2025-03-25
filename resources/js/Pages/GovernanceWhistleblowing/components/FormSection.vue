@@ -1,13 +1,13 @@
 <template>
     <div class="bg-neutral-2 pb-20 pt-11">
         <container>
-            <breadcrumb :route="route('governance.index')" base="Governance" current="Whistleblowing" />
+            <breadcrumb :route="route('governance.index')" :base="$t('Governance')" :current="$t('Whistleblowing')" />
             <div class="grid lg:grid-cols-3 gap-16 mt-8">
                 <div
                     class="lg:max-h-[675px] lg:max-w-[456px] h-full bg-cover rounded-xl flex flex-col p-6 justify-between bg-center"
-                    :style="{ backgroundImage: `url(${asset('assets/frontend/images/governance/whistleblowing_hero_image.webp')})` }"
+                    :style="{ backgroundImage: `url(${content.governance_whistleblowing_detail?.file_url})` }"
                 >
-                    <p class="mb-0 text-[22px] font-medium text-white">#Your Growth Partner</p>
+                    <p class="mb-0 text-[22px] font-medium text-white">{{ content.governance_whistleblowing_detail?.title }}</p>
 
 
                     <div class="rounded-xl border border-neutral-4 p-4 bg-white">
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="lg:col-span-2">
-                    <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] mb-4">Whistleblowing</p>
-                    <p class="text-neutral-13 text-sm mb-8">The Whistleblowing Management Policy reflects our dedication to upholding our Code of Conduct. This system is designed as a tool to assist all Chandra Asri Group employees, including those in our subsidiaries and joint ventures and stakeholder including but not limited to business partner, supplier or vendor, customer, contractor, agent, consultant and/or any other third party who works with, for or represents Chandra Asri Group in are also encouraged to consult with or report any suspected violations to Chandra Asri Group management.</p>
+                    <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] mb-4">{{ content.governance_whistleblowing?.title }}</p>
+                    <div class="content !text-neutral-13 !text-sm mb-8" v-html="content.governance_whistleblowing?.content"></div>
 
                     <div class="flex flex-col gap-8">
                         <div class="grid grid-cols-2 gap-8">
@@ -117,5 +117,11 @@
     import Container from '@/Components/Section/Container.vue'
     import Breadcrumb from '@/Components/Ui/Utils/Breadcrumb.vue'
     import { asset } from '@/Lib/utils'
+
+    import { PreferenceGovernance } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceGovernance
+    }>()
 
 </script>

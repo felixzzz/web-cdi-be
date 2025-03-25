@@ -27,10 +27,11 @@
     const lastScrollY = ref(window.scrollY)
 
     const tabs = ref([
-        { id: 'company-overview', name: 'Company Overview' },
-        { id: 'our-history', name: 'Our History' },
-        { id: 'milestone', name: 'Milestone' },
-        { id: 'company-profile', name: 'Company Profile' }
+        { id: 'company-overview', name: $t('Company Overview') },
+        { id: 'mission-vision', name: $t('Vision & Mission') },
+        { id: 'our-history', name: $t('Our History') },
+        { id: 'milestone', name: $t('Milestone') },
+        { id: 'company-profile', name: $t('Company Profile') },
     ])
 
     const scrollToSection = (id: string) => {

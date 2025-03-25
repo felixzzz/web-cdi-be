@@ -3,12 +3,12 @@
         <container id="article-container">
             <div class="flex lg:items-center justify-between mb-2 flex-col lg:flex-row">
                 <div>
-                    <p class="text-neutral-7 text-base mb-4">LATEST ARTICLE</p>
-                    <p class="text-neutral-13 font-medium text-2xl lg:text-[28px] mb-0 max-w-sm">Discover the latest from the energy industry</p>
+                    <p class="text-neutral-7 text-base mb-4">{{ $t('LATEST ARTICLE') }}</p>
+                    <p class="text-neutral-13 font-medium text-2xl lg:text-[28px] mb-0 max-w-sm">{{ $t('Discover the latest from the energy industry') }}</p>
                 </div>
                 <div class="flex items-center gap-4 justify-start lg:justify-center mt-4 lg:mt-0">
                     <Link :href="route('media.index', { type: 'news' })" class="py-2 rounded-full whitespace-nowrap  flex items-center gap-2 text-blue-base">
-                        See All <i class="isax icon-arrow-right-1"></i>
+                        {{ $t('See All') }} <i class="isax icon-arrow-right-1"></i>
                     </Link>
                 </div>
             </div>

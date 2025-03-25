@@ -29,6 +29,9 @@ class QuickLinkRepository
         return QuickLink::query()->orderBy("sort", "asc")
         ->where("category", $category)
         ->orderBy("sort", "asc")
-        ->get();
+        ->get()->map(function ($row) {
+            $row->name = $row->name;
+            return $row;
+        });
     }
 }

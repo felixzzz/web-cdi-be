@@ -9,7 +9,7 @@
         >
             <container>
                 <div class="flex items-center justify-between py-8 cursor-pointer" x-on:click="open_section=!open_section">
-                    <span>Organization Structure</span>
+                    <span>{{ $t('Organization Structure') }}</span>
                     <i
                         class="isax icon-arrow-down-1 transition-all"
                         x-bind:class="{ 'rotate-180': open_section }"
@@ -28,9 +28,9 @@
             class="py-20"
         >
             <container>
-                <p class="text-2xl lg:text-[28px] font-medium text-blue-base mb-6">Organization Structure</p>
-                <img :src="asset('assets/frontend/images/about/organization_structure.webp')" alt="">
-                <p class="text-red-6 mt-2 italic">*As of 31st December 2024</p>
+                <p class="text-2xl lg:text-[28px] font-medium text-blue-base mb-6">{{ $t('Organization Structure') }}</p>
+                <img :src="content.about_us_organization_structure?.file_url" alt="">
+                <!-- <p class="text-red-6 mt-2 italic">*As of 31st December 2024</p> -->
             </container>
         </div>
     </section>
@@ -39,6 +39,11 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset } from '@/Lib/utils'
+
+    import { PreferenceAboutManagement } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceAboutManagement
+    }>()
 
 </script>

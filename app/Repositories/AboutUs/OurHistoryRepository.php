@@ -24,6 +24,6 @@ class OurHistoryRepository
             $q->orWhere("tagline_en", "LIKE", "%$search%");
             $q->orWhere("tagline_id", "LIKE", "%$search%");
         })
-        ->datatable($perPage, "created_at");
+        ->datatable($perPage, "sort", "asc");
     }
 }

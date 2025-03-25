@@ -5,10 +5,8 @@
         <container>
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-8">
                 <div class="lg:col-span-3">
-                    <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">Policy</p>
-                    <div class="content">
-                        <p>Chandra Asri Group is committed to implementing the Chandra Asri Code of Ethics, as well as upholding and complying with relevant provisions that apply both domestically and internationally. This policy is supported by good business practices and ethical corporate governance to fulfil our obligations to shareholders and stakeholders and must be followed to by all Chandra Asri Group employees</p>
-                    </div>
+                    <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">{{ content.governance_policy?.title }}</p>
+                    <div class="content" v-html="content.governance_policy?.content"></div>
 
                     <Link :href="route('governance.type', { type: 'policy' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
                         See All <i class="isax icon-arrow-right-1 -rotate-45"></i>
@@ -30,10 +28,10 @@
 
                         <div class="flex items-center gap-8 w-full justify-center">
                             <Link href="" class="flex items-center gap-2 text-white font-medium">
-                                <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> View
+                                <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
                             </Link>
                             <Link href="" class="flex items-center gap-2 text-white font-medium">
-                                <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> Download
+                                <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t('Download') }}
                             </Link>
                         </div>
                     </div>
@@ -50,5 +48,11 @@
     import Container from '@/Components/Section/Container.vue'
     import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
+
+    import { PreferenceGovernance } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceGovernance
+    }>()
 
 </script>

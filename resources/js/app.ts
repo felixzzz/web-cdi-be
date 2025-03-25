@@ -7,10 +7,13 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue, route } from '../../vendor/tightenco/ziggy';
+import { createPinia } from 'pinia'
 
 import Alpine from 'alpinejs'
 import { translate } from './Composables/useTranslation';
 Alpine.start()
+
+const pinia = createPinia()
 
 // Extend ImportMeta interface for Vite...
 // declare module 'vite/client' {
@@ -41,6 +44,7 @@ createInertiaApp({
             app.config.globalProperties.$t = translate;
 
             app.use(plugin)
+            app.use(pinia)
             app.use(ZiggyVue, Ziggy)
             app.mount(el);
     },

@@ -16,22 +16,8 @@
             </div>
 
             <div v-show="tabActive == 'audit-committee'" class="py-8">
-                <div class="content">
-                    <p>The Audit Committee was established by the Company through the Board of Commissioners Decree No. 013/LGL/BOC RES/VI/2021 to support the implementation of Good Corporate Governance. In performing its duties and responsibilities, the Audit Committee upholds the five principles of GCG and act professionally and independently for the benefit of the Company and its stakeholders.</p>
-                    <p>The Audit Committee is responsible directly to the Board of Commissioners and in coordination with the Internal Audit Unit.</p>
-                    <p>To support the role of Audit Committee, the Company has developed a guideline namely the Audit Committee Charter which includes:</p>
-
-                    <ul class="list-decimal">
-                        <li>Background.</li>
-                        <li>Duties, responsibilities and authority.</li>
-                        <li>Composition, structure, requirements of Audit Committee members.</li>
-                        <li>Implementation and work procedure.</li>
-                        <li>Audit Committee meeting.</li>
-                        <li>Reporting.</li>
-                        <li>Provision on the handling of complaints or reports on suspicion of violation relating to financial report.</li>
-                        <li>Terms of service of the Audit Committee.</li>
-                    </ul>
-                </div>
+                <p class="font-medium text-[22px] mb-3" v-if="content.governance_audit_committe?.title">{{ content.governance_audit_committe?.title }}</p>
+                <div class="content" v-html="content.governance_audit_committe?.content"></div>
 
                 <div class="button-gradient-custom my-8">
                     <div class="flex flex-col gap-2">
@@ -55,8 +41,8 @@
                     </div>
                 </div>
 
-                <p class="font-medium text-[22px] mb-3">Composition of the Audit Committee Members</p>
-                <p class="text-neutral-6 mb-8">As from June 16th, 2021, composition of the Audit Committee Members consists of:</p>
+                <p class="font-medium text-[22px] mb-3">{{ content.governance_audit_committe_member_text?.title }}</p>
+                <div class="content text-neutral-6 mb-8" v-html="content.governance_audit_committe_member_text?.content"></div>
 
                 <div class="flex gap-8">
                     <div class="flex flex-col items-center text-center w-[282px] group transition-all duration-300" v-for="(audit, i) in audits" :key="i">
@@ -70,7 +56,7 @@
             </div>
 
             <div v-show="tabActive == 'sustainability-committee'" class="py-8">
-                <img :src="asset('assets/frontend/images/governance/sustainability.webp')" alt="" class="w-full rounded-3xl">
+                <img :src="content.governance_sustainability_committe?.file_url" alt="" class="w-full rounded-3xl">
 
                 <div class="button-gradient-custom mt-8">
                     <div class="flex flex-col gap-2">
@@ -86,10 +72,10 @@
 
                     <div class="flex lg:items-center gap-8 w-full lg:w-fit">
                         <Link href="" class="flex items-center gap-2 text-white font-medium">
-                            <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> View
+                            <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
                         </Link>
                         <Link href="" class="flex items-center gap-2 text-white font-medium">
-                            <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> Download
+                            <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t('Download') }}
                         </Link>
                     </div>
                 </div>
@@ -105,6 +91,12 @@
     import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
     import { ref } from 'vue'
+
+    import { PreferenceGovernance } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceGovernance
+    }>()
 
     const tabActive = ref('audit-committee')
 

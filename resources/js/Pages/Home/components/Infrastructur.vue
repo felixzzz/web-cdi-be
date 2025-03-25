@@ -6,7 +6,7 @@
                 text-base lg:text-[38px] lg:leading-[44px]
                 font-normal lg:font-light max-w-2xl mx-auto"
             >
-                Infrastructure Solutions for Efficient Industrial Growth
+                {{ content.home_infrastructure_title?.title }}
             </h1>
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4">
@@ -22,7 +22,7 @@
                 <div class="absolute inset-0 overlay-card-1"></div>
                 <div class="absolute inset-0 flex flex-col justify-between px-5 lg:px-10 pb-5 lg:pb-10 pt-[35%] text-white z-10">
                     <h1 class="text-2xl lg:text-[52px] lg:leading-[60px] font-medium text-shadow-1">{{ tab.name }}</h1>
-                    <p class="text-xs lg:text-base font-normal text-shadow-1">{{ tab.description }}</p>
+                    <div class="content !font-normal text-shadow-1 !text-white" v-html="tab.description"></div>
                 </div>
                 <div
                     class="absolute inset-0 flex flex-col justify-center items-center p-4 z-[11] bg-black/64"
@@ -35,7 +35,7 @@
                     x-transition:leave-end="opacity-0"
                 >
                     <Link :href="tab.route" class="bg-white/16 text-white px-6 py-2 border border-white rounded-full whitespace-nowrap gap-3 flex items-center w-fit mt-10">
-                        Learn More <i class="isax icon-arrow-right-1 -rotate-45 text-xl"></i>
+                        {{ $t('Learn More') }} <i class="isax icon-arrow-right-1 -rotate-45 text-xl"></i>
                     </Link>
                 </div>
             </div>
@@ -44,35 +44,48 @@
 </template>
 
 <script setup lang="ts">
-    import { asset } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
-    import { ref } from 'vue'
+    import { ref, watch } from 'vue'
 
-    const tabs = ref([
-        {
-            name: 'Energy',
-            route: route('our-business.energy'),
-            description: 'Our energy business and operations are managed by CDI and run by PT. Krakatau Chandra Energi (KCE)',
-            image: asset('assets/frontend/images/homepage/energy.webp')
-        },
-        {
-            name: 'Water',
-            route: route('our-business.water'),
-            description: 'We have a 49% stake acquired from PT Krakatau Sarana Infrastruktur who handled our water business',
-            image: asset('assets/frontend/images/homepage/water.webp')
-        },
-        {
-            name: 'Ports & Storage',
-            route: route('our-business.ports-and-storage'),
-            description: 'Provides ports and tank services business for refined chemical and petroleum products',
-            image: asset('assets/frontend/images/homepage/ports_storage.webp')
-        },
-        {
-            name: 'Logistics',
-            route: route('our-business.logistics'),
-            description: 'CDI pioneers in shipping and warehousing, serving company needs and future customers',
-            image: asset('assets/frontend/images/homepage/logistics.webp')
-        }
-    ])
+    import { PreferenceHome } from '@/types/utility'
+
+    const props = defineProps<{
+        content: PreferenceHome
+    }>()
+
+    const tabs = ref<any>([])
+
+    const updateTabs = () => {
+        tabs.value = [
+            {
+                name: props.content.home_infrastructure_energy?.title,
+                route: route('our-business.energy'),
+                description: props.content.home_infrastructure_energy?.content,
+                image: props.content.home_infrastructure_energy?.file_url
+            },
+            {
+                name: props.content.home_infrastructure_water?.title,
+                route: route('our-business.water'),
+                description: props.content.home_infrastructure_water?.content,
+                image: props.content.home_infrastructure_water?.file_url
+            },
+            {
+                name: props.content.home_infrastructure_port_storage?.title,
+                route: route('our-business.ports-and-storage'),
+                description: props.content.home_infrastructure_port_storage?.content,
+                image: props.content.home_infrastructure_port_storage?.file_url
+            },
+            {
+                name: props.content.home_infrastructure_logistic?.title,
+                route: route('our-business.logistics'),
+                description: props.content.home_infrastructure_logistic?.content,
+                image: props.content.home_infrastructure_logistic?.file_url
+            }
+        ]
+    }
+    updateTabs()
+
+    watch(() => props.content, updateTabs, { deep: true })
+
 
 </script>

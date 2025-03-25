@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -107,5 +108,12 @@ class Helper
                 return self::shortEncrypt($storagePath);
             }
         }
+    }
+
+    public static function getPreferenceCacheKey($keys = [])
+    {
+        $hashedKeys = hash('sha256', json_encode($keys));
+        $cacheKey = "preference-keys-{$hashedKeys}-" . App::getLocale();
+        return $cacheKey;
     }
 }

@@ -67,14 +67,16 @@ enum PreferenceKey: string
     case governance_she_regulation = 'governance_she_regulation';
     case governance_policy = 'governance_policy';
     case governance_whistleblowing = 'governance_whistleblowing';
+    case governance_whistleblowing_detail = 'governance_whistleblowing_detail';
 
     case our_business_banner = 'our_business_banner';
     case our_business_overview = 'our_business_overview';
 
     case sustainability_overview_banner = 'sustainability_overview_banner';
     case sustainability_overview_content = 'sustainability_overview_content';
-    case sustainability_environment_policy_framework = 'sustainability_environment_policy_framework';
-    case sustainability_environment_policy_framework_file = 'sustainability_environment_policy_framework_file';
+    case sustainability_overview_policy_framework = 'sustainability_overview_policy_framework';
+    case sustainability_overview_policy_framework_file = 'sustainability_overview_policy_framework_file';
+    case sustainability_overview_rating = 'sustainability_overview_rating';
     case sustainability_environment_banner = 'sustainability_environment_banner';
     case sustainability_environment_overview = 'sustainability_environment_overview';
     case sustainability_social_banner = 'sustainability_social_banner';
@@ -82,7 +84,15 @@ enum PreferenceKey: string
     case sustainability_governance_banner = 'sustainability_governance_banner';
     case sustainability_governance_overview = 'sustainability_governance_overview';
     case sustainability_report_banner = 'sustainability_report_banner';
-    case sustainability_report_overview = 'sustainability_report_overview';
+    case sustainability_action_banner = 'sustainability_action_banner';
+
+    case contact_us_main = 'contact_us_main';
+    case media_main = 'media_main';
+    case terms_and_conditions = 'terms_and_conditions';
+    case privacy_policy = 'privacy_policy';
+    case cookies_consent = 'cookies_consent';
+    case disclaimer = 'disclaimer';
+
 
     public function type()
     {
@@ -112,7 +122,7 @@ enum PreferenceKey: string
             'about_us_vision_mission_tagline' => PreferenceType::Text,
             'about_us_vision' => PreferenceType::TextContent,
             'about_us_mission' => PreferenceType::TextContent,
-            'about_us_milestone' => PreferenceType::TextContent,
+            'about_us_milestone' => PreferenceType::TextContentImage,
             'about_us_company_profile' => PreferenceType::TextContent,
             'about_us_management_banner' => PreferenceType::TextContent,
             'about_us_management_overview' => PreferenceType::TextContent,
@@ -144,17 +154,20 @@ enum PreferenceKey: string
             'governance_she_regulation' => PreferenceType::TextContent,
             'governance_policy' => PreferenceType::TextContent,
             'governance_whistleblowing' => PreferenceType::TextContentImage,
+            'governance_whistleblowing_detail' => PreferenceType::TextImage,
 
             'our_business_banner' => PreferenceType::TextContentImage,
             'our_business_overview' => PreferenceType::TextContent,
 
             'sustainability_overview_banner' => PreferenceType::TextContentImage,
             'sustainability_overview_content' => PreferenceType::TextContent,
+            'sustainability_overview_rating' => PreferenceType::TextContent,
+            'sustainability_overview_policy_framework' => PreferenceType::TextContent,
+            'sustainability_overview_policy_framework_file' => PreferenceType::TextFile,
+            'sustainability_overview_rating' => PreferenceType::TextContent,
 
             'sustainability_environment_banner' => PreferenceType::TextContentImage,
             'sustainability_environment_overview' => PreferenceType::TextContent,
-            'sustainability_environment_policy_framework' => PreferenceType::TextContent,
-            'sustainability_environment_policy_framework_file' => PreferenceType::FileJson,
 
             'sustainability_social_banner' => PreferenceType::TextContentImage,
             'sustainability_social_overview' => PreferenceType::TextContent,
@@ -163,7 +176,14 @@ enum PreferenceKey: string
             'sustainability_governance_overview' => PreferenceType::TextContent,
 
             'sustainability_report_banner' => PreferenceType::TextContentImage,
-            'sustainability_report_overview' => PreferenceType::TextContent,
+            'sustainability_action_banner' => PreferenceType::Image,
+
+            'contact_us_main' => PreferenceType::TextContentImage,
+            'media_main' => PreferenceType::Image,
+            'terms_and_conditions' => PreferenceType::TextContent,
+            'privacy_policy' => PreferenceType::TextContent,
+            'cookies_consent' => PreferenceType::TextContent,
+            'disclaimer' => PreferenceType::TextContent,
 
             default => PreferenceType::Text
         };
@@ -227,19 +247,6 @@ enum PreferenceKey: string
             ];
         }
 
-        if ($type == 'investor') {
-            return [
-                self::investor_report_banner->value,
-                self::investor_report_overview->value,
-                self::investor_report_table->value,
-                self::investor_financial_banner->value,
-                self::investor_share_banner->value,
-                self::investor_share_shareholders_table->value,
-                self::investor_share_dividend_table->value,
-                self::investor_publication_banner->value
-            ];
-        }
-
         return [];
     }
 
@@ -271,7 +278,8 @@ enum PreferenceKey: string
             self::governance_code_of_conduct->value,
             self::governance_she_regulation->value,
             self::governance_policy->value,
-            self::governance_whistleblowing->value
+            self::governance_whistleblowing->value,
+            self::governance_whistleblowing_detail->value
         ];
     }
 
@@ -290,8 +298,9 @@ enum PreferenceKey: string
                 return [
                     self::sustainability_overview_banner->value,
                     self::sustainability_overview_content->value,
-                    self::sustainability_environment_policy_framework->value,
-                    self::sustainability_environment_policy_framework_file->value,
+                    self::sustainability_overview_policy_framework->value,
+                    self::sustainability_overview_policy_framework_file->value,
+                    self::sustainability_overview_rating->value,
                 ];
                 break;
 
@@ -318,8 +327,13 @@ enum PreferenceKey: string
 
             case 'report':
                 return [
-                    self::sustainability_report_banner->value,
-                    self::sustainability_report_overview->value
+                    self::sustainability_report_banner->value
+                ];
+                break;
+
+            case 'action':
+                return [
+                    self::sustainability_action_banner->value
                 ];
                 break;
 
@@ -327,6 +341,18 @@ enum PreferenceKey: string
                 return [];
                 break;
         }
+    }
+
+    public static function getOtherKeys()
+    {
+        return [
+            self::contact_us_main->value,
+            self::terms_and_conditions->value,
+            self::media_main->value,
+            self::privacy_policy->value,
+            self::cookies_consent->value,
+            self::disclaimer->value
+        ];
     }
 
 }

@@ -23,17 +23,17 @@
     import Container from '@/Components/Section/Container.vue'
     import { onMounted, onUnmounted, ref } from 'vue'
 
-    const tabActive = ref('corporate-security')
+    const tabActive = ref('corporate-secretary')
     const lastScrollY = ref(window.scrollY)
 
     const tabs = ref([
-        { id: 'corporate-security', name: 'Corporate Security' },
-        { id: 'internal-audit-unit', name: 'Internal Audit Unit' },
-        { id: 'committee', name: 'Committee' },
-        { id: 'risk-management', name: 'Risk Management' },
-        { id: 'code-of-conduct', name: 'Code of Conduct' },
-        { id: 'policy', name: 'Policy' },
-        { id: 'whistleblowing', name: 'Whistleblowing' }
+        { id: 'corporate-secretary', name: $t('Corporate Secretary' )},
+        { id: 'internal-audit-unit', name: $t('Internal Audit Unit' )},
+        { id: 'committee', name: $t('Committee' )},
+        { id: 'risk-management', name: $t('Risk Management' )},
+        { id: 'code-of-conduct', name: $t('Code of Conduct' )},
+        { id: 'policy', name: $t('Policy' )},
+        { id: 'whistleblowing', name: $t('Whistleblowing') }
     ])
 
     const scrollToSection = (id: string) => {

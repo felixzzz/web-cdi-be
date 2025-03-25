@@ -389,6 +389,9 @@
     background: linear-gradient(180deg, #091A24 0%, #091A24 50%, rgba(9, 26, 36, 0) 100%);
 }
 
+.bg-journey-fade {
+    background: linear-gradient(180deg, #00253B 0%, #0B5581 100%);
+}
 
 
 @keyframes colorChange {

@@ -1,7 +1,7 @@
 <template>
     <section id="board-of-directors">
         <p class="text-white font-medium text-2xl lg:text-[38px] lg:leading-[44px] text-center mb-16">
-            Board of Directors
+            {{ $t('Board of Directors') }}
         </p>
 
         <div class="flex gap-8 text-white justify-center mb-16 flex-wrap">

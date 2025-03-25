@@ -12,6 +12,7 @@ enum PreferenceType: string
     case Image = 'image';
     case FileJson = 'file_json';
     case Table = 'table';
+    case TextFile = 'text_file';
 
 
     public function word()

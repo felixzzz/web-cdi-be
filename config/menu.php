@@ -323,6 +323,11 @@ return [
                     'route' => 'admin.page-management.sustainability-report.index'
                 ],
                 [
+                    'name' => 'In Action',
+                    'active' => 'sustainability-action',
+                    'route' => 'admin.page-management.sustainability-action.index'
+                ],
+                [
                     'name' => 'Responsible',
                     'active' => 'responsibles',
                     'route' => 'admin.responsibles.index',
@@ -383,6 +388,13 @@ return [
                     ]
                 ]
             ]
+        ],
+        [
+            'name' => 'Other',
+            'active' => 'other-content',
+            'route' => 'admin.page-management.other-content.index',
+            'icon' => 'home-edit',
+            'sub' => []
         ],
 
 

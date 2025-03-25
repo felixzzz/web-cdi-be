@@ -1,7 +1,7 @@
 <template>
     <div class="pt-20 pb-28 bg-blue-dark text-white">
         <container>
-            <h1 class="mb-10 text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-2xl mx-auto text-center">Discover the Latest Thing</h1>
+            <h1 class="mb-10 text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-2xl mx-auto text-center">{{ content.home_discover_title?.title }}</h1>
         </container>
         <div class="grid grid-cols-2 lg:grid-cols-4">
             <div
@@ -17,7 +17,8 @@
                 <div class="absolute inset-0 overlay-card-1"></div>
                 <div class="absolute inset-0 flex flex-col gap-4 p-5 lg:p-8 text-white z-10">
                     <h1 class="text-xl lg:text-[32px] font-medium">{{ tab.name }}</h1>
-                    <p class="text-xs lg:text-base font-extralight text-shadow-1">{{ tab.description }}</p>
+                    <div class="content !font-extralight text-shadow-1 !text-white" v-html="tab.description">
+                    </div>
                     <i class="isax icon-arrow-right-2 -rotate-45 text-5xl font-light absolute bottom-8 right-8"></i>
                 </div>
                 <div
@@ -39,41 +40,55 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset } from '@/Lib/utils'
     import { router, usePage } from '@inertiajs/vue3'
-    import { ref } from 'vue'
+    import { ref, watch } from 'vue'
     const careerUrl = usePage().props.career_url
 
-    const tabs = ref([
-        {
-            name: 'Sustainability',
-            route: '',
-            description: 'Long-term sustainability initiatives to achieve climate resilience and enhance societal well-being',
-            image: asset('assets/frontend/images/homepage/discover_sustainability.webp'),
-            external: false
-        },
-        {
-            name: 'Our Business',
-            route: route('our-business.what-we-do'),
-            description: 'Essential chemicals and infrastructure solutions to support key sectors across Indonesia.',
-            image: asset('assets/frontend/images/homepage/discover_our_business.webp'),
-            external: false
-        },
-        {
-            name: 'Investors',
-            route: route('investor.report'),
-            description: 'Timely, reliable, and relevant investment information for institutional and individual investors.',
-            image: asset('assets/frontend/images/homepage/discover_investors.webp'),
-            external: false
-        },
-        {
-            name: 'Careers',
-            route: careerUrl,
-            description: 'Discover your purpose and make an impact as you grow what truly matters in your career.',
-            image: asset('assets/frontend/images/homepage/discover_careers.webp'),
-            external: true
-        }
-    ])
+    import { PreferenceHome } from '@/types/utility'
+
+    const props = defineProps<{
+        content: PreferenceHome
+    }>()
+
+    const tabs = ref<any>([])
+
+
+    const updateTabs = () => {
+        tabs.value = [
+            {
+                name: props.content.home_discover_sustainability?.title,
+                route: route('sustainability.overview'),
+                description: props.content.home_discover_sustainability?.content,
+                image: props.content.home_discover_sustainability?.file_url,
+                external: false
+            },
+            {
+                name: props.content.home_discover_our_business?.title,
+                route: route('our-business.what-we-do'),
+                description: props.content.home_discover_our_business?.content,
+                image: props.content.home_discover_our_business?.file_url,
+                external: false
+            },
+            {
+                name: props.content.home_discover_investor?.title,
+                route: route('investor.report'),
+                description: props.content.home_discover_investor?.content,
+                image: props.content.home_discover_investor?.file_url,
+                external: false
+            },
+            {
+                name: props.content.home_discover_career?.title,
+                route: careerUrl,
+                description: props.content.home_discover_career?.content,
+                image: props.content.home_discover_career?.file_url,
+                external: true
+            }
+        ]
+    }
+    updateTabs()
+
+    watch(() => props.content, updateTabs, { deep: true })
+
 
     const resolveDirective = (data: any) => {
         if (data.external) {

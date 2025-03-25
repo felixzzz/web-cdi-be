@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\PageManagement\AdminGovernanceFileController;
 use App\Http\Controllers\Admin\PageManagement\AdminHomeContentController;
 use App\Http\Controllers\Admin\PageManagement\AdminInvestorController;
 use App\Http\Controllers\Admin\PageManagement\AdminOurBusinessContentController;
+use App\Http\Controllers\Admin\PageManagement\AdminPageOtherController;
+use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityActionController;
 use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityEnvironmentController;
 use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityGovernanceController;
 use App\Http\Controllers\Admin\PageManagement\AdminSustainabilityOverviewController;
@@ -105,6 +107,7 @@ Route::prefix('admin')
 
         Route::resource('milestones', AdminMilestoneController::class)->except(['show']);
         Route::resource('our-histories', AdminOurHistoryController::class)->except(['show']);
+        Route::post('/our-histories/sort', [AdminOurHistoryController::class, 'updateSort'])->name('our-histories.sort');
         Route::resource('company-profiles', AdminCompanyProfileController::class)->except(['show']);
         Route::resource('guidelines', AdminGuidelineController::class)->except(['show']);
         Route::prefix('awards-and-certificates/')->as('awards-and-certificates.')->group(function () {
@@ -215,6 +218,12 @@ Route::prefix('admin')
 
             Route::get("/sustainability-report", [AdminSustainabilityReportController::class, 'index'])->name("sustainability-report.index");
             Route::post("/sustainability-report", [AdminSustainabilityReportController::class, 'store'])->name("sustainability-report.store");
+
+            Route::get("/sustainability-action", [AdminSustainabilityActionController::class, 'index'])->name("sustainability-action.index");
+            Route::post("/sustainability-action", [AdminSustainabilityActionController::class, 'store'])->name("sustainability-action.store");
+
+            Route::get("/other-content", [AdminPageOtherController::class, 'index'])->name("other-content.index");
+            Route::post("/other-content", [AdminPageOtherController::class, 'store'])->name("other-content.store");
         });
     });
 });

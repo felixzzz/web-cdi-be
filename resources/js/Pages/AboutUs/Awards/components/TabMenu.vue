@@ -3,11 +3,9 @@
         <container>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-16">
                 <h2 class="text-awards">
-                    We are proud to be recognized for our commitment
+                    {{ content.about_us_award_overview?.title }}
                 </h2>
-                <p class="text-neutral-4 text-base">
-                    PT Chandra Daya Investasi Tbk (CDI) has been honored with some of Indonesia's and the reqion's most prestigious awards, recognizing our achievements in product quality, commitment to operational excellence, financial resilience and sustainability.
-                </p>
+                <div class="content !text-neutral-4" v-html="content.about_us_award_overview?.content"></div>
             </div>
 
             <div class="flex items-center gap-6 border-b-2 border-b-neutral-6 mb-8">
@@ -40,11 +38,17 @@
     import ContentAwards from './ContentAwards.vue'
     import ContentCertification from './ContentCertification.vue'
 
+    import { PreferenceAboutAward } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceAboutAward
+    }>()
+
     const tabActive = ref(getQueryParam('tab') || 'awards')
 
     const tabs = ref([
-        { id: 'awards', name: 'Awards'},
-        { id: 'certification', name: 'Certification'}
+        { id: 'awards', name: $t('Awards')},
+        { id: 'certification', name: $t('Certification')}
     ])
 
 </script>

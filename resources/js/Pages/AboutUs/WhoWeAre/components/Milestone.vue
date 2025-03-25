@@ -1,13 +1,18 @@
 <template>
     <section id="milestone">
-        <div class="py-28 bg-blue-dark text-white">
-            <container>
+        <div class="py-28 bg-blue-dark text-white bg-cover relative"
+            :style="{
+                'backgroundImage': `url(${content.about_us_milestone?.file_url})`
+            }"
+        >
+            <div class="overlay-history"></div>
+            <container class="relative z-[1]">
                 <div class="flex items-center justify-between gap-4 mb-16">
                     <div>
                         <h2 class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-2">
-                            From Then to Now
+                            {{ content.about_us_milestone?.title }}
                         </h2>
-                        <p class="text-neutral-8">Explore Chandra Daya Investasi key milestones over the years.</p>
+                        <div class="content !text-neutral-8" v-html="content.about_us_milestone?.content"></div>
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="custom-prev cursor-pointer text-white text-2xl w-12 h-12 rounded-full border border-white flex items-center justify-center">
@@ -56,6 +61,12 @@
     import 'swiper/css'
     import 'swiper/css/navigation'
     import { Navigation } from 'swiper/modules'
+
+    import { PreferenceAboutOverview } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceAboutOverview
+    }>()
 
     const data = ref([
         {

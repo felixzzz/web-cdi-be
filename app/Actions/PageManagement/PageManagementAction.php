@@ -4,6 +4,8 @@ namespace App\Actions\PageManagement;
 
 use App\Enums\PreferenceKey;
 use App\Enums\PreferenceType;
+use App\Helpers\Helper;
+use App\Helpers\Optimize;
 use App\Helpers\StorageFile;
 use Illuminate\Http\Request;
 use App\Models\Utility\Preference;
@@ -56,6 +58,9 @@ class PageManagementAction
             $data = array_filter($data, fn($value) => filled($value));
 
             Preference::updateOrCreate(['key' => $key], $data);
+
+            $cacheKey = Helper::getPreferenceCacheKey($keys);
+            Optimize::delete($cacheKey);
         }
 
     }

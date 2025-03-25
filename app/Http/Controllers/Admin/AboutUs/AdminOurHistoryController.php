@@ -99,4 +99,11 @@ class AdminOurHistoryController extends AdminController
             return redirect()->back()->with(['info' =>  $e->getMessage()]);
         }
     }
+
+    public function updateSort(Request $request, OurHistoryAction $action)
+    {
+        $action->updateSort($request);
+
+        return response()->json(['success' => true, 'message' => 'Sorting updated successfully']);
+    }
 }
