@@ -83,6 +83,7 @@ Route::prefix('sustainability')
 });
 
 Route::get('/file-storage/{file?}', [FileStorageController::class, 'preview'])->name('preview.storage');
+Route::get('/file-download/{file?}', [FileStorageController::class, 'download'])->name('preview.download');
 Route::get('/privacy-policy', [UtilityController::class, 'privacy'])->name('privacy-policy');
 Route::get('/cookies-notice', [UtilityController::class, 'cookie'])->name('cookies-notice');
 Route::get('/terms-and-conditions', [UtilityController::class, 'term'])->name('terms-and-conditions');

@@ -612,8 +612,8 @@ class PageSeeder extends Seeder
                 'file' => asset('assets/frontend/images/contactpage/contact_hero_image.webp'),
                 'title_en' => 'Thank you for your interest in CDI',
                 'title_id' => 'Terima kasih atas minat Anda pada CDI',
-                'content_en' => '',
-                'content_id' => '',
+                'content_en' => '#Your Growth Partner',
+                'content_id' => '#Mitra Pertumbuhan Anda',
             ],
             'terms_and_conditions' => [
                 'file' => '',

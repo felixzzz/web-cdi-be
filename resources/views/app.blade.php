@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="application-url" content="{{ url('') }}">
+        <meta name="preview-url" content="{{ route('preview.storage') }}">
+        <meta name="download-file" content="{{ route('preview.download') }}">
 
         <title inertia>{{ config('app.name', 'Laravel') }} {{ @$pageTitle  ? "| {$pageTitle}" : ''}}</title>
 

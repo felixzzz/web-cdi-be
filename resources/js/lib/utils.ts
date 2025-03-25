@@ -9,6 +9,17 @@ export function asset(prefix: string) {
     const url = document.querySelector('meta[name="application-url"]')?.getAttribute('content')
     return `${url}/${prefix}`
 }
+
+export function previewFile(prefix?: string) {
+    const url = document.querySelector('meta[name="preview-url"]')?.getAttribute('content')
+    return `${url}/${prefix}.webp`
+}
+
+export function downloadFile(prefix?: string) {
+    const url = document.querySelector('meta[name="download-file"]')?.getAttribute('content')
+    return `${url}/${prefix}.webp`
+}
+
 export function scrollToElement(elementName: string) {
     setTimeout(()=>{
         const element = document.querySelector(elementName)

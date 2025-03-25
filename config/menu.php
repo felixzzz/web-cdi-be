@@ -240,7 +240,7 @@ return [
                     'route' => '',
                     'sub' => [
                         [
-                            'name' => 'Corporate Security',
+                            'name' => 'Corporate Secretary',
                             'active' => 'corporate_secretary',
                             'route' => 'admin.page-management.governance-files.index',
                             'route_params' => ['type' => 'corporate_secretary']
@@ -393,7 +393,7 @@ return [
             'name' => 'Other',
             'active' => 'other-content',
             'route' => 'admin.page-management.other-content.index',
-            'icon' => 'home-edit',
+            'icon' => 'align-box-left-middle',
             'sub' => []
         ],
 

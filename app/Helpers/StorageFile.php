@@ -137,6 +137,26 @@ class StorageFile
             ]);
     }
 
+    public static function download($filename)
+    {
+        $disk = 'local';
+
+        // Periksa apakah file ada
+        if (!Storage::disk($disk)->exists($filename)) {
+            abort(404);
+        }
+
+        $mimeType = Storage::disk($disk)->mimeType($filename);
+
+        $randomFileName = uniqid('file_', true) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+
+
+        return response()->download(Storage::disk($disk)->path($filename), $randomFileName, [
+            'Content-Type' => $mimeType,
+            'Cache-Control' => 'public, max-age=31536000, immutable'
+        ]);
+    }
+
     private static function formatSize($size)
     {
         if ($size >= 1048576) { // Lebih dari 1MB

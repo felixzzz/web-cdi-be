@@ -143,3 +143,57 @@ export type QuickLink = {
     url: string;
     name: string;
 }
+
+export type Milestone = {
+    ulid: string;
+    year: string;
+    content: string;
+}
+
+export type OurHistory = {
+    image: string;
+    tagline: string;
+    title: string;
+    content: string;
+}
+
+export type AdditionalFile = {
+    name: string;
+    file: {
+        path: string;
+        size: string;
+        format: string;
+    }
+}
+
+export type Team = {
+    name: string;
+    image: string;
+    position: string;
+}
+
+export type InvestorReport = {
+    type: string;
+    name: string;
+    date: string;
+    file: {
+        path: string;
+        size: string;
+        format: string;
+    }
+}
+
+
+export type OfficeLocation = {
+    location_name?: string;
+    address?: string;
+    phone?: string;
+    fax?: string;
+}
+
+export type Office = {
+    name: string;
+    localized_main: OfficeLocation;
+    sub_title?: string;
+    localized_branches: OfficeLocation[]
+}

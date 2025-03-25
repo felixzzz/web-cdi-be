@@ -22,11 +22,12 @@
 
 @endif
 <x-portal::form.input label="Title" placeholder="Title" name="contact_us_main_title_{{ $lang }}" :value="@$data->contact_us_main->{'title_' . $lang}" type="text"  />
-<x-portal::form.group
+<x-portal::form.input label="Tagline" placeholder="Tagline.. '#Your Growth Partner'" name="contact_us_main_content_{{ $lang }}" :value="@$data->contact_us_main->{'content_' . $lang}" type="text"  />
+{{-- <x-portal::form.group
     label="Description"
     name="contact_us_main_content_{{ $lang }}"
     description=""
     description-trailing=""
 >
     <x-editor.quill name="contact_us_main_content_{{ $lang }}" height="150">{!! @$data->contact_us_main->{'content_' . $lang} !!}</x-editor.quill>
-</x-portal::form.group>
+</x-portal::form.group> --}}

@@ -71,4 +71,17 @@ class PreferenceRepository
 
         }, config('cache.content_lifetime'));
     }
+
+    public function find($value)
+    {
+        $preference = Preference::query()->where("key", $value)->first();
+        if ($preference) {
+            $preference->file_url = previewFile($preference->file);
+            $preference->title = $preference->title;
+            $preference->content = $preference->content;
+            $preference->content_table_trans = $preference->content_table_trans;
+        }
+
+        return $preference;
+    }
 }

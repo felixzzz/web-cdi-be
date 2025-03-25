@@ -5,25 +5,46 @@
 
             <div class="flex flex-col gap-10">
                 <div
-                    v-for="i in 5" :key="i"
+                    v-for="(office, index) in data" :key="index"
                     class="flex gap-2"
                 >
-                    <p class="text-neutral-7/30 font-medium text-[52px]">{{ i }}</p>
+                    <p class="text-neutral-7/30 font-medium text-[52px]">{{ index + 1 }}</p>
                     <div class="rounded-xl border border-neutral-4 p-4 bg-white w-full">
-                        <p class="mb-4 text-[22px] text-blue-base font-medium">PT Chandra Daya Investasi Tbk</p>
+                        <div class="mb-4 flex flex-col gap-2">
+                            <p class="text-[22px] text-blue-base font-medium">{{ office.name }}</p>
+                            <p class="text-base text-neutral-8 font-medium" v-if="office.sub_title">{{ office.sub_title }}</p>
+                        </div>
                         <div class="flex flex-col gap-2">
-                            <p class="text-neutral-13 text-sm font-medium">Head Office</p>
-                            <p class="text-neutral-8 text-sm">Wisma Barito Pacific Tower A, Lt. 7 Jl. Let. Jend. S. Parman Kav. 62-63, Jakarta 11410, Indonesia</p>
+                            <p class="text-neutral-13 text-sm font-medium">{{ office.localized_main.location_name }}</p>
+                            <p class="text-neutral-8 text-sm">{{ office.localized_main.address }}</p>
 
                             <div class="flex items-center gap-4 text-neutral-8">
-                                <div class="flex items-center text-sm gap-2">
+                                <div class="flex items-center text-sm gap-2" v-if="office.localized_main.phone">
                                     <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
-                                    (62-21) 530 7950
+                                    {{ office.localized_main.phone }}
                                 </div>
 
-                                <div class="flex items-center text-sm gap-2">
+                                <div class="flex items-center text-sm gap-2" v-if="office.localized_main.fax">
                                     <img :src="asset('assets/frontend/icons/ic_printer.svg')" alt="">
-                                    (62-21) 530 7950
+                                    {{ office.localized_main.fax }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col mt-4" v-for="(branch, i) in office.localized_branches" :key="i">
+                            <div class="flex flex-col gap-2">
+                                <p class="text-neutral-13 text-sm font-medium">{{ branch.location_name }}</p>
+                                <p class="text-neutral-8 text-sm">{{ branch.address }}</p>
+
+                                <div class="flex items-center gap-4 text-neutral-8">
+                                    <div class="flex items-center text-sm gap-2" v-if="branch.phone">
+                                        <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
+                                        {{ branch.phone }}
+                                    </div>
+
+                                    <div class="flex items-center text-sm gap-2" v-if="branch.fax">
+                                        <img :src="asset('assets/frontend/icons/ic_printer.svg')" alt="">
+                                        {{ branch.fax }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -37,6 +58,18 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import useRequest from '@/Composables/useRequest'
     import { asset } from '@/Lib/utils'
+    import { Office } from '@/types/utility'
+    import { onMounted, ref } from 'vue'
+
+    const data = ref<Office[]>([])
+
+    onMounted(() => {
+        useRequest().get(route("api.utility.other-offices"))
+        .then((result) => {
+            data.value = result.data
+        })
+    })
 
 </script>

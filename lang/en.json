@@ -80,5 +80,21 @@
     "Our History": "Our History",
     "Milestone": "Milestone",
     "Company Profile": "Company Profile",
-    "Vision & Mission": "Vision & Mission"
+    "Vision & Mission": "Vision & Mission",
+    "Financial Calendar": "Financial Calendar",
+    "lang_document_alert": "Documents are available in both English and Bahasa Indonesia. Change the website language to view them in another language.",
+
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Email": "Email",
+    "Country": "Country",
+    "Topic": "Topic",
+    "Add your questions": "Add your questions",
+    "Submit": "Submit",
+    "Input Your First Name": "Input Your First Name",
+    "Input Your Last Name": "Input Your Last Name",
+    "Input Your Email": "Input Your Email",
+    "Select Your Country": "Select Your Country",
+    "Select Topic": "Select Topic",
+    "Write your comment or additional question here": "Write your comment or additional question here"
 }

@@ -5,6 +5,7 @@ namespace App\Models\Data;
 use App\Traits\HasDatatable;
 use App\Traits\HasLocalizedAttributes;
 use App\Traits\HasUlid;
+use Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -63,6 +64,18 @@ class Office extends Model
                 'address' => @$branch['address_'.$locale] ?? null,
             ];
         }, $this->branchs ?? []);
+    }
+
+    public function getLocalizedMainAttribute()
+    {
+        $locale = App::getLocale();
+        $main = @$this->main;
+        if ($main) {
+            $main['location_name'] = @$this->main['location_name_'.$locale] ?? null;
+            $main['address'] = @$this->main['address_'.$locale] ?? null;
+        }
+
+        return $main;
     }
 
 }

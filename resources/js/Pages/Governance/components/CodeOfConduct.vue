@@ -8,25 +8,27 @@
                 </div>
             </div>
 
-            <div class="button-gradient-custom mt-8">
-                <div class="flex flex-col gap-2">
-                    <p class="text-[22px] font-medium">Our Code of Conduct</p>
-                    <div class="flex items-center text-base text-white gap-3">
-                        <div class="flex items-baseline gap-3">
-                            <span>7MB</span>
-                            <span>.</span>
+            <div class="flex flex-col gap-8 mt-8">
+                <div class="button-gradient-custom" v-for="(file, index) in files" :key="index">
+                    <div class="flex flex-col gap-2">
+                        <p class="text-[22px] font-medium">{{ file.name }}</p>
+                        <div class="flex items-center text-base text-white gap-3">
+                            <div class="flex items-baseline gap-3">
+                                <span>{{ file.file.size }}</span>
+                                <span>.</span>
+                            </div>
+                            <img :src="asset('assets/frontend/icons/ic_filepdf_white.svg')" alt="">
                         </div>
-                        <img :src="asset('assets/frontend/icons/ic_filepdf_white.svg')" alt="">
                     </div>
-                </div>
 
-                <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                    <Link href="" class="flex items-center gap-2 text-white font-medium">
-                        <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
-                    </Link>
-                    <Link href="" class="flex items-center gap-2 text-white font-medium">
-                        <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t('Download') }}
-                    </Link>
+                    <div class="flex lg:items-center gap-8 w-full lg:w-fit">
+                        <a :href="previewFile(file.file.path)" class="flex items-center gap-2 text-white font-medium" target="_blank">
+                            <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
+                        </a>
+                        <a :href="downloadFile(file.file.path)" class="flex items-center gap-2 text-white font-medium" target="_blank">
+                            <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t('Download') }}
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -42,24 +44,13 @@
                     </div>
                 </div>
 
-                <div class="mt-8 flex flex-col gap-8">
-                    <div class="button-gradient-custom" v-for="i in 4" :key="i">
+                <div class="flex flex-col gap-8 mt-8">
+                    <div class="button-gradient-custom" v-for="(file, index) in sheFiles" :key="index">
                         <div class="flex flex-col gap-2">
-                            <p class="text-[22px] font-medium">
-                                {{
-                                    i == 1 ? 'SHE Regulation'
-                                    : (
-                                        i == 2 ? 'Life Saving Rules Procedure'
-                                        : (
-                                            i == 3 ? 'Life Saving Rules Violation Procedure'
-                                            : 'SHEQEn Management Policy'
-                                        )
-                                    )
-                                }}
-                            </p>
+                            <p class="text-[22px] font-medium">{{ file.name }}</p>
                             <div class="flex items-center text-base text-white gap-3">
                                 <div class="flex items-baseline gap-3">
-                                    <span>7MB</span>
+                                    <span>{{ file.file.size }}</span>
                                     <span>.</span>
                                 </div>
                                 <img :src="asset('assets/frontend/icons/ic_filepdf_white.svg')" alt="">
@@ -67,12 +58,12 @@
                         </div>
 
                         <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                            <Link href="" class="flex items-center gap-2 text-white font-medium">
+                            <a :href="previewFile(file.file.path)" class="flex items-center gap-2 text-white font-medium" target="_blank">
                                 <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
-                            </Link>
-                            <Link href="" class="flex items-center gap-2 text-white font-medium">
-                                <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t("Download") }}
-                            </Link>
+                            </a>
+                            <a :href="downloadFile(file.file.path)" class="flex items-center gap-2 text-white font-medium" target="_blank">
+                                <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t('Download') }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -88,13 +79,30 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset } from '@/Lib/utils'
+    import { asset, downloadFile, previewFile } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
 
-    import { PreferenceGovernance } from '@/types/utility'
+    import { AdditionalFile, PreferenceGovernance } from '@/types/utility'
+    import { onMounted, ref } from 'vue'
+    import useRequest from '@/Composables/useRequest'
 
     defineProps<{
         content: PreferenceGovernance
     }>()
+
+    const files = ref<AdditionalFile[]>([])
+    const sheFiles = ref<AdditionalFile[]>([])
+
+    onMounted(() => {
+        useRequest().get(route('api.utility.additional-file', 'code_of_conduct'))
+        .then((result) => {
+            files.value = result.data
+        })
+
+        useRequest().get(route('api.utility.additional-file', 'she_regulation'))
+        .then((result) => {
+            sheFiles.value = result.data
+        })
+    })
 
 </script>

@@ -7,7 +7,7 @@
         <div class="flex gap-8 text-white justify-center flex-wrap">
             <div class="flex flex-col items-center text-center w-[282px] group transition-all duration-300" v-for="(item, i) in data" :key="i">
                 <div class="flex flex-col items-center text-center">
-                    <img :src="item.image" alt="" class="aspect-square overflow-hidden rounded-full object-cover shadow-article mb-5 border-2 border-transparent outline-2 outline-transparent group-hover:outline-blue-lighter ">
+                    <img :src="previewFile(item.image)" alt="" class="aspect-square overflow-hidden rounded-full object-cover shadow-article mb-5 border-2 border-transparent outline-2 outline-transparent group-hover:outline-blue-lighter ">
                     <p class="text-lg font-medium group-hover:text-blue-lighter">{{ item.name }}</p>
                     <p class="text-base font-normal text-neutral-6">{{ item.position }}</p>
                 </div>
@@ -18,41 +18,19 @@
 </template>
 
 <script setup lang="ts">
-    import { asset } from '@/Lib/utils'
-    import { ref } from 'vue'
+    import useRequest from '@/Composables/useRequest'
+    import { previewFile } from '@/Lib/utils'
+    import { Team } from '@/types/utility'
+    import { onMounted, ref } from 'vue'
 
 
-    const data = ref([
-        {
-            image: asset('assets/frontend/images/governance/audit_1.webp'),
-            name: 'Board Commissioner',
-            position: 'Commissioner'
-        },
-        {
-            image: asset('assets/frontend/images/governance/audit_2.webp'),
-            name: 'Board Commissioner',
-            position: 'Commissioner'
-        },
-        {
-            image: asset('assets/frontend/images/governance/audit_3.webp'),
-            name: 'Board Commissioner',
-            position: 'Commissioner'
-        },
-        {
-            image: asset('assets/frontend/images/governance/audit_3.webp'),
-            name: 'Board Commissioner',
-            position: 'Commissioner'
-        },
-        {
-            image: asset('assets/frontend/images/governance/audit_3.webp'),
-            name: 'Board Commissioner',
-            position: 'Commissioner'
-        },
-        {
-            image: asset('assets/frontend/images/governance/audit_3.webp'),
-            name: 'Board Commissioner',
-            position: 'Commissioner'
-        }
-    ])
+    const data = ref<Team[]>([])
+
+    onMounted(() => {
+        useRequest().get(route('api.utility.teams', 'boc'))
+        .then((result) => {
+            data.value = result.data
+        })
+    })
 
 </script>

@@ -1,11 +1,11 @@
 <template>
     <div class="py-20">
         <container>
-            <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-3">Financial Calendar</p>
+            <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-3">{{ $t('Financial Calendar') }}</p>
 
             <div class="flex items-center gap-2 rounded-sm bg-light-blue-1 border border-light-blue-2 text-blue-base text-xs w-fit p-[6px]">
                 <img :src="asset('assets/frontend/icons/ic_translate.svg')" alt="">
-                <span>Documents are available in both English and Bahasa Indonesia. Change the website language to view them in another language.</span>
+                <span>{{ $t('lang_document_alert') }}</span>
             </div>
 
             <div class="gap-10 flex items-center overflow-y-auto mt-10 border-b-2 border-b-neutral-6">

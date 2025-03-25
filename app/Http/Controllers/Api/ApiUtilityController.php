@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Enums\PreferenceKey;
 use App\Enums\QuickLinkCategory;
 use App\Http\Controllers\Controller;
+use App\Repositories\AboutUs\MilestoneRepository;
+use App\Repositories\AboutUs\OurHistoryRepository;
+use App\Repositories\Data\OfficeRepository;
+use App\Repositories\Data\TeamRepository;
+use App\Repositories\Investor\InvestorReportRepository;
+use App\Repositories\Utility\FileRepository;
 use App\Repositories\Utility\PreferenceRepository;
 use App\Repositories\Utility\QuickLinkRepository;
 use Illuminate\Http\Request;
@@ -41,6 +47,16 @@ class ApiUtilityController extends Controller
         return $preferenceRepository->getAllContentPage("", PreferenceKey::getSustainabilityKey($type));
     }
 
+    public function milestones(MilestoneRepository $milestoneRepository)
+    {
+        return $milestoneRepository->get();
+    }
+
+    public function ourHistories(OurHistoryRepository $ourHistoryRepository)
+    {
+        return $ourHistoryRepository->get();
+    }
+
     public function quickLink(QuickLinkRepository $quickLinkRepository, $type)
     {
         $category = QuickLinkCategory::Home;
@@ -60,5 +76,35 @@ class ApiUtilityController extends Controller
                 break;
         }
         return $quickLinkRepository->getByCategory($category);
+    }
+
+    public function additionalPage(PreferenceRepository $preferenceRepository, $type)
+    {
+        return $preferenceRepository->find(str_replace('-', '_', $type));
+    }
+
+    public function additionalFile(FileRepository $fileRepository, $type)
+    {
+        return $fileRepository->getByType($type);
+    }
+
+    public function teams(TeamRepository $teamRepository, $type)
+    {
+        return $teamRepository->get($type);
+    }
+
+    public function latestReports(InvestorReportRepository $investorReportRepository)
+    {
+        return $investorReportRepository->latestReport();
+    }
+
+    public function mainOffice(OfficeRepository $officeRepository)
+    {
+        return $officeRepository->getMain();
+    }
+
+    public function otherOffices(OfficeRepository $officeRepository)
+    {
+        return $officeRepository->getOthers();
     }
 }

@@ -30,7 +30,7 @@ class UtilityController extends Controller
     {
         return Inertia::render("Utility/UtilityPage", [
             "title" => "Cookies Notice",
-            "type" => "cookies-notice"
+            "type" => "cookies-consent"
         ]);
     }
 

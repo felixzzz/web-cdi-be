@@ -2,7 +2,9 @@
 
 namespace App\Repositories\Investor;
 
+use App\Enums\InvestorReportType;
 use App\Models\Investor\InvestorReport;
+use Carbon\Carbon;
 
 class InvestorReportRepository
 {
@@ -24,5 +26,18 @@ class InvestorReportRepository
             $q->orWhere("type", "LIKE", "%$search%");
         })
         ->datatable($perPage, "created_at");
+    }
+
+    public function latestReport($limit = 2)
+    {
+        return InvestorReport::query()
+        ->where("type", InvestorReportType::FinancialReport)
+        ->orderBy("created_at", "DESC")
+        ->limit($limit)->get()->map(function ($row) {
+            $row->file = json_decode($row->file);
+            $row->name = $row->name;
+            $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
+            return $row;
+        });
     }
 }

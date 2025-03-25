@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import useCrypto from './useCrypto'
 import useRequest from './useRequest'
-import { PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome } from '@/types/utility'
+import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome } from '@/types/utility'
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -11,6 +11,7 @@ const CACHE_GOVERNANCE_CONTENT = "gvn-cnt"
 const CACHE_ABOUT_US_AWARD_CONTENT = "abt-awrd-cnt"
 const CACHE_ABOUT_US_MANAGEMENT_CONTENT = "abt-mg-cnt"
 const CACHE_ABOUT_US_OVERVIEW_CONTENT = "abt-ovr-cnt"
+const CACHE_MAIN_OFFICE_CONTENT = "off-cnt"
 
 
 
@@ -21,6 +22,7 @@ export const useContentStore = defineStore('content', {
         aboutAward: __getAboutUsAward(),
         aboutManagement: __getAboutUsManagement(),
         aboutOverview: __getAboutUsOverview(),
+        office: __getMainOffice()
     }),
     actions: {
         getHome() {
@@ -51,6 +53,12 @@ export const useContentStore = defineStore('content', {
             return useRequest().get(route('api.utility.about-us.index', 'who-we-are')).then((result) => {
                 this.aboutOverview = result.data
                 localStorage.setItem(CACHE_ABOUT_US_OVERVIEW_CONTENT, encrypt(result.data))
+            })
+        },
+        getMainOffice() {
+            return useRequest().get(route('api.utility.main-office')).then((result) => {
+                this.office = result.data
+                localStorage.setItem(CACHE_MAIN_OFFICE_CONTENT, encrypt(result.data))
             })
         },
     }
@@ -133,6 +141,11 @@ const __getAboutUsOverview = (): PreferenceAboutOverview => {
         about_us_milestone: null,
         about_us_company_profile: null,
     }
+}
+
+const __getMainOffice = (): Office | null => {
+    const content = __getStorage(CACHE_MAIN_OFFICE_CONTENT);
+    return content ? content : null
 }
 
 const __getStorage = (KEY: string) => {

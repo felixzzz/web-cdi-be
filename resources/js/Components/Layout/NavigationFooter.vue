@@ -19,19 +19,19 @@
             </div>
 
             <div class="flex justify-between flex-col lg:flex-row pb-12 mb-12 border-b border-b-neutral-8 gap-y-10 lg:gap-y-0">
-                <div class="flex flex-col gap-6 max-w-sm">
-                    <p class="font-medium text-[22px]">PT Chandra Daya Investasi Tbk</p>
+                <div class="flex flex-col gap-6 max-w-sm" v-if="content.office">
+                    <p class="font-medium text-[22px]">{{ content.office.name }}</p>
                     <div class="text-base">
-                        <span class="font-medium">{{ $t('footer.head_office') }}</span>
-                        <span class="text-neutral-6 block">Wisma Barito Pacific Tower A, 7th Floor Jl. Let.Jend. S. Parman kav.62-63 Jakarta 11410, Indonesia</span>
+                        <span class="font-medium">{{ content.office.localized_main.location_name }}</span>
+                        <span class="text-neutral-6 block">{{ content.office.localized_main.address }}</span>
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2" v-if="content.office.localized_main.phone">
                         <span class="text-neutral-6">{{ $t('footer.phone') }}</span>
-                        <span>(62-21) 530 7950</span>
+                        <span>{{ content.office.localized_main.phone }}</span>
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2" v-if="content.office.localized_main.fax">
                         <span class="text-neutral-6">Fax</span>
-                        <span>(62-21) 530 7950</span>
+                        <span>{{ content.office.localized_main.fax }}</span>
                     </div>
                 </div>
 
@@ -89,8 +89,9 @@
 <script setup lang="ts">
     import { Link } from '@inertiajs/vue3'
     import Container from '../Section/Container.vue'
-    import { ref } from 'vue'
+    import { onBeforeMount, ref } from 'vue'
     import { asset } from '@/Lib/utils'
+    import { useContentStore } from '@/Composables/useContentStore'
 
     const socials = ref([
         {
@@ -137,4 +138,10 @@
             name: $t('footer.disclaimer')
         }
     ])
+
+    const content = useContentStore()
+
+    onBeforeMount(() => {
+        content.getMainOffice()
+    })
 </script>

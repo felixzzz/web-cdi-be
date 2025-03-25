@@ -26,4 +26,16 @@ class OurHistoryRepository
         })
         ->datatable($perPage, "sort", "asc");
     }
+
+    public function get()
+    {
+        return OurHistory::query()
+        ->orderBy("sort", "asc")->get()->map(function ($row) {
+            $row->image = previewFile($row->image);
+            $row->title = $row->title;
+            $row->tagline = $row->tagline;
+            $row->content = $row->content;
+            return $row;
+        });
+    }
 }

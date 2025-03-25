@@ -23,4 +23,13 @@ class MilestoneRepository
         })
         ->datatable($perPage, "created_at");
     }
+
+    public function get()
+    {
+        return Milestone::query()
+        ->orderBy("year", "asc")->get()->map(function ($row) {
+            $row->content = $row->content;
+            return $row;
+        });
+    }
 }

@@ -24,4 +24,12 @@ class TeamRepository
         })
         ->datatable($perPage, "created_at");
     }
+
+    public function get($type)
+    {
+        return Team::query()
+        ->where("type", $type)
+        ->orderBy("created_at", "asc")
+        ->get();
+    }
 }
