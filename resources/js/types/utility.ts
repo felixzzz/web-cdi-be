@@ -5,13 +5,28 @@ export type PaginateLink = {
     params?: object
 }
 
+export type NewsCategory = {
+    id: string;
+    ulid: string;
+    name: string;
+}
 
 export type News = {
     id: string;
+    ulid?: string;
+    slug?: string;
     title: string;
     image: string;
     date: string;
-    category?: string;
+    category_name?: string;
+    content?: string;
+    short_content?: string;
+    tags?: string[];
+}
+
+export type LatestBannerNews = {
+    title: string;
+    data: News
 }
 
 
@@ -64,6 +79,19 @@ export type SustainabilityContent = {
     file_information?: SustainabilityFile
 }
 
+export type PreferenceTable = {
+    headers: {
+        text?: string;
+    }[],
+    tableData: {
+        text?: string;
+        sub_text?: string;
+        is_group?: boolean;
+        label?: {
+            text?: string;
+        }
+    }[][]
+}
 
 export type PreferenceItem = {
     key: string;
@@ -74,7 +102,7 @@ export type PreferenceItem = {
     content_en: string;
     content_id: string;
     content: string;
-    content_table: any;
+    content_table_trans?: PreferenceTable;
 }
 
 export type PreferenceHome = {

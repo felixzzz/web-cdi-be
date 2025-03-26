@@ -26,6 +26,38 @@ class PageSeeder extends Seeder
             'content_id' => '',
         ];
 
+        [
+            'lang_en' => '',
+            'lang_id' => '',
+            'sub_lang_en' => '',
+            'sub_lang_id' => ''
+        ];
+
+        $tableCorporate = [
+            'headers' => [
+                ['lang_en' => 'Name of Companies', 'lang_id' => 'Nama Perusahaan'],
+                ['lang_en' => 'Ownership (%)', 'lang_id' => 'Kepemilikan (%)'],
+                ['lang_en' => 'Line of Business', 'lang_id' => 'Bidang Usaha'],
+                ['lang_en' => 'Status', 'lang_id' => 'Status'],
+                ['lang_en' => 'Domicile', 'lang_id' => 'Domisili']
+            ],
+            'tableData' => [
+                [['lang_en' => 'Chandra Asri Trading Company Pte. Ltd. (CATCO)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '100', 'lang_id' => '', 'sub_lang_en' => 'Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Petrochemical Products and Naphtha Trade', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Singapore', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'Chandra Asri Capital Pte. Ltd. (CAC)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '100', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Investment Company', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Singapore', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Synthetic Rubber Indonesia (SRI)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '45', 'lang_id' => '', 'sub_lang_en' => 'Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Artificial Rubber Manufacture', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Cilegon', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Chandra Daya Investasi (CDI)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '70', 'lang_id' => '', 'sub_lang_en' => 'Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Consultancy Management Activities', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Krakatau Chandra Energi (KCE)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '70', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Electricity Industry and Electricity Services', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Cilegon', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Krakatau Sarana Energi (KSE)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '68.07', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Wholesale & Retail Trade, Real Estate, Electricity Support Activities', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Cilegon', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Krakatau Posco Energy (KPE)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '45', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Electrical Generation', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Cilegon', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Krakatau Tirta Industri (KTI)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '49', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Water Management Industry', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Cilegon', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Redeco Petrolin Utama (RPU)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '50.75', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Wholesale Trade of Chemical Products & Warehousing', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Chandra Samudera Port (CSP)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '99.99', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Holding & Consultancy Management Activities', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Chandra Shipping International (CSI)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '49', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Sea Transportation', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Marina Indah Maritim (MIM)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '49', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Sea Transportation', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Operating', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Chandra Asri Perkasa (CAP2)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '99.99', 'lang_id' => '', 'sub_lang_en' => 'Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Chemical Manufacture and Wholesale Trade', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Development', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']],
+                [['lang_en' => 'PT Chandra Asri Alkali (CAA)', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => '99.99', 'lang_id' => '', 'sub_lang_en' => 'Non-Direct Ownership', 'sub_lang_id' => ''], ['lang_en' => 'Chemical Manufacture, Wholesale Trade, and Consultancy Management Activities', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Development', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => ''], ['lang_en' => 'Jakarta', 'lang_id' => '', 'sub_lang_en' => '', 'sub_lang_id' => '']]
+            ]
+        ];
 
         $data = [
             'home_banner' => [
@@ -256,10 +288,11 @@ class PageSeeder extends Seeder
             ],
             'about_us_corporate_structure_table' => [
                 'file' => '',
-                'title_en' => '',
-                'title_id' => '',
+                'title_en' => 'List of Subsidiaries & Associate Companies',
+                'title_id' => 'Daftar Anak Perusahaan & Perusahaan Asosiasi',
                 'content_en' => '',
                 'content_id' => '',
+                'content_table' => $tableCorporate
             ],
             'about_us_guideline' => [
                 'file' => '',

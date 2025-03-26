@@ -30,30 +30,25 @@
             <container>
                 <p class="text-2xl lg:text-[28px] font-medium text-blue-base mb-6">{{ $t('Corporate Structure') }}</p>
                 <img :src="content.about_us_corporate_structure?.file_url" alt="">
-                <!-- <p class="text-red-6 mt-2 italic">*As of 31st December 2024</p> -->
-
-                <p class="text-2xl lg:text-[28px] font-medium text-neutral-13 mb-6 mt-16">List of Subsidiaries & Associate Companies</p>
-                <div class="table-main">
+                <p class="text-2xl lg:text-[28px] font-medium text-neutral-13 mb-6 mt-16">{{ content.about_us_corporate_structure_table?.title }}</p>
+                <div class="table-main" v-if="content.about_us_corporate_structure_table?.content_table_trans">
                     <table>
                         <thead>
                             <tr>
-                                <th>Name of Companies</th>
-                                <th>Ownership (%)</th>
-                                <th>Line of Business</th>
-                                <th>Status</th>
-                                <th>Domicile</th>
+                                <td v-for="(label, index) in content.about_us_corporate_structure_table?.content_table_trans.headers" :key="index">{{ label.text }}</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in 4" :key="i">
-                                <td>Chandra Asri Trading Company Pte. Ltd. (CATCO)</td>
-                                <td>
-                                    100
-                                    <span class="text-neutral-8 block">Direct Ownership</span>
-                                </td>
-                                <td>Petrochemical Products and Naphtha Trade</td>
-                                <td>Operating</td>
-                                <td>Singapore</td>
+                            <tr v-for="(row, index) in content.about_us_corporate_structure_table?.content_table_trans.tableData" :key="index">
+                                <template v-for="(item, itemIndex) in row" :key="itemIndex">
+                                    <td>
+                                        {{ item.text }}
+                                        <br>
+                                        <span v-if="item.sub_text" class="text-neutral-8 font-light">
+                                            {{ item.sub_text }}
+                                        </span>
+                                    </td>
+                                </template>
                             </tr>
                         </tbody>
                     </table>

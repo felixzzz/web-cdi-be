@@ -29,6 +29,9 @@ class ArticleCategoryRepository
     public function list($sort = "name_en")
     {
         return ArticleCategory::query()
-        ->orderBy($sort, "asc")->get();
+        ->orderBy($sort, "asc")->get()->map(function ($row) {
+            $row->name = $row->name;
+            return $row;
+        });
     }
 }

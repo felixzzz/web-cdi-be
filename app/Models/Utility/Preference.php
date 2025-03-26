@@ -51,25 +51,43 @@ class Preference extends Model
             return null;
         }
 
-        $currentLang = App::getLocale();
-        $langKey = "lang_$currentLang";
+        $locale = App::getLocale();
+        $isIndonesian = $locale === 'id';
 
-        $translateData = function ($items) use ($langKey) {
-            return array_map(function ($item) use ($langKey) {
-                if (is_array($item)) {
-                    return $item[$langKey] ?? '';
-                }
-                return $item;
-            }, $items);
-        };
+        $headers = @$this->content_table['headers'] ?? [];
+        $tableData = @$this->content_table['tableData'] ?? [];
 
-        $headers = $this->content_table['headers'] ?? [];
-        $tableData = $this->content_table['tableData'] ?? [];
+        // Translasi header sesuai bahasa saat ini
+        $translatedHeaders = array_map(function ($header) use ($isIndonesian) {
+            return [
+                'text' => $isIndonesian
+                        ? (!empty($header['lang_id']) ? $header['lang_id'] : $header['lang_en'])
+                        : (!empty($header['lang_en']) ? $header['lang_en'] : $header['lang_id'])
+            ];
+        }, $headers);
 
-        $translatedHeaders = $translateData($headers);
-
-        $translatedTableData = array_map(function ($row) use ($translateData) {
-            return $translateData($row);
+        // Translasi tableData sesuai bahasa saat ini
+        $translatedTableData = array_map(function ($row) use ($isIndonesian) {
+            return array_map(function ($column) use ($isIndonesian) {
+                $isGroup = @$column['is_group'] ?? false;
+                return [
+                    'text' => $isIndonesian
+                                ? (!empty($column['lang_id']) ? $column['lang_id'] : $column['lang_en'])
+                                : (!empty($column['lang_en']) ? $column['lang_en'] : $column['lang_id']),
+                    'sub_text' => $isIndonesian
+                                ? (!empty($column['sub_lang_id']) ? $column['sub_lang_id'] : $column['sub_lang_en'])
+                                : (!empty($column['sub_lang_en']) ? $column['sub_lang_en'] : $column['sub_lang_id']),
+                    'is_group' => $isGroup,
+                    'label' => [
+                        'text' => $isGroup
+                                ? ($isIndonesian
+                                    ? (!empty($column['label']['lang_id']) ? $column['label']['lang_id'] : $column['label']['lang_en'])
+                                    : (!empty($column['label']['lang_en']) ? $column['label']['lang_en'] : $column['label']['lang_id'])
+                                )
+                                : '',
+                    ]
+                ];
+            }, $row);
         }, $tableData);
 
         return [
@@ -77,4 +95,5 @@ class Preference extends Model
             'tableData' => $translatedTableData
         ];
     }
+
 }

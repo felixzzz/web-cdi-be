@@ -54,15 +54,15 @@ const app = createApp({
         // Tambah baris baru
         const addRow = (type) => {
             if (type == 'report') {
-                const newRow = headersReports.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
+                const newRow = headersReports.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
                 tableDataReports.value.push(newRow)
             }
             if (type == 'shareholders') {
-                const newRow = headersShareHolders.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
+                const newRow = headersShareHolders.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
                 tableDataShareHolders.value.push(newRow)
             }
             if (type == 'dividend') {
-                const newRow = headersDividend.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
+                const newRow = headersDividend.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
                 tableDataDividend.value.push(newRow)
             }
         }

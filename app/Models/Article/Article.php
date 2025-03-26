@@ -8,9 +8,11 @@ use Illuminate\Support\Str;
 use App\Traits\HasDatatable;
 use Illuminate\Support\Facades\App;
 use App\Enums\ArticleCategory;
+use App\Models\Article\ArticleCategory as ArticleArticleCategory;
 use App\Traits\HasLocalizedAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Article extends Model
 {
@@ -60,5 +62,10 @@ class Article extends Model
             }
 
         );
+    }
+
+    public function category(): HasOne
+    {
+        return $this->hasOne(ArticleArticleCategory::class, 'id', 'article_category_id');
     }
 }

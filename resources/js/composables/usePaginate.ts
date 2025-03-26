@@ -1,12 +1,13 @@
 
-import { getAllQueryParameter } from "@/Lib/utils"
+import { getAllQueryParameter, scrollToSection } from "@/Lib/utils"
 import { PaginateLink } from "@/types/utility"
-import axios from "axios"
 import { reactive } from "vue"
+import useRequest from "./useRequest"
 
 export type PaginateProps = {
     route: string
-    params?: object
+    params?: object,
+    scroll?: string
 }
 export default function usePaginate<T>(config: PaginateProps) {
     const state: {
@@ -14,20 +15,22 @@ export default function usePaginate<T>(config: PaginateProps) {
         links: PaginateLink[],
         loading: boolean
         total: number
-        has_next: boolean
+        has_next: boolean,
+        fetch_count: number
     } = reactive({
         items: [],
         links: [],
         loading: false,
         total: 1,
-        has_next: true
+        has_next: true,
+        fetch_count: 0
     })
 
     const fetchData = (params?: object,callback?:any) => {
         state.loading = true
 
         const queryParams = getAllQueryParameter()
-        axios.get(config.route, {
+        useRequest().get(config.route, {
             params: {
                 ...config.params,
                 ...queryParams,
@@ -43,6 +46,12 @@ export default function usePaginate<T>(config: PaginateProps) {
             if(callback){
                 callback()
             }
+
+            if (config.scroll && state.fetch_count > 0) {
+                scrollToSection(config.scroll)
+            }
+
+            state.fetch_count++
         }).catch((error) => {
             console.log(`Failed to fetch data from ${config.route}`)
             console.log(error)

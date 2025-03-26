@@ -19,8 +19,9 @@
                     v-for="tab in tabs"
                     :key="tab.id"
                     :class="{
-                        'bg-blue-base text-white': tab.id == tabActive
+                        'bg-blue-base text-white': tab.ulid == tabActive
                     }"
+                    @click="filterCategory(tab.ulid)"
                 >
                     {{ tab.name }}
                 </a>
@@ -28,6 +29,14 @@
         </container>
 
         <container>
+            <div class="grid grid-cols-4 gap-6" v-if="loading">
+                <div v-for="i in 4" :key="i">
+                    <news-loading />
+                </div>
+            </div>
+        </container>
+
+        <container v-if="!loading">
             <swiper
                 :modules="[Navigation, Pagination]"
                 :slides-per-view="4"
@@ -43,7 +52,7 @@
                 }"
             >
                 <swiper-slide v-for="(item, index) in items" :key="index">
-                    <news-card :item="item" :link="route('media.detail', { type: 'news', id: 'slug' })" />
+                    <news-card :item="item" :link="route('media.detail', { type: 'news', id: item.slug })" />
                 </swiper-slide>
             </swiper>
 
@@ -68,60 +77,53 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import { Link } from '@inertiajs/vue3'
-    import { ref } from 'vue'
+    import { onMounted, ref } from 'vue'
     import { Swiper, SwiperSlide } from 'swiper/vue'
     import 'swiper/css'
     import 'swiper/css/navigation'
     import 'swiper/css/pagination'
     import { Navigation, Pagination } from 'swiper/modules'
     import NewsCard from '@/Components/Ui/Media/NewsCard.vue'
-    import { News } from '@/types/utility'
+    import { News, NewsCategory } from '@/types/utility'
+    import useRequest from '@/Composables/useRequest'
+    import NewsLoading from '@/Components/Ui/Media/NewsLoading.vue'
 
     const tabActive = ref('all')
 
-    const tabs = ref([
-        { id: 'all', name: 'All' },
-        { id: 'corporate', name: 'Corporate' },
-        { id: 'sustainability', name: 'Sustainability' },
-        { id: 'awards', name: 'Awards' }
-    ])
+    const tabs = ref<NewsCategory[]>([])
 
 
-    const items = ref<News[]>([
-        {
-            id: '1',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Shares Insights on Energy Transition in Energy Sovereignty School 1'
-        },
-        {
-            id: '2',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group and Yayasan Happy Hearts Indonesia Builds Eco Friendly Early Childhood Center 2'
-        },
-        {
-            id: '3',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Awards',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 3'
-        },
-        {
-            id: '4',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Awards',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 4'
-        },
-        {
-            id: '5',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Awards',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 5'
-        },
-    ])
+    const items = ref<News[]>([])
+    const loading = ref(false)
+
+    const filterCategory = (id: string) => {
+        tabActive.value = id
+        fetchData()
+    }
+
+    const fetchData = () => {
+        loading.value = true
+
+        useRequest().get(route('api.article.latest', {
+            category_id: tabActive.value
+        }))
+        .then((result) => {
+            items.value = result.data
+        })
+        .finally(() => loading.value = false)
+    }
+
+    onMounted(() => {
+        useRequest().get(route('api.utility.categories'))
+        .then((result) => {
+            tabs.value = [
+                {
+                    id: 'all', ulid: 'all', name: $t('All')
+                },
+                ...result.data
+            ]
+        })
+
+        fetchData()
+    })
 </script>

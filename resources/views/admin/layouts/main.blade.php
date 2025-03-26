@@ -10,6 +10,7 @@
     @portalUI
     <link rel="stylesheet" href="https://muhammadlailil.github.io/iconsax/style/iconsax.css"/>
     <link rel="stylesheet" href="{{ asset('assets/dist/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/frontend/favicon.png') }}" type="image/x-icon">
     @stack('css')
 </head>
 <body class="bg-background text-foreground">

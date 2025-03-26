@@ -352,6 +352,10 @@
     @apply bg-blue-base text-white;
 }
 
+.table-main thead td {
+    @apply !font-medium;
+}
+
 .table-main tbody tr {
     @apply even:bg-neutral-8/4;
 }

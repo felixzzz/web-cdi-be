@@ -40,7 +40,9 @@
                         <td v-for="(cell, colIndex) in headers" :key="colIndex">
                             <div class="flex flex-col">
                                 <input v-model="tableData[rowIndex][colIndex].lang_en" placeholder="Cell EN" class="w-full">
-                                <input v-model="tableData[rowIndex][colIndex].lang_id" placeholder="Cell ID" class="w-full">
+                                <input v-model="tableData[rowIndex][colIndex].lang_id" placeholder="Cell ID" class="w-full placeholder-input">
+                                <input v-model="tableData[rowIndex][colIndex].sub_lang_en" placeholder="Subtext EN" class="w-full placeholder-input">
+                                <input v-model="tableData[rowIndex][colIndex].sub_lang_id" placeholder="Subtext ID" class="w-full placeholder-input">
                             </div>
                         </td>
                         <td>
@@ -80,7 +82,7 @@ const app = createApp({
 
         // Tambah baris baru
         const addRow = () => {
-            const newRow = headers.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
+            const newRow = headers.value.map(() => ({ lang_en: '', lang_id: '', sub_lang_en: '', sub_lang_id: '', isGroup: false }))
             tableData.value.push(newRow)
         }
 
@@ -97,7 +99,7 @@ const app = createApp({
             headers.value.push({ lang_en: `Header ${headers.value.length + 1}`, lang_id: `Header ${headers.value.length + 1} ID` })
             tableData.value.forEach(row => {
                 if (!row.isGroup) {
-                    row.push({ lang_en: '', lang_id: '' })
+                    row.push({ lang_en: '', lang_id: '', sub_lang_en: '', sub_lang_id: '' })
                 }
             })
         }
@@ -122,7 +124,7 @@ const app = createApp({
             }
             if (tableData.value.length === 0) {
                 tableData.value = [
-                    [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
+                    [{ lang_en: '', lang_id: '', sub_lang_en: '', sub_lang_id: '' }, { lang_en: '', lang_id: '', sub_lang_en: '', sub_lang_id: '' }]
                 ]
             }
         })

@@ -116,4 +116,42 @@ class Helper
         $cacheKey = "preference-keys-{$hashedKeys}-" . App::getLocale();
         return $cacheKey;
     }
+
+    public static function makePagination($data)
+    {
+        if(!$data->total()){
+            return [];
+        }
+        $currentPage = intval($data->currentPage());
+        $lastPage = intval($data->lastPage());
+        $params = request()->query();
+        $links = $data->onEachSide(1)
+            ->appends($params)
+            ->linkCollection()
+            ->map(function ($row) {
+                $row['params'] = getQueryParam($row['url']);
+                return $row;
+            });
+        return [
+            [
+                'url' => $currentPage == 1 ? null : request()->url()."?page=1",
+                'label' => 'First',
+                'active' => false,
+                'params' => [
+                        ...$params,
+                        'page' => '1'
+                ]
+            ],
+            ...$links,
+            [
+                'url' => $currentPage == $lastPage ? null : request()->url()."?page=$lastPage",
+                'label' => 'Last',
+                'active' => false,
+                'params' => [
+                        ...$params,
+                        'page' => "$lastPage"
+                ]
+            ],
+        ];
+    }
 }

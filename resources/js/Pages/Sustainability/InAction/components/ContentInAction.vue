@@ -22,35 +22,35 @@
         {
             id: '1',
             image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
+            category_name: 'Sustainability',
             date: '05-02-2025',
             title: 'Chandra Asri Group Shares Insights on Energy Transition in Energy Sovereignty School 1'
         },
         {
             id: '2',
             image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
+            category_name: 'Sustainability',
             date: '05-02-2025',
             title: 'Chandra Asri Group and Yayasan Happy Hearts Indonesia Builds Eco Friendly Early Childhood Center 2'
         },
         {
             id: '3',
             image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
+            category_name: 'Sustainability',
             date: '05-02-2025',
             title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 3'
         },
         {
             id: '4',
             image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
+            category_name: 'Sustainability',
             date: '05-02-2025',
             title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 4'
         },
         {
             id: '5',
             image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            category: 'Sustainability',
+            category_name: 'Sustainability',
             date: '05-02-2025',
             title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 5'
         },

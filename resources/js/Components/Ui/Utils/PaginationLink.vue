@@ -1,15 +1,15 @@
 <!-- eslint-disable vue/require-v-for-key -->
 <template>
     <section v-if="links.length" class="mt-6">
-        <ul class="flex items-center justify-center">
+        <ul class="flex items-center justify-center gap-2">
             <li v-for="link of links">
                 <button
                     type="button"
-                    class="text-[12px] text-neutral-02 rounded-md flex items-center justify-center min-w-[32px] h-[32px]"
+                    class="text-[12px] text-neutral-13 rounded-md flex items-center justify-center min-w-[25px] h-[32px] cursor-pointer border border-neutral-4"
                     v-bind:class="{
-                        'bg-primary-yellow text-white': link.active,
-                        'hover:bg-primary-yellow hover:text-white': link.url,
-                        'cursor-not-allowed text-neutral-04': !link.url,
+                        'bg-blue-base text-white !border-blue-base': link.active,
+                        'hover:bg-blue-base hover:text-white hover:border-blue-base': link.url,
+                        '!cursor-not-allowed text-neutral-4': !link.url,
                     }"
                     :disabled="!link.url"
                     @click="changePage(link.params)"

@@ -7,6 +7,7 @@ use App\Enums\QuickLinkCategory;
 use App\Http\Controllers\Controller;
 use App\Repositories\AboutUs\MilestoneRepository;
 use App\Repositories\AboutUs\OurHistoryRepository;
+use App\Repositories\Article\ArticleCategoryRepository;
 use App\Repositories\Data\OfficeRepository;
 use App\Repositories\Data\TeamRepository;
 use App\Repositories\Investor\InvestorReportRepository;
@@ -106,5 +107,10 @@ class ApiUtilityController extends Controller
     public function otherOffices(OfficeRepository $officeRepository)
     {
         return $officeRepository->getOthers();
+    }
+
+    public function categories(ArticleCategoryRepository $articleCategoryRepository)
+    {
+        return $articleCategoryRepository->list("created_at");
     }
 }

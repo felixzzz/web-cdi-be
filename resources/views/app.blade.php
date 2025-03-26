@@ -8,13 +8,13 @@
         <meta name="preview-url" content="{{ route('preview.storage') }}">
         <meta name="download-file" content="{{ route('preview.download') }}">
 
+        @include('seo-tag')
         <title inertia>{{ config('app.name', 'Laravel') }} {{ @$pageTitle  ? "| {$pageTitle}" : ''}}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
         <link rel="stylesheet" rel="preload" href="https://muhammadlailil.github.io/iconsax/style/iconsax.css"/>
-
-        <link rel="shortcut icon" href="{{ asset('assets/frontend/logo_cdi_white.svg') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('assets/frontend/favicon.png') }}" type="image/x-icon">
 
         @routes
         @vite(['resources/js/app.ts'])

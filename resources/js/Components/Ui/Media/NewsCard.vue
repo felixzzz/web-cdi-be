@@ -8,8 +8,8 @@
                 ></div>
             </div>
             <div class="p-6">
-                <span class="bg-neutral-5 px-3 py-1 me-4 text-sm rounded-full" v-if="item.category">
-                    {{ item.category }}
+                <span class="bg-neutral-5 px-3 py-1 me-4 text-sm rounded-full" v-if="item.category_name">
+                    {{ item.category_name }}
                 </span>
                 <span class="text-sm text-neutral-10">
                     {{ item.date }}
@@ -18,7 +18,7 @@
                     {{ item.title }}
                 </h3>
                 <div class="text-blue-base flex items-center gap-2 cursor-pointer">
-                    Read full article
+                    {{ $t('Read full article') }}
                     <i class="isax icon-arrow-right-3 text-2xl"></i>
                 </div>
             </div>

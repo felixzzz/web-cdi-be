@@ -10,21 +10,24 @@
                     <p class="mb-0 text-[22px] font-medium text-white">{{ content.governance_whistleblowing_detail?.title }}</p>
 
 
-                    <div class="rounded-xl border border-neutral-4 p-4 bg-white">
-                        <p class="mb-4 text-[22px] text-blue-base font-medium">PT Chandra Daya Investasi Tbk</p>
+                    <div class="rounded-xl border border-neutral-4 p-4 bg-white" v-if="contentStore.office">
+                        <div class="mb-1 flex flex-col gap-2">
+                            <p class="text-[22px] text-blue-base font-medium">{{ contentStore.office.name }}</p>
+                            <p class="text-base text-neutral-8 font-medium" v-if="contentStore.office.sub_title">{{ contentStore.office.sub_title }}</p>
+                        </div>
                         <div class="flex flex-col gap-2">
-                            <p class="text-neutral-13 text-sm font-medium">Head Office</p>
-                            <p class="text-neutral-8 text-sm">Wisma Barito Pacific Tower A, Lt. 7 Jl. Let. Jend. S. Parman Kav. 62-63, Jakarta 11410, Indonesia</p>
+                            <p class="text-neutral-13 text-sm font-medium">{{ contentStore.office.localized_main.location_name }}</p>
+                            <p class="text-neutral-8 text-sm">{{ contentStore.office.localized_main.address }}</p>
 
                             <div class="flex items-center gap-4 text-neutral-8">
-                                <div class="flex items-center text-sm gap-2">
+                                <div class="flex items-center text-sm gap-2" v-if="contentStore.office.localized_main.phone">
                                     <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
-                                    (62-21) 530 7950
+                                    {{ contentStore.office.localized_main.phone }}
                                 </div>
 
-                                <div class="flex items-center text-sm gap-2">
+                                <div class="flex items-center text-sm gap-2" v-if="contentStore.office.localized_main.fax">
                                     <img :src="asset('assets/frontend/icons/ic_printer.svg')" alt="">
-                                    (62-21) 530 7950
+                                    {{ contentStore.office.localized_main.fax }}
                                 </div>
                             </div>
                         </div>
@@ -38,11 +41,11 @@
                         <div class="grid grid-cols-2 gap-8">
                             <div>
                                 <label for="" class="text-neutral-13 text-sm block mb-[6px]">
-                                    First Name <span class="text-red-6">*</span>
+                                    {{ $t('First Name') }} <span class="text-red-6">*</span>
                                 </label>
                                 <input
                                     type="text" name="" value=""
-                                    placeholder="Input Your First Name"
+                                    :placeholder="$t('Input Your First Name')"
                                     class="input-custom"
                                     required
                                 >
@@ -50,11 +53,11 @@
 
                             <div>
                                 <label for="" class="text-neutral-13 text-sm block mb-[6px]">
-                                    Last Name <span class="text-red-6">*</span>
+                                    {{ $t('Last Name') }} <span class="text-red-6">*</span>
                                 </label>
                                 <input
                                     type="text" name="" value=""
-                                    placeholder="Input Your Last Name"
+                                    :placeholder="$t('Input Your Last Name')"
                                     class="input-custom"
                                     required
                                 >
@@ -64,11 +67,11 @@
                         <div class="grid grid-cols-2 gap-8">
                             <div>
                                 <label for="" class="text-neutral-13 text-sm block mb-[6px]">
-                                    Email <span class="text-red-6">*</span>
+                                    {{ $t('Email') }} <span class="text-red-6">*</span>
                                 </label>
                                 <input
                                     type="email" name="" value=""
-                                    placeholder="Input Your Email"
+                                    :placeholder="$t('Input Your Email')"
                                     class="input-custom"
                                     required
                                 >
@@ -76,10 +79,10 @@
 
                             <div>
                                 <label for="" class="text-neutral-13 text-sm block mb-[6px]">
-                                    Country <span class="text-red-6">*</span>
+                                    {{ $t('Country') }} <span class="text-red-6">*</span>
                                 </label>
                                 <select class="input-custom" required>
-                                    <option value="" selected disabled>Select Your Country</option>
+                                    <option value="" selected disabled>{{ $t('Select Your Country') }}</option>
                                     <option value="" v-for="i in 3" :key="i">Option</option>
                                 </select>
                             </div>
@@ -87,23 +90,23 @@
 
                         <div>
                             <label for="" class="text-neutral-13 text-sm block mb-[6px]">
-                                Topic <span class="text-red-6">*</span>
+                                {{ $t('Topic') }} <span class="text-red-6">*</span>
                             </label>
                             <select class="input-custom" required>
-                                <option value="" selected disabled>Select Topic</option>
+                                <option value="" selected disabled>{{ $t('Select Topic') }}</option>
                                 <option value="" v-for="i in 3" :key="i">Option</option>
                             </select>
                         </div>
 
                         <div>
                             <label for="" class="text-neutral-13 text-sm block mb-[6px]">
-                                Add your questions <span class="text-red-6">*</span>
+                                {{ $t('Add your questions') }} <span class="text-red-6">*</span>
                             </label>
-                            <textarea name="" id="" class="input-custom !h-auto" placeholder="Write your comment or additional question here" rows="8"></textarea>
+                            <textarea name="" id="" class="input-custom !h-auto" :placeholder="$t('Write your comment or additional question here')" rows="8"></textarea>
                         </div>
 
                         <div class="bg-blue-base px-6 py-2 rounded-full font-medium w-fit text-white">
-                            Submit
+                            {{ $t('Submit') }}
                         </div>
                     </div>
                 </div>
@@ -116,12 +119,20 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import Breadcrumb from '@/Components/Ui/Utils/Breadcrumb.vue'
+    import { useContentStore } from '@/Composables/useContentStore'
     import { asset } from '@/Lib/utils'
 
     import { PreferenceGovernance } from '@/types/utility'
+    import { onBeforeMount } from 'vue'
 
     defineProps<{
         content: PreferenceGovernance
     }>()
+
+    const contentStore = useContentStore()
+
+    onBeforeMount(() => {
+        contentStore.getMainOffice()
+    })
 
 </script>

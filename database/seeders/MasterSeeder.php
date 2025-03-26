@@ -28,5 +28,7 @@ class MasterSeeder extends Seeder
         $this->call(PageSeeder::class);
         $this->call(AboutUsSeeder::class);
         $this->call(TeamSeeder::class);
+        $this->call(AddressSeeder::class);
+        $this->call(RatingSeeder::class);
     }
 }

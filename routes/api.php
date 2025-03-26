@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiArticleController;
 use App\Http\Controllers\Api\ApiUtilityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\WebApiMiddleware;
@@ -24,10 +25,21 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/latest-reports', 'latestReports')->name('latest-reports');
                 Route::get('/main-office', 'mainOffice')->name('main-office');
                 Route::get('/other-offices', 'otherOffices')->name('other-offices');
+                Route::get('/categories', 'categories')->name('categories');
 
 
                 Route::get('/additional-page/{type}', 'additionalPage')->name('additional-page');
                 Route::get('/additional-file/{type}', 'additionalFile')->name('additional-file');
                 Route::get('/teams/{type}', 'teams')->name('teams');
+            });
+
+        Route::controller(ApiArticleController::class)
+            ->as('article.')
+            ->prefix('article')
+            ->group(function () {
+                Route::get("list", "list")->name("list");
+                Route::get("latest", "latest")->name("latest");
+                Route::get("latest-media", "latestMedia")->name("latest-media");
+                Route::get("relates/{ulid}", "relates")->name("relates");
             });
     });

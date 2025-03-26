@@ -20,30 +20,36 @@
                 <span>{{ $t('lang_document_alert') }}</span>
             </div>
 
-            <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="(file, index) in files" :key="index">
-                <div>
-                    <p class="text-neutral-13 mb-2 text-lg font-medium">{{ file.name }}</p>
+            <section v-if="!loading">
+                <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="(file, index) in files" :key="index">
+                    <div>
+                        <p class="text-neutral-13 mb-2 text-lg font-medium">{{ file.name }}</p>
 
-                    <div class="flex items-center text-base text-neutral-8 gap-3">
-                        <div class="flex items-baseline gap-3">
-                            <span>{{ file.date }}</span>
-                            <span>.</span>
-                            <span>{{ file.file.size }}</span>
-                            <span>.</span>
+                        <div class="flex items-center text-base text-neutral-8 gap-3">
+                            <div class="flex items-baseline gap-3">
+                                <span>{{ file.date }}</span>
+                                <span>.</span>
+                                <span>{{ file.file.size }}</span>
+                                <span>.</span>
+                            </div>
+                            <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
                         </div>
-                        <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
+                    </div>
+
+                    <div class="flex lg:items-center gap-8 w-full lg:w-fit">
+                        <a :href="previewFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                            <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
+                        </a>
+                        <a :href="downloadFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                            <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download') }}
+                        </a>
                     </div>
                 </div>
+            </section>
 
-                <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                    <a :href="previewFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
-                        <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
-                    </a>
-                    <a :href="downloadFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
-                        <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download') }}
-                    </a>
-                </div>
-            </div>
+            <section v-if="loading">
+                <file-loading v-for="i in 2" :key="i" />
+            </section>
         </container>
     </div>
 
@@ -51,6 +57,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import FileLoading from '@/Components/Ui/Utils/FileLoading.vue'
     import useRequest from '@/Composables/useRequest'
     import { asset, downloadFile, previewFile } from '@/Lib/utils'
     import { InvestorReport } from '@/types/utility'
@@ -58,11 +65,14 @@
     import { onMounted, ref } from 'vue'
 
     const files = ref<InvestorReport[]>([])
+    const loading = ref(false)
 
     onMounted(() => {
+        loading.value = true
         useRequest().get(route('api.utility.latest-reports'))
         .then((result) => {
             files.value = result.data
         })
+        .finally(() => loading.value = false)
     })
 </script>

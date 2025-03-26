@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import useCrypto from './useCrypto'
 import useRequest from './useRequest'
-import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome } from '@/types/utility'
+import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceItem } from '@/types/utility'
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -12,6 +12,7 @@ const CACHE_ABOUT_US_AWARD_CONTENT = "abt-awrd-cnt"
 const CACHE_ABOUT_US_MANAGEMENT_CONTENT = "abt-mg-cnt"
 const CACHE_ABOUT_US_OVERVIEW_CONTENT = "abt-ovr-cnt"
 const CACHE_MAIN_OFFICE_CONTENT = "off-cnt"
+const CACHE_MEDIA_CONTENT = "media-cnt"
 
 
 
@@ -22,7 +23,8 @@ export const useContentStore = defineStore('content', {
         aboutAward: __getAboutUsAward(),
         aboutManagement: __getAboutUsManagement(),
         aboutOverview: __getAboutUsOverview(),
-        office: __getMainOffice()
+        office: __getMainOffice(),
+        media: __getMedia()
     }),
     actions: {
         getHome() {
@@ -59,6 +61,12 @@ export const useContentStore = defineStore('content', {
             return useRequest().get(route('api.utility.main-office')).then((result) => {
                 this.office = result.data
                 localStorage.setItem(CACHE_MAIN_OFFICE_CONTENT, encrypt(result.data))
+            })
+        },
+        getMedia() {
+            return useRequest().get(route('api.utility.additional-page', 'media_main')).then((result) => {
+                this.media = result.data
+                localStorage.setItem(CACHE_MEDIA_CONTENT, encrypt(result.data))
             })
         },
     }
@@ -145,6 +153,11 @@ const __getAboutUsOverview = (): PreferenceAboutOverview => {
 
 const __getMainOffice = (): Office | null => {
     const content = __getStorage(CACHE_MAIN_OFFICE_CONTENT);
+    return content ? content : null
+}
+
+const __getMedia = (): PreferenceItem | null => {
+    const content = __getStorage(CACHE_MEDIA_CONTENT);
     return content ? content : null
 }
 

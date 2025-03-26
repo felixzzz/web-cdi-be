@@ -1,5 +1,7 @@
+/* eslint-disable no-var */
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -33,12 +35,20 @@ export function scrollToElement(elementName: string) {
     },0)
 }
 
+export const scrollToSection = (id: string) => {
+    const section = document.getElementById(id)
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+}
+
 export const routeAppendParam = (params: any) => {
     const newUrl = new URL(window.location.href);
-    for (const key in params) {
+    for (var key in params) {
         newUrl.searchParams.set(key, params[key]);
     }
     window.history.pushState({}, '', newUrl);
+
 }
 
 export const getAllQueryParameter = () => {
