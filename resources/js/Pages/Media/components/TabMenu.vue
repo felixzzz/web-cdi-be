@@ -1,5 +1,5 @@
 <template>
-    <container class="py-20 bg-white">
+    <container class="py-20 bg-white" id="content-media-section">
         <div class="grid grid-cols-3">
             <Link
                 v-for="tab in tabs"

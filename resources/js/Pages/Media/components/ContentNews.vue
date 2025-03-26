@@ -1,37 +1,35 @@
 <template>
-    <section id="news-list">
-        <div class="flex items-center gap-2 mt-10 mb-6 overflow-y-auto">
-            <a
-                class="text-xs lg:text-base cursor-pointer px-6 py-2 rounded-full whitespace-nowrap flex items-center gap-2 text-blue-base border border-blue-base hover:bg-blue-base hover:text-white transition"
-                v-for="tab in tabs"
-                :key="tab.id"
-                :class="{
-                    'bg-blue-base text-white': tab.ulid == tabActive
-                }"
-                @click="filterCategory(tab.ulid)"
-            >
-                {{ tab.name }}
-            </a>
+    <div class="flex items-center gap-2 mt-10 mb-6 overflow-y-auto">
+        <a
+            class="text-xs lg:text-base cursor-pointer px-6 py-2 rounded-full whitespace-nowrap flex items-center gap-2 text-blue-base border border-blue-base hover:bg-blue-base hover:text-white transition"
+            v-for="tab in tabs"
+            :key="tab.id"
+            :class="{
+                'bg-blue-base text-white': tab.ulid == tabActive
+            }"
+            @click="filterCategory(tab.ulid)"
+        >
+            {{ tab.name }}
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" v-if="paginate.state.loading">
+        <div v-for="index in 3" :key="index">
+            <news-loading />
         </div>
+    </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" v-if="paginate.state.loading">
-            <div v-for="index in 3" :key="index">
-                <news-loading />
-            </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" v-if="!paginate.state.loading">
+        <div v-for="(item, index) in paginate.state.items" :key="index">
+            <news-card :item="item" :link="route('media.detail', { type: 'news', id: item.slug })" />
         </div>
+    </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" v-if="!paginate.state.loading">
-            <div v-for="(item, index) in paginate.state.items" :key="index">
-                <news-card :item="item" :link="route('media.detail', { type: 'news', id: item.slug })" />
-            </div>
-        </div>
-
-        <pagination-link
-            :links="paginate.state.links"
-            @fetch="changePage"
-        />
-    </section>
-
+    <pagination-link
+        :links="paginate.state.links"
+        :meta="paginate.state.meta"
+        @fetch="changePage"
+    />
 </template>
 
 <script setup lang="ts">
@@ -51,9 +49,9 @@
     })
 
     const paginate = usePaginate<News>({
-        route: route("api.article.list"),
+        route: route("api.article.list", "news"),
         params: filter.value,
-        scroll: 'news-list'
+        scroll: 'content-media-section'
     });
 
 

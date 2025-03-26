@@ -158,4 +158,24 @@ class Helper
             ],
         ];
     }
+
+    public static function metaPagination($data)
+    {
+        if (!$data->total()) {
+            return [];
+        }
+
+        return [
+            'total' => intval($data->total()),
+            'per_page' => intval($data->perPage()),
+            'current_page' => intval($data->currentPage()),
+            'last_page' => intval($data->lastPage()),
+            'from' => $data->firstItem() ?? 0,
+            'to' => $data->lastItem() ?? 0,
+            'range' => ($data->firstItem() && $data->lastItem())
+                ? __("from_of_to_items", ["from" => "{$data->firstItem()}-{$data->lastItem()}", "to" => $data->total()])
+                : __("from_of_to_items", ["from" => "0", "to" => $data->total()])
+        ];
+    }
+
 }

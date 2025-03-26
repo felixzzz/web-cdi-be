@@ -66,15 +66,15 @@ class ArticleRepository
 
         return Article::query()
         ->with([
-            'category'
+            'articleCategory'
         ])
         ->where("articles.status", 1)
         ->where("articles.category", $type)
-        ->when($categoryId, fn ($q) => $q->whereRelation("category", "ulid", $categoryId))
+        ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
         ->orderBy("created_at", "desc")
         ->limit($limit)
         ->get()->map(function ($row) {
-            $row->category_name = $row->category?->name;
+            $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
@@ -104,14 +104,14 @@ class ArticleRepository
     {
         return Article::query()
         ->with([
-            'category'
+            'articleCategory'
         ])
         ->where("articles.status", 1)
         ->where("ulid", "!=", $ulid)
         ->orderBy("created_at", "desc")
         ->limit(3)
         ->get()->map(function ($row) {
-            $row->category_name = $row->category?->name;
+            $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->image = previewFile($row->thumbnail);
             $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
@@ -144,29 +144,32 @@ class ArticleRepository
         return $data;
     }
 
-    public function findPaginated(Request $request)
+    public function findPaginated(Request $request, $type)
     {
-        $maxLimit = 1;
+        $maxLimit = 15;
         $limit = $request->get('limit', $maxLimit);
         $categoryId = $request->category_id;
+        if ($categoryId == 'null' || $categoryId == 'all') $categoryId = '';
 
         $data = Article::query()
             ->with([
-                'category'
+                'articleCategory'
             ])
-            ->when($categoryId, fn ($q) => $q->whereRelation("category", "ulid", $categoryId))
+            ->where("category", $type)
+            ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
             ->where("status", 1)
             ->orderBy('created_at','desc')
             ->orderBy('id','desc')
             ->paginate($limit);
         return [
             'links' => Helper::makePagination($data),
+            'meta' => Helper::metaPagination($data),
             'items' => collect($data->items())
                 ->reverse()
                 ->take($maxLimit)
                 ->reverse()
                 ->map(function ($row) {
-                        $row->category_name = $row->category?->name;
+                        $row->category_name = $row->articleCategory?->name;
                         $row->title = $row->title;
                         $row->image = previewFile($row->thumbnail);
                         $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");

@@ -5,6 +5,16 @@ export type PaginateLink = {
     params?: object
 }
 
+export type PaginationMeta = {
+    total?: number;
+    per_page?: number;
+    current_page?: number;
+    last_page?: number;
+    from?: number;
+    to?: number;
+    range?: string;
+}
+
 export type NewsCategory = {
     id: string;
     ulid: string;
@@ -224,4 +234,27 @@ export type Office = {
     localized_main: OfficeLocation;
     sub_title?: string;
     localized_branches: OfficeLocation[]
+}
+
+
+export type PressRelease = {
+    id: string;
+    ulid?: string;
+    name: string;
+    file?: {
+        path: string;
+        size: string;
+        format: string;
+    };
+    file_en?: {
+        path: string;
+        size: string;
+        format: string;
+    };
+    file_id?: {
+        path: string;
+        size: string;
+        format: string;
+    };
+    date: string;
 }

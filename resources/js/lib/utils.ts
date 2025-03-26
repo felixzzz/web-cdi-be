@@ -1,6 +1,7 @@
 /* eslint-disable no-var */
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { router } from '@inertiajs/vue3';
 
 
 export function cn(...inputs: ClassValue[]) {
@@ -42,13 +43,21 @@ export const scrollToSection = (id: string) => {
     }
 }
 
-export const routeAppendParam = (params: any) => {
+export const routeAppendParam = (params: any, appendRoute = true) => {
     const newUrl = new URL(window.location.href);
     for (var key in params) {
         newUrl.searchParams.set(key, params[key]);
     }
     window.history.pushState({}, '', newUrl);
 
+    if (appendRoute) {
+        router.visit(newUrl.pathname + newUrl.search, {
+            preserveState: true, // Supaya tidak rerender
+            replace: true, // Agar tidak menambah entry di history browser
+            preserveScroll: true, // Scroll tetap di posisi yang sama
+            only: []
+        });
+    }
 }
 
 export const getAllQueryParameter = () => {

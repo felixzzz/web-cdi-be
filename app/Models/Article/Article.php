@@ -64,7 +64,7 @@ class Article extends Model
         );
     }
 
-    public function category(): HasOne
+    public function articleCategory(): HasOne
     {
         return $this->hasOne(ArticleArticleCategory::class, 'id', 'article_category_id');
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiArticleController;
+use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiUtilityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\WebApiMiddleware;
@@ -37,9 +38,16 @@ Route::middleware(WebApiMiddleware::class)
             ->as('article.')
             ->prefix('article')
             ->group(function () {
-                Route::get("list", "list")->name("list");
+                Route::get("list/{type}", "list")->name("list");
                 Route::get("latest", "latest")->name("latest");
                 Route::get("latest-media", "latestMedia")->name("latest-media");
                 Route::get("relates/{ulid}", "relates")->name("relates");
+            });
+
+        Route::controller(ApiPressReleaseController::class)
+            ->as('press-releases.')
+            ->prefix('press-releases')
+            ->group(function () {
+                Route::get("list", "list")->name("list");
             });
     });

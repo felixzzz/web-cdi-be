@@ -1,48 +1,42 @@
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
-        <div v-for="(item, index) in items" :key="index">
-            <news-card :item="item" :link="route('media.detail', { type: 'blog', id: 'slug' })" />
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10" v-if="paginate.state.loading">
+        <div v-for="index in 3" :key="index">
+            <news-loading />
         </div>
     </div>
 
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10" v-if="!paginate.state.loading">
+        <div v-for="(item, index) in paginate.state.items" :key="index">
+            <news-card :item="item" :link="route('media.detail', { type: 'blog', id: item.slug })" />
+        </div>
+    </div>
+
+    <pagination-link
+        :links="paginate.state.links"
+        :meta="paginate.state.meta"
+        @fetch="changePage"
+    />
 </template>
 
 <script setup lang="ts">
     import NewsCard from '@/Components/Ui/Media/NewsCard.vue'
+    import NewsLoading from '@/Components/Ui/Media/NewsLoading.vue'
+    import PaginationLink from '@/Components/Ui/Utils/PaginationLink.vue'
+    import usePaginate from '@/Composables/usePaginate'
     import { News } from '@/types/utility'
-    import { ref } from 'vue'
+    import { onBeforeMount } from 'vue'
 
-    const items = ref<News[]>([
-        {
-            id: '1',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Shares Insights on Energy Transition in Energy Sovereignty School 1'
-        },
-        {
-            id: '2',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group and Yayasan Happy Hearts Indonesia Builds Eco Friendly Early Childhood Center 2'
-        },
-        {
-            id: '3',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 3'
-        },
-        {
-            id: '4',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 4'
-        },
-        {
-            id: '5',
-            image: 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            date: '05-02-2025',
-            title: 'Chandra Asri Group Re-designated as a National Vital Object in the Industrial Sector 5'
-        },
-    ])
+    const paginate = usePaginate<News>({
+        route: route("api.article.list", "blog"),
+        scroll: 'content-media-section'
+    });
+
+    const changePage = () => {
+        paginate.fetchData()
+    }
+
+    onBeforeMount(() => {
+        paginate.fetchData()
+    })
 
 </script>

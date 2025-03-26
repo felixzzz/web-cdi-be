@@ -23,8 +23,8 @@ class ApiArticleController extends Controller
         return $articleRepository->relates($ulid);
     }
 
-    public function list(Request $request, ArticleRepository $articleRepository)
+    public function list(Request $request, ArticleRepository $articleRepository, $type)
     {
-        return $articleRepository->findPaginated($request);
+        return $articleRepository->findPaginated($request, $type);
     }
 }

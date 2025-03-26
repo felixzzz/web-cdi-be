@@ -2,7 +2,11 @@
 
 namespace App\Repositories\Article;
 
+use Carbon\Carbon;
+use App\Helpers\Helper;
+use Illuminate\Http\Request;
 use App\Models\Article\PressRelease;
+use Illuminate\Support\Facades\App;
 
 class PressReleaseRepository
 {
@@ -23,5 +27,35 @@ class PressReleaseRepository
             $q->orWhere("name_id", "LIKE", "%$search%");
         })
         ->datatable($perPage, "created_at");
+    }
+
+    public function findPaginated(Request $request)
+    {
+        $maxLimit = 15;
+        $limit = $request->get('limit', $maxLimit);
+        $search = $request->search;
+        $locale = App::currentLocale();
+
+        $data = PressRelease::query()
+            ->where("status", 1)
+            ->when($search, fn ($q) => $q->where("name_{$locale}", "LIKE", "%$search%"))
+            ->orderBy('created_at','desc')
+            ->orderBy('id','desc')
+            ->paginate($limit);
+        return [
+            'links' => Helper::makePagination($data),
+            'meta' => Helper::metaPagination($data),
+            'items' => collect($data->items())
+                ->reverse()
+                ->take($maxLimit)
+                ->reverse()
+                ->map(function ($row) {
+                        $row->name = $row->name;
+                        $row->file = json_decode($row->file);
+                        $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
+                        return $row;
+                })->values()
+        ];
+
     }
 }

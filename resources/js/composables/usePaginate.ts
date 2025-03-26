@@ -1,6 +1,6 @@
 
 import { getAllQueryParameter, scrollToSection } from "@/Lib/utils"
-import { PaginateLink } from "@/types/utility"
+import { PaginateLink, PaginationMeta } from "@/types/utility"
 import { reactive } from "vue"
 import useRequest from "./useRequest"
 
@@ -16,14 +16,16 @@ export default function usePaginate<T>(config: PaginateProps) {
         loading: boolean
         total: number
         has_next: boolean,
-        fetch_count: number
+        fetch_count: number,
+        meta: PaginationMeta
     } = reactive({
         items: [],
         links: [],
         loading: false,
         total: 1,
         has_next: true,
-        fetch_count: 0
+        fetch_count: 0,
+        meta: {}
     })
 
     const fetchData = (params?: object,callback?:any) => {
@@ -40,6 +42,7 @@ export default function usePaginate<T>(config: PaginateProps) {
             const data = result.data
             state.items = data.items
             state.links = data.links
+            state.meta = data.meta
             state.total = data.total || 0
             state.has_next = data.has_next || false
             state.loading = false

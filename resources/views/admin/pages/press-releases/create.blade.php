@@ -43,6 +43,16 @@
                 />
             </x-portal::form.group>
 
+            <x-portal::form.select
+                name="status"
+                label="Status"
+                description=""
+                description-trailing=""
+            >
+                <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Draft</option>
+                <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Publish</option>
+            </x-portal::form.select>
+
             <!-- Submit Button -->
             <div class="mt-6">
                 <x-portal::button type="submit" class="w-full">Submit</x-portal::button>

@@ -9,6 +9,7 @@
                     <x-portal::table.head sortable key="name_en">Name EN</x-portal::table.head>
                     <x-portal::table.head sortable key="name_id">Name ID</x-portal::table.head>
                     <x-portal::table.head>File Information</x-portal::table.head>
+                    <x-portal::table.head>Status</x-portal::table.head>
                     <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
@@ -25,6 +26,13 @@
                             <a href="{{ previewFile(@$row->file_en['path']) }}" target="_blank" class="flex items-center gap-1">
                                 EN: {{ @$row->file_en['size'] }} @svg('tabler-external-link', ['class' => 'icon'])
                             </a>
+                        </x-portal::table.cell>
+                        <x-portal::table.cell class="font-medium">
+                            @if ($row->status)
+                                <x-portal::badge variant="solid" color="emerald">Published</x-portal::badge>
+                            @else
+                                <x-portal::badge variant="solid">Draft</x-portal::badge>
+                            @endif
                         </x-portal::table.cell>
                         <x-portal::table.cell class="font-medium text-right">
                             <x-portal::dropdown-menu class="flex justify-end">
