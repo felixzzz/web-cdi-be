@@ -27,7 +27,7 @@ return new class extends Migration
             $table->longText("description_en")->nullable();
             $table->longText("description_id")->nullable();
             $table->string("align")->default('left');
-            $table->string("image", 500)->default('');
+            $table->string("image", 500)->nullable();
             $table->integer("sort")->default(0);
             $table->timestamps();
 

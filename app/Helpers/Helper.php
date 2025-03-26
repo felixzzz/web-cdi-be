@@ -92,22 +92,43 @@ class Helper
     public static function handleMoveImage($value, $path)
     {
         if (!empty($value)) {
+            // Debugging
+            Log::info("Original Value: " . $value);
+
             // Ambil nama file asli
             $originalPath = parse_url($value, PHP_URL_PATH);
+            if (!$originalPath) {
+                Log::error("Error: Invalid file path - " . $value);
+                return null;
+            }
+
+            Log::info("Parsed Path: " . $originalPath);
+
             $filename = pathinfo($originalPath, PATHINFO_BASENAME);
+            Log::info("Filename: " . $filename);
 
             // Buat nama file baru yang dienkripsi
             $newFilename = Str::random(40) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
-
-            // Copy file ke storage lokal
             $storagePath = "{$path}/{$newFilename}";
-            $localPath = public_path($originalPath); // Path asli dari public folder
+            $localPath = public_path($originalPath);
+
+            Log::info("Local Path: " . $localPath);
 
             if (file_exists($localPath)) {
-                Storage::disk('local')->put($storagePath, file_get_contents($localPath));
-                return self::shortEncrypt($storagePath);
+                try {
+                    Storage::disk('local')->put($storagePath, file_get_contents($localPath));
+                    return self::shortEncrypt($storagePath);
+                } catch (\Exception $e) {
+                    Log::error("Storage Error: " . $e->getMessage());
+                    return null;
+                }
+            } else {
+                Log::error("File does not exist: " . $localPath);
+                return null;
             }
         }
+
+        return null;
     }
 
     public static function getPreferenceCacheKey($keys = [])
