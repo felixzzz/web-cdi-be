@@ -2,9 +2,8 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class Helper
@@ -93,43 +92,26 @@ class Helper
     public static function handleMoveImage($value, $path)
     {
         if (!empty($value)) {
-            // Debugging
-            Log::info("Original Value: " . $value);
-
             // Ambil nama file asli
             $originalPath = parse_url($value, PHP_URL_PATH);
-            if (!$originalPath) {
-                Log::error("Error: Invalid file path - " . $value);
-                return null;
-            }
-
-            Log::info("Parsed Path: " . $originalPath);
-
             $filename = pathinfo($originalPath, PATHINFO_BASENAME);
-            Log::info("Filename: " . $filename);
 
             // Buat nama file baru yang dienkripsi
             $newFilename = Str::random(40) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
-            $storagePath = "{$path}/{$newFilename}";
-            $localPath = public_path($originalPath);
 
-            Log::info("Local Path: " . $localPath);
+            // Copy file ke storage lokal
+            $storagePath = "{$path}/{$newFilename}";
+            $localPath = public_path($originalPath); // Path asli dari public folder
+
+            \Log::info($value);
+            \Log::info($originalPath);
+            \Log::info(public_path($originalPath));
 
             if (file_exists($localPath)) {
-                try {
-                    Storage::disk('local')->put($storagePath, file_get_contents($localPath));
-                    return self::shortEncrypt($storagePath);
-                } catch (\Exception $e) {
-                    Log::error("Storage Error: " . $e->getMessage());
-                    return null;
-                }
-            } else {
-                Log::error("File does not exist: " . $localPath);
-                return null;
+                Storage::disk('local')->put($storagePath, file_get_contents($localPath));
+                return self::shortEncrypt($storagePath);
             }
         }
-
-        return null;
     }
 
     public static function getPreferenceCacheKey($keys = [])
