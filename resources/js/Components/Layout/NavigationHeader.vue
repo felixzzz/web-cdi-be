@@ -160,7 +160,7 @@
                         <template v-for="menu in MENU">
                             <Link
                                 :href="menu.route" v-if="!menu.external && !menu.subs.length" :key="menu.active">
-                                {{ menu.name }}
+                                {{ $t(menu.name) }}
                             </Link>
                             <div
                                 v-if="!menu.external && menu.subs.length" :key="menu.active"
@@ -190,14 +190,14 @@
                                         <template v-for="(sub, index) in menu.subs" :key="index">
                                             <Link :href="sub.route" class="!justify-start" x-on:click="open_menu=false"
                                             >
-                                                {{ sub.name }}
+                                                {{ $t(sub.name) }}
                                             </Link>
                                         </template>
                                     </div>
                                 </div>
                             </div>
                             <a :href="menu.active == 'career' ? careerUrl : menu.route" target="_blank" v-if="menu.external" :key="menu.active">
-                                {{ menu.name }}
+                                {{ $t(menu.name) }}
                             </a>
                         </template>
                     </div>

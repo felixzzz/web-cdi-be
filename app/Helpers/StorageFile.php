@@ -105,6 +105,7 @@ class StorageFile
 
     public static function preview($filename)
     {
+        dd($filename);
         $disk = 'local';
         $cacheTime = 31536000; // 24 hour
 
