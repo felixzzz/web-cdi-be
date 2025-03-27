@@ -2,11 +2,13 @@
 
 namespace App\Models\AboutUs;
 
-use App\Traits\HasDatatable;
-use App\Traits\HasLocalizedAttributes;
 use App\Traits\HasUlid;
+use App\Traits\HasDatatable;
+use Illuminate\Support\Facades\App;
+use App\Traits\HasLocalizedAttributes;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Certificate extends Model
 {
@@ -17,11 +19,8 @@ class Certificate extends Model
     protected $guarded = [];
 
     protected $localizedAttributes = ['name', 'content', 'awarder'];
+    protected $append = ['short_content'];
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(CertificateCategory::class);
-    }
 
     /**
     * Get the attributes that should be cast.
@@ -33,5 +32,20 @@ class Certificate extends Model
         return [
             'files' => 'array'
         ];
+    }
+
+    public function category(): HasOne
+    {
+        return $this->hasOne(CertificateCategory::class, 'id', 'certificate_category_id');
+    }
+
+    protected function shortContent(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return html_entity_decode(strip_tags($this->content));
+            }
+
+        );
     }
 }

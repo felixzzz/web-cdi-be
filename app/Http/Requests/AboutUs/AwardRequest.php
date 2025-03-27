@@ -24,10 +24,8 @@ class AwardRequest extends FormRequest
         return [
             'file' => 'nullable|file|max:5120',
             'name_en' => 'required',
-            'content_en' => 'required',
             'awarder_en' => 'required',
             'name_id' => 'required',
-            'content_id' => 'required',
             'awarder_id' => 'required',
             'date' => 'required'
         ];

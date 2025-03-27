@@ -24,6 +24,7 @@
 
             <content-awards v-if="tabActive == 'awards'" />
             <content-certification v-if="tabActive == 'certification'" />
+            <content-membership v-if="tabActive == 'membership'" />
         </container>
     </div>
 
@@ -37,6 +38,7 @@
 
     import ContentAwards from './ContentAwards.vue'
     import ContentCertification from './ContentCertification.vue'
+    import ContentMembership from './ContentMembership.vue'
 
     import { PreferenceAboutAward } from '@/types/utility'
 
@@ -48,7 +50,8 @@
 
     const tabs = ref([
         { id: 'awards', name: $t('Awards')},
-        { id: 'certification', name: $t('Certification')}
+        { id: 'certification', name: $t('Certification')},
+        { id: 'membership', name: $t('Membership')},
     ])
 
 </script>

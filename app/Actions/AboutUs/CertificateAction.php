@@ -21,6 +21,7 @@ class CertificateAction
     public function store(CertificateRequest $request){
         $data = [
             ...$request->only([
+                'certificate_category_id',
                 'name_en',
                 'name_id',
                 'content_en',
@@ -47,6 +48,7 @@ class CertificateAction
         $certificate = Certificate::whereUlid($ulid)->firstOrFail();
 
         $data = $request->only([
+            'certificate_category_id',
             'name_en',
             'name_id',
             'content_en',

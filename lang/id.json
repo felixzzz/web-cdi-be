@@ -70,6 +70,7 @@
     "Policy": "Kebijakan",
     "Awards": "Penghargaan",
     "Certification": "Sertifikasi",
+    "Membership": "Keanggotaan",
     "Board of Directors": "Dewan Direksi",
     "Board of Commissioners": "Dewan Komisaris",
     "Organization Structure": "Struktur Organisasi",
@@ -108,5 +109,10 @@
     "Read more": "Baca selengkapnya",
     "from_of_to_items": ":from dari :to items",
     "Jump Page": "Lompat Halaman",
-    "Go": "Go"
+    "Go": "Go",
+    "All Year": "All Year",
+    "Categories": "Kategori",
+    "Awarder": "Pemberi Penghargaan",
+    "Detail Certification": "Sertifikasi Detail",
+    "Displayed": "Ditampilkan"
 }

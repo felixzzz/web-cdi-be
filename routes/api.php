@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\ApiArticleController;
+use App\Http\Controllers\Api\ApiAwardController;
+use App\Http\Controllers\Api\ApiCertificateController;
+use App\Http\Controllers\Api\ApiMembershipController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiUtilityController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +37,8 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/teams/{type}', 'teams')->name('teams');
             });
 
+        Route::get("press-releases/list", [ApiPressReleaseController::class, "list"])->name("press-releases.list");
+
         Route::controller(ApiArticleController::class)
             ->as('article.')
             ->prefix('article')
@@ -44,10 +49,22 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get("relates/{ulid}", "relates")->name("relates");
             });
 
-        Route::controller(ApiPressReleaseController::class)
-            ->as('press-releases.')
-            ->prefix('press-releases')
+
+        Route::controller(ApiAwardController::class)
+            ->as('awards.')
+            ->prefix('awards')
+            ->group(function () {
+                Route::get("list", "list")->name("list");
+                Route::get("years", "years")->name("years");
+            });
+
+        Route::controller(ApiCertificateController::class)
+            ->as('certificates.')
+            ->prefix('certificates')
             ->group(function () {
                 Route::get("list", "list")->name("list");
             });
+
+        Route::get("memberships/list", [ApiMembershipController::class, "list"])->name("memberships.list");
+
     });

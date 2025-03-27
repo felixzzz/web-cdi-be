@@ -9,7 +9,7 @@
             <div class="flex items-center justify-between mb-10">
                 <div>
                     <p class="text-base mb-4 font-medium">{{ $t('footer.a_member_of') }}</p>
-                    <img :src="asset('assets/frontend/logo_cdi_footer.svg')" alt="" class="h-12">
+                    <img :src="asset('assets/frontend/logo_cdi_footer.svg')" alt="" class="h-12 cursor-pointer" @click="toHome">
                 </div>
                 <div>
                     <Link :href="route('contact-us')" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
@@ -87,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-    import { Link } from '@inertiajs/vue3'
+    import { Link, router } from '@inertiajs/vue3'
     import Container from '../Section/Container.vue'
     import { onBeforeMount, ref } from 'vue'
     import { asset } from '@/Lib/utils'
@@ -138,6 +138,10 @@
             name: $t('footer.disclaimer')
         }
     ])
+
+    const toHome = () => {
+        router.visit(route('home'))
+    }
 
     const content = useContentStore()
 

@@ -1,10 +1,9 @@
 <template>
-    <section id="content-certificate-section">
+    <section id="content-membership-section">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-7 gap-y-16 text-white" v-if="!paginate.state.loading">
-            <certification-card
+            <award-card
                 v-for="(item, i) in paginate.state.items" :key="i"
                 :item="item"
-                @detail="showDetail(item)"
             />
         </div>
 
@@ -20,31 +19,23 @@
             @fetch="changePage"
             :dark="true"
         />
-
-        <certification-popup v-bind:data="detail" />
-
     </section>
 
 
 </template>
 
 <script setup lang="ts">
-    import CertificationCard from '@/Components/Ui/Certification/CertificationCard.vue'
     import usePaginate from '@/Composables/usePaginate'
-    import { Certification } from '@/types/utility'
+    import { Award } from '@/types/utility'
     import { onBeforeMount } from 'vue'
     import PaginationLink from '@/Components/Ui/Utils/PaginationLink.vue'
     import AwardCardLoading from '@/Components/Ui/Award/AwardCardLoading.vue'
-    import CertificationPopup from '@/Components/Ui/Certification/CertificationPopup.vue'
-    import { ref } from 'vue'
-    import { triggerClick } from '@/Lib/utils'
+    import AwardCard from '@/Components/Ui/Award/AwardCard.vue'
 
-    const paginate = usePaginate<Certification>({
-        route: route("api.certificates.list"),
-        scroll: 'content-certificate-section'
+    const paginate = usePaginate<Award>({
+        route: route("api.memberships.list"),
+        scroll: 'content-membership-section'
     });
-
-    const detail = ref<Certification | null>(null)
 
     const changePage = () => {
         paginate.fetchData()
@@ -53,10 +44,5 @@
     onBeforeMount(() => {
         paginate.fetchData()
     })
-
-    const showDetail = (data: Certification) => {
-        detail.value = data
-        triggerClick('#certification-popup')
-    }
 
 </script>

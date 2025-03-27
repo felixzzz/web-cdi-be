@@ -6,7 +6,7 @@
         }"
     >
         <container>
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
                 <div>
                     <p class="text-neutral-7 text-base mb-4">{{ $t('QUICK LINKS') }}</p>
                     <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-0 max-w-[414px]">{{ $t('Need to access detailed information?') }}</p>

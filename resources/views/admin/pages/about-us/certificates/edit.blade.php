@@ -11,7 +11,7 @@
             <div id="image-upload-container" class="flex flex-col gap-4" x-data="{'alertDialog': ''}">
                 @foreach ($data->files ?? [] as $key => $file)
                     <div class="image--certificate flex items-center gap-2 w-full" id="image--certificate-{{ $key }}">
-                        <img src="{{ asset('storage/' . $file) }}" alt="Uploaded Image" class="w-2/3 rounded-xl">
+                        <img src="{{ previewFile($file) }}" alt="Uploaded Image" class="w-2/3 rounded-xl">
                         <button type="button" class="bg-red-500 text-white px-2 py-1 rounded text-sm" x-on:click="alertDialog='image-{{ $key }}'">Delete</button>
 
                         <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-cloak>

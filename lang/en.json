@@ -70,6 +70,7 @@
     "Policy": "Policy",
     "Awards": "Awards",
     "Certification": "Certification",
+    "Membership": "Membership",
     "Board of Directors": "Board of Directors",
     "Board of Commissioners": "Board of Commissioners",
     "Organization Structure": "Organization Structure",
@@ -108,5 +109,10 @@
     "Read more": "Read more",
     "from_of_to_items": ":from of :to items",
     "Jump Page": "Jump Page",
-    "Go": "Go"
+    "Go": "Go",
+    "All Year": "All Year",
+    "Categories": "Categories",
+    "Awarder": "Awarder",
+    "Detail Certification": "Detail Certification",
+    "Displayed": "Displayed"
 }

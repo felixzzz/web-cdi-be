@@ -176,6 +176,5 @@ class ArticleRepository
                         return $row;
                 })->values()
         ];
-
     }
 }

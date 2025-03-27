@@ -21,12 +21,12 @@ class AwardAction
             ...$request->only([
                 'name_en',
                 'name_id',
-                'content_en',
-                'content_id',
                 'awarder_en',
                 'awarder_id',
                 'date'
-            ])
+            ]),
+            'content_en' => $request->content_en ?? '',
+            'content_id' => $request->content_id ?? '',
         ];
 
         if ($request->hasFile('file')) {
@@ -41,12 +41,12 @@ class AwardAction
             ...$request->only([
                 'name_en',
                 'name_id',
-                'content_en',
-                'content_id',
                 'awarder_en',
                 'awarder_id',
                 'date'
-            ])
+            ]),
+            'content_en' => $request->content_en ?? '',
+            'content_id' => $request->content_id ?? '',
         ];
 
         if ($request->hasFile('file')) {

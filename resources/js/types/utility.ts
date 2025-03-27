@@ -41,17 +41,23 @@ export type LatestBannerNews = {
 
 
 export type Award = {
-    title: string;
+    name: string;
     image: string;
-    date: string;
-    categories?: string;
+    year: string;
+    content?: string;
     awarder?: string;
 }
 
 export type Certification = {
-    title: string;
-    image: string;
-    approvals: string[];
+    ulid: string;
+    date: string;
+    name: string;
+    content?: string;
+    short_content?: string;
+    awarder?: string;
+    category_name?: string;
+    files?: string[];
+    thumbnail?: string;
 }
 
 

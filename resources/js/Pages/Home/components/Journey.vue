@@ -28,9 +28,9 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-white">
+                <a :href="careerUrl" class="px-6 py-2 rounded-full whitespace-nowrap border border-white" target="_blank">
                     {{ $t('Join with Us') }}
-                </Link>
+                </a>
                 <Link :href="route('about-us.awards')" class="px-6 py-2 rounded-full whitespace-nowrap border border-white">
                     {{ $t('All Awards') }}
                 </Link>
@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { Link } from '@inertiajs/vue3'
+    import { Link, usePage } from '@inertiajs/vue3'
     import { ref, watch } from 'vue'
 
     import { PreferenceHome } from '@/types/utility'
@@ -52,6 +52,7 @@
     }>()
 
     const informations = ref<any>([])
+    const careerUrl = usePage().props.career_url
 
 
     const updateTabs = () => {

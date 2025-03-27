@@ -1,7 +1,12 @@
 <!-- eslint-disable vue/require-v-for-key -->
 <template>
     <section v-if="links.length" class="mt-5 py-10 flex w-full justify-between items-center gap-4 flex-col lg:flex-row">
-        <p class="text-neutral-10 text-sm max-lg:hidden">
+        <p
+            class="text-neutral-10 text-sm max-lg:hidden"
+            :class="{
+                '!text-white': dark
+            }"
+        >
             {{ meta?.range }}
         </p>
         <ul class="flex items-center justify-center gap-2">
@@ -11,8 +16,10 @@
                     class="text-[12px] text-neutral-13 rounded-md flex items-center justify-center min-w-[25px] h-[32px] cursor-pointer border border-neutral-4"
                     v-bind:class="{
                         'bg-blue-base text-white !border-blue-base': link.active,
-                        'hover:bg-blue-base hover:text-white hover:border-blue-base': link.url,
+                        'hover:bg-blue-base hover:text-white hover:!border-blue-base': link.url,
                         '!cursor-not-allowed text-neutral-4': !link.url,
+                        '!text-white': dark,
+                        '!border-[#1D2C36]': dark && !link.active
                     }"
                     :disabled="!link.url"
                     @click="changePage(link.params)"
@@ -52,11 +59,21 @@
             </li>
         </ul>
         <div class="flex items-center gap-4 justify-between">
-            <p class="text-neutral-10 text-sm min-lg:hidden">
+            <p
+                class="text-neutral-10 text-sm min-lg:hidden"
+                :class="{
+                    '!text-white': dark
+                }"
+            >
             {{ meta?.range }}
             </p>
             <div class="flex items-center gap-4">
-                <p class="text-neutral-10 text-sm">
+                <p
+                    class="text-neutral-10 text-sm"
+                    :class="{
+                        '!text-white': dark
+                    }"
+                >
                     {{ $t('Jump Page') }}
                 </p>
                 <input
@@ -67,8 +84,17 @@
                     class="outline-none border border-neutral-5 w-10 h-7 rounded-sm text-center"
                     @input="validateJumpPage"
                     @keyup.enter="goToPage"
+                    :class="{
+                        '!text-white !border-[#1D2C36]': dark
+                    }"
                 >
-                <p class="text-blue-base text-xs font-bold cursor-pointer" @click="goToPage">
+                <p
+                    class="text-blue-base text-xs font-bold cursor-pointer"
+                    @click="goToPage"
+                    :class="{
+                        '!text-blue-light': dark
+                    }"
+                >
                     {{ $t('Go') }}
                 </p>
             </div>
@@ -84,6 +110,7 @@ import { ref, watch } from 'vue';
 const props = defineProps<{
     links: PaginateLink[];
     meta: PaginationMeta;
+    dark?: boolean;
 }>();
 
 const emits = defineEmits(["fetch"]);

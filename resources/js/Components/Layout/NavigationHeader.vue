@@ -26,8 +26,8 @@
             id="nav-header"
         >
             <container class="flex justify-between">
-                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-12" v-show="isHome ? !scrolledPastHomeBlue : ((!scrolledPast && transparant) || (scrolledPast && stickyBlur))">
-                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12" v-show="isHome ? scrolledPastHomeBlue : ((scrolledPast || !transparant) && !stickyBlur)">
+                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-12 cursor-pointer" v-show="isHome ? !scrolledPastHomeBlue : ((!scrolledPast && transparant) || (scrolledPast && stickyBlur))" @click="toHome">
+                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12 cursor-pointer" v-show="isHome ? scrolledPastHomeBlue : ((scrolledPast || !transparant) && !stickyBlur)" @click="toHome">
 
                 <div class="hidden lg:flex items-center gap-6 font-normal text-base">
                     <template v-for="menu in MENU">
@@ -169,7 +169,7 @@
                             >
 
                                 <div class="flex items-center gap-1 relative w-full !justify-between cursor-pointer" x-on:click="open_menu=!open_menu">
-                                    <span>{{ menu.name }}</span>
+                                    <span>{{ $t(menu.name) }}</span>
                                     <i
                                         class="isax icon-arrow-down-1 transition-all"
                                         x-bind:class="{ 'rotate-180': open_menu }"
@@ -207,12 +207,12 @@
     </section>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
-import { MENU } from "@/Constanta/Menu";
-import Container from "../Section/Container.vue";
-import { Link, usePage } from "@inertiajs/vue3";
-import { asset } from "@/Lib/utils";
-import { switchLang } from "@/Composables/useTranslation";
+import { ref, onMounted, onUnmounted } from "vue"
+import { MENU } from "@/Constanta/Menu"
+import Container from "../Section/Container.vue"
+import { Link, router, usePage } from "@inertiajs/vue3"
+import { asset } from "@/Lib/utils"
+import { switchLang } from "@/Composables/useTranslation"
 
 const careerUrl = usePage().props.career_url
 const currentLang = usePage().props.locale
@@ -290,6 +290,9 @@ const changeLanguage = (lang: string) => {
     return switchLang(lang)
 }
 
+const toHome = () => {
+    router.visit(route('home'))
+}
 
 onMounted(() => {
     if (props.stickyScroll) {
