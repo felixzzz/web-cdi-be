@@ -1,9 +1,9 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
         <Head title="Our Business - Ports & Storage" />
-        <hero-image />
-        <overview />
-        <content-port-storage />
+        <our-business-banner :content="content.port_storage" />
+        <our-business-overview :content="content.port_storage" />
+        <our-business-content :content="content.port_storage" v-if="content.port_storage" />
 
     </app-layout>
 </template>
@@ -12,8 +12,16 @@
     import AppLayout from '@/Layouts/AppLayout.vue'
 
     import { Head } from '@inertiajs/vue3'
-    import HeroImage from './components/HeroImage.vue'
-    import Overview from './components/Overview.vue'
-    import ContentPortStorage from './components/ContentPortStorage.vue'
+    import { useBusinessStore } from '@/Composables/useBusinessStore'
+    import { onBeforeMount } from 'vue'
+    import OurBusinessContent from '@/Components/Ui/OurBusiness/OurBusinessContent.vue'
+    import OurBusinessBanner from '@/Components/Ui/OurBusiness/OurBusinessBanner.vue'
+    import OurBusinessOverview from '@/Components/Ui/OurBusiness/OurBusinessOverview.vue'
+
+    const content = useBusinessStore()
+
+    onBeforeMount(() => {
+        content.getPortStorage()
+    })
 
 </script>

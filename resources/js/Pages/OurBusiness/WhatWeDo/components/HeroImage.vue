@@ -10,11 +10,9 @@
             <div class="text-white grid lg:grid-cols-2 gap-2 relative z-[1] items-end">
                 <div>
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium max-w-2xl" id="home_banner_title">
-                        What We Do
+                        {{ content.our_business_banner?.title }}
                     </h1>
-                    <h2 class="max-w-md text-xs lg:text-base mt-6">
-                        PT Chandra Daya Investasi (CDI) is actively engaged in the infrastructure sector, with operations spanning in several business categories of industrial energy, water, port and storage services, and logistics.
-                    </h2>
+                    <div class="content max-w-md text-xs lg:text-base !text-white mt-6" v-html="content.our_business_banner?.content"></div>
                 </div>
                 <div class="flex items-center gap-10">
                     <linear-animation />
@@ -29,5 +27,10 @@
     import Container from '@/Components/Section/Container.vue'
     import LinearAnimation from '@/Components/Ui/Utils/LinearAnimation.vue'
     import { asset } from '@/Lib/utils'
+    import { PreferenceOurBusiness } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceOurBusiness
+    }>()
 
 </script>

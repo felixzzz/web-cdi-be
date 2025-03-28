@@ -70,7 +70,7 @@ class BusinessTabSeeder extends Seeder
                         "title_en" => 'Operation & Maintenance (O&M) Power Generation & Power Distribution',
                         "title_id" => 'Operasi & Pemeliharaan (O&M) Pembangkitan Tenaga Listrik & Distribusi Tenaga Listrik',
                         "align" => 'left',
-                        "description_en" => `
+                        "description_en" => '
                             <ol class="list-disc">
                                 <li>O&M Steam Power Plant, Combined Cycle Power Plant, Diesel Power Plant, and Gas Power Plant</li>
                                 <li>O&M Power Distribution</li>
@@ -78,8 +78,8 @@ class BusinessTabSeeder extends Seeder
                                 <li>System & Documentation</li>
                                 <li>Training & Development</li>
                             </ol>
-                        `,
-                        "description_id" => `
+                        ',
+                        "description_id" => '
                             <ol class="list-disc">
                                 <li>O&M Pembangkit Listrik Tenaga Uap, Pembangkit Listrik Tenaga Gas, Pembangkit Listrik Tenaga Diesel, dan Pembangkit Listrik Tenaga Gas</li>
                                 <li>O&M Distribusi Daya</li>
@@ -87,7 +87,7 @@ class BusinessTabSeeder extends Seeder
                                 <li>Sistem & Dokumentasi</li>
                                 <li>Pelatihan & Pengembangan</li>
                             </ol>
-                        `
+                        '
                     ],
                     [
                         "image" => asset('assets/frontend/images/ourbusiness/business_pillars_electrical_services_electrical_epc.webp'),
@@ -99,22 +99,22 @@ class BusinessTabSeeder extends Seeder
                         "title_en" => 'Electrical EPC',
                         "title_id" => 'EPC Listrik',
                         "align" => 'right',
-                        "description_en" => `
+                        "description_en" => '
                             <ol class="list-disc">
                                 <li>Construction and Installation of Substation Electricity Supply Installation</li>
                                 <li>Construction and Installation of Medium Voltage Electricity Supply Installation</li>
                                 <li>Construction and Installation of High Voltage Electricity Supply Installation</li>
                                 <li>Construction and Installation of Panel & Solar PV System</li>
                             </ol>
-                        `,
-                        "description_id" => `
+                        ',
+                        "description_id" => '
                             <ol class="list-disc">
                                 <li>Pembangunan dan Pemasangan Instalasi Penyediaan Listrik Gardu Induk</li>
                                 <li>Pembangunan dan Pemasangan Instalasi Penyediaan Listrik Tegangan Menengah</li>
                                 <li>Pembangunan dan Pemasangan Instalasi Penyediaan Listrik Tegangan Tinggi</li>
                                 <li>Pembangunan dan Pemasangan Panel & Sistem Tenaga Surya PV</li>
                             </ol>
-                        `
+                        '
                     ],
                     [
                         "image" => asset('assets/frontend/images/ourbusiness/business_pillars_electrical_services_workshop_services.webp'),
@@ -126,22 +126,22 @@ class BusinessTabSeeder extends Seeder
                         "title_en" => 'Workshop services for Repair & Overhaul (Motor & Transformer)',
                         "title_id" => 'Layanan Bengkel untuk Perbaikan & Overhaul (Motor & Trafo)',
                         "align" => 'left',
-                        "description_en" => `
+                        "description_en" => '
                             <ol class="list-disc">
                                 <li>Repair & Overhaul of LV & MV Motors</li>
                                 <li>Power & Distribution Transformer Repair</li>
                                 <li>Transformer Mobile Unit Services</li>
                                 <li>Rental of Heavy Equipment & Test Equipment: Overhead Crane 100/10 Ton, Overhead Crane 30/5 Ton Electrical tools & Equipment Test</li>
                             </ol>
-                        `,
-                        "description_id" => `
+                        ',
+                        "description_id" => '
                             <ol class="list-disc">
                                 <li>Perbaikan & Overhaul Motor LV & MV</li>
                                 <li>Perbaikan Trafo Daya & Distribusi</li>
                                 <li>Layanan Unit Bergerak Trafo</li>
                                 <li>Penyewaan Alat Berat & Peralatan Uji: Overhead Crane 100/10 Ton, Overhead Crane 30/5 Ton Alat Listrik & Pengujian Peralatan</li>
                             </ol>
-                        `
+                        '
                     ]
                 ]
             ],
@@ -165,7 +165,7 @@ class BusinessTabSeeder extends Seeder
                         "title_en" => 'O&M WWTP Biotreatment Blast Furnace Complex PT KS',
                         "title_id" => 'Kompleks Tanur Tinggi Biotreatment O&M WWTP PT KS',
                         "align" => 'right',
-                        "description_en" => `
+                        "description_en" => '
                             <ol class="list-disc">
                                 <li>
                                     <b>Solar On Grid System:</b>
@@ -185,8 +185,8 @@ class BusinessTabSeeder extends Seeder
                                 </li>
                             </ol>
                             <p>With these diverse options, KCE offers tailored solar panel installation solutions designed to meet the specific needs of each customer.</p>
-                        `,
-                        "description_id" => `
+                        ',
+                        "description_id" => '
                             <ol class="list-disc">
                                 <li>
                                     <b>Sistem Solar On Grid:</b>
@@ -207,7 +207,7 @@ class BusinessTabSeeder extends Seeder
                             </ol>
                             <p>Dengan berbagai pilihan ini, KCE menawarkan solusi pemasangan panel surya yang disesuaikan untuk memenuhi kebutuhan spesifik setiap pelanggan.</p>
 
-                        `
+                        '
                     ]
                 ]
             ],

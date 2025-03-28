@@ -2,12 +2,15 @@
 
 namespace App\Repositories\Data;
 
+use App\Helpers\Optimize;
 use App\Models\OurBusiness\OurBusiness;
-use App\Models\OurBusiness\OurBusinessContent;
 use App\Models\OurBusiness\OurBusinessTab;
+use App\Models\OurBusiness\OurBusinessContent;
 
 class OurBusinessRepository
 {
+    protected $detailKey = "our-business-detail-";
+    protected $listKey = "our-business-list";
     /**
      * Create a new class instance.
      */
@@ -54,5 +57,80 @@ class OurBusinessRepository
         ->where("our_business_tabs.ulid", $tabId)
         ->select("our_business_contents.*")
         ->orderBy("our_business_contents.sort", "asc")->paginate(15);
+    }
+
+    public function getOverviewList()
+    {
+        return Optimize::cache($this->listKey, function () {
+            return OurBusiness::with(["tabs"])
+            ->get()->map(function ($row) {
+                $row->tabs = $row->tabs->map(function ($tab) {
+                    $tab->title = $tab->title;
+                    return $tab;
+                });
+
+                $route = '';
+                if($row->type == 'energy') $route = route('our-business.energy');
+                if($row->type == 'water') $route = route('our-business.water');
+                if($row->type == 'port_storage') $route = route('our-business.ports-and-storage');
+                if($row->type == 'logistic') $route = route('our-business.logistics');
+
+                $row->route = $route;
+                $row->image = previewFile($row->image);
+                $row->title = $row->title;
+                $row->description = $row->description;
+                return $row;
+            });
+        }, config('cache.content_lifetime'));
+    }
+
+    public function detailByType($type)
+    {
+        $data = OurBusiness::with(["tabs", "tabs.contents"])
+        ->where("type", $type)
+        ->firstOrFail();
+
+        return Optimize::cache($this->detailKey."$type", function () use (&$data) {
+            $data->tabs = $data->tabs->map(function ($tab) {
+                $tab->title = $tab->title;
+                $tab->sub_title = $tab->sub_title;
+                $tab->description = $tab->description;
+                $tab->image = $tab->image ? previewFile($tab->image) : '';
+                $tab->contents = $tab->contents->map(function ($content) {
+                    $content->heading = $content->heading;
+                    $content->tagline = $content->tagline;
+                    $content->title = $content->title;
+                    $content->description = $content->description;
+                    $content->image = $content->image ? previewFile($content->image) : '';
+                    return $content;
+                });
+                return $tab;
+            });
+
+            $data->image = previewFile($data->image);
+            $data->title = $data->title;
+            $data->description = $data->description;
+            $data->heading_tab_title = $data->heading_tab_title;
+
+            $data->banner_image = previewFile($data->banner_image);
+            $data->banner_title = $data->banner_title;
+            $data->banner_description = $data->banner_description;
+
+            $data->overview_image = $data->overview_image ? previewFile($data->overview_image) : '';
+            $data->overview_title = $data->overview_title;
+            $data->overview_description = $data->overview_description;
+
+            return $data;
+
+        }, config('cache.content_lifetime'));
+    }
+
+    public function resetCache()
+    {
+        Optimize::delete($this->listKey);
+        Optimize::delete($this->detailKey."energy");
+        Optimize::delete($this->detailKey."water");
+        Optimize::delete($this->detailKey."port_storage");
+        Optimize::delete($this->detailKey."logistic");
     }
 }

@@ -6,6 +6,7 @@ use App\Traits\HasDatatable;
 use App\Traits\HasLocalizedAttributes;
 use App\Traits\HasUlid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class OurBusiness extends Model
 {
@@ -18,6 +19,13 @@ class OurBusiness extends Model
     protected $localizedAttributes = [
         'title', 'description',
         'banner_title', 'banner_description',
-        'overview_title', 'overview_description'
+        'overview_title', 'overview_description',
+        'heading_tab_title'
     ];
+
+    public function tabs(): HasMany
+    {
+        return $this->hasMany(OurBusinessTab::class, 'our_business_id', 'id')
+        ->orderBy("sort", "asc");
+    }
 }

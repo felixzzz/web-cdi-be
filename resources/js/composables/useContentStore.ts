@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import useCrypto from './useCrypto'
 import useRequest from './useRequest'
-import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceItem } from '@/types/utility'
+import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceItem, PreferenceOurBusiness } from '@/types/utility'
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -13,6 +13,7 @@ const CACHE_ABOUT_US_MANAGEMENT_CONTENT = "abt-mg-cnt"
 const CACHE_ABOUT_US_OVERVIEW_CONTENT = "abt-ovr-cnt"
 const CACHE_MAIN_OFFICE_CONTENT = "off-cnt"
 const CACHE_MEDIA_CONTENT = "media-cnt"
+const CACHE_OURBUSINESS_CONTENT = "obsn-cnt"
 
 
 
@@ -24,7 +25,8 @@ export const useContentStore = defineStore('content', {
         aboutManagement: __getAboutUsManagement(),
         aboutOverview: __getAboutUsOverview(),
         office: __getMainOffice(),
-        media: __getMedia()
+        media: __getMedia(),
+        ourBusiness: __getOurBusiness()
     }),
     actions: {
         getHome() {
@@ -69,6 +71,12 @@ export const useContentStore = defineStore('content', {
                 localStorage.setItem(CACHE_MEDIA_CONTENT, encrypt(result.data))
             })
         },
+        getOurBusiness() {
+            return useRequest().get(route('api.utility.our-business')).then((result) => {
+                this.ourBusiness = result.data
+                localStorage.setItem(CACHE_OURBUSINESS_CONTENT, encrypt(result.data))
+            })
+        }
     }
 })
 
@@ -159,6 +167,14 @@ const __getMainOffice = (): Office | null => {
 const __getMedia = (): PreferenceItem | null => {
     const content = __getStorage(CACHE_MEDIA_CONTENT);
     return content ? content : null
+}
+
+const __getOurBusiness = (): PreferenceOurBusiness => {
+    const content = __getStorage(CACHE_OURBUSINESS_CONTENT);
+    return content ? content : {
+        our_business_banner: null,
+        our_business_overview: null,
+    }
 }
 
 const __getStorage = (KEY: string) => {

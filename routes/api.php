@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiArticleController;
 use App\Http\Controllers\Api\ApiAwardController;
 use App\Http\Controllers\Api\ApiCertificateController;
 use App\Http\Controllers\Api\ApiMembershipController;
+use App\Http\Controllers\Api\ApiOurBusinessController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiUtilityController;
 use Illuminate\Support\Facades\Route;
@@ -66,5 +67,13 @@ Route::middleware(WebApiMiddleware::class)
             });
 
         Route::get("memberships/list", [ApiMembershipController::class, "list"])->name("memberships.list");
+
+        Route::controller(ApiOurBusinessController::class)
+            ->as('business.')
+            ->prefix('business')
+            ->group(function () {
+                Route::get("overview-list", "overviewList")->name("overview-list");
+                Route::get("detail/{type}", "detail")->name("detail");
+            });
 
     });

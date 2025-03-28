@@ -5,6 +5,7 @@ namespace App\Actions\Data;
 use App\Helpers\StorageFile;
 use Illuminate\Http\Request;
 use App\Models\OurBusiness\OurBusiness;
+use App\Repositories\Data\OurBusinessRepository;
 
 class OurBusinessAction
 {
@@ -44,6 +45,7 @@ class OurBusinessAction
         }
 
         OurBusiness::whereUlid($ulid)->update($data);
+        (new OurBusinessRepository())->resetCache();
 
     }
 }

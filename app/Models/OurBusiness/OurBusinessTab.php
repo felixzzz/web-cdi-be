@@ -2,11 +2,12 @@
 
 namespace App\Models\OurBusiness;
 
+use App\Traits\HasUlid;
+use App\Traits\HasSortable;
 use App\Traits\HasDatatable;
 use App\Traits\HasLocalizedAttributes;
-use App\Traits\HasSortable;
-use App\Traits\HasUlid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class OurBusinessTab extends Model
 {
@@ -22,4 +23,10 @@ class OurBusinessTab extends Model
     ];
 
     const SORTABLE_GROUP = 'our_business_id';
+
+    public function contents(): HasMany
+    {
+        return $this->hasMany(OurBusinessContent::class, 'our_business_tab_id', 'id')
+        ->orderBy("sort", "asc");
+    }
 }

@@ -183,6 +183,11 @@ export type PreferenceAboutOverview = {
     about_us_company_profile: PreferenceItem | null;
 }
 
+export type PreferenceOurBusiness = {
+    our_business_banner: PreferenceItem | null;
+    our_business_overview: PreferenceItem | null;
+}
+
 export type QuickLink = {
     url: string;
     name: string;
@@ -263,4 +268,49 @@ export type PressRelease = {
         format: string;
     };
     date: string;
+}
+
+export type OurBusinessOverviewList = {
+    title: string;
+    image: string;
+    description?: string;
+    route: string;
+    tabs?: {
+        ulid: string;
+        title: string;
+    }[];
+}
+
+export type OurBusinessContent = {
+    name: string;
+    heading?: string;
+    heading_position?: string;
+    align?: string;
+    tagline?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+export type OurBusinessTab = {
+    ulid: string;
+    title: string;
+    sub_title?: string;
+    description?: string;
+    image?: string;
+    contents?: OurBusinessContent[]
+}
+
+export type OurBusinessDetail = {
+    title: string;
+    image: string;
+    description?: string;
+    banner_title?: string;
+    banner_image?: string;
+    banner_description?: string;
+    overview_title?: string;
+    overview_image?: string;
+    overview_description?: string;
+    heading_tab_title?: string;
+    tabs?: OurBusinessTab[];
 }

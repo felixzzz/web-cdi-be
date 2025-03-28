@@ -30,6 +30,7 @@
             <container>
                 <p class="text-2xl lg:text-[28px] font-medium text-blue-base mb-6">{{ $t('Corporate Structure') }}</p>
                 <img :src="content.about_us_corporate_structure?.file_url" alt="">
+                <file-zoom :image="content.about_us_corporate_structure?.file_url" :title="$t('Corporate Structure')" v-if="content.about_us_corporate_structure?.file_url" />
                 <p class="text-2xl lg:text-[28px] font-medium text-neutral-13 mb-6 mt-16">{{ content.about_us_corporate_structure_table?.title }}</p>
                 <div class="table-main" v-if="content.about_us_corporate_structure_table?.content_table_trans">
                     <table>
@@ -61,6 +62,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import FileZoom from '@/Components/Ui/Utils/FileZoom.vue'
 
     import { PreferenceAboutManagement } from '@/types/utility'
 

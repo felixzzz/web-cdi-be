@@ -19,7 +19,7 @@
                 <p class="font-medium text-[22px] mb-3" v-if="content.governance_audit_committe?.title">{{ content.governance_audit_committe?.title }}</p>
                 <div class="content" v-html="content.governance_audit_committe?.content"></div>
 
-                <div class="mt-8 flex flex-col gap-8">
+                <div class="mt-8 flex flex-col gap-8 mb-6">
                     <div class="button-gradient-custom" v-for="(file, index) in auditFiles" :key="index">
                         <div class="flex flex-col gap-2">
                             <p class="text-[22px] font-medium">{{ file.name }}</p>
@@ -59,6 +59,7 @@
 
             <div v-show="tabActive == 'sustainability-committee'" class="py-8">
                 <img :src="content.governance_sustainability_committe?.file_url" alt="" class="w-full rounded-3xl">
+                <file-zoom :image="content.governance_sustainability_committe?.file_url" :title="$t('Sustainability Committee')" v-if="content.governance_sustainability_committe?.file_url" />
 
                 <div class="mt-8 flex flex-col gap-8">
                     <div class="button-gradient-custom" v-for="(file, index) in sustainabilityFiles" :key="index">
@@ -97,6 +98,7 @@
 
     import { AdditionalFile, PreferenceGovernance, Team } from '@/types/utility'
     import useRequest from '@/Composables/useRequest'
+    import FileZoom from '@/Components/Ui/Utils/FileZoom.vue'
 
     defineProps<{
         content: PreferenceGovernance
@@ -105,8 +107,8 @@
     const tabActive = ref('audit-committee')
 
     const tabs = ref([
-        { id: 'audit-committee', name: 'Audit Committee' },
-        { id: 'sustainability-committee', name: 'Sustainability Committee' },
+        { id: 'audit-committee', name: $t('Audit Committee') },
+        { id: 'sustainability-committee', name: $t('Sustainability Committee') },
     ])
 
     const audits = ref<Team[]>([])
