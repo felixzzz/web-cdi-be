@@ -146,6 +146,7 @@ class TeamSeeder extends Seeder
                 if (!empty($value[$field])) {
                     // Ambil nama file asli
                     $originalPath = parse_url($value[$field], PHP_URL_PATH);
+                    $originalPath = str_replace("cdi-compro/public/", "", $originalPath);
                     $filename = pathinfo($originalPath, PATHINFO_BASENAME);
 
                     // Buat nama file baru yang dienkripsi

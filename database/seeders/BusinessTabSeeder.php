@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Helpers\Helper;
 use App\Models\OurBusiness\OurBusinessContent;
 use App\Models\OurBusiness\OurBusinessTab;
+use App\Repositories\Data\OurBusinessRepository;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -759,6 +760,8 @@ class BusinessTabSeeder extends Seeder
                 ]);
             }
         }
+
+        (new OurBusinessRepository())->resetCache();
 
     }
 }
