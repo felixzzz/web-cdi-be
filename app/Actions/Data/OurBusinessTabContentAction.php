@@ -6,6 +6,7 @@ use App\Helpers\StorageFile;
 use Illuminate\Http\Request;
 use App\Models\OurBusiness\OurBusinessContent;
 use App\Models\OurBusiness\OurBusinessTab;
+use App\Repositories\Data\OurBusinessRepository;
 
 class OurBusinessTabContentAction
 {
@@ -41,7 +42,8 @@ class OurBusinessTabContentAction
             $data['image'] = StorageFile::upload($request->file('image'), 'our-business/contents');
         }
 
-        return OurBusinessContent::create($data);
+        OurBusinessContent::create($data);
+        (new OurBusinessRepository())->resetCache();
     }
 
     public function update(Request $request, $id, $tabId, $ulid){
@@ -66,10 +68,12 @@ class OurBusinessTabContentAction
         }
 
         OurBusinessContent::whereUlid($ulid)->update($data);
+        (new OurBusinessRepository())->resetCache();
     }
 
     public function delete($ulid){
-        return OurBusinessContent::where('ulid', $ulid)->delete();
+        OurBusinessContent::where('ulid', $ulid)->delete();
+        (new OurBusinessRepository())->resetCache();
     }
 
     public function updateSort(Request $request)
@@ -79,5 +83,7 @@ class OurBusinessTabContentAction
         foreach ($data as $item) {
             OurBusinessContent::where('id', $item['id'])->update(['sort' => $item['sort']]);
         }
+
+        (new OurBusinessRepository())->resetCache();
     }
 }
