@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Head title="Contact Us" />
+        <Head :title="$t('head_title.contact_us')" />
         <form-section />
         <offices-section />
 

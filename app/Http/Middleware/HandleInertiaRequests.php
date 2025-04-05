@@ -38,12 +38,20 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
+        $flashProperties = [];
+
+        if ($errorFlash = $request->session()->get('error'))
+            $flashProperties['error'] = $errorFlash;
+        if ($successFlash = $request->session()->get('success'))
+            $flashProperties['success'] = $successFlash;
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'career_url' => config("services.career_url"),
-            'quote' => ['message' => trim($message), 'author' => trim($author)],
+            'flash' => [
+                ...$flashProperties
+            ],
             'auth' => [
                 'user' => $request->user(),
             ],

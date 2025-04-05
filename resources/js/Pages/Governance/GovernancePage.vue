@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-absolute="true" :nav-transparant="true" :nav-sticky-scroll="false" :show-quick-link="true" quick-link-type="governance">
-        <Head title="Governance" />
+        <Head :title="$t('head_title.governance')" />
         <hero-image :content="content.governance" />
         <quick-menu :content="content.governance" />
         <corporate-secretary :content="content.governance" />

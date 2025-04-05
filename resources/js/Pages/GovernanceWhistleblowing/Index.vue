@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Head title="Whistleblowing" />
+        <Head :title="$t('head_title.governance_whistleblowing')" />
         <form-section :content="content.governance" />
 
 

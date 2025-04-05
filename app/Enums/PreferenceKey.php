@@ -53,6 +53,7 @@ enum PreferenceKey: string
     case investor_share_banner = 'investor_share_banner';
     case investor_share_shareholders_table = 'investor_share_shareholders_table';
     case investor_share_dividend_table = 'investor_share_dividend_table';
+    case investor_share_bonds_table = 'investor_share_bonds_table';
     case investor_publication_banner = 'investor_publication_banner';
 
     case governance_banner = 'governance_banner';
@@ -140,6 +141,7 @@ enum PreferenceKey: string
             'investor_share_banner' => PreferenceType::TextContentImage,
             'investor_share_shareholders_table' => PreferenceType::Table,
             'investor_share_dividend_table' => PreferenceType::Table,
+            'investor_share_bonds_table' => PreferenceType::Table,
             'investor_publication_banner' => PreferenceType::TextContentImage,
 
             'governance_banner' => PreferenceType::TextContentImage,
@@ -260,6 +262,7 @@ enum PreferenceKey: string
             self::investor_share_banner->value,
             self::investor_share_shareholders_table->value,
             self::investor_share_dividend_table->value,
+            self::investor_share_bonds_table->value,
             self::investor_publication_banner->value
         ];
     }

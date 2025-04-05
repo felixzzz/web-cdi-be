@@ -1,6 +1,11 @@
 export interface InertiaSharedProps {
     name: string;
     career_url: string;
+    flash?: {
+        error ?: string;
+        success ?: string;
+        passId ?: string
+    };
     quote: {
         message: string;
         author: string;

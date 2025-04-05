@@ -3,9 +3,15 @@
         <container>
             <p class="text-neutral-13 text-2xl lg:text-[38px] lg:leading-[44px] font-medium pb-8 w-full border-b border-b-neutral-6 mb-8">Other Company Addresses:</p>
 
+
             <div class="flex flex-col gap-10">
+                <template v-if="loading">
+                    <div class="flex gap-2" v-for="i in 2" :key="i">
+                        <office-loading />
+                    </div>
+                </template>
                 <div
-                    v-for="(office, index) in data" :key="index"
+                    v-for="(office, index) in data" :key="index" v-else
                     class="flex gap-2"
                 >
                     <p class="text-neutral-7/30 font-medium text-[52px]">{{ index + 1 }}</p>
@@ -58,17 +64,20 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import OfficeLoading from '@/Components/Ui/Utils/OfficeLoading.vue'
     import useRequest from '@/Composables/useRequest'
     import { asset } from '@/Lib/utils'
     import { Office } from '@/types/utility'
     import { onMounted, ref } from 'vue'
 
     const data = ref<Office[]>([])
+    const loading = ref(true)
 
     onMounted(() => {
         useRequest().get(route("api.utility.other-offices"))
         .then((result) => {
             data.value = result.data
+            loading.value = false
         })
     })
 

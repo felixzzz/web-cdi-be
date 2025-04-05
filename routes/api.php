@@ -3,10 +3,12 @@
 use App\Http\Controllers\Api\ApiArticleController;
 use App\Http\Controllers\Api\ApiAwardController;
 use App\Http\Controllers\Api\ApiCertificateController;
+use App\Http\Controllers\Api\ApiInvestorController;
 use App\Http\Controllers\Api\ApiMembershipController;
 use App\Http\Controllers\Api\ApiOurBusinessController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiUtilityController;
+use App\Http\Controllers\FrontEnd\ContactUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\WebApiMiddleware;
 
@@ -31,6 +33,9 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/main-office', 'mainOffice')->name('main-office');
                 Route::get('/other-offices', 'otherOffices')->name('other-offices');
                 Route::get('/categories', 'categories')->name('categories');
+                Route::get('/countries', 'countries')->name('countries');
+                Route::get('/whistleblowing-topics', 'whistleblowingTopics')->name('whistleblowing-topics');
+                Route::get('/contact-us-topics', 'contactUsTopics')->name('contact-us-topics');
 
 
                 Route::get('/additional-page/{type}', 'additionalPage')->name('additional-page');
@@ -74,6 +79,15 @@ Route::middleware(WebApiMiddleware::class)
             ->group(function () {
                 Route::get("overview-list", "overviewList")->name("overview-list");
                 Route::get("detail/{type}", "detail")->name("detail");
+            });
+
+        Route::controller(ApiInvestorController::class)
+            ->as('investor.')
+            ->prefix('investor')
+            ->group(function () {
+                Route::get("prospectus/list", "prospectusList")->name("prospectus.list");
+                Route::get("gms/list", "gmsList")->name("gms.list");
+                Route::get("disclosure/list", "disclosureList")->name("disclosure.list");
             });
 
     });

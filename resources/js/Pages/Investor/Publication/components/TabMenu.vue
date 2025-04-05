@@ -39,12 +39,17 @@
     import ContentProspectus from './ContentProspectus.vue'
     import ContentGms from './ContentGms.vue'
     import ContentDisclosure from './ContentDisclosure.vue'
+    import { PreferenceInvestor } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceInvestor | null
+    }>()
 
     const tabActive = ref(getQueryParam('tab') || 'prospectus')
     const tabs = ref([
-        { id: 'prospectus', name: 'Prospectus' },
-        { id: 'gms', name: 'GMS' },
-        { id: 'disclosure', name: 'Disclosure' }
+        { id: 'prospectus', name: $t('Prospectus') },
+        { id: 'gms', name: $t('GMS') },
+        { id: 'disclosure', name: $t('Disclosure') }
     ])
 
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Utility;
 
+use App\Enums\TopicType;
 use App\Traits\HasDatatable;
 use App\Traits\HasUlid;
 use Illuminate\Database\Eloquent\Casts\Attribute;

@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
-        <Head title="Our Business - Water" />
+        <Head :title="$t('head_title.business_water')" />
         <our-business-banner :content="content.water" />
         <our-business-overview :content="content.water" />
         <our-business-content :content="content.water" v-if="content.water" />

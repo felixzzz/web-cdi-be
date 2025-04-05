@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import useCrypto from './useCrypto'
 import useRequest from './useRequest'
-import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceItem, PreferenceOurBusiness } from '@/types/utility'
+import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceInvestor, PreferenceItem, PreferenceOurBusiness } from '@/types/utility'
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -14,7 +14,7 @@ const CACHE_ABOUT_US_OVERVIEW_CONTENT = "abt-ovr-cnt"
 const CACHE_MAIN_OFFICE_CONTENT = "off-cnt"
 const CACHE_MEDIA_CONTENT = "media-cnt"
 const CACHE_OURBUSINESS_CONTENT = "obsn-cnt"
-
+const CACHE_INVESTOR_CONTENT = "inv-cnt"
 
 
 export const useContentStore = defineStore('content', {
@@ -26,7 +26,8 @@ export const useContentStore = defineStore('content', {
         aboutOverview: __getAboutUsOverview(),
         office: __getMainOffice(),
         media: __getMedia(),
-        ourBusiness: __getOurBusiness()
+        ourBusiness: __getOurBusiness(),
+        investor: __getInvestor()
     }),
     actions: {
         getHome() {
@@ -75,6 +76,12 @@ export const useContentStore = defineStore('content', {
             return useRequest().get(route('api.utility.our-business')).then((result) => {
                 this.ourBusiness = result.data
                 localStorage.setItem(CACHE_OURBUSINESS_CONTENT, encrypt(result.data))
+            })
+        },
+        getInvestor() {
+            return useRequest().get(route('api.utility.investor')).then((result) => {
+                this.investor = result.data
+                localStorage.setItem(CACHE_INVESTOR_CONTENT, encrypt(result.data))
             })
         }
     }
@@ -175,6 +182,11 @@ const __getOurBusiness = (): PreferenceOurBusiness => {
         our_business_banner: null,
         our_business_overview: null,
     }
+}
+
+const __getInvestor = (): PreferenceInvestor | null => {
+    const content = __getStorage(CACHE_INVESTOR_CONTENT);
+    return content ? content : null
 }
 
 const __getStorage = (KEY: string) => {

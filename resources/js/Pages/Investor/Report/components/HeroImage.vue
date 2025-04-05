@@ -2,7 +2,7 @@
     <div
         class="relative overflow-hidden aspect-[4/3] lg:aspect-video w-full py-[5%] lg:py-[8%] flex items-end bg-cover"
         :style="{
-            'backgroundImage': `url(${asset('assets/frontend/images/investor/investor_report_hero_image.webp')})`
+            'backgroundImage': `url(${content?.investor_report_banner?.file_url})`
         }"
     >
         <div class="overlay-banner h-full w-full absolute left-0 right-0 top-0 bottom-0"></div>
@@ -10,11 +10,9 @@
             <div class="text-white grid lg:grid-cols-2 gap-2 relative z-[1] items-end">
                 <div>
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium max-w-2xl" id="home_banner_title">
-                        Tap into Sustainable Growth
+                        {{ content?.investor_report_banner?.title }}
                     </h1>
-                    <h2 class="max-w-md text-xs lg:text-base text-neutral-4">
-                        Chandra Daya Investasi is a prime investment choice for institutional and retail investors looking to tap into Indonesia’s long-term growth potential
-                    </h2>
+                    <div class="content max-w-md text-xs lg:text-base !text-neutral-4" v-html="content?.investor_report_banner?.content"></div>
                 </div>
                 <div class="flex items-center gap-10">
                     <linear-animation />
@@ -29,5 +27,10 @@
     import Container from '@/Components/Section/Container.vue'
     import LinearAnimation from '@/Components/Ui/Utils/LinearAnimation.vue'
     import { asset } from '@/Lib/utils'
+    import { PreferenceInvestor } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceInvestor | null
+    }>()
 
 </script>

@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
-        <Head title="Sustainability - Governance" />
+        <Head :title="$t('head_title.sustainability_governance')" />
         <hero-image />
         <sustainability-content type="governance" />
 

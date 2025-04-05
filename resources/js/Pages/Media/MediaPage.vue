@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-transparant="true" :nav-fixed="true">
-        <Head title="Media" />
+        <Head :title="$t('head_title.media')" />
         <hero-image />
         <tab-menu :type="type" />
 

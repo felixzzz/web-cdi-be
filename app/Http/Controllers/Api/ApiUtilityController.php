@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Enums\PreferenceKey;
 use App\Enums\QuickLinkCategory;
+use App\Enums\TopicType;
 use App\Http\Controllers\Controller;
 use App\Repositories\AboutUs\MilestoneRepository;
 use App\Repositories\AboutUs\OurHistoryRepository;
@@ -11,9 +12,11 @@ use App\Repositories\Article\ArticleCategoryRepository;
 use App\Repositories\Data\OfficeRepository;
 use App\Repositories\Data\TeamRepository;
 use App\Repositories\Investor\InvestorReportRepository;
+use App\Repositories\Utility\CountryRepository;
 use App\Repositories\Utility\FileRepository;
 use App\Repositories\Utility\PreferenceRepository;
 use App\Repositories\Utility\QuickLinkRepository;
+use App\Repositories\Utility\TopicRepository;
 use Illuminate\Http\Request;
 
 class ApiUtilityController extends Controller
@@ -112,5 +115,20 @@ class ApiUtilityController extends Controller
     public function categories(ArticleCategoryRepository $articleCategoryRepository)
     {
         return $articleCategoryRepository->list("created_at");
+    }
+
+    public function countries(CountryRepository $countryRepository)
+    {
+        return $countryRepository->list();
+    }
+
+    public function contactUsTopics(TopicRepository $topicRepository)
+    {
+        return $topicRepository->list(TopicType::ContactUs);
+    }
+
+    public function whistleblowingTopics(TopicRepository $topicRepository)
+    {
+        return $topicRepository->list(TopicType::Whistleblowing);
     }
 }

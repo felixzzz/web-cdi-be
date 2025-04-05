@@ -21,7 +21,7 @@ class UtilityController extends Controller
     public function privacy()
     {
         return Inertia::render("Utility/UtilityPage", [
-            "title" => "Privacy Policy",
+            "title" => __("head_title.privacy_policy"),
             "type" => "privacy-policy"
         ]);
     }
@@ -29,7 +29,7 @@ class UtilityController extends Controller
     public function cookie()
     {
         return Inertia::render("Utility/UtilityPage", [
-            "title" => "Cookies Notice",
+            "title" => __("head_title.cookies_consent"),
             "type" => "cookies-consent"
         ]);
     }
@@ -37,7 +37,7 @@ class UtilityController extends Controller
     public function term()
     {
         return Inertia::render("Utility/UtilityPage", [
-            "title" => "Terms of Use",
+            "title" => __("head_title.terms_and_conditions"),
             "type" => "terms-and-conditions"
         ]);
     }
@@ -45,7 +45,7 @@ class UtilityController extends Controller
     public function disclaimer()
     {
         return Inertia::render("Utility/UtilityPage", [
-            "title" => "Website Disclaimer",
+            "title" => __("head_title.disclaimer"),
             "type" => "disclaimer"
         ]);
     }

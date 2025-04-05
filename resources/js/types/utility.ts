@@ -1,3 +1,8 @@
+export type NameId = {
+    id: string;
+    name: string;
+}
+
 export type PaginateLink = {
     url?: string
     label: string
@@ -186,6 +191,18 @@ export type PreferenceAboutOverview = {
 export type PreferenceOurBusiness = {
     our_business_banner: PreferenceItem | null;
     our_business_overview: PreferenceItem | null;
+}
+
+export type PreferenceInvestor = {
+    investor_report_banner: PreferenceItem | null;
+    investor_report_overview: PreferenceItem | null;
+    investor_report_table: PreferenceItem | null;
+    investor_financial_banner: PreferenceItem | null;
+    investor_share_banner: PreferenceItem | null;
+    investor_share_shareholders_table: PreferenceItem | null;
+    investor_share_dividend_table: PreferenceItem | null;
+    investor_share_bonds_table: PreferenceItem | null;
+    investor_publication_banner: PreferenceItem | null;
 }
 
 export type QuickLink = {

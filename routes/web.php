@@ -28,12 +28,14 @@ use App\Http\Controllers\FrontEnd\UtilityController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
+Route::post('contact-us/store', [ContactUsController::class, 'store'])->name("contact-us.store");
 
 Route::prefix('governance')
 ->as("governance.")
 ->group(function () {
     Route::get('/', [GovernanceController::class, 'index'])->name('index');
     Route::get('/whistleblowing', [GovernanceController::class, 'whistleblowing'])->name('whistleblowing');
+    Route::post('/whistleblowing-store', [GovernanceController::class, 'whistleblowingStore'])->name('whistleblowing.store');
     Route::get('/{type}', [GovernanceController::class, 'type'])->name('type')->whereIn("type", ['policy', 'risk-management', 'code-of-conduct', 'she-regulation']);
 });
 

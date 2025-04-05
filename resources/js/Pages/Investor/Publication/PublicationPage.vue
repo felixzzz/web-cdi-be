@@ -1,8 +1,8 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true">
-        <Head title="Investor Financial Information" />
-        <hero-image />
-        <tab-menu />
+        <Head :title="$t('head_title.investor_publication')" />
+        <hero-image :content="content.investor" />
+        <tab-menu :content="content.investor" />
 
     </app-layout>
 </template>
@@ -13,5 +13,13 @@
 
     import { Head } from '@inertiajs/vue3'
     import TabMenu from './components/TabMenu.vue'
+    import { useContentStore } from '@/Composables/useContentStore'
+    import { onBeforeMount } from 'vue'
+
+    const content = useContentStore()
+
+    onBeforeMount(() => {
+        content.getInvestor()
+    })
 
 </script>

@@ -39,6 +39,10 @@
                 Dividend Table
             </button>
             <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
+                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'bonds-table' }" x-on:click="tab_page = 'bonds-table'">
+                Bonds Table
+            </button>
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
                 x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'publication-banner' }" x-on:click="tab_page = 'publication-banner'">
                 Publication Banner
             </button>

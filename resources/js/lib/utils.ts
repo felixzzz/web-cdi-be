@@ -83,3 +83,37 @@ export const chunkArray = (array: any, chunkSize: any) => {
         array.slice(i * chunkSize, i * chunkSize + chunkSize)
     );
 }
+
+export const showAlert = (message: string, type = 'success') => {
+    if (type == 'success') {
+        const alert = document.querySelector("#alert-success-message span") as HTMLDivElement
+        if (alert) {
+            alert.textContent = message
+        }
+        const button = document.getElementById("show-success-message") as HTMLAnchorElement
+        if (button) {
+            button.click()
+        }
+        setTimeout(() => {
+            const button = document.getElementById("hide-success-message") as HTMLAnchorElement
+            if (button) {
+                button.click()
+            }
+        }, 3000);
+    } else {
+        const alert = document.querySelector("#alert-error-message span") as HTMLDivElement
+        if (alert) {
+            alert.textContent = message
+        }
+        const button = document.getElementById("show-error-message") as HTMLAnchorElement
+        if (button) {
+            button.click()
+        }
+        setTimeout(() => {
+            const button = document.getElementById("hide-error-message") as HTMLAnchorElement
+            if (button) {
+                button.click()
+            }
+        }, 3000);
+    }
+}

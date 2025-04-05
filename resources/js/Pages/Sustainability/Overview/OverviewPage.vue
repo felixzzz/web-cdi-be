@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
-        <Head title="Sustainability - Overview" />
+        <Head :title="$t('head_title.sustainability_overview')" />
         <hero-image />
         <section-overview />
         <responsible />

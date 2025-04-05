@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
-        <Head title="Our Business - What We Do" />
+        <Head :title="$t('head_title.business_overview')" />
         <hero-image :content="content.ourBusiness" />
         <business :content="content.ourBusiness" />
 

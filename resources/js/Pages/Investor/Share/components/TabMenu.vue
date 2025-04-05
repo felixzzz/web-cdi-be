@@ -21,8 +21,8 @@
                 </div>
 
                 <div class="lg:col-span-4">
-                    <content-stocks v-if="tabActive == 'stocks'" />
-                    <content-bonds v-if="tabActive == 'bonds'" />
+                    <content-stocks v-if="tabActive == 'stocks'" :content="content" />
+                    <content-bonds v-if="tabActive == 'bonds'" :content="content" />
                 </div>
             </div>
         </container>
@@ -37,11 +37,16 @@
     import { ref } from 'vue'
     import ContentStocks from './ContentStocks.vue'
     import ContentBonds from './ContentBonds.vue'
+    import { PreferenceInvestor } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceInvestor | null
+    }>()
 
     const tabActive = ref(getQueryParam('tab') || 'stocks')
     const tabs = ref([
-        { id: 'stocks', name: 'Stocks' },
-        { id: 'bonds', name: 'Bonds' }
+        { id: 'stocks', name: $t('Stocks') },
+        { id: 'bonds', name: $t('Bonds') }
     ])
 
 </script>

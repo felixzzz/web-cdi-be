@@ -75,8 +75,8 @@ class Preference extends Model
                                 ? (!empty($column['lang_id']) ? $column['lang_id'] : $column['lang_en'])
                                 : (!empty($column['lang_en']) ? $column['lang_en'] : $column['lang_id']),
                     'sub_text' => $isIndonesian
-                                ? (!empty($column['sub_lang_id']) ? $column['sub_lang_id'] : $column['sub_lang_en'])
-                                : (!empty($column['sub_lang_en']) ? $column['sub_lang_en'] : $column['sub_lang_id']),
+                                ? (!empty($column['sub_lang_id']) ? @$column['sub_lang_id'] : @$column['sub_lang_en'])
+                                : (!empty($column['sub_lang_en']) ? @$column['sub_lang_en'] : @$column['sub_lang_id']),
                     'is_group' => $isGroup,
                     'label' => [
                         'text' => $isGroup

@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Head title="Sustainability - Sustainability in Action" />
+        <Head :title="$t('head_title.sustainability_in_action')" />
         <hero-image />
         <content-in-action />
 

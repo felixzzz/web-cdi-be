@@ -93,7 +93,7 @@
 
     const updateTabs = () => {
         if (Array.isArray(props.content.tabs) && props.content.tabs?.length > 0) {
-            tabActive.value = props.content.tabs[0].ulid
+            tabActive.value = getQueryParam('tab') || props.content.tabs[0].ulid
         }
     }
     updateTabs()

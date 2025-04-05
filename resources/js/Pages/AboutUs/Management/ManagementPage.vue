@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-absolute="true" :nav-transparant="true" :nav-sticky-scroll="false" :show-quick-link="true" quick-link-type="about-us">
-        <Head title="Management and Organization Structure" />
+        <Head :title="$t('head_title.about_us_management')" />
         <hero-image :content="content.aboutManagement" />
         <quick-menu :content="content.aboutManagement" />
         <boards :content="content.aboutManagement" />

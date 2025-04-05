@@ -3,15 +3,13 @@
         <div
             class="p-6 rounded-3xl gap-6 flex flex-col w-full items-center text-center bg-blue-base bg-cover relative overflow-hidden"
             :style="{
-                'backgroundImage': `url(${asset('assets/frontend/images/investor/investor_report_section.webp')})`
+                'backgroundImage': `url(${content?.investor_report_overview?.file_url})`
             }"
         >
             <p class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] text-white max-w-[680px]">
-                Transparency, Stability, and a Commitment to Shareholder Value Guide Our Financial Journey
+                {{ content?.investor_report_overview?.title }}
             </p>
-            <p class="text-neutral-4 max-w-[864px] font-light">
-                Transparency, stability, and a dedication to creating shareholder value are at the forefront of our financial journey. With a proven record of performance and financial achievements, our commitment to excellence and prudent financial management serves as a benchmark for value creation that consistently delivers optimal results.
-            </p>
+            <p class="content !text-neutral-4 max-w-[864px] font-light" v-html="content?.investor_report_overview?.content"></p>
         </div>
     </container>
 
@@ -19,6 +17,10 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset } from '@/Lib/utils'
+    import { PreferenceInvestor } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceInvestor | null
+    }>()
 
 </script>

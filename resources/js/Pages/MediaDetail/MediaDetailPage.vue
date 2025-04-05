@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Head title="Media Detail" />
+        <Head :title="data.title" />
         <content-detail :type="type" :data="data" />
         <related-post :type="type" :data="data" />
 

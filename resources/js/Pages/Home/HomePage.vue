@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-is-home="true" :nav-transparant="true" :show-quick-link="true" quick-link-type="home">
-        <Head title="Home" />
+        <Head :title="$t('head_title.home')" />
         <home-banner :content="content.home" />
         <about-us :content="content.home" />
         <infrastructur v-bind:content="content.home" />

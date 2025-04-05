@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true" :show-quick-link="true" quick-link-type="about-us">
-        <Head title="Awards & Certification" />
+        <Head :title="$t('head_title.about_us_awards_certification')" />
         <hero-image :content="content.aboutAward" />
         <tab-menu :content="content.aboutAward" />
 

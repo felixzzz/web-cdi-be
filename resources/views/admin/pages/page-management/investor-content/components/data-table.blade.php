@@ -16,6 +16,12 @@
             @include('admin.pages.page-management.investor-content.components.dividend-table')
         </div>
     </div>
+
+    <div x-show="tab_page === 'bonds-table'" class="flex gap-4">
+        <div class="flex flex-col gap-4 w-full">
+            @include('admin.pages.page-management.investor-content.components.bonds-table')
+        </div>
+    </div>
 </div>
 
 @push('js')
@@ -51,6 +57,15 @@ const app = createApp({
             return JSON.stringify(headersDividend.value, null, 2)
         })
 
+        const headersBonds = ref(@json(@$data->investor_share_bonds_table->content_table['headers'] ?? []))
+        const tableDataBonds = ref(@json(@$data->investor_share_bonds_table->content_table['tableData'] ?? []))
+        const rowsJsonBonds = computed(() => {
+            return JSON.stringify(tableDataBonds.value, null, 2)
+        })
+        const headersJsonBonds = computed(() => {
+            return JSON.stringify(headersBonds.value, null, 2)
+        })
+
         // Tambah baris baru
         const addRow = (type) => {
             if (type == 'report') {
@@ -65,6 +80,10 @@ const app = createApp({
                 const newRow = headersDividend.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
                 tableDataDividend.value.push(newRow)
             }
+            if (type == 'bonds') {
+                const newRow = headersBonds.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
+                tableDataBonds.value.push(newRow)
+            }
         }
 
         const addRowGroup = (type) => {
@@ -75,6 +94,7 @@ const app = createApp({
             if (type == 'report') tableDataReports.value.push(newGroupRow)
             if (type == 'shareholders') tableDataShareHolders.value.push(newGroupRow)
             if (type == 'dividend') tableDataDividend.value.push(newGroupRow)
+            if (type == 'bonds') tableDataBonds.value.push(newGroupRow)
         }
 
         // Tambah kolom baru
@@ -105,6 +125,15 @@ const app = createApp({
                     }
                 })
             }
+
+            if (type == 'bonds') {
+                headersBonds.value.push({ lang_en: `Header ${headersBonds.value.length + 1}`, lang_id: `Header ${headersBonds.value.length + 1} ID` })
+                tableDataBonds.value.forEach(row => {
+                    if (!row.isGroup) {
+                        row.push({ lang_en: '', lang_id: '' })
+                    }
+                })
+            }
         }
 
         // Hapus baris
@@ -112,6 +141,7 @@ const app = createApp({
             if (type == 'report') tableDataReports.value.splice(rowIndex, 1)
             if (type == 'shareholders') tableDataShareHolders.value.splice(rowIndex, 1)
             if (type == 'dividend') tableDataDividend.value.splice(rowIndex, 1)
+            if (type == 'bonds') tableDataBonds.value.splice(rowIndex, 1)
         }
 
         // Hapus kolom
@@ -129,6 +159,11 @@ const app = createApp({
             if (type == 'dividend') {
                 headersDividend.value.splice(colIndex, 1)
                 tableDataDividend.value.forEach(row => row.splice(colIndex, 1))
+            }
+
+            if (type == 'bonds') {
+                headersBonds.value.splice(colIndex, 1)
+                tableDataBonds.value.forEach(row => row.splice(colIndex, 1))
             }
         }
 
@@ -153,6 +188,18 @@ const app = createApp({
             }
             if (tableDataDividend.value.length === 0) {
                 tableDataDividend.value = [
+                    [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
+                ]
+            }
+
+            if (headersBonds.value.length === 0) {
+                headersBonds.value = [
+                    { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
+                    { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
+                ]
+            }
+            if (tableDataBonds.value.length === 0) {
+                tableDataBonds.value = [
                     [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
                 ]
             }
@@ -187,7 +234,11 @@ const app = createApp({
             headersDividend,
             tableDataDividend,
             rowsJsonDividend,
-            headersJsonDividend
+            headersJsonDividend,
+            headersBonds,
+            tableDataBonds,
+            rowsJsonBonds,
+            headersJsonBonds
         }
     }
 })

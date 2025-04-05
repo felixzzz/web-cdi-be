@@ -1,7 +1,7 @@
 <template>
     <div class="mb-28">
         <container>
-            <p class="text-end text-red-6 text-sm mb-2">*in thousands US$</p>
+            <p class="text-end text-red-6 text-sm mb-2" v-if="content?.investor_report_table?.title">{{ content?.investor_report_table?.title }}</p>
 
             <div class="table-main">
                 <table>
@@ -39,7 +39,12 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { PreferenceInvestor } from '@/types/utility'
     import { ref } from 'vue'
+
+    defineProps<{
+        content: PreferenceInvestor | null
+    }>()
 
     const years  = ref([
         2024,

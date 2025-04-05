@@ -59,6 +59,20 @@ class PageSeeder extends Seeder
             ]
         ];
 
+        $tableReport = [
+            "headers" => [
+                ["lang_en" => "Explanation", "lang_id" => "Penjelasan"],
+                ["lang_en" => "2024", "lang_id" => "2024"],
+                ["lang_en" => "2023", "lang_id" => "2023"],
+                ["lang_en" => "2022", "lang_id" => "2022"],
+                ["lang_en" => "2021", "lang_id" => "2021"],
+                ["lang_en" => "2020", "lang_id" => "2020"]
+            ],
+            "tableData" => [
+                ['is_group' => true, "label" => ['lang_en' => "Consolidated Statement of Profit or Loss and other Comprehensive Income", "lang_id" => ""]],
+            ]
+        ];
+
         $data = [
             'home_banner' => [
                 'file' => asset('assets/frontend/videos/homepage.mp4'),
@@ -358,6 +372,13 @@ class PageSeeder extends Seeder
                 'content_id' => '',
             ],
             'investor_share_dividend_table' => [
+                'file' => '',
+                'title_en' => '',
+                'title_id' => '',
+                'content_en' => '',
+                'content_id' => '',
+            ],
+            'investor_share_bonds_table' => [
                 'file' => '',
                 'title_en' => '',
                 'title_id' => '',

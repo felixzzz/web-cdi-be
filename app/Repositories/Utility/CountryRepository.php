@@ -24,4 +24,13 @@ class CountryRepository
         })
         ->datatable($perPage, "created_at");
     }
+
+
+    public function list()
+    {
+        return Country::query()
+        ->select('id', 'name')
+        ->orderBy("name", "asc")->get();
+    }
+
 }

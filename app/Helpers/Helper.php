@@ -53,16 +53,16 @@ class Helper
     {
         switch ($type) {
             case 'policy':
-                return 'Policy';
+                return __("head_title.governance_policy");
                 break;
             case 'risk-management':
-                return 'Risk Management';
+                return __("head_title.governance_risk_management");
                 break;
             case 'code-of-conduct':
-                return 'Code of Conduct';
+                return __("head_title.governance_code_of_conduct");
                 break;
             case 'she-regulation':
-                return 'SHE Regulation';
+                return __("head_title.governance_she_regulation");
                 break;
 
             default:

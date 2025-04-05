@@ -1,6 +1,6 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
-        <Head title="Our Business - Ports & Storage" />
+        <Head :title="$t('head_title.business_port_storage')" />
         <our-business-banner :content="content.port_storage" />
         <our-business-overview :content="content.port_storage" />
         <our-business-content :content="content.port_storage" v-if="content.port_storage" />
