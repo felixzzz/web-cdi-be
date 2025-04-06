@@ -3,6 +3,7 @@
     <div class="flex flex-col gap-4 w-full">
         <!-- EN -->
         <img src="{{ asset("assets/frontend/icons/flag_en.svg") }}" alt="" class="w-5">
+        <x-portal::form.input label="Tab Name" placeholder="Tab Name" name="investor_share_tab_one_title_en" :value="@$data->investor_share_tab_one->title_en" type="text" />
         <x-portal::form.input label="Title" placeholder="Title" name="investor_share_shareholders_table_title_en" :value="@$data->investor_share_shareholders_table->title_en" type="text" />
         <x-portal::form.group
             label="Description"
@@ -19,6 +20,7 @@
     <div class="flex flex-col gap-4 w-full">
         <!-- ID -->
         <img src="{{ asset("assets/frontend/icons/flag_id.svg") }}" alt="" class="w-5">
+        <x-portal::form.input label="Tab Name" placeholder="Tab Name" name="investor_share_tab_one_title_id" :value="@$data->investor_share_tab_one->title_id" type="text" />
         <x-portal::form.input label="Title" placeholder="Title" name="investor_share_shareholders_table_title_id" :value="@$data->investor_share_shareholders_table->title_id" type="text" />
         <x-portal::form.group
             label="Description"
@@ -56,7 +58,7 @@
             </thead>
             <tbody>
                 <tr v-for="(row, rowIndex) in tableDataShareHolders" :key="rowIndex">
-                    <template v-if="row.isGroup">
+                    <template v-if="row.is_group">
                         <td :colspan="headersShareHolders.length" class="group">
                             <input v-model="row.label.lang_en" placeholder="Group Label EN" class="w-full">
                             <input v-model="row.label.lang_id" placeholder="Group Label ID" class="w-full">

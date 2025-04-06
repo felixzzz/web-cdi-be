@@ -56,7 +56,7 @@
             </thead>
             <tbody>
                 <tr v-for="(row, rowIndex) in tableDataBonds" :key="rowIndex">
-                    <template v-if="row.isGroup">
+                    <template v-if="row.is_group">
                         <td :colspan="headersBonds.length" class="group">
                             <input v-model="row.label.lang_en" placeholder="Group Label EN" class="w-full">
                             <input v-model="row.label.lang_id" placeholder="Group Label ID" class="w-full">

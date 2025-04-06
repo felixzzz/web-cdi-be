@@ -69,7 +69,178 @@ class PageSeeder extends Seeder
                 ["lang_en" => "2020", "lang_id" => "2020"]
             ],
             "tableData" => [
-                ['is_group' => true, "label" => ['lang_en' => "Consolidated Statement of Profit or Loss and other Comprehensive Income", "lang_id" => ""]],
+                [ 'is_group' => true, "label" => ['lang_en' => "Consolidated Statement of Profit or Loss and other Comprehensive Income", "lang_id" => ""] ],
+                [ ['lang_en' => 'Net Revenues', 'lang_id' => ''], ['lang_en' => '2,159,932', 'lang_id' => ''], ['lang_en' => '2,384,591', 'lang_id' => ''], ['lang_en' => '2,580,425', 'lang_id' => ''], ['lang_en' => '1,806,444', 'lang_id' => ''], ['lang_en' => '1,880,989', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Cost of Revenues', 'lang_id' => ''], ['lang_en' => '2,078,102', 'lang_id' => ''], ['lang_en' => '2,395,545', 'lang_id' => ''], ['lang_en' => '2,235,404', 'lang_id' => ''], ['lang_en' => '1,641,322', 'lang_id' => ''], ['lang_en' => '1,809,877', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Gross Profit (Loss)', 'lang_id' => ''], ['lang_en' => '81,830', 'lang_id' => ''], ['lang_en' => '(10,954)', 'lang_id' => ''], ['lang_en' => '345,021', 'lang_id' => ''], ['lang_en' => '165,122', 'lang_id' => ''], ['lang_en' => '171,112', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Net Profit (Loss) For The Year', 'lang_id' => ''], ['lang_en' => '(31,547)', 'lang_id' => ''], ['lang_en' => '(149,399)', 'lang_id' => ''], ['lang_en' => '151,869', 'lang_id' => ''], ['lang_en' => '51,542', 'lang_id' => ''], ['lang_en' => '23,647', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Net Profit (Loss) For The Year Attributable to Owners of the Company', 'lang_id' => ''], ['lang_en' => '(33,576)', 'lang_id' => ''], ['lang_en' => '(149,538)', 'lang_id' => ''], ['lang_en' => '151,986', 'lang_id' => ''], ['lang_en' => '51,352', 'lang_id' => ''], ['lang_en' => '22,882', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Net Profit (Loss) For The Year Attributable to Non-controlling Interests', 'lang_id' => ''], ['lang_en' => '2,029', 'lang_id' => ''], ['lang_en' => '139', 'lang_id' => ''], ['lang_en' => '(117)', 'lang_id' => ''], ['lang_en' => '190', 'lang_id' => ''], ['lang_en' => '765', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Total Comprehensive Income (Loss) For The Year', 'lang_id' => ''], ['lang_en' => '(34,043)', 'lang_id' => ''], ['lang_en' => '(109,418)', 'lang_id' => ''], ['lang_en' => '152,155', 'lang_id' => ''], ['lang_en' => '51,716', 'lang_id' => ''], ['lang_en' => '24,177', 'lang_id' => ''], ],
+                [ ['lang_en' => 'Total Comprehensive Income (Loss) For The Year Attributable to Owners of The Company', 'lang_id' => ''], ['lang_en' => '(36,009)', 'lang_id' => ''], ['lang_en' => '(109,557)', 'lang_id' => ''], ['lang_en' => '152,266', 'lang_id' => ''], ['lang_en' => '51,530', 'lang_id' => ''], ['lang_en' => '23,434', 'lang_id' => ''], ],
+                [
+                    ['lang_en' => 'Total Comprehensive Income (Loss) For The Year Attributable to Non-controlling Interests', 'lang_id' => ''],
+                    ['lang_en' => '1,966', 'lang_id' => ''],
+                    ['lang_en' => '139', 'lang_id' => ''],
+                    ['lang_en' => '(111)', 'lang_id' => ''],
+                    ['lang_en' => '186', 'lang_id' => ''],
+                    ['lang_en' => '743', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Basic Earnings (Loss) per Share (in full U.S. Dollar amount)', 'lang_id' => ''],
+                    ['lang_en' => '(0,0005)', 'lang_id' => ''],
+                    ['lang_en' => '(0,00021)', 'lang_id' => ''],
+                    ['lang_en' => '0,00021', 'lang_id' => ''],
+                    ['lang_en' => '0,0003', 'lang_id' => ''],
+                    ['lang_en' => '0.001', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'EBITDA', 'lang_id' => ''],
+                    ['lang_en' => '129,968', 'lang_id' => ''],
+                    ['lang_en' => '5,263', 'lang_id' => ''],
+                    ['lang_en' => '356,185', 'lang_id' => ''],
+                    ['lang_en' => '186,683', 'lang_id' => ''],
+                    ['lang_en' => '180,119', 'lang_id' => ''],
+                ],
+                [ 'is_group' => true, "label" => ['lang_en' => "Consolidated Statements of Financial Position", "lang_id" => ""] ],
+                [
+                    ['lang_en' => 'Total Assets', 'lang_id' => ''],
+                    ['lang_en' => '5,614,452', 'lang_id' => ''],
+                    ['lang_en' => '4,929,871', 'lang_id' => ''],
+                    ['lang_en' => '4,993,060', 'lang_id' => ''],
+                    ['lang_en' => '3,593,707', 'lang_id' => ''],
+                    ['lang_en' => '3,451,211', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Total Liabilities', 'lang_id' => ''],
+                    ['lang_en' => '2,620,552', 'lang_id' => ''],
+                    ['lang_en' => '2,120,765', 'lang_id' => ''],
+                    ['lang_en' => '2,060,588', 'lang_id' => ''],
+                    ['lang_en' => '1,777,538', 'lang_id' => ''],
+                    ['lang_en' => '1,690,219', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Total Equity', 'lang_id' => ''],
+                    ['lang_en' => '2,993,900', 'lang_id' => ''],
+                    ['lang_en' => '2,809,106', 'lang_id' => ''],
+                    ['lang_en' => '2,932,472', 'lang_id' => ''],
+                    ['lang_en' => '1,816,169', 'lang_id' => ''],
+                    ['lang_en' => '1,760,992', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Investment In Associate', 'lang_id' => ''],
+                    ['lang_en' => '135,697', 'lang_id' => ''],
+                    ['lang_en' => '0', 'lang_id' => ''],
+                    ['lang_en' => '0', 'lang_id' => ''],
+                    ['lang_en' => '0', 'lang_id' => ''],
+                    ['lang_en' => '0', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Net Working Capital', 'lang_id' => ''],
+                    ['lang_en' => '2,020,098', 'lang_id' => ''],
+                    ['lang_en' => '1,673,861', 'lang_id' => ''],
+                    ['lang_en' => '1,994,591', 'lang_id' => ''],
+                    ['lang_en' => '638,332', 'lang_id' => ''],
+                    ['lang_en' => '605,162', 'lang_id' => ''],
+                ],
+                [ 'is_group' => true, "label" => ['lang_en' => "Ratio", "lang_id" => ""] ],
+                [
+                    ['lang_en' => 'Gross Profit (Loss) Margin (%)', 'lang_id' => ''],
+                    ['lang_en' => '0.5', 'lang_id' => ''],
+                    ['lang_en' => '(0.5)', 'lang_id' => ''],
+                    ['lang_en' => '13.4', 'lang_id' => ''],
+                    ['lang_en' => '9.1', 'lang_id' => ''],
+                    ['lang_en' => '9.1', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Net Profit (Loss) Margin (%)', 'lang_id' => ''],
+                    ['lang_en' => '(1.2)', 'lang_id' => ''],
+                    ['lang_en' => '(6.3)', 'lang_id' => ''],
+                    ['lang_en' => '5.9', 'lang_id' => ''],
+                    ['lang_en' => '2.9', 'lang_id' => ''],
+                    ['lang_en' => '1.3', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Cash Ratio (X)', 'lang_id' => ''],
+                    ['lang_en' => '1.8', 'lang_id' => ''],
+                    ['lang_en' => '2.3', 'lang_id' => ''],
+                    ['lang_en' => '2.2', 'lang_id' => ''],
+                    ['lang_en' => '1.1', 'lang_id' => ''],
+                    ['lang_en' => '0.8', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Current Ratio (X)', 'lang_id' => ''],
+                    ['lang_en' => '3.5', 'lang_id' => ''],
+                    ['lang_en' => '3.8', 'lang_id' => ''],
+                    ['lang_en' => '3.1', 'lang_id' => ''],
+                    ['lang_en' => '1.7', 'lang_id' => ''],
+                    ['lang_en' => '1.8', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Liability To Equity Ratio (X)', 'lang_id' => ''],
+                    ['lang_en' => '0.8', 'lang_id' => ''],
+                    ['lang_en' => '0.8', 'lang_id' => ''],
+                    ['lang_en' => '0.7', 'lang_id' => ''],
+                    ['lang_en' => '1.0', 'lang_id' => ''],
+                    ['lang_en' => '1.0', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Liability To Assets Ratio (X)', 'lang_id' => ''],
+                    ['lang_en' => '0.5', 'lang_id' => ''],
+                    ['lang_en' => '0.4', 'lang_id' => ''],
+                    ['lang_en' => '0.5', 'lang_id' => ''],
+                    ['lang_en' => '0.5', 'lang_id' => ''],
+                    ['lang_en' => '0.5', 'lang_id' => ''],
+                ],
+                [
+                    ['lang_en' => 'Return on Equity Ratio (%)', 'lang_id' => ''],
+                    ['lang_en' => '(0.0)', 'lang_id' => ''],
+                    ['lang_en' => '(5.3)', 'lang_id' => ''],
+                    ['lang_en' => '7.4', 'lang_id' => ''],
+                    ['lang_en' => '2.9', 'lang_id' => ''],
+                    ['lang_en' => '1.3', 'lang_id' => ''],
+                ],
+            ]
+        ];
+
+        $tableShareholders = [
+            'headers' => [
+                ['lang_en' => 'Issuance Year', 'lang_id' => ''],
+                ['lang_en' => 'Bonds Name', 'lang_id' => ''],
+                ['lang_en' => 'Total Issuance (million)', 'lang_id' => ''],
+                ['lang_en' => 'Interests Rate (%)', 'lang_id' => ''],
+                ['lang_en' => 'Maturity Date', 'lang_id' => ''],
+                ['lang_en' => 'Bonds Rating', 'lang_id' => ''],
+            ],
+            'tableData' => [
+                [ ['lang_en' => '2018', 'lang_id' => ''], ['lang_en' => 'Obligasi Berkelanjutan I Chandra Asri Petrochemical Tahap II Tahun 2018- Seri C', 'lang_id' => ''], ['lang_en' => 'IDR300,000', 'lang_id' => ''], ['lang_en' => '9.00% p.a', 'lang_id' => ''], ['lang_en' => '1 Mar 2025', 'lang_id' => ''], ['lang_en' => 'idAA- (PEFINDO)', 'lang_id' => ''], ]
+            ]
+        ];
+
+        $tableDividend = [
+            'headers' => [
+                ['lang_en' => 'Financial Year', 'lang_id' => ''],
+                ['lang_en' => 'Dividend/Share US$ (Rp)', 'lang_id' => ''],
+                ['lang_en' => 'Total Dividend US$', 'lang_id' => ''],
+                ['lang_en' => 'Distribution Date', 'lang_id' => ''],
+                ['lang_en' => 'Dividend Payout Ratio', 'lang_id' => ''],
+            ],
+            'tableData' => [
+                [ ['lang_en' => '2021', 'lang_id' => ''], ['lang_en' => '0.000347(5.14)', 'lang_id' => ''], ['lang_en' => '30,000,000', 'lang_id' => ''], ['lang_en' => '21-Jun-2023', 'lang_id' => ''], ['lang_en' => '20% of Total FY-2021', 'lang_id' => ''], ]
+            ]
+        ];
+
+        $tableBonds = [
+            'headers' => [
+                ['lang_en' => 'Issuance Year', 'lang_id' => ''],
+                ['lang_en' => 'Bonds Name', 'lang_id' => ''],
+                ['lang_en' => 'Total Issuance (million)', 'lang_id' => ''],
+                ['lang_en' => 'Interests Rate (%)', 'lang_id' => ''],
+                ['lang_en' => 'Maturity Date', 'lang_id' => ''],
+                ['lang_en' => 'Bonds Rating', 'lang_id' => ''],
+            ],
+            'tableData' => [
+                [ ['lang_en' => '2018', 'lang_id' => ''], ['lang_en' => 'Obligasi Berkelanjutan I Chandra Asri Petrochemical Tahap II Tahun 2018- Seri C', 'lang_id' => ''], ['lang_en' => 'IDR300,000', 'lang_id' => ''], ['lang_en' => '9.00% p.a', 'lang_id' => ''], ['lang_en' => '1 Mar 2025', 'lang_id' => ''], ['lang_en' => 'idAA- (PEFINDO)', 'lang_id' => ''], ]
             ]
         ];
 
@@ -345,10 +516,11 @@ class PageSeeder extends Seeder
             ],
             'investor_report_table' => [
                 'file' => '',
-                'title_en' => '',
-                'title_id' => '',
+                'title_en' => '*in thousands US$',
+                'title_id' => '*dalam ribuan US$',
                 'content_en' => '',
                 'content_id' => '',
+                'content_table' => $tableReport
             ],
             'investor_financial_banner' => [
                 'file' => asset('assets/frontend/images/investor/investor_financial_information_hero_image.webp'),
@@ -364,26 +536,43 @@ class PageSeeder extends Seeder
                 'content_en' => '',
                 'content_id' => '',
             ],
-            'investor_share_shareholders_table' => [
+            'investor_share_tab_one' => [
                 'file' => '',
-                'title_en' => '',
-                'title_id' => '',
+                'title_en' => 'Top 10 Shareholders',
+                'title_id' => '10 Pemegang Saham Teratas',
                 'content_en' => '',
                 'content_id' => '',
+            ],
+            'investor_share_tab_two' => [
+                'file' => '',
+                'title_en' => 'Dividend Information',
+                'title_id' => 'Informasi Dividen',
+                'content_en' => '',
+                'content_id' => '',
+            ],
+            'investor_share_shareholders_table' => [
+                'file' => '',
+                'title_en' => 'Top 10 Shareholders',
+                'title_id' => '10 Pemegang Saham Teratas',
+                'content_en' => '',
+                'content_id' => '',
+                'content_table' => $tableShareholders
             ],
             'investor_share_dividend_table' => [
                 'file' => '',
                 'title_en' => '',
                 'title_id' => '',
-                'content_en' => '',
-                'content_id' => '',
+                'content_en' => '<p>Current dividend policy of the Company is to pay dividends to its shareholders in the amount of approximately 40% of the Company’s net income. The dividends will be subject to the Company’s cash flow and investment plans, as well as requirements imposed by the Company’s indebtedness, regulatory restrictions and other requirements. </p><p> </p><p>Under Indonesian law, the decision with regards to dividends is made by a resolution of the shareholders at the Annual General Meeting of Shareholders upon the recommendation of the Board of Directors. The Company may declare dividends in any year if the Company has positive retained earnings and after deduction of reserves fund. The recommendation, amount and payment of dividends by the Board of Directors of the Company and the approval of dividends by the Board of Commissioners of the Company is at their discretion and will depend on a number of factors including the Company’s net profits, availability of mandatory reserves, capital expenditure requirements, results of operations, and cash flows. These, in turn, depend on a variety of factors including successful implementation of the Company’s business strategy, financial, competitive and regulatory considerations, general economic conditions and other factors that may be specific to the Company and its industry. Many of these factors are beyond the Company’s control. </p><p> </p><p>Prior to the end of a financial year, an interim dividend may be distributed so long as it is permitted under the Company’s Articles of Association and provided that the interim dividend does not result in its net assets becoming less than the total issued and paid up capital and the compulsory reserves. Such distribution is determined by the Board of Directors after first being approved by the Board of Commissioners. If, after the end of the relevant financial year, the Company suffers losses, the distributed interim dividend must be returned by the shareholders to the Company, and the Board of Directors and Board of Commissioners will be jointly and severally responsible if the interim dividend is not returned. </p><p> </p><p>To the extent a decision is made to declare dividends, dividends will be paid in Indonesian Rupiah. Shareholders on the applicable recording date will be entitled to the full amount of dividends approved, subject to any Indonesian withholding tax imposed. Dividends received by non-Indonesian shareholders will be subject to 20% Indonesian withholding tax.</p>',
+                'content_id' => '<p>Kebijakan dividen Perseroan saat ini adalah membayar dividen kepada para pemegang sahamnya dengan jumlah sekitar 40% dari laba bersih Perseroan. Pembagian dividen akan tergantung pada arus kas dan rencana investasi Perseroan, serta persyaratan yang diberlakukan oleh utang Perseroan, pembatasan peraturan dan persyaratan lainnya.</p><p><br></p><p>Berdasarkan hukum di Indonesia, keputusan terkait dividen dibuat berdasarkan keputusan pemegang saham dalam Rapat Umum Pemegang Saham Tahunan atas rekomendasi Direksi. Perseroan dapat membagikan dividen pada setiap tahun apabila Perseroan memiliki saldo laba yang positif dan setelah dikurangi dengan dana cadangan. Rekomendasi, jumlah dan pembayaran dividen oleh Direksi Perseroan dan persetujuan dividen oleh Dewan Komisaris Perseroan merupakan kebijakan Direksi Perseroan dan akan bergantung pada sejumlah faktor termasuk laba bersih Perseroan, ketersediaan cadangan wajib, kebutuhan belanja modal, hasil operasi dan arus kas. Hal-hal tersebut, pada gilirannya, bergantung pada berbagai faktor termasuk keberhasilan pelaksanaan strategi bisnis Perseroan, pertimbangan keuangan, persaingan dan peraturan, kondisi ekonomi secara umum dan faktor-faktor lain yang mungkin spesifik untuk Perseroan dan industrinya. Banyak dari faktor-faktor ini berada di luar kendali Perseroan.</p><p>Sebelum tahun buku berakhir, dividen interim dapat dibagikan sepanjang diperbolehkan oleh Anggaran Dasar Perseroan dan dengan syarat dividen interim tersebut tidak mengakibatkan kekayaan bersih Perseroan menjadi lebih kecil dari jumlah modal yang ditempatkan dan disetor serta cadangan wajib. Pembagian dividen interim tersebut ditetapkan oleh Direksi setelah terlebih dahulu mendapat persetujuan dari Dewan Komisaris. Apabila setelah berakhirnya tahun buku yang bersangkutan, Perseroan mengalami kerugian, maka dividen interim yang telah dibagikan tersebut wajib dikembalikan oleh pemegang saham kepada Perseroan, dan Direksi serta Dewan Komisaris bertanggung jawab secara tanggung renteng apabila dividen interim tersebut tidak dikembalikan.</p><p><br></p><p>Sepanjang keputusan untuk membagikan dividen telah diambil, dividen akan dibayarkan dalam mata uang Rupiah. Para pemegang saham pada tanggal pencatatan yang berlaku akan berhak atas jumlah penuh dividen yang disetujui, tunduk pada pemotongan pajak yang dikenakan di Indonesia. Dividen yang diterima oleh pemegang saham non-Indonesia akan dikenakan pajak pemotongan sebesar 20%.</p><p><br></p>',
+                'content_table' => $tableDividend
             ],
             'investor_share_bonds_table' => [
                 'file' => '',
-                'title_en' => '',
-                'title_id' => '',
+                'title_en' => 'Total Outstanding Bonds Information',
+                'title_id' => 'Informasi Jumlah Obligasi yang Beredar',
                 'content_en' => '',
                 'content_id' => '',
+                'content_table' => $tableBonds
             ],
             'investor_publication_banner' => [
                 'file' => asset('assets/frontend/images/investor/investor_publication_for_investors_hero_image.webp'),

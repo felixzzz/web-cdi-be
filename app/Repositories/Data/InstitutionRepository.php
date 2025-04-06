@@ -23,4 +23,16 @@ class InstitutionRepository
         })
         ->datatable($perPage, "created_at");
     }
+
+    public function list()
+    {
+        return Institution::query()
+        ->orderBy("created_at", "asc")
+        ->get()->map(function ($row) {
+            $row->localized_main = $row->localized_main;
+            $row->localized_branches = $row->localized_branches;
+
+            return $row;
+        });
+    }
 }

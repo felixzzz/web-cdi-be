@@ -10,7 +10,7 @@
                     <img :src="asset('assets/frontend/icons/ic_magnifyingglass.svg')" alt="">
                     <input type="text" v-model="search"
                         class="w-full placeholder:text-neutral-7 text-sm outline-none text-neutral-13"
-                        placeholder="Search anything..."
+                        :placeholder="$t('Search anything')"
                         @keyup.enter="goSearch"
                     >
                 </div>
@@ -18,43 +18,43 @@
         </div>
 
         <section v-if="paginate.state.loading">
-        <file-loading v-for="i in 2" :key="i" />
-    </section>
-    <section v-if="!paginate.state.loading">
-        <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="(item, i) in paginate.state.items" :key="i">
-            <div>
-                <p class="text-neutral-13 mb-2 text-lg font-medium">{{ item.name }}</p>
+            <file-loading v-for="i in 2" :key="i" />
+        </section>
+        <section v-if="!paginate.state.loading">
+            <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="(item, i) in paginate.state.items" :key="i">
+                <div>
+                    <p class="text-neutral-13 mb-2 text-lg font-medium">{{ item.name }}</p>
 
-                <div class="flex items-center text-base text-neutral-8 gap-3">
-                    <div class="flex items-baseline gap-3">
-                        <span>{{ item.date }}</span>
-                        <span>.</span>
-                        <span>{{ item.file?.size }}</span>
-                        <span>.</span>
+                    <div class="flex items-center text-base text-neutral-8 gap-3">
+                        <div class="flex items-baseline gap-3">
+                            <span>{{ item.date }}</span>
+                            <span>.</span>
+                            <span>{{ item.file?.size }}</span>
+                            <span>.</span>
+                        </div>
+                        <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
                     </div>
-                    <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
+                </div>
+
+                <div class="flex lg:items-center gap-8 w-full lg:w-fit">
+                    <a :href="previewFile(item.file?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                        <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
+                    </a>
+                    <a :href="downloadFile(item.file_en?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_en">
+                        <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-EN') }}
+                    </a>
+                    <a :href="downloadFile(item.file_id?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_id">
+                        <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-ID') }}
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                <a :href="previewFile(item.file?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
-                    <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
-                </a>
-                <a :href="downloadFile(item.file_en?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_en">
-                    <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-EN') }}
-                </a>
-                <a :href="downloadFile(item.file_id?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_id">
-                    <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-ID') }}
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <pagination-link
-        :links="paginate.state.links"
-        :meta="paginate.state.meta"
-        @fetch="changePage"
-    />
+        <pagination-link
+            :links="paginate.state.links"
+            :meta="paginate.state.meta"
+            @fetch="changePage"
+        />
     </div>
 
 </template>

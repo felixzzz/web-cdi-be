@@ -1,7 +1,7 @@
 <template>
     <app-layout>
-        <Head :title="title" />
-        <content-type :title="title" :type="type" />
+        <Head :title="$t(title)" />
+        <content-type :title="$t(title)" :type="type" />
 
 
 

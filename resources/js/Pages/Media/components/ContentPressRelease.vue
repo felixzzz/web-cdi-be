@@ -11,7 +11,7 @@
             <img :src="asset('assets/frontend/icons/ic_magnifyingglass.svg')" alt="">
             <input type="text" v-model="search"
                 class="w-full placeholder:text-neutral-7 text-sm outline-none text-neutral-13"
-                placeholder="Search anything..."
+                :placeholder="$t('Search anything')"
                 @keyup.enter="goSearch"
             >
         </div>

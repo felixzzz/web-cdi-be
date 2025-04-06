@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\Api\ApiArticleController;
-use App\Http\Controllers\Api\ApiAwardController;
-use App\Http\Controllers\Api\ApiCertificateController;
-use App\Http\Controllers\Api\ApiInvestorController;
-use App\Http\Controllers\Api\ApiMembershipController;
-use App\Http\Controllers\Api\ApiOurBusinessController;
-use App\Http\Controllers\Api\ApiPressReleaseController;
-use App\Http\Controllers\Api\ApiUtilityController;
-use App\Http\Controllers\FrontEnd\ContactUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\WebApiMiddleware;
+use App\Http\Controllers\Api\ApiAwardController;
+use App\Http\Controllers\Api\ApiArticleController;
+use App\Http\Controllers\Api\ApiUtilityController;
+use App\Http\Controllers\Api\ApiInvestorController;
+use App\Http\Controllers\Api\ApiGovernanceController;
+use App\Http\Controllers\Api\ApiMembershipController;
+use App\Http\Controllers\Api\ApiCertificateController;
+use App\Http\Controllers\Api\ApiInstitutionController;
+use App\Http\Controllers\Api\ApiOurBusinessController;
+use App\Http\Controllers\FrontEnd\ContactUsController;
+use App\Http\Controllers\Api\ApiPressReleaseController;
 
 Route::middleware(WebApiMiddleware::class)
     ->as('api.')
@@ -88,6 +90,11 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get("prospectus/list", "prospectusList")->name("prospectus.list");
                 Route::get("gms/list", "gmsList")->name("gms.list");
                 Route::get("disclosure/list", "disclosureList")->name("disclosure.list");
+                Route::get("calendar/list", "calendarList")->name("calendar.list");
+                Route::get("calendar/years", "years")->name("calendar.years");
             });
+
+        Route::get("institutions/list", [ApiInstitutionController::class, "list"])->name("institutions.list");
+        Route::get("governances/files/{type}", [ApiGovernanceController::class, 'files'])->name("governances.files")->whereIn("type", ["policy", "code-of-conduct", "she-regulation", "risk-management"]);
 
     });

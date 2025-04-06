@@ -69,26 +69,26 @@ const app = createApp({
         // Tambah baris baru
         const addRow = (type) => {
             if (type == 'report') {
-                const newRow = headersReports.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
+                const newRow = headersReports.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
                 tableDataReports.value.push(newRow)
             }
             if (type == 'shareholders') {
-                const newRow = headersShareHolders.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
+                const newRow = headersShareHolders.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
                 tableDataShareHolders.value.push(newRow)
             }
             if (type == 'dividend') {
-                const newRow = headersDividend.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
+                const newRow = headersDividend.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
                 tableDataDividend.value.push(newRow)
             }
             if (type == 'bonds') {
-                const newRow = headersBonds.value.map(() => ({ lang_en: '', lang_id: '', isGroup: false }))
+                const newRow = headersBonds.value.map(() => ({ lang_en: '', lang_id: '', is_group: false }))
                 tableDataBonds.value.push(newRow)
             }
         }
 
         const addRowGroup = (type) => {
             const newGroupRow = {
-                isGroup: true,
+                is_group: true,
                 label: { lang_en: 'New Group EN', lang_id: 'Grup Baru ID' }
             }
             if (type == 'report') tableDataReports.value.push(newGroupRow)
@@ -102,7 +102,7 @@ const app = createApp({
             if (type == 'report') {
                 headersReports.value.push({ lang_en: `Header ${headersReports.value.length + 1}`, lang_id: `Header ${headersReports.value.length + 1} ID` })
                 tableDataReports.value.forEach(row => {
-                    if (!row.isGroup) {
+                    if (!row.is_group) {
                         row.push({ lang_en: '', lang_id: '' })
                     }
                 })
@@ -111,7 +111,7 @@ const app = createApp({
             if (type == 'shareholders') {
                 headersShareHolders.value.push({ lang_en: `Header ${headersShareHolders.value.length + 1}`, lang_id: `Header ${headersShareHolders.value.length + 1} ID` })
                 tableDataShareHolders.value.forEach(row => {
-                    if (!row.isGroup) {
+                    if (!row.is_group) {
                         row.push({ lang_en: '', lang_id: '' })
                     }
                 })
@@ -120,7 +120,7 @@ const app = createApp({
             if (type == 'dividend') {
                 headersDividend.value.push({ lang_en: `Header ${headersDividend.value.length + 1}`, lang_id: `Header ${headersDividend.value.length + 1} ID` })
                 tableDataDividend.value.forEach(row => {
-                    if (!row.isGroup) {
+                    if (!row.is_group) {
                         row.push({ lang_en: '', lang_id: '' })
                     }
                 })
@@ -129,7 +129,7 @@ const app = createApp({
             if (type == 'bonds') {
                 headersBonds.value.push({ lang_en: `Header ${headersBonds.value.length + 1}`, lang_id: `Header ${headersBonds.value.length + 1} ID` })
                 tableDataBonds.value.forEach(row => {
-                    if (!row.isGroup) {
+                    if (!row.is_group) {
                         row.push({ lang_en: '', lang_id: '' })
                     }
                 })

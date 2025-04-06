@@ -63,4 +63,16 @@ class Institution extends Model
         }, $this->branchs ?? []);
     }
 
+    public function getLocalizedMainAttribute()
+    {
+        $locale = App::getLocale();
+        $main = @$this->main;
+        if ($main) {
+            $main['location_name'] = @$this->main['location_name_'.$locale] ?? null;
+            $main['address'] = @$this->main['address_'.$locale] ?? null;
+        }
+
+        return $main;
+    }
+
 }

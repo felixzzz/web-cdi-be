@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-neutral-2 pb-20 pt-11 w-full">
+    <div class="bg-neutral-2 pb-20 pt-11 w-full" id="content-media-section">
         <container>
             <breadcrumb :route="route('governance.index')" base="Governance" :current="title" />
 
@@ -13,41 +13,52 @@
                         <div>
                             <div class="w-full lg:w-[264px] rounded-full border border-neutral-7 px-4 py-2 flex items-center gap-1 lg:ms-auto">
                                 <img :src="asset('assets/frontend/icons/ic_magnifyingglass.svg')" alt="">
-                                <input type="text" name="" value=""
+                                <input type="text" v-model="search"
                                     class="w-full placeholder:text-neutral-7 text-sm outline-none text-neutral-13"
-                                    placeholder="Search anything..."
+                                    :placeholder="$t('Search anything')"
+                                    @keyup.enter="goSearch"
                                 >
                             </div>
                         </div>
                     </div>
 
-                    <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="i in 2" :key="i">
-                        <div>
-                            <p class="text-neutral-13 mb-2 text-lg font-medium">Abridged Prospectus</p>
+                    <section v-if="paginate.state.loading">
+                        <file-loading v-for="i in 2" :key="i" />
+                    </section>
+                    <section v-if="!paginate.state.loading">
+                        <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="(item, i) in paginate.state.items" :key="i">
+                            <div>
+                                <p class="text-neutral-13 mb-2 text-lg font-medium">{{ item.name }}</p>
 
-                            <div class="flex items-center text-base text-neutral-8 gap-3">
-                                <div class="flex items-baseline gap-3">
-                                    <span>05 November 2024</span>
-                                    <span>.</span>
-                                    <span>7MB</span>
-                                    <span>.</span>
+                                <div class="flex items-center text-base text-neutral-8 gap-3">
+                                    <div class="flex items-baseline gap-3">
+                                        <span>{{ item.date }}</span>
+                                        <span>.</span>
+                                        <span>{{ item.file?.size }}</span>
+                                        <span>.</span>
+                                    </div>
+                                    <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
                                 </div>
-                                <img :src="asset('assets/frontend/icons/ic_filepdf.svg')" alt="">
+                            </div>
+
+                            <div class="flex lg:items-center gap-8 w-full lg:w-fit">
+                                <a :href="previewFile(item.file?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                                    <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
+                                </a>
+                                <a :href="downloadFile(item.file_en?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_en">
+                                    <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-EN') }}
+                                </a>
+                                <a :href="downloadFile(item.file_id?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_id">
+                                    <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-ID') }}
+                                </a>
                             </div>
                         </div>
-
-                        <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                            <Link href="" class="flex items-center gap-2 text-blue-base font-medium">
-                                <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> View Report
-                            </Link>
-                            <Link href="" class="flex items-center gap-2 text-blue-base font-medium">
-                                <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> Download-EN
-                            </Link>
-                            <Link href="" class="flex items-center gap-2 text-blue-base font-medium">
-                                <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> Download-ID
-                            </Link>
-                        </div>
-                    </div>
+                    </section>
+                    <pagination-link
+                        :links="paginate.state.links"
+                        :meta="paginate.state.meta"
+                        @fetch="changePage"
+                    />
                 </tab-menu>
             </div>
         </container>
@@ -59,11 +70,40 @@
     import Container from '@/Components/Section/Container.vue'
     import TabMenu from '@/Components/Ui/Governance/TabMenu.vue';
     import Breadcrumb from '@/Components/Ui/Utils/Breadcrumb.vue'
-    import { asset } from '@/Lib/utils'
+    import { asset, downloadFile, previewFile } from '@/Lib/utils'
+    import { PressRelease } from '@/types/utility'
+    import usePaginate from '@/Composables/usePaginate'
+    import FileLoading from '@/Components/Ui/Utils/FileLoading.vue'
+    import PaginationLink from '@/Components/Ui/Utils/PaginationLink.vue'
+    import { getQueryParam, routeAppendParam } from '@/Lib/utils'
 
-    defineProps<{
+    import { onBeforeMount, ref } from 'vue'
+
+    const props = defineProps<{
         title: string;
         type: string;
     }>()
+
+    const search = ref(getQueryParam('search') || '')
+
+    const paginate = usePaginate<PressRelease>({
+        route: route("api.governances.files", props.type),
+        scroll: 'content-media-section'
+    });
+
+    const changePage = () => {
+        paginate.fetchData()
+    }
+
+    const goSearch = () => {
+        routeAppendParam({
+            search: search.value
+        })
+        paginate.fetchData()
+    }
+
+    onBeforeMount(() => {
+        paginate.fetchData()
+    })
 
 </script>

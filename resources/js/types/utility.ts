@@ -124,6 +124,7 @@ export type PreferenceItem = {
     content_id: string;
     content: string;
     content_table_trans?: PreferenceTable;
+    content_table?: any;
 }
 
 export type PreferenceHome = {
@@ -203,6 +204,8 @@ export type PreferenceInvestor = {
     investor_share_dividend_table: PreferenceItem | null;
     investor_share_bonds_table: PreferenceItem | null;
     investor_publication_banner: PreferenceItem | null;
+    investor_share_tab_one: PreferenceItem | null;
+    investor_share_tab_two: PreferenceItem | null;
 }
 
 export type QuickLink = {
@@ -330,4 +333,9 @@ export type OurBusinessDetail = {
     overview_description?: string;
     heading_tab_title?: string;
     tabs?: OurBusinessTab[];
+}
+
+export type FinancialCalendarList = {
+    year: string;
+    items: PressRelease[]
 }

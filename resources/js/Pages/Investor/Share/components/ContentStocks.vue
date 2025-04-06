@@ -14,58 +14,16 @@
             </div>
         </div>
 
-        <div v-show="tabActive == 'top-10-shareholders'" class="mt-10">
+        <div v-show="tabActive == 'shareholders'" class="mt-10">
             <p class="mb-10 text-2xl lg:text-[28px] font-medium text-neutral-13">{{ content?.investor_share_shareholders_table?.title }}</p>
             <div class="content mb-10 !text-neutral-8" v-html="content?.investor_share_shareholders_table?.content"></div>
-            <div class="table-main" v-if="content?.investor_share_shareholders_table?.content_table_trans">
-                <table>
-                    <thead>
-                        <tr>
-                            <td v-for="(label, index) in content?.investor_share_shareholders_table?.content_table_trans.headers" :key="index">{{ label.text }}</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(row, index) in content?.investor_share_shareholders_table?.content_table_trans.tableData" :key="index">
-                            <template v-for="(item, itemIndex) in row" :key="itemIndex">
-                                <td>
-                                    {{ item.text }}
-                                    <br>
-                                    <span v-if="item.sub_text" class="text-neutral-8 font-light">
-                                        {{ item.sub_text }}
-                                    </span>
-                                </td>
-                            </template>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table-json :data="content?.investor_share_shareholders_table" v-if="content?.investor_share_shareholders_table" />
         </div>
 
         <div v-show="tabActive == 'dividend-information'" class="mt-10">
             <p class="mb-10 text-2xl lg:text-[28px] font-medium text-neutral-13">{{ content?.investor_share_dividend_table?.title }}</p>
             <div class="content mb-10 !text-neutral-8" v-html="content?.investor_share_dividend_table?.content"></div>
-            <div class="table-main" v-if="content?.investor_share_dividend_table?.content_table_trans">
-                <table>
-                    <thead>
-                        <tr>
-                            <td v-for="(label, index) in content?.investor_share_dividend_table?.content_table_trans.headers" :key="index">{{ label.text }}</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(row, index) in content?.investor_share_dividend_table?.content_table_trans.tableData" :key="index">
-                            <template v-for="(item, itemIndex) in row" :key="itemIndex">
-                                <td>
-                                    {{ item.text }}
-                                    <br>
-                                    <span v-if="item.sub_text" class="text-neutral-8 font-light">
-                                        {{ item.sub_text }}
-                                    </span>
-                                </td>
-                            </template>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table-json :data="content?.investor_share_dividend_table" v-if="content?.investor_share_dividend_table" />
         </div>
     </div>
 
@@ -74,22 +32,23 @@
 <script setup lang="ts">
     import { ref } from 'vue'
     import { PreferenceInvestor } from '@/types/utility'
+    import TableJson from '@/Components/Ui/Utils/TableJson.vue'
 
-    defineProps<{
+    const props = defineProps<{
         content: PreferenceInvestor | null
     }>()
 
-    const tabActive = ref('top-10-shareholders')
+    const tabActive = ref('shareholders')
 
 
     const tabs = ref([
         {
-            id: 'top-10-shareholders',
-            name: $t('Top 10 Shareholders')
+            id: 'shareholders',
+            name: props.content?.investor_share_tab_one?.title || $t('Top 10 Shareholders')
         },
         {
             id: 'dividend-information',
-            name: $t('Dividend Information')
+            name: props.content?.investor_share_tab_two?.title || $t('Dividend Information')
         }
     ])
 

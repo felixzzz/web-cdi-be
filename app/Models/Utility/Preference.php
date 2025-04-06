@@ -69,11 +69,11 @@ class Preference extends Model
         // Translasi tableData sesuai bahasa saat ini
         $translatedTableData = array_map(function ($row) use ($isIndonesian) {
             return array_map(function ($column) use ($isIndonesian) {
-                $isGroup = @$column['is_group'] ?? false;
+                $isGroup = @$column['is_group'] || false;
                 return [
                     'text' => $isIndonesian
-                                ? (!empty($column['lang_id']) ? $column['lang_id'] : $column['lang_en'])
-                                : (!empty($column['lang_en']) ? $column['lang_en'] : $column['lang_id']),
+                                ? (!empty($column['lang_id']) ? @$column['lang_id'] : @$column['lang_en'])
+                                : (!empty($column['lang_en']) ? @$column['lang_en'] : @$column['lang_id']),
                     'sub_text' => $isIndonesian
                                 ? (!empty($column['sub_lang_id']) ? @$column['sub_lang_id'] : @$column['sub_lang_en'])
                                 : (!empty($column['sub_lang_en']) ? @$column['sub_lang_en'] : @$column['sub_lang_id']),
@@ -81,8 +81,8 @@ class Preference extends Model
                     'label' => [
                         'text' => $isGroup
                                 ? ($isIndonesian
-                                    ? (!empty($column['label']['lang_id']) ? $column['label']['lang_id'] : $column['label']['lang_en'])
-                                    : (!empty($column['label']['lang_en']) ? $column['label']['lang_en'] : $column['label']['lang_id'])
+                                    ? (!empty($column['label']['lang_id']) ? @$column['label']['lang_id'] : @$column['label']['lang_en'])
+                                    : (!empty($column['label']['lang_en']) ? @$column['label']['lang_en'] : @$column['label']['lang_id'])
                                 )
                                 : '',
                     ]

@@ -144,6 +144,7 @@
     "Jump Page": "Lompat Halaman",
     "Go": "Go",
     "All Year": "All Year",
+    "All Years": "All Years",
     "Categories": "Kategori",
     "Awarder": "Pemberi Penghargaan",
     "Detail Certification": "Sertifikasi Detail",
@@ -160,5 +161,9 @@
     "GMS": "RUPS",
     "Disclosure": "Pengungkapan",
     "General Meeting of Shareholders": "Rapat Umum Pemegang Saham",
-    "Information Disclosure": "Pengungkapan Informasi"
+    "Information Disclosure": "Pengungkapan Informasi",
+    "All Type": "Semua Jenis",
+    "Anual Report": "Laporan Tahunan",
+    "Financial Report": "Laporan Keuangan",
+    "Search anything": "Cari apa saja..."
 }

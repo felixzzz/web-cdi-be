@@ -144,6 +144,7 @@
     "Jump Page": "Jump Page",
     "Go": "Go",
     "All Year": "All Year",
+    "All Years": "All Years",
     "Categories": "Categories",
     "Awarder": "Awarder",
     "Detail Certification": "Detail Certification",
@@ -160,5 +161,9 @@
     "GMS": "GMS",
     "Disclosure": "Disclosure",
     "General Meeting of Shareholders": "General Meeting of Shareholders",
-    "Information Disclosure": "Information Disclosure"
+    "Information Disclosure": "Information Disclosure",
+    "All Type": "All Type",
+    "Anual Report": "Anual Report",
+    "Financial Report": "Financial Report",
+    "Search anything": "Search anything..."
 }

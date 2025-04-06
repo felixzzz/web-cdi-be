@@ -10,14 +10,14 @@
                     <img :src="asset('assets/frontend/icons/ic_magnifyingglass.svg')" alt="">
                     <input type="text" v-model="search"
                         class="w-full placeholder:text-neutral-7 text-sm outline-none text-neutral-13"
-                        placeholder="Search anything..."
+                        :placeholder="$t('Search anything')"
                         @keyup.enter="goSearch"
                     >
                 </div>
             </div>
         </div>
 
-        <section v-if="paginate.state.loading">
+    <section v-if="paginate.state.loading">
         <file-loading v-for="i in 2" :key="i" />
     </section>
     <section v-if="!paginate.state.loading">
