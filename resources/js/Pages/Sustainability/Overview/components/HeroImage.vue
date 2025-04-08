@@ -2,7 +2,7 @@
     <div
         class="relative overflow-hidden aspect-[4/3] lg:aspect-video w-full py-[5%] lg:py-[8%] flex items-end bg-cover"
         :style="{
-            'backgroundImage': `url(${asset('assets/frontend/images/sustainability/sustainability_overview_hero_image.webp')})`
+            'backgroundImage': `url(${content.sustainability_overview_banner?.file_url})`
         }"
     >
         <div class="overlay-business-banner h-full w-full absolute left-0 right-0 top-0 bottom-0"></div>
@@ -10,11 +10,9 @@
             <div class="text-white grid lg:grid-cols-2 gap-2 relative z-[1] items-end">
                 <div>
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium max-w-2xl" id="home_banner_title">
-                        How our Sustainability Makes Difference
+                        {{ content.sustainability_overview_banner?.title }}
                     </h1>
-                    <h2 class="max-w-md text-xs lg:text-base mt-6 text-neutral-4">
-                        We are committed to positively impacting the world around us, and our businesses have a crucial role in a sustainable future.
-                    </h2>
+                    <div class="content max-w-md text-xs lg:text-base !text-neutral-4" v-html="content.sustainability_overview_banner?.content"></div>
                 </div>
                 <div class="flex items-center gap-10">
                     <linear-animation />
@@ -29,5 +27,11 @@
     import Container from '@/Components/Section/Container.vue'
     import LinearAnimation from '@/Components/Ui/Utils/LinearAnimation.vue'
     import { asset } from '@/Lib/utils'
+
+    import { PreferenceSustainabilityOverview } from '@/types/utility'
+
+    defineProps<{
+        content: PreferenceSustainabilityOverview
+    }>()
 
 </script>

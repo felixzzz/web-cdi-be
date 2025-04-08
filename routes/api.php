@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\ApiInstitutionController;
 use App\Http\Controllers\Api\ApiOurBusinessController;
 use App\Http\Controllers\FrontEnd\ContactUsController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
+use App\Http\Controllers\Api\ApiSustainabilityController;
 
 Route::middleware(WebApiMiddleware::class)
     ->as('api.')
@@ -96,5 +97,14 @@ Route::middleware(WebApiMiddleware::class)
 
         Route::get("institutions/list", [ApiInstitutionController::class, "list"])->name("institutions.list");
         Route::get("governances/files/{type}", [ApiGovernanceController::class, 'files'])->name("governances.files")->whereIn("type", ["policy", "code-of-conduct", "she-regulation", "risk-management"]);
+
+        Route::controller(ApiSustainabilityController::class)
+            ->as('sustainability.')
+            ->prefix('sustainability')
+            ->group(function () {
+                Route::get("ratings", "ratings")->name("ratings");
+                Route::get("recognitions", "recognitions")->name("recognitions");
+                Route::get("responsibles", "responsibles")->name("responsibles");
+            });
 
     });

@@ -29,6 +29,11 @@ class RatingRecognitionRepository
         return RatingRecognition::query()->orderBy("sort", "asc")
         ->where("type", $type)
         ->orderBy("sort", "asc")
-        ->get();
+        ->get()->map(function ($row) {
+            $row->name = $row->name;
+            $row->content = $row->content;
+            $row->image = previewFile($row->image);
+            return $row;
+        });
     }
 }

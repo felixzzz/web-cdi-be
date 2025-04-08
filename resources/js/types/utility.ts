@@ -208,6 +208,37 @@ export type PreferenceInvestor = {
     investor_share_tab_two: PreferenceItem | null;
 }
 
+export type PreferenceSustainabilityOverview = {
+    sustainability_overview_banner: PreferenceItem | null;
+    sustainability_overview_content: PreferenceItem | null;
+    sustainability_overview_policy_framework: PreferenceItem | null;
+    sustainability_overview_policy_framework_file: PreferenceItem | null;
+    sustainability_overview_rating: PreferenceItem | null;
+}
+
+export type PreferenceSustainabilityEnvironment = {
+    sustainability_environment_banner: PreferenceItem | null;
+    sustainability_environment_overview: PreferenceItem | null;
+}
+
+export type PreferenceSustainabilitySocial = {
+    sustainability_social_banner: PreferenceItem | null;
+    sustainability_social_overview: PreferenceItem | null;
+}
+
+export type PreferenceSustainabilityGovernance = {
+    sustainability_governance_banner: PreferenceItem | null;
+    sustainability_governance_overview: PreferenceItem | null;
+}
+
+export type PreferenceSustainabilityReport = {
+    sustainability_report_banner: PreferenceItem | null;
+}
+
+export type PreferenceSustainabilityAction = {
+    sustainability_action_banner: PreferenceItem | null;
+}
+
 export type QuickLink = {
     url: string;
     name: string;
@@ -338,4 +369,23 @@ export type OurBusinessDetail = {
 export type FinancialCalendarList = {
     year: string;
     items: PressRelease[]
+}
+
+
+export type RatingRecognition = {
+    id: string;
+    ulid?: string;
+    name: string;
+    content?: string;
+    image: string;
+}
+
+export type Responsible = {
+    id: string;
+    ulid?: string;
+    key: string;
+    rotate: any;
+    title: string;
+    description?: string;
+    points: string[];
 }

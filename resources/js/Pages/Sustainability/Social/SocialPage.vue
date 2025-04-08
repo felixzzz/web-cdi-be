@@ -1,8 +1,8 @@
 <template>
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
         <Head :title="$t('head_title.sustainability_social')" />
-        <hero-image />
-        <section-overview />
+        <hero-image :content="content.sustainabilitySocial" />
+        <section-overview :content="content.sustainabilitySocial" />
         <content-tab-social />
         <sustainability-content type="social" />
 
@@ -17,5 +17,14 @@
     import SectionOverview from './components/SectionOverview.vue'
     import ContentTabSocial from './components/ContentTabSocial.vue'
     import SustainabilityContent from '@/Components/Ui/Sustainability/SustainabilityContent.vue'
+
+    import { onBeforeMount } from 'vue'
+    import { useContentStore } from "@/Composables/useContentStore"
+
+    const content = useContentStore()
+
+    onBeforeMount(() => {
+        content.getSustainabilitySocial()
+    })
 
 </script>

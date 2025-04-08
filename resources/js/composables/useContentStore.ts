@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import useCrypto from './useCrypto'
 import useRequest from './useRequest'
-import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceInvestor, PreferenceItem, PreferenceOurBusiness } from '@/types/utility'
+import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceInvestor, PreferenceItem, PreferenceOurBusiness, PreferenceSustainabilityAction, PreferenceSustainabilityEnvironment, PreferenceSustainabilityGovernance, PreferenceSustainabilityOverview, PreferenceSustainabilityReport, PreferenceSustainabilitySocial } from '@/types/utility'
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -16,6 +16,13 @@ const CACHE_MEDIA_CONTENT = "media-cnt"
 const CACHE_OURBUSINESS_CONTENT = "obsn-cnt"
 const CACHE_INVESTOR_CONTENT = "inv-cnt"
 
+const CACHE_SUSTAIN_OVR_CONTENT = "sst-ovr"
+const CACHE_SUSTAIN_ENV_CONTENT = "sst-env"
+const CACHE_SUSTAIN_SOCIAL_CONTENT = "sst-scl"
+const CACHE_SUSTAIN_GVN_CONTENT = "sst-gvn"
+const CACHE_SUSTAIN_RPT_CONTENT = "sst-rpt"
+const CACHE_SUSTAIN_ACT_CONTENT = "sst-act"
+
 
 export const useContentStore = defineStore('content', {
     state: () => ({
@@ -27,7 +34,14 @@ export const useContentStore = defineStore('content', {
         office: __getMainOffice(),
         media: __getMedia(),
         ourBusiness: __getOurBusiness(),
-        investor: __getInvestor()
+        investor: __getInvestor(),
+        sustainabilityOverview: __getSustainabilityOverview(),
+        sustainabilityEnvironment: __getSustainabilityEnvironment(),
+        sustainabilitySocial: __getSustainabilitySocial(),
+        sustainabilityGovernance: __getSustainabilityGovernance(),
+        sustainabilityReport: __getSustainabilityReport(),
+        sustainabilityAction: __getSustainabilityAction()
+
     }),
     actions: {
         getHome() {
@@ -83,7 +97,43 @@ export const useContentStore = defineStore('content', {
                 this.investor = result.data
                 localStorage.setItem(CACHE_INVESTOR_CONTENT, encrypt(result.data))
             })
-        }
+        },
+        getSustainabilityOverview() {
+            return useRequest().get(route('api.utility.sustainability.index', 'overview')).then((result) => {
+                this.sustainabilityOverview = result.data
+                localStorage.setItem(CACHE_SUSTAIN_OVR_CONTENT, encrypt(result.data))
+            })
+        },
+        getSustainabilityEnvironment() {
+            return useRequest().get(route('api.utility.sustainability.index', 'environment')).then((result) => {
+                this.sustainabilityEnvironment = result.data
+                localStorage.setItem(CACHE_SUSTAIN_ENV_CONTENT, encrypt(result.data))
+            })
+        },
+        getSustainabilitySocial() {
+            return useRequest().get(route('api.utility.sustainability.index', 'social')).then((result) => {
+                this.sustainabilitySocial = result.data
+                localStorage.setItem(CACHE_SUSTAIN_SOCIAL_CONTENT, encrypt(result.data))
+            })
+        },
+        getSustainabilityGovernance() {
+            return useRequest().get(route('api.utility.sustainability.index', 'governance')).then((result) => {
+                this.sustainabilityGovernance = result.data
+                localStorage.setItem(CACHE_SUSTAIN_GVN_CONTENT, encrypt(result.data))
+            })
+        },
+        getSustainabilityReport() {
+            return useRequest().get(route('api.utility.sustainability.index', 'report')).then((result) => {
+                this.sustainabilityReport = result.data
+                localStorage.setItem(CACHE_SUSTAIN_RPT_CONTENT, encrypt(result.data))
+            })
+        },
+        getSustainabilityAction() {
+            return useRequest().get(route('api.utility.sustainability.index', 'action')).then((result) => {
+                this.sustainabilityAction = result.data
+                localStorage.setItem(CACHE_SUSTAIN_ACT_CONTENT, encrypt(result.data))
+            })
+        },
     }
 })
 
@@ -187,6 +237,55 @@ const __getOurBusiness = (): PreferenceOurBusiness => {
 const __getInvestor = (): PreferenceInvestor | null => {
     const content = __getStorage(CACHE_INVESTOR_CONTENT);
     return content ? content : null
+}
+
+const __getSustainabilityOverview = (): PreferenceSustainabilityOverview => {
+    const content = __getStorage(CACHE_SUSTAIN_OVR_CONTENT);
+    return content ? content : {
+        sustainability_overview_content: null,
+        sustainability_overview_banner: null,
+        sustainability_overview_policy_framework: null,
+        sustainability_overview_policy_framework_file: null,
+        sustainability_overview_rating: null
+    }
+}
+
+const __getSustainabilityEnvironment = (): PreferenceSustainabilityEnvironment => {
+    const content = __getStorage(CACHE_SUSTAIN_ENV_CONTENT);
+    return content ? content : {
+        sustainability_environment_banner: null,
+        sustainability_environment_overview: null
+    }
+}
+
+const __getSustainabilitySocial = (): PreferenceSustainabilitySocial => {
+    const content = __getStorage(CACHE_SUSTAIN_SOCIAL_CONTENT);
+    return content ? content : {
+        sustainability_social_banner: null,
+        sustainability_social_overview: null
+    }
+}
+
+const __getSustainabilityReport = (): PreferenceSustainabilityReport => {
+    const content = __getStorage(CACHE_SUSTAIN_RPT_CONTENT);
+    return content ? content : {
+        sustainability_report_banner: null
+    }
+}
+
+const __getSustainabilityGovernance = (): PreferenceSustainabilityGovernance => {
+    const content = __getStorage(CACHE_SUSTAIN_GVN_CONTENT);
+    return content ? content : {
+        sustainability_governance_banner: null,
+        sustainability_governance_overview: null
+    }
+}
+
+const __getSustainabilityAction = (): PreferenceSustainabilityAction => {
+    const content = __getStorage(CACHE_SUSTAIN_ACT_CONTENT);
+    return content ? content : {
+        sustainability_action_banner: null
+    }
 }
 
 const __getStorage = (KEY: string) => {

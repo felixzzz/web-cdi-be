@@ -4,15 +4,13 @@
             <h2
                 class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] pt-20 mb-4"
             >
-                Our Sustainability Policy and Framework
+                {{ content.sustainability_overview_policy_framework?.title }}
             </h2>
-            <p class="text-neutral-6 max-lg:text-sm mb-4">
-                Our Sustainability Framework and Policy guide our strategic decisions in across all aspects of our operations, ensuring business success aligns with environmental stewardship, and creates positive impact through responsible practices.
-            </p>
-            <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap bg-blue-base flex items-center gap-2 text-white mt-2 w-fit">
-                Download Sustainability Policy <img :src="asset('assets/frontend/icons/ic_download_white.svg')" alt="">
-            </Link>
-            <div class="mt-16 grid grid-cols-1 lg:grid-cols-5 gap-4">
+            <p class="content !text-neutral-6 max-lg:!text-sm mb-4" v-html="content.sustainability_overview_policy_framework?.content"></p>
+            <a :href="downloadFile(content.sustainability_overview_policy_framework_file?.file_url)" class="px-6 py-2 rounded-full whitespace-nowrap bg-blue-base flex items-center gap-2 text-white mt-2 w-fit" target="_blank">
+                {{ content.sustainability_overview_policy_framework_file?.title }} <img :src="asset('assets/frontend/icons/ic_download_white.svg')" alt="">
+            </a>
+            <div class="mt-16 grid grid-cols-1 lg:grid-cols-5 gap-4" v-if="tabs.length">
                 <div class="lg:col-span-2">
                     <div class="w-[398px] mx-auto relative">
                         <div class="absolute w-full z-[1]">
@@ -37,7 +35,7 @@
                             }"
                             @click="changeText(index)"
                         >
-                            {{ text.name }}
+                            {{ text.key }}
                         </div>
                     </div>
 
@@ -49,7 +47,7 @@
                             v-show="selected == index"
                         >
                             <p class="font-medium text-[22px]">{{ text.title }}</p>
-                            <p class="text-neutral-6 max-lg:text-sm">{{ text.description }}</p>
+                            <p class="content !text-neutral-6 max-lg:!text-sm" v-html="text.description"></p>
                             <div class="flex gap-2 items-center " v-for="(point, i) in text.points" :key="i">
                                 <img :src="asset('assets/frontend/icons/ic_bold_duotone_check_circle.svg')" alt="">
                                 <p class="text-blue-base max-lg:text-sm">{{ point }}</p>
@@ -65,9 +63,14 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset } from '@/Lib/utils'
-    import { Link } from '@inertiajs/vue3'
-    import { ref } from 'vue'
+    import useRequest from '@/Composables/useRequest'
+    import { asset, downloadFile } from '@/Lib/utils'
+    import { PreferenceSustainabilityOverview, Responsible } from '@/types/utility'
+    import { onBeforeMount, ref } from 'vue'
+
+    defineProps<{
+        content: PreferenceSustainabilityOverview
+    }>()
 
     const selected = ref(0)
 
@@ -75,113 +78,17 @@
         selected.value = id
     }
 
-    const tabs = ref([
-        {
-            name: 'R',
-            rotate: 5,
-            title: 'Resource Circularity and Environment Management',
-            description: 'Promoting circular economy and “beyond compliance” on environmental aspects.',
-            points: [
-                'Environmental Management',
-                'Circular Economy'
-            ]
-        },
-        {
-            name: 'E',
-            rotate: -27,
-            title: 'Energy Transition and Low Carbon Solution',
-            description: "Supporting the Indonesian government's commitment to global climate action.",
-            points: [
-                'Climate Resilience'
-            ]
-        },
-        {
-            name: 'S',
-            rotate: -62,
-            title: 'Social and Community Engagement',
-            description: "Supporting the Indonesian government's commitment to global climate action.",
-            points: [
-                'Climate Resilience'
-            ]
-        },
-        {
-            name: 'P',
-            rotate: -94,
-            title: 'Product and Chemical Stewardship',
-            description: 'Producing products according to standards to increase consumer and public trust.',
-            points: [
-                'Product and Chemical Stewardship'
-            ]
-        },
-        {
-            name: 'O',
-            rotate: -130,
-            title: 'OHS and Human Rights',
-            description: 'Running a business that complies with human rights and work safety standards.',
-            points: [
-                'Health and Safety',
-                'Labor and Human Rights'
-            ]
-        },
-        {
-            name: 'N',
-            rotate: -162,
-            title: 'Nurture of Human Capital',
-            description: 'Effective competency development for high productivity and performance.',
-            points: [
-                'Human Capital Development'
-            ]
-        },
-        {
-            name: 'S',
-            rotate: -195,
-            title: 'Sustainable Supply Chain',
-            description: 'Establish supplier standards of environmental and social expectations for business sustainability.',
-            points: [
-                'Sustainable Procurement and Supply Chain'
-            ]
-        },
-        {
-            name: 'I',
-            rotate: -230,
-            title: 'IT and Security Management',
-            description: 'Improving operational efficiency and security through digitalization, data management, and collaboration.',
-            points: [
-                'Digital Transformation',
-                'Labor and Human Rights'
-            ]
-        },
-        {
-            name: 'B',
-            rotate: -260,
-            title: 'Business Risk Management',
-            description: 'Preparing comprehensive risk management for increased access to investment opportunities.',
-            points: [
-                'Corporate Governance',
-                'Climate Resilience',
-                'Health and Safety'
-            ]
-        },
-        {
-            name: 'L',
-            rotate: -292,
-            title: 'Liability on Corporate Governance',
-            description: 'Implementing good governance to prevent noncompliance, violations and regulatory sanctions.',
-            points: [
-                'Corporate Governance',
-                'Business Ethics'
-            ]
-        },
-        {
-            name: 'E',
-            rotate: -323,
-            title: 'ESG Communication and Stakeholder Engagement',
-            description: 'Communication and disclosure of environmental, social, and governance (ESG) management information to build stakeholder trust.',
-            points: [
-                'All Materialities',
-                'Business Ethics'
-            ]
-        }
-    ])
+    const tabs = ref<Responsible[]>([])
+
+    const fetchResponsibles = () => {
+        useRequest().get(route('api.sustainability.responsibles'))
+        .then((result) => {
+            tabs.value = result.data
+        })
+    }
+
+    onBeforeMount(() => {
+        fetchResponsibles()
+    })
 
 </script>
