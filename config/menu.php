@@ -2,13 +2,13 @@
 
 return [
     'Menu' => [
-        [
-            'name' => 'Dashboard',
-            'active' => 'dashboard',
-            'route' => 'admin.dashboard',
-            'icon' => 'layout-dashboard',
-            'sub' => []
-        ],
+        // [
+        //     'name' => 'Dashboard',
+        //     'active' => 'dashboard',
+        //     'route' => 'admin.dashboard',
+        //     'icon' => 'layout-dashboard',
+        //     'sub' => []
+        // ],
         [
             'name' => 'Article',
             'active' => 'article',

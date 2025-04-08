@@ -12,10 +12,10 @@
 
         <x-portal::dropdown-menu.separator />
 
-        <x-portal::dropdown-menu.item as="a" href="/">
+        {{-- <x-portal::dropdown-menu.item as="a" href="/">
             <x-tabler-bell class="h-4 w-4" />
             Notification
-        </x-portal::dropdown-menu.item>
+        </x-portal::dropdown-menu.item> --}}
 
         <x-portal::dropdown-menu.separator />
 
@@ -35,10 +35,10 @@
 
         <x-portal::dropdown-menu.separator />
 
-        <x-portal::dropdown-menu.item as="a" href="/">
+        {{-- <x-portal::dropdown-menu.item as="a" href="/">
             <x-tabler-bell class="h-4 w-4" />
             Notification
-        </x-portal::dropdown-menu.item>
+        </x-portal::dropdown-menu.item> --}}
 
         <x-portal::dropdown-menu.separator />
 
