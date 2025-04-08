@@ -21,4 +21,22 @@ class SustainabilityTabRepository
         ->orderBy("sort", "asc")
         ->get();
     }
+
+    public function detail($type)
+    {
+        return SustainabilityTab::with(["contents"])
+        ->where("category", $type)
+        ->get()->map(function ($row) {
+            $row->title = $row->title;
+            $row->contents = $row->contents->map(function ($content) {
+                $content->heading = $content->heading;
+                $content->tagline = $content->tagline;
+                $content->title = $content->title;
+                $content->content = $content->content;
+                $content->image = $content->image ? previewFile($content->image) : '';
+                return $content;
+            });
+            return $row;
+        });
+    }
 }

@@ -13,22 +13,22 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
                     <div class="rounded-3xl bg-journey-fade px-8 py-10 text-center flex flex-col justify-between">
                         <div>
-                            <img :src="content.about_us_mission?.file_url" class="w-[200px] mx-auto" />
-                            <div class="content !text-white !text-[22px] !font-medium pt-10 px-7" v-html="content.about_us_mission?.content"></div>
-                        </div>
-                        <div>
-                            <div class="my-8 bg-neutral-5 h-[1px] w-full"></div>
-                            <p class="text-neutral-2 font-light">{{ content.about_us_mission?.title }}</p>
-                        </div>
-                    </div>
-                    <div class="rounded-3xl bg-journey-fade px-8 py-10 text-center flex flex-col justify-between">
-                        <div>
                             <img :src="content.about_us_vision?.file_url" class="w-[200px] mx-auto" />
                             <div class="content !text-white !text-[22px] !font-medium pt-10 px-7" v-html="content.about_us_vision?.content"></div>
                         </div>
                         <div>
                             <div class="my-8 bg-neutral-5 h-[1px] w-full"></div>
                             <p class="text-neutral-2 font-light">{{ content.about_us_vision?.title }}</p>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl bg-journey-fade px-8 py-10 text-center flex flex-col justify-between">
+                        <div>
+                            <img :src="content.about_us_mission?.file_url" class="w-[200px] mx-auto" />
+                            <div class="content !text-white !text-[22px] !font-medium pt-10 px-7" v-html="content.about_us_mission?.content"></div>
+                        </div>
+                        <div>
+                            <div class="my-8 bg-neutral-5 h-[1px] w-full"></div>
+                            <p class="text-neutral-2 font-light">{{ content.about_us_mission?.title }}</p>
                         </div>
                     </div>
                 </div>

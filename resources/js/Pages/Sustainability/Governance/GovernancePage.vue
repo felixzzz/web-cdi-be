@@ -2,7 +2,8 @@
     <app-layout :nav-fixed="true" :nav-transparant="true" :nav-sticky-blur="true">
         <Head :title="$t('head_title.sustainability_governance')" />
         <hero-image :content="content.sustainabilityGovernance" />
-        <sustainability-content type="governance" />
+        <sustainability-tab :tabs="tab.governance" v-if="tab.governance" />
+        <sustainability-content :items="data.governance" v-if="data.governance?.length" />
 
     </app-layout>
 </template>
@@ -16,11 +17,18 @@
 
     import { onBeforeMount } from 'vue'
     import { useContentStore } from "@/Composables/useContentStore"
+    import { useSustainabilityTabStore } from '@/Composables/useSustainabilityTabStore'
+    import SustainabilityTab from '@/Components/Ui/Sustainability/SustainabilityTab.vue'
+    import { useSustainabilityStore } from '@/Composables/useSustainabilityStore'
 
     const content = useContentStore()
+    const tab = useSustainabilityTabStore()
+    const data = useSustainabilityStore()
 
     onBeforeMount(() => {
         content.getSustainabilityGovernance()
+        tab.getGovernance()
+        data.getGovernance()
     })
 
 </script>

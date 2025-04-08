@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Helpers\Helper;
 use Illuminate\Database\Seeder;
+use App\Models\Sustainability\SustainabilityTab;
+use App\Models\Sustainability\SustainabilityTabItem;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SustainabilityTabSeeder extends Seeder
 {
@@ -60,12 +63,72 @@ class SustainabilityTabSeeder extends Seeder
             ],
             [
                 'title_en' => 'Renewable Energy for Education',
-                'title_id' => 'Energi Terbarukan untuk Pendidikan'
+                'title_id' => 'Energi Terbarukan untuk Pendidikan',
+                'items' => [
+                    [
+                        'image' => asset('assets/frontend/images/sustainability/social_tab_3.webp'),
+                        'name' => 'Renewable Energy for Education',
+                        'sort' => 1,
+                        'align' => 'right',
+                        'title_en' => 'Renewable Energy for Education',
+                        'content_en' => '<p>CDI believes in providing clean energy access to educational institutions. By installing PLTS Rooftop (Langit Biru) at schools and Islamic boarding schools, CDI helps reduce electricity costs while promoting sustainable energy use.</p>',
+                        'title_id' => 'Energi Terbarukan untuk Pendidikan',
+                        'content_id' => '<p>CDI percaya dalam menyediakan akses energi bersih untuk institusi pendidikan. Dengan memasang PLTS Rooftop (Langit Biru) di sekolah dan pesantren, CDI membantu mengurangi biaya listrik sekaligus mempromosikan penggunaan energi yang berkelanjutan.</p>'
+                    ]
+                ]
             ],
             [
                 'title_en' => 'Marine Conservation',
-                'title_id' => 'Konservasi Laut'
+                'title_id' => 'Konservasi Laut',
+                'items' => [
+                    [
+                        'image' => asset('assets/frontend/images/sustainability/social_tab_3.webp'),
+                        'name' => 'Marine Conservation',
+                        'sort' => 1,
+                        'align' => 'right',
+                        'title_en' => 'Marine Conservation',
+                        'content_en' => '<p>To protect coastal ecosystems, CDI actively participates in coral reef conservation efforts, ensuring the preservation of marine biodiversity for future generations. </p>',
+                        'title_id' => 'Konservasi Laut',
+                        'content_id' => '<p>Untuk melindungi ekosistem pesisir, CDI secara aktif berpartisipasi dalam upaya konservasi terumbu karang, memastikan pelestarian keanekaragaman hayati laut untuk generasi mendatang. </p>'
+                    ]
+                ]
             ]
         ];
+
+        foreach ($tabs as $key => $value) {
+            $tab = SustainabilityTab::create([
+                "category" => 'social',
+                "title_en" => $value["title_en"],
+                "title_id" => $value["title_id"]
+            ]);
+
+            foreach ($value['items'] as $index => $item) {
+
+                $imageFields = ['image'];
+
+                foreach ($imageFields as $field) {
+                    if (!empty($item[$field])) {
+                        $item[$field] = Helper::handleMoveImage($item[$field], 'sustainability/contents');
+
+                    }
+                }
+
+                SustainabilityTabItem::create([
+                    'name' => $value['title_en'] . " #" . ($index+1),
+                    "sustainability_tab_id" => $tab->id,
+                    "image" => $item['image'],
+                    "heading_en" => @$item['heading_en'],
+                    "heading_id" => @$item['heading_id'],
+                    "heading_position" => @$item['heading_position'],
+                    "tagline_en" => @$item['tagline_en'],
+                    "tagline_id" => @$item['tagline_id'],
+                    "title_en" => $item['title_en'],
+                    "title_id" => $item['title_id'],
+                    "align" => $item['align'],
+                    "content_en" => $item['content_en'],
+                    "content_id" => $item['content_id'],
+                ]);
+            }
+        }
     }
 }

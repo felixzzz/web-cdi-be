@@ -88,7 +88,7 @@ type SustainabilityContentGrid = {
 
 export type SustainabilityContent = {
     background?: '' | 'normal' | 'darkest',
-    type?: 'content' | 'grid'  | 'simple_text_information' | 'file_information' | 'list_information' | 'content_points' | 'content_swiper';
+    type?: 'content' | 'grid'  | 'simple_text_information' | 'file_information' | 'list_information' | 'content_points' | 'swiper';
     title?: string;
     image?: string;
     align?: string;
@@ -96,7 +96,7 @@ export type SustainabilityContent = {
     grid_pattern?: '' | 'normal' | 'zig-zag';
     grid_type?: '' | 'icon_content_card' | 'icon_list_card' | 'box_icon_card' | 'image_content_card' | 'featured_image_card';
     content?: string;
-    content_grid?: SustainabilityContentGrid[],
+    content_json?: SustainabilityContentGrid[],
     file_information?: SustainabilityFile
 }
 
@@ -388,4 +388,22 @@ export type Responsible = {
     title: string;
     description?: string;
     points: string[];
+}
+
+
+export type SustainabilityTabItem = {
+    name: string;
+    heading?: string;
+    heading_position?: string;
+    align?: string;
+    tagline?: string;
+    title?: string;
+    content?: string;
+    image?: string;
+}
+
+export type SustainabilityTab = {
+    ulid: string;
+    title: string;
+    contents?: SustainabilityTabItem[]
 }

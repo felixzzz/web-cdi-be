@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Sustainability;
 
+use Illuminate\Support\Facades\App;
 use App\Models\Sustainability\SustainabilityContent;
 
 class SustainabilityContentRepository
@@ -20,5 +21,18 @@ class SustainabilityContentRepository
         ->when($category, fn ($q) => $q->where("category", $category))
         ->orderBy("sort", "asc")
         ->paginate(15);
+    }
+
+    public function detail($type)
+    {
+        $locale = App::currentLocale();
+        return SustainabilityContent::where("category", $type)
+        ->get()->map(function ($row) use ($locale) {
+            $row->title = $row->title;
+            $row->content = $row->content;
+            $row->content_json = $locale == 'en' ? $row->content_json_en : $row->content_json_id;
+            $row->image = $row->image ? previewFile($row->image) : '';
+            return $row;
+        });
     }
 }

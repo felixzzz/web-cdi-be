@@ -101,11 +101,13 @@ class SustainabilityContentAction
         if ($request->type == 'list_information' && $request->has('content_json_list_title_en')) {
             foreach ($request->content_json_list_title_en as $index => $value) {
                 $itemEn = [
-                    'title' => $request->content_json_list_title_en[$index] ?? null
+                    'title' => $request->content_json_list_title_en[$index] ?? null,
+                    'description' => $request->content_json_list_description_en[$index] ?? null
                 ];
 
                 $itemId = [
-                    'title' => $request->content_json_list_title_id[$index] ?? null
+                    'title' => $request->content_json_list_title_id[$index] ?? null,
+                    'description' => $request->content_json_list_description_id[$index] ?? null
                 ];
 
                 $contentJsonEn[] = $itemEn;
@@ -210,11 +212,13 @@ class SustainabilityContentAction
         if ($request->type == 'list_information' && $request->has('content_json_list_title_en')) {
             foreach ($request->content_json_list_title_en as $index => $value) {
                 $itemEn = [
-                    'title' => $request->content_json_list_title_en[$index] ?? null
+                    'title' => $request->content_json_list_title_en[$index] ?? null,
+                    'description' => $request->content_json_list_description_en[$index] ?? null
                 ];
 
                 $itemId = [
-                    'title' => $request->content_json_list_title_id[$index] ?? null
+                    'title' => $request->content_json_list_title_id[$index] ?? null,
+                    'description' => $request->content_json_list_description_id[$index] ?? null
                 ];
 
                 $contentJsonEn[] = $itemEn;

@@ -219,7 +219,9 @@
                             <div class="p-4 border rounded-lg relative flex flex-col gap-4">
                                 @include('admin.pages.sustainability-contents.components.list-edit', [
                                     'title_en' => @$content['title'],
-                                    'title_id' => @$data->content_json_id[$index]['title']
+                                    'title_id' => @$data->content_json_id[$index]['title'],
+                                    'description_en' => @$content['description'],
+                                    'description_id' => @$data->content_json_id[$index]['description']
                                 ])
                             </div>
                         @endforeach

@@ -105,6 +105,8 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get("ratings", "ratings")->name("ratings");
                 Route::get("recognitions", "recognitions")->name("recognitions");
                 Route::get("responsibles", "responsibles")->name("responsibles");
+                Route::get("tab-contents/{type}", "tabContents")->name("tab-contents");
+                Route::get("contents/{type}", "contents")->name("contents");
             });
 
     });
