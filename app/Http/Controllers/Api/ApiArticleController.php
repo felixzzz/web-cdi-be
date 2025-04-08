@@ -18,6 +18,11 @@ class ApiArticleController extends Controller
         return $articleRepository->latestMedia();
     }
 
+    public function latestSustainability(ArticleRepository $articleRepository)
+    {
+        return $articleRepository->latestSustainability();
+    }
+
     public function relates(ArticleRepository $articleRepository, $ulid)
     {
         return $articleRepository->relates($ulid);
@@ -26,5 +31,10 @@ class ApiArticleController extends Controller
     public function list(Request $request, ArticleRepository $articleRepository, $type)
     {
         return $articleRepository->findPaginated($request, $type);
+    }
+
+    public function listSustainability(Request $request, ArticleRepository $articleRepository)
+    {
+        return $articleRepository->findPaginatedSustainability($request);
     }
 }

@@ -37,6 +37,7 @@ export type News = {
     content?: string;
     short_content?: string;
     tags?: string[];
+    route?: string;
 }
 
 export type LatestBannerNews = {

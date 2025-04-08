@@ -48,7 +48,7 @@
                             <p class="text-sm mt-2 mb-6 line-clamp-2 text-neutral-10">
                                 {{ row.data.short_content }}
                             </p>
-                            <Link href="" class="text-blue-base flex items-center gap-2">
+                            <Link :href="row.data.route" class="text-blue-base flex items-center gap-2" v-if="row.data.route">
                                 {{ $t('Read more') }}
                                 <i class="isax icon-arrow-right-3 text-2xl"></i>
                             </Link>

@@ -5,6 +5,7 @@ namespace App\Repositories\Article;
 use App\Enums\ArticleCategory;
 use App\Helpers\Helper;
 use App\Models\Article\Article;
+use App\Models\Article\ArticleCategory as ArticleArticleCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -73,12 +74,13 @@ class ArticleRepository
         ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
         ->orderBy("created_at", "desc")
         ->limit($limit)
-        ->get()->map(function ($row) {
+        ->get()->map(function ($row) use ($type) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
             $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+            $row->route = route('media.detail', [ 'type' => $type, 'id' => $row->slug ]);
             return $row;
         });
     }
@@ -176,5 +178,82 @@ class ArticleRepository
                         return $row;
                 })->values()
         ];
+    }
+
+    public function findPaginatedSustainability(Request $request)
+    {
+        $categories = ArticleArticleCategory::where("is_sustainability", 1)->pluck("id")->toArray();
+        $maxLimit = 15;
+        $limit = $request->get('limit', $maxLimit);
+        $categoryId = $request->category_id;
+        if ($categoryId == 'null' || $categoryId == 'all') $categoryId = '';
+
+        $data = Article::query()
+            ->with([
+                'articleCategory'
+            ])
+            ->where("category", "news")
+            ->whereIn("articles.article_category_id", $categories)
+            ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
+            ->where("status", 1)
+            ->orderBy('created_at','desc')
+            ->orderBy('id','desc')
+            ->paginate($limit);
+        return [
+            'links' => Helper::makePagination($data),
+            'meta' => Helper::metaPagination($data),
+            'items' => collect($data->items())
+                ->reverse()
+                ->take($maxLimit)
+                ->reverse()
+                ->map(function ($row) {
+                        $row->category_name = $row->articleCategory?->name;
+                        $row->title = $row->title;
+                        $row->image = previewFile($row->thumbnail);
+                        $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+                        return $row;
+                })->values()
+        ];
+    }
+
+    public function latestSustainability()
+    {
+        $locale = App::currentLocale();
+        $news = $this->findLatestSustainability();
+
+        $data = [];
+
+        if (count($news) > 0) {
+            $data[] = (object) [
+                'title' => $locale == 'en' ? 'Sustainability <span class="text-blue-lighter">In Action</span>' : 'Keberlanjutan <span class="text-blue-lighter">Dalam Aksi</span>',
+                'data' => $news[0]
+            ];
+        }
+
+        return $data;
+    }
+
+    public function findLatestSustainability()
+    {
+        $categories = ArticleArticleCategory::where("is_sustainability", 1)->pluck("id")->toArray();
+
+        return Article::query()
+        ->with([
+            'articleCategory'
+        ])
+        ->where("articles.status", 1)
+        ->where("articles.category", 'news')
+        ->whereIn("articles.article_category_id", $categories)
+        ->orderBy("created_at", "desc")
+        ->limit(1)
+        ->get()->map(function ($row) {
+            $row->category_name = $row->articleCategory?->name;
+            $row->title = $row->title;
+            $row->short_content = $row->short_content;
+            $row->image = previewFile($row->thumbnail);
+            $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+            $row->route = route('media.detail', [ 'type' => 'news', 'id' => $row->slug ]);
+            return $row;
+        });
     }
 }

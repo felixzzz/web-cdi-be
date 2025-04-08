@@ -53,8 +53,10 @@ Route::middleware(WebApiMiddleware::class)
             ->prefix('article')
             ->group(function () {
                 Route::get("list/{type}", "list")->name("list");
+                Route::get("list-sustainability", "listSustainability")->name("list-sustainability");
                 Route::get("latest", "latest")->name("latest");
                 Route::get("latest-media", "latestMedia")->name("latest-media");
+                Route::get("latest-sustainability", "latestSustainability")->name("latest-sustainability");
                 Route::get("relates/{ulid}", "relates")->name("relates");
             });
 
