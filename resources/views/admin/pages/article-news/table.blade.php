@@ -7,6 +7,7 @@
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
                     <x-portal::table.head key="articles.thumbnail">Thumbnail</x-portal::table.head>
+                    <x-portal::table.head sortable key="articles.datetime">Datetime</x-portal::table.head>
                     <x-portal::table.head sortable key="articles.title_en">Title EN</x-portal::table.head>
                     <x-portal::table.head sortable key="articles.title_id">Title ID</x-portal::table.head>
                     <x-portal::table.head sortable key="article_categories.name_en">Category</x-portal::table.head>
@@ -20,6 +21,7 @@
                         <x-portal::table.cell class="font-medium">
                             <img src="{{ previewFile($row->thumbnail) }}" alt="" class="h-[60px] rounded-md">
                         </x-portal::table.cell>
+                        <x-portal::table.cell class="font-medium">{{ $row->datetime }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->title_en }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->title_id }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->category_name }}</x-portal::table.cell>
@@ -48,7 +50,7 @@
                     </x-portal::table.row>
                 @empty
                 <x-portal::table.row>
-                    <x-portal::table.cell colspan="5">
+                    <x-portal::table.cell colspan="6">
                         <div class="flex items-center gap-3 justify-center">
                             @svg('tabler-info-circle-f', ['class' => 'icon'])
                             Data Empty

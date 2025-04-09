@@ -39,7 +39,7 @@ class PressReleaseRepository
         $data = PressRelease::query()
             ->where("status", 1)
             ->when($search, fn ($q) => $q->where("name_{$locale}", "LIKE", "%$search%"))
-            ->orderBy('created_at','desc')
+            ->orderBy('datetime','desc')
             ->orderBy('id','desc')
             ->paginate($limit);
         return [
@@ -52,7 +52,7 @@ class PressReleaseRepository
                 ->map(function ($row) {
                         $row->name = $row->name;
                         $row->file = json_decode($row->file);
-                        $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
+                        $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
                         return $row;
                 })->values()
         ];

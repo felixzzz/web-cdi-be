@@ -25,6 +25,8 @@
                 />
             </x-portal::form.group>
 
+            <x-portal::form.input label="Datetime" placeholder="Datetime" name="datetime" value="{{ old('datetime', now()) }}" type="datetime-local" required />
+
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Name" placeholder="Name" name="name_id" :value="old('name_id')" type="text" required />
             <x-portal::form.group

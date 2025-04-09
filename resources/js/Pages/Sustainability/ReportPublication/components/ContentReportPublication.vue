@@ -20,7 +20,13 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" v-if="paginate.state.loading">
+                <div v-for="index in 3" :key="index">
+                    <news-loading />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" v-if="!paginate.state.loading">
                 <div v-for="(item, index) in paginate.state.items" :key="index" x-data="{popup: false}">
                     <sustainability-card :item="item" :type="tabActive" />
                 </div>
@@ -38,6 +44,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import NewsLoading from '@/Components/Ui/Media/NewsLoading.vue'
     import SustainabilityCard from '@/Components/Ui/Sustainability/SustainabilityCard.vue'
     import PaginationLink from '@/Components/Ui/Utils/PaginationLink.vue'
     import usePaginate from '@/Composables/usePaginate'

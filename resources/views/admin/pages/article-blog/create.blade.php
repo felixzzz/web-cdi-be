@@ -20,6 +20,9 @@
                     class="w-full"
                 />
             </x-portal::form.group>
+
+            <x-portal::form.input label="Datetime" placeholder="Datetime" name="datetime" value="{{ old('datetime', now()) }}" type="datetime-local" required />
+
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_en" :value="old('title_en')" type="text" required />
             <x-portal::form.group

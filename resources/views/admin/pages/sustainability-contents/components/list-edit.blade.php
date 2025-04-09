@@ -19,7 +19,7 @@
             description=""
             description-trailing=""
         >
-            <textarea name="content_json_list_description_en[]" id="quill_editor_content_json_list_description_en_{{ $rand }}_value">{!! $description_en !!}</textarea>
+            <textarea name="content_json_list_description_en[]">{!! $description_en !!}</textarea>
         </x-portal::form.group>
     </div>
     <div class="max-lg:hidden">
@@ -34,7 +34,7 @@
             description=""
             description-trailing=""
         >
-        <textarea name="content_json_list_description_id[]" id="quill_editor_content_json_list_description_id_{{ $rand }}_value">{!! $description_id !!}</textarea>
+        <textarea name="content_json_list_description_id[]">{!! $description_id !!}</textarea>
         </x-portal::form.group>
     </div>
 </div>

@@ -20,7 +20,7 @@ class NewsAction
 
     public function store(NewsRequest $request){
         $data = [
-            ...$request->only(['title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
+            ...$request->only(['datetime', 'title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
             'meta_tag' => [
                 'description' => $request->meta_description,
                 'keyword' => $request->meta_keyword,
@@ -39,7 +39,7 @@ class NewsAction
     public function update(NewsRequest $request, $ulid){
         $article = Article::whereUlid($ulid)->firstOrFail();
         $data = [
-            ...$request->only(['title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
+            ...$request->only(['datetime', 'title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
             'tags' => explode(',', $request->tags),
             'slug' => $article->slug
         ];

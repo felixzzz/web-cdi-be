@@ -18,7 +18,7 @@ class PressReleaseAction
 
     public function store(PressReleaseRequest $request){
         $data = [
-            ...$request->only(['name_en', 'name_id', 'status'])
+            ...$request->only(['datetime', 'name_en', 'name_id', 'status'])
         ];
 
         if ($request->hasFile('file_en')) {
@@ -34,7 +34,7 @@ class PressReleaseAction
 
     public function update(PressReleaseRequest $request, $ulid){
         $data = [
-            ...$request->only(['name_en', 'name_id', 'status'])
+            ...$request->only(['datetime', 'name_en', 'name_id', 'status'])
         ];
 
 

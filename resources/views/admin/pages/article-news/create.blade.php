@@ -33,6 +33,7 @@
                     <option value="{{ $item->id }}" {{ old('article_category_id') == $item->id ? 'selected' : '' }}>{{ $item->name_en }}</option>
                 @endforeach
             </x-portal::form.select>
+            <x-portal::form.input label="Datetime" placeholder="Datetime" name="datetime" value="{{ old('datetime', now()) }}" type="datetime-local" required />
 
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_en" :value="old('title_en')" type="text" required />

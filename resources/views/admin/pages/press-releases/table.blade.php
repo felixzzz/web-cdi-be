@@ -6,6 +6,7 @@
         <x-portal::table>
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
+                    <x-portal::table.head sortable key="datetime">Datetime</x-portal::table.head>
                     <x-portal::table.head sortable key="name_en">Name EN</x-portal::table.head>
                     <x-portal::table.head sortable key="name_id">Name ID</x-portal::table.head>
                     <x-portal::table.head>File Information</x-portal::table.head>
@@ -16,6 +17,7 @@
             <tbody class="divide-y divide-border">
                 @forelse($data as $row)
                     <x-portal::table.row>
+                        <x-portal::table.cell class="font-medium">{{ $row->datetime }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->name_en }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->name_id }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">
@@ -52,7 +54,7 @@
                     </x-portal::table.row>
                 @empty
                 <x-portal::table.row>
-                    <x-portal::table.cell colspan="4">
+                    <x-portal::table.cell colspan="5">
                         <div class="flex items-center gap-3 justify-center">
                             @svg('tabler-info-circle-f', ['class' => 'icon'])
                             Data Empty

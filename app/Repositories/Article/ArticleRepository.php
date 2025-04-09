@@ -72,14 +72,14 @@ class ArticleRepository
         ->where("articles.status", 1)
         ->where("articles.category", $type)
         ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
-        ->orderBy("created_at", "desc")
+        ->orderBy("datetime", "desc")
         ->limit($limit)
         ->get()->map(function ($row) use ($type) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
-            $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+            $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
             $row->route = route('media.detail', [ 'type' => $type, 'id' => $row->slug ]);
             return $row;
         });
@@ -95,7 +95,7 @@ class ArticleRepository
             $data->title = $data->title;
             $data->content = $data->content;
             $data->short_content = $data->short_content;
-            $data->date = Carbon::parse($data->created_at)->translatedFormat("d-m-Y");
+            $data->date = Carbon::parse($data->datetime)->translatedFormat("d-m-Y");
             $data->image = previewFile($data->thumbnail);
         }
 
@@ -110,13 +110,13 @@ class ArticleRepository
         ])
         ->where("articles.status", 1)
         ->where("ulid", "!=", $ulid)
-        ->orderBy("created_at", "desc")
+        ->orderBy("datetime", "desc")
         ->limit(3)
         ->get()->map(function ($row) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->image = previewFile($row->thumbnail);
-            $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+            $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
             return $row;
         });
     }
@@ -160,7 +160,7 @@ class ArticleRepository
             ->where("category", $type)
             ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
             ->where("status", 1)
-            ->orderBy('created_at','desc')
+            ->orderBy('datetime','desc')
             ->orderBy('id','desc')
             ->paginate($limit);
         return [
@@ -174,7 +174,7 @@ class ArticleRepository
                         $row->category_name = $row->articleCategory?->name;
                         $row->title = $row->title;
                         $row->image = previewFile($row->thumbnail);
-                        $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+                        $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
                         return $row;
                 })->values()
         ];
@@ -196,7 +196,7 @@ class ArticleRepository
             ->whereIn("articles.article_category_id", $categories)
             ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
             ->where("status", 1)
-            ->orderBy('created_at','desc')
+            ->orderBy('datetime','desc')
             ->orderBy('id','desc')
             ->paginate($limit);
         return [
@@ -210,7 +210,7 @@ class ArticleRepository
                         $row->category_name = $row->articleCategory?->name;
                         $row->title = $row->title;
                         $row->image = previewFile($row->thumbnail);
-                        $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+                        $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
                         return $row;
                 })->values()
         ];
@@ -244,14 +244,14 @@ class ArticleRepository
         ->where("articles.status", 1)
         ->where("articles.category", 'news')
         ->whereIn("articles.article_category_id", $categories)
-        ->orderBy("created_at", "desc")
+        ->orderBy("datetime", "desc")
         ->limit(1)
         ->get()->map(function ($row) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
-            $row->date = Carbon::parse($row->created_at)->translatedFormat("d-m-Y");
+            $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
             $row->route = route('media.detail', [ 'type' => 'news', 'id' => $row->slug ]);
             return $row;
         });
