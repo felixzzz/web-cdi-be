@@ -20,7 +20,7 @@
     const content = useContentStore()
 
     onBeforeMount(() => {
-        content.getSustainabilityOverview()
+        content.getSustainabilityReport()
     })
 
 </script>
