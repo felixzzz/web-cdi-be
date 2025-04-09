@@ -12,64 +12,62 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 px-6 pb-6">
                 <div class="">
-                    <img :src="item.image" alt="" class="rounded-e-3xl w-full">
+                    <img :src="item.image" alt="" class="rounded-e-3xl w-full overflow-hidden">
                 </div>
                 <div class="lg:col-span-2">
                     <h2 class="text-[22px] font-medium text-blue-base mb-2">
                         {{ item.title }}
                     </h2>
-                    <p class="text-neutral-8">
-                        {{ item.description }}
-                    </p>
+                    <div class="content !text-neutral-8" v-html="item.description"></div>
                     <div class="h-[1px] bg-neutral-5 w-full my-6"></div>
                     <table>
                         <tbody>
-                            <tr>
-                                <td class="text-neutral-10 font-bold pe-6">
+                            <tr v-if="item.language">
+                                <td class="text-neutral-10 font-bold pe-6 py-1">
                                     Language
                                 </td>
                                 <td class="text-neutral-8">
-                                    Indonesia
+                                    {{ item.language }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-neutral-10 font-bold pe-6">
+                            <tr v-if="item.author">
+                                <td class="text-neutral-10 font-bold pe-6 py-1">
                                     Author
                                 </td>
                                 <td class="text-neutral-8">
-                                    Novita Puteri K., Dwi Putri Julyanti, Bagus Adiputra Utama, Adiyat (and the other 11 authors)
+                                    {{ item.author }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-neutral-10 font-bold pe-6">
+                            <tr v-if="item.publisher">
+                                <td class="text-neutral-10 font-bold pe-6 py-1">
                                     Publisher
                                 </td>
                                 <td class="text-neutral-8">
-                                    Indonesia
+                                    {{ item.publisher }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-neutral-10 font-bold pe-6">
+                            <tr v-if="item.release_year">
+                                <td class="text-neutral-10 font-bold pe-6 py-1">
                                     Release Year
                                 </td>
                                 <td class="text-neutral-8">
-                                    2023
+                                    {{ item.release_year }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-neutral-10 font-bold pe-6">
+                            <tr v-if="item.pages">
+                                <td class="text-neutral-10 font-bold pe-6 py-1">
                                     Pages
                                 </td>
                                 <td class="text-neutral-8">
-                                    64
+                                    {{ item.pages }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-neutral-10 font-bold pe-6">
+                            <tr v-if="item.format">
+                                <td class="text-neutral-10 font-bold pe-6 py-1">
                                     Format
                                 </td>
                                 <td class="text-neutral-8">
-                                    PDF
+                                    {{ item.format }}
                                 </td>
                             </tr>
                         </tbody>
@@ -83,9 +81,10 @@
 
 <script setup lang="ts">
     import { asset } from '@/Lib/utils'
+    import { SustainabilityReport } from '@/types/utility'
 
     defineProps<{
-        item: any;
+        item: SustainabilityReport;
         type: string;
     }>()
 

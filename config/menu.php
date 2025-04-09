@@ -69,6 +69,13 @@ return [
             ]
         ],
         [
+            'name' => 'Sustainability Reports',
+            'active' => 'sustainability-reports',
+            'route' => 'admin.sustainability-reports.index',
+            'icon' => 'report-analytics',
+            'sub' => []
+        ],
+        [
             'name' => 'Offices',
             'active' => 'offices',
             'route' => 'admin.offices.index',

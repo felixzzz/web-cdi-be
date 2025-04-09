@@ -89,4 +89,8 @@ class OfficeAction
         ]);
 
     }
+
+    public function delete($ulid){
+        return Office::where('ulid', $ulid)->delete();
+    }
 }

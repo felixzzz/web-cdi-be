@@ -109,6 +109,7 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get("responsibles", "responsibles")->name("responsibles");
                 Route::get("tab-contents/{type}", "tabContents")->name("tab-contents");
                 Route::get("contents/{type}", "contents")->name("contents");
+                Route::get("reports/{type}", "reports")->name("reports");
             });
 
     });

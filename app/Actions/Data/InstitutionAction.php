@@ -80,4 +80,8 @@ class InstitutionAction
         ]);
 
     }
+
+    public function delete($ulid){
+        return Institution::where('ulid', $ulid)->delete();
+    }
 }

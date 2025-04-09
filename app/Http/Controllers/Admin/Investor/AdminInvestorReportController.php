@@ -6,6 +6,7 @@ use App\Actions\Investor\InvestorReportAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Investor\InvestorReportRequest;
+use App\Models\Investor\InvestorReport;
 use App\Repositories\Investor\InvestorReportRepository;
 use Illuminate\Http\Request;
 
@@ -62,7 +63,7 @@ class AdminInvestorReportController extends AdminController
      */
     public function edit(string $id)
     {
-        $data = PressRelease::findByUlid($id, true);
+        $data = InvestorReport::findByUlid($id, true);
         return view("admin.pages.investor-reports.edit", [
             'data' => $data,
             'pageTitle' => 'Update Investor Reports'

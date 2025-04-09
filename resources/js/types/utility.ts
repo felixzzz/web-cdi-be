@@ -408,3 +408,22 @@ export type SustainabilityTab = {
     title: string;
     contents?: SustainabilityTabItem[]
 }
+
+
+export type SustainabilityReport = {
+    id: string | number;
+    title: string;
+    description?: string;
+    image?: string;
+    file?: {
+        path: string;
+        size: string;
+        format: string;
+    };
+    release_year?: any;
+    language?: string;
+    author?: string;
+    publisher?: string;
+    pages?: number;
+    format?: string;
+}

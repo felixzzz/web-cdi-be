@@ -50,4 +50,8 @@ class TeamAction
 
         return Team::where("ulid", $ulid)->update($data);
     }
+
+    public function delete($ulid){
+        return Team::where('ulid', $ulid)->delete();
+    }
 }
