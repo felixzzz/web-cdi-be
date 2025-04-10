@@ -59,9 +59,9 @@
             <div>
                 <div id="quill_editor_content_json_description_id_{{ $rand }}" style="height: 150px"
                     class="!border-input rounded-b-md">
-                    {!! $description_en !!}
+                    {!! $description_id !!}
                 </div>
-                <textarea name="content_json_description_en[]" id="quill_editor_content_json_description_id_{{ $rand }}_value" class="hidden">{!! $description_id !!}</textarea>
+                <textarea name="content_json_description_id[]" id="quill_editor_content_json_description_id_{{ $rand }}_value" class="hidden">{!! $description_id !!}</textarea>
             </div>
         </x-portal::form.group>
     </div>
