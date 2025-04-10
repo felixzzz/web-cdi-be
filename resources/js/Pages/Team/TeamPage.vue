@@ -27,7 +27,7 @@
                             </p>
                         </div>
                         <div class="flex items-center gap-10">
-                            <img :src="previewFile(data.image_hero)" alt="" class="absolute bottom-0 h-[80%]" v-if="data.image_hero">
+                            <img :src="data.image_hero ? previewFile(data.image_hero) : asset('assets/frontend/icons/avatar_dummy_transparant.webp')" alt="" class="absolute bottom-0 h-[80%]" v-if="data.image_hero">
                         </div>
                     </div>
                 </container>
