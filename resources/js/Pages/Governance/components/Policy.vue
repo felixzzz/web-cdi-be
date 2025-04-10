@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-blue-dark-black py-20 text-white bg-contain bg-no-repeat bg-right relative" id="policy"
+        class="bg-blue-dark-black py-20 text-white bg-contain bg-no-repeat bg-right relative" id="policy" v-if="content.governance_policy_show?.content_en == 'show'"
     >
         <container>
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-8">

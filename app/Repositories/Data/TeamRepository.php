@@ -32,4 +32,12 @@ class TeamRepository
         ->orderBy("created_at", "asc")
         ->get();
     }
+
+    public function find($id)
+    {
+        $data = Team::query()->where("ulid", $id)->firstOrFail();
+
+        $data->description = $data->description;
+        return $data;
+    }
 }

@@ -72,6 +72,13 @@ enum PreferenceKey: string
     case governance_whistleblowing = 'governance_whistleblowing';
     case governance_whistleblowing_detail = 'governance_whistleblowing_detail';
 
+    case governance_audit_committe_show = 'governance_audit_committe_show';
+    case governance_audit_committe_member_text_show = 'governance_audit_committe_member_text_show';
+    case governance_sustainability_committe_show = 'governance_sustainability_committe_show';
+    case governance_risk_management_show = 'governance_risk_management_show';
+    case governance_she_regulation_show = 'governance_she_regulation_show';
+    case governance_policy_show = 'governance_policy_show';
+
     case our_business_banner = 'our_business_banner';
     case our_business_overview = 'our_business_overview';
 
@@ -161,6 +168,12 @@ enum PreferenceKey: string
             'governance_policy' => PreferenceType::TextContent,
             'governance_whistleblowing' => PreferenceType::TextContentImage,
             'governance_whistleblowing_detail' => PreferenceType::TextImage,
+            'governance_audit_committe_show' => PreferenceType::TextContent,
+            'governance_audit_committe_member_text_show' => PreferenceType::TextContent,
+            'governance_sustainability_committe_show' => PreferenceType::TextContent,
+            'governance_risk_management_show' => PreferenceType::TextContent,
+            'governance_she_regulation_show' => PreferenceType::TextContent,
+            'governance_policy_show' => PreferenceType::TextContent,
 
             'our_business_banner' => PreferenceType::TextContentImage,
             'our_business_overview' => PreferenceType::TextContent,
@@ -288,7 +301,13 @@ enum PreferenceKey: string
             self::governance_she_regulation->value,
             self::governance_policy->value,
             self::governance_whistleblowing->value,
-            self::governance_whistleblowing_detail->value
+            self::governance_whistleblowing_detail->value,
+            self::governance_audit_committe_show->value,
+            self::governance_audit_committe_member_text_show->value,
+            self::governance_sustainability_committe_show->value,
+            self::governance_risk_management_show->value,
+            self::governance_she_regulation_show->value,
+            self::governance_policy_show->value,
         ];
     }
 

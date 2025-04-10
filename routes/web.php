@@ -61,6 +61,7 @@ Route::prefix('about-us')
     Route::get('/', [AboutUsController::class, 'index'])->name('who-we-are');
     Route::get('/awards', [AwardsController::class, 'index'])->name('awards');
     Route::get('/management', [ManagementController::class, 'index'])->name('management');
+    Route::get('/management/team/{team}', [ManagementController::class, 'team'])->name('team');
 });
 
 Route::prefix('our-business')

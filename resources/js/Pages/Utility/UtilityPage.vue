@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Head :title="title" />
+        <Head :title="data.title" />
 
         <container class="py-20">
             <h1 class="text-neutral-13 font-medium text-2xl lg:text-[28px] mb-5">{{ data.title }}</h1>

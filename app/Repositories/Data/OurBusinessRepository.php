@@ -3,6 +3,7 @@
 namespace App\Repositories\Data;
 
 use App\Helpers\Optimize;
+use Illuminate\Support\Facades\App;
 use App\Models\OurBusiness\OurBusiness;
 use App\Models\OurBusiness\OurBusinessTab;
 use App\Models\OurBusiness\OurBusinessContent;
@@ -61,7 +62,8 @@ class OurBusinessRepository
 
     public function getOverviewList()
     {
-        return Optimize::cache($this->listKey, function () {
+        $locale = App::currentLocale();
+        return Optimize::cache($this->listKey."_".$locale, function () {
             return OurBusiness::with(["tabs"])
             ->get()->map(function ($row) {
                 $row->tabs = $row->tabs->map(function ($tab) {
@@ -90,7 +92,9 @@ class OurBusinessRepository
         ->where("type", $type)
         ->firstOrFail();
 
-        return Optimize::cache($this->detailKey."$type", function () use (&$data) {
+        $locale = App::currentLocale();
+
+        return Optimize::cache($this->detailKey."_".$locale."_"."$type", function () use (&$data) {
             $data->tabs = $data->tabs->map(function ($tab) {
                 $tab->title = $tab->title;
                 $tab->sub_title = $tab->sub_title;
@@ -127,10 +131,17 @@ class OurBusinessRepository
 
     public function resetCache()
     {
-        Optimize::delete($this->listKey);
-        Optimize::delete($this->detailKey."energy");
-        Optimize::delete($this->detailKey."water");
-        Optimize::delete($this->detailKey."port_storage");
-        Optimize::delete($this->detailKey."logistic");
+        Optimize::delete($this->listKey."_en");
+        Optimize::delete($this->detailKey."_en_"."energy");
+        Optimize::delete($this->detailKey."_en_"."water");
+        Optimize::delete($this->detailKey."_en_"."port_storage");
+        Optimize::delete($this->detailKey."_en_"."logistic");
+
+        Optimize::delete($this->listKey."_id");
+        Optimize::delete($this->detailKey."_id_"."energy");
+        Optimize::delete($this->detailKey."_id_"."water");
+        Optimize::delete($this->detailKey."_id_"."port_storage");
+        Optimize::delete($this->detailKey."_id_"."logistic");
+
     }
 }

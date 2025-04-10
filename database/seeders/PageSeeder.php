@@ -893,6 +893,48 @@ class PageSeeder extends Seeder
                 'content_en' => '',
                 'content_id' => '',
             ],
+            'governance_audit_committe_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
+            'governance_audit_committe_member_text_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
+            'governance_sustainability_committe_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
+            'governance_risk_management_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
+            'governance_she_regulation_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
+            'governance_policy_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
         ];
 
 
@@ -931,19 +973,33 @@ class PageSeeder extends Seeder
 
 
         $cacheKeys = [
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllHomeKey()),
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('who-we-are')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('management')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('award')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllInvestorKey()),
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllGovernanceKey()),
-            Helper::getPreferenceCacheKey(PreferenceKey::getAllOurBusinessKey()),
-            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('overview')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('environment')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('social')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('governance')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('report')),
-            Helper::getPreferenceCacheKey(PreferenceKey::getOtherKeys())
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllHomeKey(), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('who-we-are'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('management'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('award'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllInvestorKey(), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllGovernanceKey(), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllOurBusinessKey(), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('overview'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('environment'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('social'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('governance'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('report'), 'en'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getOtherKeys(), 'en'),
+
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllHomeKey(), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('who-we-are'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('management'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllAboutUsKey('award'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllInvestorKey(), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllGovernanceKey(), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getAllOurBusinessKey(), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('overview'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('environment'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('social'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('governance'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getSustainabilityKey('report'), 'id'),
+            Helper::getPreferenceCacheKey(PreferenceKey::getOtherKeys(), 'id'),
         ];
 
         foreach ($cacheKeys as $key) {

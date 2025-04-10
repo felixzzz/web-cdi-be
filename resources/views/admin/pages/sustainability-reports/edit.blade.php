@@ -38,7 +38,6 @@
     >
         <x-portal::file-upload
             icon="file-type-pdf"
-            required
             maxsize="5"
             name="file"
             class="w-full"

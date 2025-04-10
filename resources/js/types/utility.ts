@@ -162,6 +162,12 @@ export type PreferenceGovernance = {
     governance_policy: PreferenceItem | null;
     governance_whistleblowing: PreferenceItem | null;
     governance_whistleblowing_detail: PreferenceItem | null;
+    governance_audit_committe_show: PreferenceItem | null;
+    governance_audit_committe_member_text_show: PreferenceItem | null;
+    governance_sustainability_committe_show: PreferenceItem | null;
+    governance_risk_management_show: PreferenceItem | null;
+    governance_she_regulation_show: PreferenceItem | null;
+    governance_policy_show: PreferenceItem | null;
 }
 
 export type PreferenceAboutAward = {
@@ -268,9 +274,22 @@ export type AdditionalFile = {
 }
 
 export type Team = {
+    ulid: string;
     name: string;
     image: string;
     position: string;
+    description?: string;
+    image_hero?: string;
+    cv_file?: {
+        path: string;
+        size: string;
+        format: string;
+    };
+    resume_file?: {
+        path: string;
+        size: string;
+        format: string;
+    };
 }
 
 export type InvestorReport = {

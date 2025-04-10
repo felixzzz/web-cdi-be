@@ -26,7 +26,9 @@ class Team extends Model
     protected function casts(): array
     {
         return [
-            'type' => TeamType::class
+            'type' => TeamType::class,
+            'cv_file' => 'array',
+            'resume_file' => 'array',
         ];
     }
 }

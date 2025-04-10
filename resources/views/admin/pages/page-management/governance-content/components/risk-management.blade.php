@@ -6,6 +6,18 @@
 <img src="{{ asset("assets/frontend/icons/flag_{$lang}.svg") }}" alt="" class="w-5">
 <x-portal::heading size="lg" class="!font-bold">Risk Management</x-portal::heading>
 @if ($lang == 'en')
+    <x-portal::form.select
+        name="governance_risk_management_show_content_en"
+        label="Show"
+        description=""
+        description-trailing=""
+        required
+    >
+        <option value="show" {{ @$data->governance_risk_management_show->content_en == 'show' ? 'selected' : '' }}>Show</option>
+        <option value="hide" {{ @$data->governance_risk_management_show->content_en == 'hide' ? 'selected' : '' }}>Hide</option>
+    </x-portal::form.select>
+@endif
+@if ($lang == 'en')
     <x-portal::form.group
         label="Background"
         name="governance_risk_management_file"

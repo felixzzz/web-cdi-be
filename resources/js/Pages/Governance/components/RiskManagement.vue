@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-gradient-dark-black py-20 text-white bg-contain bg-no-repeat bg-right relative" id="risk-management"
+        class="bg-gradient-dark-black py-20 text-white bg-contain bg-no-repeat bg-right relative" id="risk-management" v-if="content.governance_risk_management_show?.content_en == 'show'"
     >
         <div
             class="absolute top-0 left-0 right-0 bottom-0 bg-contain bg-no-repeat bg-right"

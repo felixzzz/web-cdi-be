@@ -116,10 +116,11 @@ class Helper
         }
     }
 
-    public static function getPreferenceCacheKey($keys = [])
+    public static function getPreferenceCacheKey($keys = [], $lang = '')
     {
         $hashedKeys = hash('sha256', json_encode($keys));
-        $cacheKey = "preference-keys-{$hashedKeys}-" . App::getLocale();
+        if (!$lang) $lang = App::getLocale();
+        $cacheKey = "preference-keys-{$hashedKeys}-" . $lang;
         return $cacheKey;
     }
 

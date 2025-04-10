@@ -45,6 +45,7 @@
     "head_title": {
         "about_us_awards_certification": "Awards & Certification",
         "about_us_management": "Management and Organization Structure",
+        "about_us_team": "Detail Team",
         "about_us_who_we_are": "Management and Organization Structure",
         "contact_us": "Contact Us",
         "governance": "Governance",
@@ -166,5 +167,7 @@
     "Anual Report": "Anual Report",
     "Financial Report": "Financial Report",
     "Search anything": "Search anything...",
-    "Rating & Recognition": "Rating & Recognition"
+    "Rating & Recognition": "Rating & Recognition",
+    "Back": "Back",
+    "Document": "Document"
 }

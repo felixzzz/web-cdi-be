@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div v-show="tabActive == 'audit-committee'" class="py-8">
+            <div v-show="tabActive == 'audit-committee'" class="py-8" v-if="content.governance_audit_committe_show?.content_en == 'show'">
                 <p class="font-medium text-[22px] mb-3" v-if="content.governance_audit_committe?.title">{{ content.governance_audit_committe?.title }}</p>
                 <div class="content" v-html="content.governance_audit_committe?.content"></div>
 
@@ -43,10 +43,10 @@
                     </div>
                 </div>
 
-                <p class="font-medium text-[22px] mb-3">{{ content.governance_audit_committe_member_text?.title }}</p>
-                <div class="content text-neutral-6 mb-8" v-html="content.governance_audit_committe_member_text?.content"></div>
+                <p class="font-medium text-[22px] mb-3" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'">{{ content.governance_audit_committe_member_text?.title }}</p>
+                <div class="content text-neutral-6 mb-8" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'" v-html="content.governance_audit_committe_member_text?.content"></div>
 
-                <div class="flex gap-8">
+                <div class="flex gap-8" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'">
                     <div class="flex flex-col items-center text-center w-[282px] group transition-all duration-300" v-for="(audit, i) in audits" :key="i">
                         <div class="flex flex-col items-center text-center">
                             <img :src="previewFile(audit.image)" alt="" class="aspect-square overflow-hidden rounded-full object-cover shadow-article mb-5 border-2 border-transparent outline-2 outline-transparent group-hover:outline-blue-lighter ">
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div v-show="tabActive == 'sustainability-committee'" class="py-8">
+            <div v-show="tabActive == 'sustainability-committee'" class="py-8" v-if="content.governance_sustainability_committe_show?.content_en == 'show'">
                 <img :src="content.governance_sustainability_committe?.file_url" alt="" class="w-full rounded-3xl">
                 <file-zoom :image="content.governance_sustainability_committe?.file_url" :title="$t('Sustainability Committee')" v-if="content.governance_sustainability_committe?.file_url" />
 
@@ -96,20 +96,17 @@
     import { asset, downloadFile, previewFile } from '@/Lib/utils'
     import { onMounted, ref } from 'vue'
 
-    import { AdditionalFile, PreferenceGovernance, Team } from '@/types/utility'
+    import { AdditionalFile, NameId, PreferenceGovernance, Team } from '@/types/utility'
     import useRequest from '@/Composables/useRequest'
     import FileZoom from '@/Components/Ui/Utils/FileZoom.vue'
 
-    defineProps<{
+    const props = defineProps<{
         content: PreferenceGovernance
     }>()
 
-    const tabActive = ref('audit-committee')
+    const tabActive = ref(props.content.governance_audit_committe_show?.content_en != 'show' ? 'sustainability-committee' : 'audit-committee')
 
-    const tabs = ref([
-        { id: 'audit-committee', name: $t('Audit Committee') },
-        { id: 'sustainability-committee', name: $t('Sustainability Committee') },
-    ])
+    const tabs = ref<NameId[]>([])
 
     const audits = ref<Team[]>([])
     const auditFiles = ref<AdditionalFile[]>([])
@@ -121,6 +118,20 @@
 
 
     onMounted(() => {
+
+        if (props.content.governance_audit_committe_show?.content_en == 'show') {
+            tabs.value.push(
+                { id: 'audit-committee', name: $t('Audit Committee') },
+            )
+        }
+
+        if (props.content.governance_sustainability_committe_show?.content_en == 'show') {
+            tabs.value.push(
+                { id: 'sustainability-committee', name: $t('Sustainability Committee') },
+            )
+        }
+
+
         useRequest().get(route('api.utility.teams', 'audit'))
         .then((result) => {
             audits.value = result.data

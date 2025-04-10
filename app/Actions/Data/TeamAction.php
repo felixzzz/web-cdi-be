@@ -30,6 +30,14 @@ class TeamAction
             $data['image_hero'] = StorageFile::upload($request->file('image_hero'), 'teams');
         }
 
+        if ($request->hasFile('cv_file')) {
+            $data['cv_file'] = StorageFile::uploadWithDetails($request->file('cv_file'), 'teams');
+        }
+
+        if ($request->hasFile('resume_file')) {
+            $data['resume_file'] = StorageFile::uploadWithDetails($request->file('resume_file'), 'teams');
+        }
+
         return Team::create($data);
 
     }
@@ -46,6 +54,14 @@ class TeamAction
 
         if ($request->hasFile('image_hero')) {
             $data['image_hero'] = StorageFile::upload($request->file('image_hero'), 'teams');
+        }
+
+        if ($request->hasFile('cv_file')) {
+            $data['cv_file'] = StorageFile::uploadWithDetails($request->file('cv_file'), 'teams');
+        }
+
+        if ($request->hasFile('resume_file')) {
+            $data['resume_file'] = StorageFile::uploadWithDetails($request->file('resume_file'), 'teams');
         }
 
         return Team::where("ulid", $ulid)->update($data);

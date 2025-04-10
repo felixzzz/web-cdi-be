@@ -45,6 +45,7 @@
     "head_title": {
         "about_us_awards_certification": "Penghargaan & Sertifikasi",
         "about_us_management": "Manajemen dan Struktur Organisasi",
+        "about_us_team": "Detail Team",
         "about_us_who_we_are": "Manajemen dan Struktur Organisasi",
         "contact_us": "Hubungi Kami",
         "governance": "Tata Kelola",
@@ -166,5 +167,7 @@
     "Anual Report": "Laporan Tahunan",
     "Financial Report": "Laporan Keuangan",
     "Search anything": "Cari apa saja...",
-    "Rating & Recognition": "Peringkat & Pengakuan"
+    "Rating & Recognition": "Peringkat & Pengakuan",
+    "Back": "Kembali",
+    "Document": "Dokumen"
 }

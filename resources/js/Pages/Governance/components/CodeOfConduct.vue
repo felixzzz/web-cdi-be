@@ -36,7 +36,7 @@
                 {{ $t('See All') }} <i class="isax icon-arrow-right-1 -rotate-45"></i>
             </Link>
 
-            <div class="py-20">
+            <div class="py-20" v-if="content.governance_she_regulation_show?.content_en == 'show'">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-8">
                     <div class="lg:col-span-4">
                         <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">{{ content.governance_she_regulation?.title }}</p>

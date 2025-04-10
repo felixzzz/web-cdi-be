@@ -59,8 +59,11 @@ class PageManagementAction
 
             Preference::updateOrCreate(['key' => $key], $data);
 
-            $cacheKey = Helper::getPreferenceCacheKey($keys);
-            Optimize::delete($cacheKey);
+            $cacheKeyEn = Helper::getPreferenceCacheKey($keys, 'en');
+            Optimize::delete($cacheKeyEn);
+
+            $cacheKeyId = Helper::getPreferenceCacheKey($keys, 'id');
+            Optimize::delete($cacheKeyId);
         }
 
     }

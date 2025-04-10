@@ -26,9 +26,7 @@ class TeamRequest extends FormRequest
             'name' => 'required',
             'position' => 'required',
             'image' => 'nullable|file|max:5120',
-            'image_hero' => 'nullable|file|max:5120',
-            'description_en' => 'required',
-            'description_id' => 'required'
+            'image_hero' => 'nullable|file|max:5120'
         ];
     }
 }

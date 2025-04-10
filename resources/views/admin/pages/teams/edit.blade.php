@@ -17,7 +17,7 @@
             >
                 <option value="bod" {{ $data->type == 'bod' ? 'selected' : '' }}>BOD</option>
                 <option value="boc" {{ $data->type == 'boc' ? 'selected' : '' }}>BOC</option>
-                <option value="auti" {{ $data->type == 'auti' ? 'selected' : '' }}>Audit</option>
+                <option value="audit" {{ $data->type == 'audit' ? 'selected' : '' }}>Audit</option>
             </x-portal::form.select>
 
             <x-portal::form.group
@@ -69,6 +69,46 @@
                 description-trailing=""
             >
                 <x-editor.quill name="description_id" height="150">{!! $data->description_id !!}</x-editor.quill>
+            </x-portal::form.group>
+
+            <x-portal::form.group
+                label="File CV"
+                name="cv_file"
+                description=""
+                description-trailing=""
+            >
+                <x-portal::file-upload
+                    icon="file-type-pdf"
+                    maxsize="5"
+                    name="cv_file"
+                    class="w-full"
+                    accept="application/pdf" description="Only PDF file are accepted"
+                />
+                @if (@$data->cv_file['path'])
+                    <p class="text-[0.8rem] text-muted-foreground">
+                        Preview existing file: <a href="{{ previewFile(@$data->cv_file['path']) }}" class="text-blue-500" target="_blank">Click Here</a>
+                    </p>
+                @endif
+            </x-portal::form.group>
+
+            <x-portal::form.group
+                label="File Resume"
+                name="resume_file"
+                description=""
+                description-trailing=""
+            >
+                <x-portal::file-upload
+                    icon="file-type-pdf"
+                    maxsize="5"
+                    name="resume_file"
+                    class="w-full"
+                    accept="application/pdf" description="Only PDF file are accepted"
+                />
+                @if (@$data->resume_file['path'])
+                    <p class="text-[0.8rem] text-muted-foreground">
+                        Preview existing file: <a href="{{ previewFile(@$data->resume_file['path']) }}" class="text-blue-500" target="_blank">Click Here</a>
+                    </p>
+                @endif
             </x-portal::form.group>
 
             <!-- Submit Button -->
