@@ -201,6 +201,7 @@
                                     'description_en' => @$content['description'],
                                     'title_id' => @$data->content_json_id[$index]['title'],
                                     'description_id' => @$data->content_json_id[$index]['description'],
+                                    'rand' => $index
                                 ])
                             </div>
                         @endforeach

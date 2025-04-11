@@ -35,7 +35,7 @@
                 </div>
                 <div class="lg:col-span-2">
                     <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] mb-4">{{ content.governance_whistleblowing?.title }}</p>
-                    <div class="content !text-neutral-13 !text-sm mb-8" v-html="content.governance_whistleblowing?.content"></div>
+                    <div class="content primary !text-neutral-13 !text-sm mb-8" v-html="content.governance_whistleblowing?.content"></div>
 
                     <form @submit.prevent="submit" class="flex flex-col gap-8">
                         <div class="grid grid-cols-2 gap-8">

@@ -18,7 +18,7 @@
                 {{ data.title }}
             </h1>
 
-            <div class="content !text-neutral-9" v-html="data.content"></div>
+            <div class="content primary !text-neutral-9" v-html="data.content"></div>
 
             <div class="mt-16 flex-col text-center">
                 <p class="font-medium text-neutral-13 lg:text-lg mb-4">

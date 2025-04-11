@@ -35,7 +35,7 @@
         </div>
 
         <container class="my-16">
-            <div class="content !text-neutral-9" v-html="data.description"></div>
+            <div class="content primary !text-neutral-9" v-html="data.description"></div>
         </container>
         <div class="bg-neutral-5 h-[1px] w-full"></div>
         <container class="my-16">

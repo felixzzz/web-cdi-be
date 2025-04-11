@@ -16,13 +16,13 @@
 
         <div v-show="tabActive == 'shareholders'" class="mt-10">
             <p class="mb-10 text-2xl lg:text-[28px] font-medium text-neutral-13">{{ content?.investor_share_shareholders_table?.title }}</p>
-            <div class="content mb-10 !text-neutral-8" v-html="content?.investor_share_shareholders_table?.content"></div>
+            <div class="content primary mb-10 !text-neutral-8" v-html="content?.investor_share_shareholders_table?.content"></div>
             <table-json :data="content?.investor_share_shareholders_table" v-if="content?.investor_share_shareholders_table" />
         </div>
 
         <div v-show="tabActive == 'dividend-information'" class="mt-10">
             <p class="mb-10 text-2xl lg:text-[28px] font-medium text-neutral-13">{{ content?.investor_share_dividend_table?.title }}</p>
-            <div class="content mb-10 !text-neutral-8" v-html="content?.investor_share_dividend_table?.content"></div>
+            <div class="content primary mb-10 !text-neutral-8" v-html="content?.investor_share_dividend_table?.content"></div>
             <table-json :data="content?.investor_share_dividend_table" v-if="content?.investor_share_dividend_table" />
         </div>
     </div>

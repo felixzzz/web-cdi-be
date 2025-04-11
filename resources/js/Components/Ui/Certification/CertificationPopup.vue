@@ -39,7 +39,7 @@
                     <div class="lg:col-span-2 flex flex-col gap-4">
                         <p class="text-sm text-neutral-6">{{ detail.date }}</p>
                         <p class="text-2xl font-medium text-white">{{ detail.name }}</p>
-                        <div class="content !text-sm" v-html="detail.content"></div>
+                        <div class="content primary !text-sm" v-html="detail.content"></div>
                         <div class="" v-if="detail.awarder">
                             <p class="text-sm font-medium mb-1">{{ $t('Awarder') }}</p>
                             <p class="font-light text-neutral-6 text-sm">{{ detail.awarder }}</p>

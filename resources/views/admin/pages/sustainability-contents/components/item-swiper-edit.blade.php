@@ -4,7 +4,8 @@
     'description_en' => '',
     'title_id' => '',
     'description_id' => '',
-    'number' => ''
+    'number' => '',
+    'rand' => ''
 ])
 
 <button type="button" class="bg-red-500 text-white text-sm flex w-6 h-6 rounded-full items-center justify-center" onclick="removeContent(this)">
@@ -36,7 +37,13 @@
             description=""
             description-trailing=""
         >
-            <x-editor.quill name="content_json_swiper_description_en[]" height="150">{!! $description_en !!}</x-editor.quill>
+            <div>
+                <div id="quill_editor_content_json_swiper_description_en_{{ $rand }}" style="height: 150px"
+                    class="!border-input rounded-b-md">
+                    {!! $description_en !!}
+                </div>
+                <textarea name="content_json_swiper_description_en[]" id="quill_editor_content_json_swiper_description_en_{{ $rand }}_value" class="hidden">{!! $description_en !!}</textarea>
+            </div>
         </x-portal::form.group>
     </div>
     <div class="max-lg:hidden">
@@ -51,7 +58,54 @@
             description=""
             description-trailing=""
         >
-            <x-editor.quill name="content_json_swiper_description_en[]" height="150">{!! $description_id !!}</x-editor.quill>
+            <div>
+                <div id="quill_editor_content_json_swiper_description_id_{{ $rand }}" style="height: 150px"
+                    class="!border-input rounded-b-md">
+                    {!! $description_id !!}
+                </div>
+                <textarea name="content_json_swiper_description_id[]" id="quill_editor_content_json_swiper_description_id_{{ $rand }}_value" class="hidden">{!! $description_id !!}</textarea>
+            </div>
         </x-portal::form.group>
     </div>
 </div>
+
+<script>
+    function setupQuill(id) {
+        let editorElement = document.getElementById(id);
+        if (!editorElement) {
+            console.error(`Editor ${id} tidak ditemukan.`);
+            return;
+        }
+
+        let quill = new Quill(`#${id}`, {
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                    ["bold", "italic", "underline", "strike"],
+                    ["blockquote"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    [{ indent: "-1" }, { indent: "+1" }],
+                    [{ direction: "rtl" }],
+                    [{ color: [] }, { background: [] }],
+                    [{ align: [] }],
+                    ["clean"]
+                ]
+            },
+            placeholder: 'Content',
+            theme: "snow"
+        })
+
+        quill.on("text-change", function () {
+            let content = quill.root.innerHTML
+
+            const hiddenInput = document.querySelector(`textarea[id="${id}_value"]`);
+
+            if (hiddenInput) {
+                hiddenInput.value = content;
+            }
+        })
+    }
+
+    setupQuill(`quill_editor_content_json_swiper_description_en_{{ $rand }}`)
+    setupQuill(`quill_editor_content_json_swiper_description_id_{{ $rand }}`)
+</script>

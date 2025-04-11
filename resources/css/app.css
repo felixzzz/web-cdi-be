@@ -296,7 +296,7 @@
 
 
 .content {
-    @apply text-sm lg:text-base text-neutral-6 lg:leading-8;
+    @apply text-sm lg:text-base text-neutral-6 lg:leading-8 text-justify;
 }
 
 .content ol, .content ul {
@@ -316,7 +316,8 @@
     @apply mb-3;
 }
 
-.content b, .content strong {
+.content:not(.primary) b,
+.content:not(.primary) strong {
     @apply !text-white !font-medium;
 }
 

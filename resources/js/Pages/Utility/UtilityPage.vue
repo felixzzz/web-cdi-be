@@ -4,7 +4,7 @@
 
         <container class="py-20">
             <h1 class="text-neutral-13 font-medium text-2xl lg:text-[28px] mb-5">{{ data.title }}</h1>
-            <div class="content !text-neutral-13" v-html="data.content">
+            <div class="content primary !text-neutral-13" v-html="data.content">
 
             </div>
         </container>
