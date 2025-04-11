@@ -62,14 +62,15 @@
 
     const otherLinks = ref<BreadcrumbLink[]>([])
 
-    const urlToShare = encodeURIComponent(route('media.detail', { type: props.type, id: props.data.slug }))
+    const rawUrl = route('media.detail', { type: props.type, id: props.data.slug })
+    const urlToShare = encodeURIComponent(rawUrl)
 
     const shares = ref([
         {
             icon: asset('assets/frontend/icons/ic_share_copy_rounded.svg'),
             link: '#',
             action: () => {
-                navigator.clipboard.writeText(urlToShare)
+                navigator.clipboard.writeText(rawUrl)
                 showAlert($t('Link copied to clipboard!'))
             }
 
