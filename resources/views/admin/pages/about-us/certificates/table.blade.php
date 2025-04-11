@@ -2,7 +2,7 @@
 
 @section('content')
     <x-layouts.search :route-add="route('admin.awards-and-certificates.certificates.create')" :show-add="true" />
-    <div x-data="{ showModal: false, images: [], currentIndex: 0 }">
+    <div x-data="{ showModal: false, images: [], currentIndex: 0, alertDialog: '' }">
         <x-portal::table>
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
@@ -75,5 +75,7 @@
                 </div>
             </div>
         </div>
+
+        <x-layouts.alert-delete />
     </div>
 @endsection
