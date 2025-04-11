@@ -25,9 +25,13 @@
                     {{ $t('Share this post') }}
                 </p>
                 <div class="flex items-center gap-2 justify-center">
-                    <Link v-for="(item, index) in shares" :key="index" :href="item.link">
+                    <a
+                        v-for="(item, index) in shares" :key="index" :href="item.link"
+                        @click="handleClick(item, $event)"
+                        target="_blank"
+                    >
                         <img :src="item.icon" alt="">
-                    </Link>
+                    </a>
                 </div>
 
                 <div class="flex items-center gap-2 justify-center mt-12">
@@ -46,7 +50,7 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import Breadcrumb from '@/Components/Ui/Utils/Breadcrumb.vue'
-    import { asset } from '@/Lib/utils'
+    import { asset, showAlert } from '@/Lib/utils'
     import { BreadcrumbLink, News } from '@/types/utility'
     import { Link } from '@inertiajs/vue3'
     import { onMounted, ref } from 'vue'
@@ -58,24 +62,39 @@
 
     const otherLinks = ref<BreadcrumbLink[]>([])
 
+    const urlToShare = encodeURIComponent(route('media.detail', { type: props.type, id: props.data.slug }))
+
     const shares = ref([
         {
             icon: asset('assets/frontend/icons/ic_share_copy_rounded.svg'),
-            link: ''
+            link: '#',
+            action: () => {
+                navigator.clipboard.writeText(urlToShare)
+                showAlert($t('Link copied to clipboard!'))
+            }
+
         },
         {
             icon: asset('assets/frontend/icons/ic_share_linkedin_rounded.svg'),
-            link: ''
+            link: `https://www.linkedin.com/shareArticle?mini=true&url=${urlToShare}`,
         },
         {
             icon: asset('assets/frontend/icons/ic_share_x_rounded.svg'),
-            link: ''
+            link: `https://x.com/intent/tweet?url=${urlToShare}`,
         },
         {
             icon: asset('assets/frontend/icons/ic_share_fb_rounded.svg'),
-            link: ''
+            link: `https://www.facebook.com/sharer/sharer.php?u=${urlToShare}`,
         },
     ])
+
+    const handleClick = (item: any, event: any) => {
+        if (item.action) {
+            event.preventDefault()
+            item.action()
+        }
+    }
+
 
     onMounted(() => {
         if (props.type == 'news') {

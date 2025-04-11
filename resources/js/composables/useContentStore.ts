@@ -177,6 +177,7 @@ const __getGovernance = (): PreferenceGovernance => {
         governance_she_regulation: null,
         governance_policy: null,
         governance_whistleblowing: null,
+        governance_whistleblowing_id: null,
         governance_whistleblowing_detail: null,
         governance_audit_committe_show: null,
         governance_audit_committe_member_text_show: null,

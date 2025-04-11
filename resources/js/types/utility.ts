@@ -161,6 +161,7 @@ export type PreferenceGovernance = {
     governance_she_regulation: PreferenceItem | null;
     governance_policy: PreferenceItem | null;
     governance_whistleblowing: PreferenceItem | null;
+    governance_whistleblowing_id: PreferenceItem | null;
     governance_whistleblowing_detail: PreferenceItem | null;
     governance_audit_committe_show: PreferenceItem | null;
     governance_audit_committe_member_text_show: PreferenceItem | null;

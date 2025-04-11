@@ -14,7 +14,8 @@
                 </div>
 
                 <div class="lg:col-span-2">
-                    <img :src="content.governance_whistleblowing?.file_url" alt="">
+                    <img :src="content.governance_whistleblowing?.file_url" alt="" v-if="currentLang == 'en'">
+                    <img :src="content.governance_whistleblowing_id?.file_url" alt="" v-else>
                 </div>
 
 
@@ -26,9 +27,10 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { Link } from '@inertiajs/vue3'
+    import { Link, usePage } from '@inertiajs/vue3'
 
     import { PreferenceGovernance } from '@/types/utility'
+    const currentLang = usePage().props.locale
 
     defineProps<{
         content: PreferenceGovernance

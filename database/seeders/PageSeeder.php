@@ -733,6 +733,13 @@ class PageSeeder extends Seeder
                 'content_en' => '<p>The Whistleblowing Management Policy reflects our dedication to upholding our Code of Conduct. This system is designed as a tool to assist all Chandra Asri Group employees, including those in our subsidiaries and joint ventures and stakeholder including but not limited to business partner, supplier or vendor, customer, contractor, agent, consultant and/or any other third party who works with, for or represents Chandra Asri Group in are also encouraged to consult with or report any suspected violations to Chandra Asri Group management.</p>',
                 'content_id' => '<p>Kebijakan Manajemen Pengungkapan Pelanggaran mencerminkan dedikasi kami dalam menegakkan Kode Etik. Sistem ini dirancang sebagai alat untuk membantu semua karyawan Chandra Asri Group, termasuk karyawan di anak perusahaan dan usaha patungan kami, serta pemangku kepentingan termasuk namun tidak terbatas pada mitra bisnis, pemasok atau vendor, pelanggan, kontraktor, agen, konsultan dan/atau pihak ketiga lainnya yang bekerja sama dengan, untuk, atau mewakili Chandra Asri Group. Kami juga didorong untuk berkonsultasi atau melaporkan setiap dugaan pelanggaran kepada manajemen Chandra Asri Group.</p>',
             ],
+            'governance_whistleblowing_id' => [
+                'file' => asset('assets/frontend/images/governance/whistleblowing_id.webp'),
+                'title_en' => '',
+                'title_id' => '',
+                'content_en' => '',
+                'content_id' => '',
+            ],
             'governance_whistleblowing_detail' => [
                 'file' => asset('assets/frontend/images/governance/whistleblowing_hero_image.webp'),
                 'title_en' => '#Your Growth Partner',

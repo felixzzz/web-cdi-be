@@ -70,6 +70,7 @@ enum PreferenceKey: string
     case governance_she_regulation = 'governance_she_regulation';
     case governance_policy = 'governance_policy';
     case governance_whistleblowing = 'governance_whistleblowing';
+    case governance_whistleblowing_id = 'governance_whistleblowing_id';
     case governance_whistleblowing_detail = 'governance_whistleblowing_detail';
 
     case governance_audit_committe_show = 'governance_audit_committe_show';
@@ -167,6 +168,7 @@ enum PreferenceKey: string
             'governance_she_regulation' => PreferenceType::TextContent,
             'governance_policy' => PreferenceType::TextContent,
             'governance_whistleblowing' => PreferenceType::TextContentImage,
+            'governance_whistleblowing_id' => PreferenceType::TextContentImage,
             'governance_whistleblowing_detail' => PreferenceType::TextImage,
             'governance_audit_committe_show' => PreferenceType::TextContent,
             'governance_audit_committe_member_text_show' => PreferenceType::TextContent,
@@ -301,6 +303,7 @@ enum PreferenceKey: string
             self::governance_she_regulation->value,
             self::governance_policy->value,
             self::governance_whistleblowing->value,
+            self::governance_whistleblowing_id->value,
             self::governance_whistleblowing_detail->value,
             self::governance_audit_committe_show->value,
             self::governance_audit_committe_member_text_show->value,

@@ -19,7 +19,21 @@
             class="w-full"
         />
     </x-portal::form.group>
-
+@endif
+@if ($lang == 'id')
+    <x-portal::form.group
+        label="Image"
+        name="governance_whistleblowing_id_file"
+        description=""
+        description-trailing=""
+        >
+        <x-file-upload.image
+            :value="previewFile(@$data->governance_whistleblowing_id->file)"
+            maxsize="5"
+            name="governance_whistleblowing_id_file"
+            class="w-full"
+        />
+    </x-portal::form.group>
 @endif
 @if ($lang == 'en')
     <x-portal::form.group
