@@ -103,6 +103,12 @@ enum PreferenceKey: string
     case privacy_policy = 'privacy_policy';
     case cookies_consent = 'cookies_consent';
     case disclaimer = 'disclaimer';
+    case social_youtube = 'social_youtube';
+    case social_linkedin = 'social_linkedin';
+    case social_tiktok = 'social_tiktok';
+    case social_x = 'social_x';
+    case social_instagram = 'social_instagram';
+    case social_facebook = 'social_facebook';
 
 
     public function type()
@@ -205,6 +211,12 @@ enum PreferenceKey: string
             'privacy_policy' => PreferenceType::TextContent,
             'cookies_consent' => PreferenceType::TextContent,
             'disclaimer' => PreferenceType::TextContent,
+            'social_youtube' => PreferenceType::TextContent,
+            'social_linkedin' => PreferenceType::TextContent,
+            'social_tiktok' => PreferenceType::TextContent,
+            'social_x' => PreferenceType::TextContent,
+            'social_instagram' => PreferenceType::TextContent,
+            'social_facebook' => PreferenceType::TextContent,
 
             default => PreferenceType::Text
         };
@@ -382,7 +394,13 @@ enum PreferenceKey: string
             self::media_main->value,
             self::privacy_policy->value,
             self::cookies_consent->value,
-            self::disclaimer->value
+            self::disclaimer->value,
+            self::social_youtube->value,
+            self::social_linkedin->value,
+            self::social_tiktok->value,
+            self::social_x->value,
+            self::social_instagram->value,
+            self::social_facebook->value,
         ];
     }
 

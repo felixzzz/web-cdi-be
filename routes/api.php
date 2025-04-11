@@ -23,6 +23,7 @@ Route::middleware(WebApiMiddleware::class)
             ->prefix('utility')
             ->group(function () {
                 Route::get('/home', 'home')->name('home');
+                Route::get('/social-media', 'socialMedia')->name('social-media');
                 Route::get('/governance', 'governance')->name('governance');
                 Route::get('/investor', 'investor')->name('investor');
                 Route::get('/our-business', 'ourBusiness')->name('our-business');

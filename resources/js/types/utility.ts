@@ -247,6 +247,15 @@ export type PreferenceSustainabilityAction = {
     sustainability_action_banner: PreferenceItem | null;
 }
 
+export type PreferenceSocialMedia = {
+    social_youtube: PreferenceItem | null;
+    social_linkedin: PreferenceItem | null;
+    social_tiktok: PreferenceItem | null;
+    social_x: PreferenceItem | null;
+    social_instagram: PreferenceItem | null;
+    social_facebook: PreferenceItem | null;
+}
+
 export type QuickLink = {
     url: string;
     name: string;

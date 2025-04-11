@@ -26,6 +26,11 @@ class ApiUtilityController extends Controller
         return $preferenceRepository->getAllContentPage("home");
     }
 
+    public function socialMedia(PreferenceRepository $preferenceRepository)
+    {
+        return $preferenceRepository->getAllContentPage("", PreferenceKey::getOtherKeys());
+    }
+
     public function governance(PreferenceRepository $preferenceRepository)
     {
         return $preferenceRepository->getAllContentPage("", PreferenceKey::getAllGovernanceKey());

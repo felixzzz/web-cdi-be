@@ -74,9 +74,9 @@
 
                 <!-- Menu Links -->
                 <div class="flex gap-4 items-center justify-center lg:justify-end lg:col-start-3 lg:row-start-1">
-                    <Link v-for="(item, index) in menus" :key="index" class="text-xs text-neutral-3 whitespace-nowrap" :href="item.url">
+                    <a v-for="(item, index) in menus" :key="index" class="text-xs text-neutral-3 whitespace-nowrap" :href="item.url" target="_blank">
                         {{ item.name }}
-                    </Link>
+                    </a>
                 </div>
             </div>
 
@@ -95,26 +95,32 @@
 
     const socials = ref([
         {
+            key: 'social_youtube',
             url: '',
             icon: asset('assets/frontend/icons/ic_youtube.svg')
         },
         {
+            key: 'social_linkedin',
             url: '',
             icon: asset('assets/frontend/icons/ic_linkedin.svg')
         },
         {
+            key: 'social_tiktok',
             url: '',
             icon: asset('assets/frontend/icons/ic_tiktok.svg')
         },
         {
+            key: 'social_x',
             url: '',
             icon: asset('assets/frontend/icons/ic_x.svg')
         },
         {
+            key: 'social_instagram',
             url: '',
             icon: asset('assets/frontend/icons/ic_instagram.svg')
         },
         {
+            key: 'social_facebook',
             url: '',
             icon: asset('assets/frontend/icons/ic_facebook.svg')
         }
@@ -145,7 +151,24 @@
 
     const content = useContentStore()
 
-    onBeforeMount(() => {
+    onBeforeMount(async () => {
         content.getMainOffice()
+        await content.getSocialMedia()
+
+        for (const social of socials.value) {
+            let url = ''
+            if (social.key == 'social_youtube') url = content.socialMedia.social_youtube?.content_en || ''
+            if (social.key == 'social_linkedin') url = content.socialMedia.social_linkedin?.content_en || ''
+            if (social.key == 'social_tiktok') url = content.socialMedia.social_tiktok?.content_en || ''
+            if (social.key == 'social_x') url = content.socialMedia.social_x?.content_en || ''
+            if (social.key == 'social_instagram') url = content.socialMedia.social_instagram?.content_en || ''
+            if (social.key == 'social_facebook') url = content.socialMedia.social_facebook?.content_en || ''
+
+            if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url
+            }
+
+            social.url = url
+        }
     })
 </script>

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import useCrypto from './useCrypto'
 import useRequest from './useRequest'
-import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceInvestor, PreferenceItem, PreferenceOurBusiness, PreferenceSustainabilityAction, PreferenceSustainabilityEnvironment, PreferenceSustainabilityGovernance, PreferenceSustainabilityOverview, PreferenceSustainabilityReport, PreferenceSustainabilitySocial } from '@/types/utility'
+import { Office, PreferenceAboutAward, PreferenceAboutManagement, PreferenceAboutOverview, PreferenceGovernance, PreferenceHome, PreferenceInvestor, PreferenceItem, PreferenceOurBusiness, PreferenceSocialMedia, PreferenceSustainabilityAction, PreferenceSustainabilityEnvironment, PreferenceSustainabilityGovernance, PreferenceSustainabilityOverview, PreferenceSustainabilityReport, PreferenceSustainabilitySocial } from '@/types/utility'
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -22,6 +22,7 @@ const CACHE_SUSTAIN_SOCIAL_CONTENT = "sst-scl"
 const CACHE_SUSTAIN_GVN_CONTENT = "sst-gvn"
 const CACHE_SUSTAIN_RPT_CONTENT = "sst-rpt"
 const CACHE_SUSTAIN_ACT_CONTENT = "sst-act"
+const CACHE_SOCIAL_MEDIA = "scl-md"
 
 
 export const useContentStore = defineStore('content', {
@@ -40,7 +41,8 @@ export const useContentStore = defineStore('content', {
         sustainabilitySocial: __getSustainabilitySocial(),
         sustainabilityGovernance: __getSustainabilityGovernance(),
         sustainabilityReport: __getSustainabilityReport(),
-        sustainabilityAction: __getSustainabilityAction()
+        sustainabilityAction: __getSustainabilityAction(),
+        socialMedia: __getSocialMedia(),
 
     }),
     actions: {
@@ -134,6 +136,12 @@ export const useContentStore = defineStore('content', {
                 localStorage.setItem(CACHE_SUSTAIN_ACT_CONTENT, encrypt(result.data))
             })
         },
+        getSocialMedia() {
+            return useRequest().get(route('api.utility.social-media')).then((result) => {
+                this.socialMedia = result.data
+                localStorage.setItem(CACHE_SOCIAL_MEDIA, encrypt(result.data))
+            })
+        }
     }
 })
 
@@ -292,6 +300,18 @@ const __getSustainabilityAction = (): PreferenceSustainabilityAction => {
     const content = __getStorage(CACHE_SUSTAIN_ACT_CONTENT);
     return content ? content : {
         sustainability_action_banner: null
+    }
+}
+
+const __getSocialMedia = (): PreferenceSocialMedia => {
+    const content = __getStorage(CACHE_SOCIAL_MEDIA);
+    return content ? content : {
+        social_youtube: null,
+        social_linkedin: null,
+        social_tiktok: null,
+        social_x: null,
+        social_instagram: null,
+        social_facebook: null,
     }
 }
 

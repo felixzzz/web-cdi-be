@@ -30,6 +30,10 @@
                 x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'disclaimer' }" x-on:click="tab_page = 'disclaimer'">
                 Disclaimer
             </button>
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
+                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'social' }" x-on:click="tab_page = 'social'">
+                Social Media
+            </button>
         </div>
 
         <!-- Tab Content -->
@@ -113,6 +117,18 @@
                 <div class="flex flex-col gap-4 w-full">
                     <!-- ID -->
                     @include('admin.pages.page-management.other-content.components.disclaimer', ['lang' => 'id'])
+                </div>
+            </div>
+
+            <div x-show="tab_page === 'social'" class="flex gap-4">
+                <div class="flex flex-col gap-4 w-full">
+                    <!-- EN -->
+                    @include('admin.pages.page-management.other-content.components.social')
+                </div>
+                <div class="max-lg:hidden">
+                    <x-portal::separator orientation="vertical" />
+                </div>
+                <div class="flex flex-col gap-4 w-full">
                 </div>
             </div>
         </div>
