@@ -74,9 +74,9 @@
 
                 <!-- Menu Links -->
                 <div class="flex gap-4 items-center justify-center lg:justify-end lg:col-start-3 lg:row-start-1">
-                    <a v-for="(item, index) in menus" :key="index" class="text-xs text-neutral-3 whitespace-nowrap" :href="item.url" target="_blank">
+                    <Link v-for="(item, index) in menus" :key="index" class="text-xs text-neutral-3 whitespace-nowrap" :href="item.url">
                         {{ item.name }}
-                    </a>
+                    </Link>
                 </div>
             </div>
 
