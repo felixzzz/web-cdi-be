@@ -12,7 +12,7 @@
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium max-w-2xl" id="home_banner_title">
                         {{ content.about_us_management_banner?.title }}
                     </h1>
-                    <div class="content max-w-md text-xs lg:text-base !text-neutral-4" v-html="content.about_us_management_banner?.content"></div>
+                    <div class="content max-w-2xl text-xs lg:text-base !text-neutral-4" v-html="content.about_us_management_banner?.content"></div>
                 </div>
                 <div class="flex items-center gap-10">
                     <linear-animation />
