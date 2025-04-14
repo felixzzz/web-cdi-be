@@ -9,6 +9,16 @@
             @method("PUT")
 
             <x-portal::form.input label="Name Identifier" placeholder="Name Identifier" name="name" :value="$data->name" type="text" required />
+            <x-portal::form.select
+                name="is_show"
+                label="Show?"
+                description=""
+                description-trailing=""
+            >
+                <option value="1" {{ $data->is_show == 1 ? 'selected' : '' }}>Show</option>
+                <option value="0" {{ $data->is_show == 0 ? 'selected' : '' }}>Hide</option>
+            </x-portal::form.select>
+
             <x-portal::form.group
                 label="Image"
                 name="image"
@@ -231,6 +241,27 @@
                 </div>
             </div>
 
+            <div class="flex flex-col gap-4" id="simple_section">
+                <div class="flex items-center gap-4">
+                    <x-portal::heading size="lg" class="!font-bold">Contents</x-portal::heading>
+                    <i class="isax icon-add-circle cursor-pointer" onclick="addSimple()"></i>
+                </div>
+                <div class="flex flex-col gap-4" id="simple-container">
+                    @if(isset($data) && !empty($data->content_json_en) && $data->type->value == 'simple_text_information')
+                        @foreach($data->content_json_en as $index => $content)
+                            <div class="p-4 border rounded-lg relative flex flex-col gap-4">
+                                @include('admin.pages.sustainability-contents.components.simple-list-edit', [
+                                    'title_en' => @$content['title'],
+                                    'title_id' => @$data->content_json_id[$index]['title'],
+                                    'description_en' => @$content['description'],
+                                    'description_id' => @$data->content_json_id[$index]['description']
+                                ])
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
             <!-- Submit Button -->
             <div class="mt-6">
                 <x-portal::button type="submit" class="w-full">Submit</x-portal::button>
@@ -340,6 +371,40 @@
                     branchElement.classList.add('p-4', 'border', 'rounded-lg', 'relative', 'flex', 'flex-col', 'gap-4')
                     branchElement.innerHTML = data.view
                     container.appendChild(branchElement)
+
+                    setTimeout(() => {
+                        setupQuill(`quill_editor_content_json_list_description_en_${data.rand}`)
+                        setupQuill(`quill_editor_content_json_list_description_id_${data.rand}`)
+                    }, 100);
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error:", error)
+            })
+        }
+
+        function addSimple() {
+            let container = document.getElementById('simple-container')
+
+            fetch("{{ route('admin.sustainability-contents.element', ['category' => $category, 'type' => 'simple']) }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`)
+                }
+                return res.json()
+            })
+            .then(data => {
+                if (data.view) {
+                    let branchElement = document.createElement('div')
+                    branchElement.classList.add('p-4', 'border', 'rounded-lg', 'relative', 'flex', 'flex-col', 'gap-4')
+                    branchElement.innerHTML = data.view
+                    container.appendChild(branchElement)
                 }
             })
             .catch(error => {
@@ -352,35 +417,35 @@
             if (!editorElement) {
                 console.error(`Editor ${id} tidak ditemukan.`);
                 return;
+            } else {
+                let quill = new Quill(`#${id}`, {
+                    modules: {
+                        toolbar: [
+                            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                            ["bold", "italic", "underline", "strike"],
+                            ["blockquote"],
+                            [{ list: "ordered" }, { list: "bullet" }],
+                            [{ indent: "-1" }, { indent: "+1" }],
+                            [{ direction: "rtl" }],
+                            [{ color: [] }, { background: [] }],
+                            [{ align: [] }],
+                            ["clean"]
+                        ]
+                    },
+                    placeholder: 'Content',
+                    theme: "snow"
+                })
+
+                quill.on("text-change", function () {
+                    let content = quill.root.innerHTML
+
+                    const hiddenInput = document.querySelector(`textarea[id="${id}_value"]`);
+
+                    if (hiddenInput) {
+                        hiddenInput.value = content;
+                    }
+                })
             }
-
-            let quill = new Quill(`#${id}`, {
-                modules: {
-                    toolbar: [
-                        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                        ["bold", "italic", "underline", "strike"],
-                        ["blockquote"],
-                        [{ list: "ordered" }, { list: "bullet" }],
-                        [{ indent: "-1" }, { indent: "+1" }],
-                        [{ direction: "rtl" }],
-                        [{ color: [] }, { background: [] }],
-                        [{ align: [] }],
-                        ["clean"]
-                    ]
-                },
-                placeholder: 'Content',
-                theme: "snow"
-            })
-
-            quill.on("text-change", function () {
-                let content = quill.root.innerHTML
-
-                const hiddenInput = document.querySelector(`textarea[id="${id}_value"]`);
-
-                if (hiddenInput) {
-                    hiddenInput.value = content;
-                }
-            })
         }
     </script>
 
@@ -395,6 +460,7 @@
 
                 document.getElementById('grid_type_section').style.display = type === 'grid' ? 'block' : 'none'
                 document.getElementById('align_section').style.display = type === 'content' ? 'block' : 'none'
+                document.getElementById('simple_section').style.display = type === 'simple_text_information' ? 'block' : 'none'
                 document.getElementById('list_section').style.display = type === 'list_information' ? 'block' : 'none'
                 document.getElementById('grid_direction_section').style.display = (type === 'grid' || type === 'file_information') ? 'block' : 'none'
                 document.getElementById('grid_pattern_section').style.display = (type === 'grid' && gridType === 'box_icon_card') ? 'block' : 'none'

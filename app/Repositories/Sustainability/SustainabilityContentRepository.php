@@ -27,6 +27,7 @@ class SustainabilityContentRepository
     {
         $locale = App::currentLocale();
         return SustainabilityContent::where("category", $type)
+        ->where("is_show", 1)
         ->get()->map(function ($row) use ($locale) {
             $row->title = $row->title;
             $row->content = $row->content;

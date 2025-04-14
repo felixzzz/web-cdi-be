@@ -155,11 +155,15 @@
                 <div
                     class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:items-center"
                 >
-                    <div>
+                    <div
+                        :class="{
+                            'col-span-2': (Array.isArray(item.content_json) && item.content_json?.length == 0) || !item.content_json
+                        }"
+                    >
                         <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">{{ item.title }}</p>
                         <div class="content !text-neutral-4" v-html="item.content"></div>
                     </div>
-                    <div>
+                    <div v-if="Array.isArray(item.content_json) && item.content_json?.length > 0">
                         <div class="items-center lg:max-w-[60%] ms-auto grid grid-cols-2 gap-8 lg:gap-x-16">
                             <div
                                 v-for="(content, contentIndex) in item.content_json" :key="contentIndex"

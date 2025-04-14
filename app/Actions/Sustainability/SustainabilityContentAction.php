@@ -28,7 +28,8 @@ class SustainabilityContentAction
                 'background',
                 'grid_pattern',
                 'grid_direction',
-                'align'
+                'align',
+                'is_show'
             ]),
             'category' => $category,
             'grid_type' => $request->type == 'grid' ? $request->grid_type : ''
@@ -108,6 +109,26 @@ class SustainabilityContentAction
                 $itemId = [
                     'title' => $request->content_json_list_title_id[$index] ?? null,
                     'description' => $request->content_json_list_description_id[$index] ?? null
+                ];
+
+                $contentJsonEn[] = $itemEn;
+                $contentJsonId[] = $itemId;
+            }
+
+            $data['content_json_en'] = $contentJsonEn;
+            $data['content_json_id'] = $contentJsonId;
+        }
+
+        if ($request->type == 'simple_text_information' && $request->has('content_json_simple_title_en')) {
+            foreach ($request->content_json_simple_title_en as $index => $value) {
+                $itemEn = [
+                    'title' => $request->content_json_simple_title_en[$index] ?? null,
+                    'description' => $request->content_json_simple_description_en[$index] ?? null
+                ];
+
+                $itemId = [
+                    'title' => $request->content_json_simple_title_id[$index] ?? null,
+                    'description' => $request->content_json_simple_description_id[$index] ?? null
                 ];
 
                 $contentJsonEn[] = $itemEn;
@@ -145,7 +166,8 @@ class SustainabilityContentAction
                 'background',
                 'grid_pattern',
                 'grid_direction',
-                'align'
+                'align',
+                'is_show'
             ]),
             'category' => $category,
             'grid_type' => $request->type == 'grid' ? $request->grid_type : ''
@@ -224,6 +246,26 @@ class SustainabilityContentAction
                 $contentJsonEn[] = $itemEn;
                 $contentJsonId[] = $itemId;
             }
+        }
+
+        if ($request->type == 'simple_text_information' && $request->has('content_json_simple_title_en')) {
+            foreach ($request->content_json_simple_title_en as $index => $value) {
+                $itemEn = [
+                    'title' => $request->content_json_simple_title_en[$index] ?? null,
+                    'description' => $request->content_json_simple_description_en[$index] ?? null
+                ];
+
+                $itemId = [
+                    'title' => $request->content_json_simple_title_id[$index] ?? null,
+                    'description' => $request->content_json_simple_description_id[$index] ?? null
+                ];
+
+                $contentJsonEn[] = $itemEn;
+                $contentJsonId[] = $itemId;
+            }
+
+            $data['content_json_en'] = $contentJsonEn;
+            $data['content_json_id'] = $contentJsonId;
         }
 
         $data['content_json_en'] = $contentJsonEn;

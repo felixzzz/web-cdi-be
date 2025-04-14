@@ -12,7 +12,13 @@
             description=""
             description-trailing=""
         >
-            <textarea name="content_json_list_description_en[]" id="quill_editor_content_json_list_description_en_{{ $rand }}_value"></textarea>
+            <div>
+                <div id="quill_editor_content_json_list_description_en_{{ $rand }}" style="height: 150px"
+                    class="!border-input rounded-b-md">
+
+                </div>
+                <textarea name="content_json_list_description_en[]" id="quill_editor_content_json_list_description_en_{{ $rand }}_value" class="hidden"></textarea>
+            </div>
         </x-portal::form.group>
     </div>
     <div class="max-lg:hidden">
@@ -27,7 +33,13 @@
             description=""
             description-trailing=""
         >
-            <textarea name="content_json_list_description_id[]" id="quill_editor_content_json_list_description_id_{{ $rand }}_value"></textarea>
+            <div>
+                <div id="quill_editor_content_json_list_description_id_{{ $rand }}" style="height: 150px"
+                    class="!border-input rounded-b-md">
+
+                </div>
+                <textarea name="content_json_list_description_id[]" id="quill_editor_content_json_list_description_id_{{ $rand }}_value" class="hidden"></textarea>
+            </div>
         </x-portal::form.group>
     </div>
 </div>

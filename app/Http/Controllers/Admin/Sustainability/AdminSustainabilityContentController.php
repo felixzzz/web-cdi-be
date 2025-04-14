@@ -125,6 +125,11 @@ class AdminSustainabilityContentController extends AdminController
             return response()->json(['view' => $view, 'rand' => $rand]);
         }
 
+        if ($type == 'simple') {
+            $view = view("admin.pages.sustainability-contents.components.simple-list", ['rand' => $rand])->render();
+            return response()->json(['view' => $view, 'rand' => $rand]);
+        }
+
         if ($type == 'swiper') {
             $view = view("admin.pages.sustainability-contents.components.item-swiper", ['rand' => $rand])->render();
             return response()->json(['view' => $view, 'rand' => $rand]);
