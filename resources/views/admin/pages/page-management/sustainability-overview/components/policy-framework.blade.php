@@ -6,6 +6,16 @@
 <img src="{{ asset("assets/frontend/icons/flag_{$lang}.svg") }}" alt="" class="w-5">
 <x-portal::heading size="lg" class="!font-bold">Policy & Framework</x-portal::heading>
 @if ($lang == 'en')
+    <x-portal::form.select
+        name="sustainability_overview_policy_framework_show_content_en"
+        label="Show"
+        description=""
+        description-trailing=""
+        required
+    >
+        <option value="show" {{ @$data->sustainability_overview_policy_framework_show->content_en == 'show' ? 'selected' : '' }}>Show</option>
+        <option value="hide" {{ @$data->sustainability_overview_policy_framework_show->content_en == 'hide' ? 'selected' : '' }}>Hide</option>
+    </x-portal::form.select>
     <x-portal::form.group
         label="File"
         name="sustainability_overview_policy_framework_file_file"

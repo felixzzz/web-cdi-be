@@ -214,6 +214,7 @@ export type PreferenceInvestor = {
     investor_publication_banner: PreferenceItem | null;
     investor_share_tab_one: PreferenceItem | null;
     investor_share_tab_two: PreferenceItem | null;
+    investor_share_bonds_table_show: PreferenceItem | null;
 }
 
 export type PreferenceSustainabilityOverview = {

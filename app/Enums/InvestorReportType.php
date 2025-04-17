@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum InvestorReportType: string
 {
-    case AnualReport = 'anual_report';
+    case AnnualReport = 'annual_report';
     case FinancialReport = 'financial_report';
     case Prospectus = 'prospectus';
     case GMS = 'gms';
@@ -13,7 +13,7 @@ enum InvestorReportType: string
     public function word()
     {
         return match ($this->value) {
-            'anual_report' => 'Anual Report',
+            'annual_report' => 'Annual Report',
             'financial_report' => 'Financial Report',
             'prospectus' => 'Prospectus',
             'gms' => 'GMS',

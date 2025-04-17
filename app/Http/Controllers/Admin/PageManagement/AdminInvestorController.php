@@ -28,12 +28,12 @@ class AdminInvestorController extends AdminController
 
     public function store(Request $request, InvestorContentAction $action)
     {
-        try {
+        // try {
             $action->store($request);
 
             return redirect(route('admin.page-management.investor-content.index'))->with(['info' => __("admin.success_update")]);
-        } catch (\Throwable $e) {
-            return redirect()->back()->withInput($request->input())->with(['error' =>  $e->getMessage()]);
-        }
+        // } catch (\Throwable $e) {
+        //     return redirect()->back()->withInput($request->input())->with(['error' =>  $e->getMessage()]);
+        // }
     }
 }

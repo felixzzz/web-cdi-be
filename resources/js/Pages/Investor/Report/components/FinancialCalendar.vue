@@ -107,6 +107,7 @@
 
     import { onBeforeMount, ref } from 'vue'
     import useRequest from '@/Composables/useRequest'
+    import FileLoading from '@/Components/Ui/Utils/FileLoading.vue'
 
     const yearActive = ref<number | string>(getQueryParam('year') ||'')
     const typeActive = ref(getQueryParam('type') || '')
@@ -115,7 +116,7 @@
 
     const types = ref([
         { id: '', name: $t('All Type') },
-        { id: 'anual_report', name: $t('Anual Report') },
+        { id: 'annual_report', name: $t('Annual Report') },
         { id: 'financial_report', name: $t('Financial Report') },
     ])
 

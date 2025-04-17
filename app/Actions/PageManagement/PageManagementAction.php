@@ -51,11 +51,16 @@ class PageManagementAction
                     'tableData' => $rows
                 ];
 
-                // Simpan ke field content_table
                 $data['content_table'] = $tableData;
+
+                if ($request->input("delete_table_{$key}") == 'yes') {
+                    $data['content_table'] = [];
+                }
             }
 
-            $data = array_filter($data, fn($value) => filled($value));
+            $data = array_filter($data, function ($value, $key) {
+                return $key === 'content_table' || filled($value);
+            }, ARRAY_FILTER_USE_BOTH);
 
             Preference::updateOrCreate(['key' => $key], $data);
 

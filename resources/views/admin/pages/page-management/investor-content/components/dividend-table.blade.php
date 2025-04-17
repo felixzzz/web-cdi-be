@@ -1,4 +1,14 @@
 <x-portal::heading size="lg" class="!font-bold">Dividend Table</x-portal::heading>
+{{-- <x-portal::form.select
+    name="investor_share_dividend_table_show_content_en"
+    label="Show"
+    description=""
+    description-trailing=""
+    required
+>
+    <option value="show" {{ @$data->investor_share_dividend_table_show->content_en == 'show' ? 'selected' : '' }}>Show</option>
+    <option value="hide" {{ @$data->investor_share_dividend_table_show->content_en == 'hide' ? 'selected' : '' }}>Hide</option>
+</x-portal::form.select> --}}
 <div class="flex gap-4">
     <div class="flex flex-col gap-4 w-full">
         <!-- EN -->
@@ -33,6 +43,15 @@
     </div>
 </div>
 
+<x-portal::form.select
+    name="delete_table_investor_share_dividend_table"
+    label="Delete Table?"
+    description="If you choose Yes, this will permanently delete the table data when the form is submitted."
+    description-trailing=""
+>
+    <option value="no">No</option>
+    <option value="yes">Delete</option>
+</x-portal::form.select>
 
 <div id="app-dividend" class="flex flex-col gap-4 w-full">
     <div class="flex gap-2 items-center">
@@ -40,7 +59,7 @@
         <x-portal::button type="button" @click="addColumn('dividend')">Add Column</x-portal::button>
         <x-portal::button type="button" @click="addRowGroup('dividend')">Add Row Group</x-portal::button>
     </div>
-    <div class="table-json">
+    <div class="table-json" v-if="headersDividend.length > 0">
         <table>
             <thead>
                 <tr>

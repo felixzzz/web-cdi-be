@@ -89,7 +89,7 @@ class InvestorReportRepository
                     $q->where("type", $type);
                 } else {
                     $q->whereIn("type", [
-                        InvestorReportType::AnualReport,
+                        InvestorReportType::AnnualReport,
                         InvestorReportType::FinancialReport
                     ]);
                 }
@@ -132,7 +132,7 @@ class InvestorReportRepository
         return InvestorReport::query()
             ->selectRaw("YEAR(created_at) as year")
             ->whereIn("type", [
-                InvestorReportType::AnualReport,
+                InvestorReportType::AnnualReport,
                 InvestorReportType::FinancialReport
             ])
             ->groupBy("year")

@@ -123,7 +123,7 @@
 
     const types = ref([
         { id: '', name: $t('All Type') },
-        { id: 'anual_report', name: $t('Anual Report') },
+        { id: 'annual_report', name: $t('Annual Report') },
         { id: 'financial_report', name: $t('Financial Report') },
     ])
 

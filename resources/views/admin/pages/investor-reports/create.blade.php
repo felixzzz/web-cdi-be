@@ -16,7 +16,7 @@
                 <option value="Select a type" selected disabled>
                     Select a type
                 </option>
-                <option value="anual_report" {{ old('type') == 'anual_report' ? 'selected' : '' }}>Anual Report</option>
+                <option value="annual_report" {{ old('type') == 'annual_report' ? 'selected' : '' }}>Annual Report</option>
                 <option value="financial_report" {{ old('type') == 'financial_report' ? 'selected' : '' }}>Financial Report</option>
                 <option value="prospectus" {{ old('type') == 'prospectus' ? 'selected' : '' }}>Prospectus</option>
                 <option value="gms" {{ old('type') == 'gms' ? 'selected' : '' }}>GMS</option>

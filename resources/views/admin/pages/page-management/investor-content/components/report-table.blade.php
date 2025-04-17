@@ -1,13 +1,61 @@
 <x-portal::heading size="lg" class="!font-bold">Report Table</x-portal::heading>
-<x-portal::form.input label="Text Info EN" placeholder="Text Info EN" name="investor_report_table_title_en" :value="@$data->investor_report_table->title_en" type="text" />
-<x-portal::form.input label="Text Info ID" placeholder="Text Info ID" name="investor_report_table_title_id" :value="@$data->investor_report_table->title_id" type="text" />
+{{-- <x-portal::form.select
+    name="investor_report_table_show_content_en"
+    label="Show"
+    description=""
+    description-trailing=""
+    required
+>
+    <option value="show" {{ @$data->investor_report_table_show->content_en == 'show' ? 'selected' : '' }}>Show</option>
+    <option value="hide" {{ @$data->investor_report_table_show->content_en == 'hide' ? 'selected' : '' }}>Hide</option>
+</x-portal::form.select> --}}
+<div class="flex gap-4">
+    <div class="flex flex-col gap-4 w-full">
+        <!-- EN -->
+        <img src="{{ asset("assets/frontend/icons/flag_en.svg") }}" alt="" class="w-5">
+        <x-portal::form.input label="Text Info" placeholder="Text Info" name="investor_report_table_title_en" :value="@$data->investor_report_table->title_en" type="text" />
+        <x-portal::form.group
+            label="Description"
+            name="investor_report_table_content_en"
+            description=""
+            description-trailing=""
+        >
+            <x-editor.quill name="investor_report_table_content_en" height="150">{!! @$data->investor_report_table->content_en !!}</x-editor.quill>
+        </x-portal::form.group>
+    </div>
+    <div class="max-lg:hidden">
+        <x-portal::separator orientation="vertical" />
+    </div>
+    <div class="flex flex-col gap-4 w-full">
+        <!-- ID -->
+        <img src="{{ asset("assets/frontend/icons/flag_id.svg") }}" alt="" class="w-5">
+        <x-portal::form.input label="Text Info" placeholder="Text Info" name="investor_report_table_title_id" :value="@$data->investor_report_table->title_id" type="text" />
+        <x-portal::form.group
+            label="Description"
+            name="investor_report_table_content_id"
+            description=""
+            description-trailing=""
+        >
+            <x-editor.quill name="investor_report_table_content_id" height="150">{!! @$data->investor_report_table->content_id !!}</x-editor.quill>
+        </x-portal::form.group>
+    </div>
+</div>
+<x-portal::form.select
+    name="delete_table_investor_report_table"
+    label="Delete Table?"
+    description="If you choose Yes, this will permanently delete the table data when the form is submitted."
+    description-trailing=""
+>
+    <option value="no">No</option>
+    <option value="yes">Delete</option>
+</x-portal::form.select>
 <div id="app-report" class="flex flex-col gap-4 w-full">
     <div class="flex gap-2 items-center">
         <x-portal::button type="button" @click="addRow('report')">Add Row</x-portal::button>
         <x-portal::button type="button" @click="addColumn('report')">Add Column</x-portal::button>
         <x-portal::button type="button" @click="addRowGroup('report')">Add Row Group</x-portal::button>
     </div>
-    <div class="table-json">
+    <div class="table-json" v-if="headersReports.length > 0">
         <table>
             <thead>
                 <tr>

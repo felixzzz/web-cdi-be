@@ -34,19 +34,22 @@
     import Container from '@/Components/Section/Container.vue'
     import { getQueryParam } from '@/Lib/utils'
     import { Link } from '@inertiajs/vue3'
-    import { ref } from 'vue'
+    import { onMounted, ref } from 'vue'
     import ContentStocks from './ContentStocks.vue'
     import ContentBonds from './ContentBonds.vue'
-    import { PreferenceInvestor } from '@/types/utility'
+    import { NameId, PreferenceInvestor } from '@/types/utility'
 
-    defineProps<{
+    const props = defineProps<{
         content: PreferenceInvestor | null
     }>()
 
     const tabActive = ref(getQueryParam('tab') || 'stocks')
-    const tabs = ref([
-        { id: 'stocks', name: $t('Stocks') },
-        { id: 'bonds', name: $t('Bonds') }
-    ])
+    const tabs = ref<NameId[]>([])
+
+    onMounted(() => {
+        tabs.value.push({ id: 'stocks', name: $t('Stocks') })
+        if (props.content?.investor_share_bonds_table_show?.content_en == 'show') tabs.value.push({ id: 'bonds', name: $t('Bonds') })
+
+    })
 
 </script>

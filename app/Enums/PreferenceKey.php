@@ -42,6 +42,7 @@ enum PreferenceKey: string
     case about_us_corporate_structure = 'about_us_corporate_structure';
     case about_us_corporate_structure_table = 'about_us_corporate_structure_table';
     case about_us_guideline = 'about_us_guideline';
+    case about_us_corporate_structure_table_show = 'about_us_corporate_structure_table_show';
 
     case about_us_award_banner = 'about_us_award_banner';
     case about_us_award_overview = 'about_us_award_overview';
@@ -57,6 +58,11 @@ enum PreferenceKey: string
     case investor_publication_banner = 'investor_publication_banner';
     case investor_share_tab_one = 'investor_share_tab_one';
     case investor_share_tab_two = 'investor_share_tab_two';
+
+    case investor_share_shareholders_table_show = 'investor_share_shareholders_table_show';
+    case investor_share_dividend_table_show = 'investor_share_dividend_table_show';
+    case investor_share_bonds_table_show = 'investor_share_bonds_table_show';
+    case investor_report_table_show = 'investor_report_table_show';
 
     case governance_banner = 'governance_banner';
     case governance_corporate_secretary_team = 'governance_corporate_secretary_team';
@@ -86,6 +92,7 @@ enum PreferenceKey: string
     case sustainability_overview_banner = 'sustainability_overview_banner';
     case sustainability_overview_content = 'sustainability_overview_content';
     case sustainability_overview_policy_framework = 'sustainability_overview_policy_framework';
+    case sustainability_overview_policy_framework_show = 'sustainability_overview_policy_framework_show';
     case sustainability_overview_policy_framework_file = 'sustainability_overview_policy_framework_file';
     case sustainability_overview_rating = 'sustainability_overview_rating';
     case sustainability_environment_banner = 'sustainability_environment_banner';
@@ -149,6 +156,7 @@ enum PreferenceKey: string
             'about_us_guideline' => PreferenceType::TextContent,
             'about_us_award_banner' => PreferenceType::TextContentImage,
             'about_us_award_overview' => PreferenceType::TextContent,
+            'about_us_corporate_structure_table_show' => PreferenceType::TextContent,
 
             'investor_report_banner' => PreferenceType::TextContentImage,
             'investor_report_overview' => PreferenceType::TextContentImage,
@@ -161,6 +169,10 @@ enum PreferenceKey: string
             'investor_publication_banner' => PreferenceType::TextContentImage,
             'investor_share_tab_one' => PreferenceType::Text,
             'investor_share_tab_two' => PreferenceType::Text,
+            'investor_share_shareholders_table_show' => PreferenceType::TextContent,
+            'investor_share_dividend_table_show' => PreferenceType::TextContent,
+            'investor_share_bonds_table_show' => PreferenceType::TextContent,
+            'investor_report_table_show' => PreferenceType::TextContent,
 
             'governance_banner' => PreferenceType::TextContentImage,
             'governance_corporate_secretary_team' => PreferenceType::TextContentImage,
@@ -190,6 +202,7 @@ enum PreferenceKey: string
             'sustainability_overview_content' => PreferenceType::TextContent,
             'sustainability_overview_rating' => PreferenceType::TextContent,
             'sustainability_overview_policy_framework' => PreferenceType::TextContent,
+            'sustainability_overview_policy_framework_show' => PreferenceType::TextContent,
             'sustainability_overview_policy_framework_file' => PreferenceType::TextFile,
             'sustainability_overview_rating' => PreferenceType::TextContent,
 
@@ -269,7 +282,8 @@ enum PreferenceKey: string
                 self::about_us_organization_structure->value,
                 self::about_us_corporate_structure->value,
                 self::about_us_corporate_structure_table->value,
-                self::about_us_guideline->value
+                self::about_us_guideline->value,
+                self::about_us_corporate_structure_table_show->value,
             ];
         }
 
@@ -296,7 +310,12 @@ enum PreferenceKey: string
             self::investor_share_bonds_table->value,
             self::investor_publication_banner->value,
             self::investor_share_tab_one->value,
-            self::investor_share_tab_two->value
+            self::investor_share_tab_two->value,
+
+            self::investor_share_shareholders_table_show->value,
+            self::investor_share_dividend_table_show->value,
+            self::investor_share_bonds_table_show->value,
+            self::investor_report_table_show->value,
         ];
     }
 
@@ -342,6 +361,7 @@ enum PreferenceKey: string
                     self::sustainability_overview_banner->value,
                     self::sustainability_overview_content->value,
                     self::sustainability_overview_policy_framework->value,
+                    self::sustainability_overview_policy_framework_show->value,
                     self::sustainability_overview_policy_framework_file->value,
                     self::sustainability_overview_rating->value,
                 ];

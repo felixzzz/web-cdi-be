@@ -9,7 +9,7 @@
                     <div class="content" v-html="content.governance_whistleblowing?.content"></div>
 
                     <Link :href="route('governance.whistleblowing')" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
-                        {{ $t('See All') }} <i class="isax icon-arrow-right-1 -rotate-45"></i>
+                        {{ $t('Submit Your Concerns') }} <i class="isax icon-arrow-right-1 -rotate-45"></i>
                     </Link>
                 </div>
 

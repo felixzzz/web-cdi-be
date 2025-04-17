@@ -148,73 +148,93 @@ const app = createApp({
         const removeColumn = (type, colIndex) => {
             if (type == 'report') {
                 headersReports.value.splice(colIndex, 1)
-                tableDataReports.value.forEach(row => row.splice(colIndex, 1))
+                tableDataReports.value.forEach(row => {
+                    if (!row.is_group) {
+                        row.splice(colIndex, 1)
+                    }
+                })
+
             }
 
             if (type == 'shareholders') {
                 headersShareHolders.value.splice(colIndex, 1)
-                tableDataShareHolders.value.forEach(row => row.splice(colIndex, 1))
+                tableDataShareHolders.value.forEach(row => {
+                    if (!row.is_group) {
+                        row.splice(colIndex, 1)
+                    }
+                })
+
             }
 
             if (type == 'dividend') {
                 headersDividend.value.splice(colIndex, 1)
-                tableDataDividend.value.forEach(row => row.splice(colIndex, 1))
+                tableDataDividend.value.forEach(row => {
+                    if (!row.is_group) {
+                        row.splice(colIndex, 1)
+                    }
+                })
+
             }
 
             if (type == 'bonds') {
                 headersBonds.value.splice(colIndex, 1)
-                tableDataBonds.value.forEach(row => row.splice(colIndex, 1))
+                tableDataBonds.value.forEach(row => {
+                    if (!row.is_group) {
+                        row.splice(colIndex, 1)
+                    }
+                })
+
             }
         }
 
         onMounted(() => {
-            if (headersReports.value.length === 0) {
-                headersReports.value = [
-                    { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
-                    { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
-                ]
-            }
-            if (tableDataReports.value.length === 0) {
-                tableDataReports.value = [
-                    [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
-                ]
-            }
+            // if (headersReports.value.length === 0) {
+            //     headersReports.value = [
+            //         { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
+            //         { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
+            //     ]
+            // }
+            // if (tableDataReports.value.length === 0) {
+            //     tableDataReports.value = [
+            //         [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
+            //     ]
+            // }
 
-            if (headersDividend.value.length === 0) {
-                headersDividend.value = [
-                    { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
-                    { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
-                ]
-            }
-            if (tableDataDividend.value.length === 0) {
-                tableDataDividend.value = [
-                    [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
-                ]
-            }
+            // if (headersDividend.value.length === 0) {
+            //     headersDividend.value = [
+            //         { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
+            //         { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
+            //     ]
+            // }
+            // if (tableDataDividend.value.length === 0) {
+            //     tableDataDividend.value = [
+            //         [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
+            //     ]
+            // }
 
-            if (headersBonds.value.length === 0) {
-                headersBonds.value = [
-                    { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
-                    { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
-                ]
-            }
-            if (tableDataBonds.value.length === 0) {
-                tableDataBonds.value = [
-                    [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
-                ]
-            }
+            // if (headersBonds.value.length === 0) {
+            //     headersBonds.value = [
+            //         { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
+            //         { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
+            //     ]
+            // }
+            // if (tableDataBonds.value.length === 0) {
+            //     tableDataBonds.value = [
+            //         [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
+            //     ]
+            // }
 
-            if (headersShareHolders.value.length === 0) {
-                headersShareHolders.value = [
-                    { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
-                    { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
-                ]
-            }
-            if (tableDataShareHolders.value.length === 0) {
-                tableDataShareHolders.value = [
-                    [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
-                ]
-            }
+            // if (headersShareHolders.value.length === 0) {
+            //     headersShareHolders.value = [
+            //         { lang_en: 'Header 1', lang_id: 'Header 1 ID' },
+            //         { lang_en: 'Header 2', lang_id: 'Header 2 ID' }
+            //     ]
+            // }
+            // if (tableDataShareHolders.value.length === 0) {
+            //     tableDataShareHolders.value = [
+            //         [{ lang_en: '', lang_id: '' }, { lang_en: '', lang_id: '' }]
+            //     ]
+            // }
         })
 
         return {
