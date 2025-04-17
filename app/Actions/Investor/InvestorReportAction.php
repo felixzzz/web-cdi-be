@@ -18,7 +18,7 @@ class InvestorReportAction
 
     public function store(InvestorReportRequest $request){
         $data = [
-            ...$request->only(['name_en', 'name_id', 'type'])
+            ...$request->only(['name_en', 'name_id', 'type', 'datetime'])
         ];
 
         if ($request->hasFile('file_en')) {
@@ -34,7 +34,7 @@ class InvestorReportAction
 
     public function update(InvestorReportRequest $request, $ulid){
         $data = [
-            ...$request->only(['name_en', 'name_id', 'type'])
+            ...$request->only(['name_en', 'name_id', 'type', 'datetime'])
         ];
 
 
