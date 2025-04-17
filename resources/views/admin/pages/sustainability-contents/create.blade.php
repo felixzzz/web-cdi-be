@@ -405,7 +405,7 @@
                 document.getElementById('simple_section').style.display = type === 'simple_text_information' ? 'block' : 'none'
                 document.getElementById('list_section').style.display = type === 'list_information' ? 'block' : 'none'
                 document.getElementById('grid_direction_section').style.display = (type === 'grid' || type === 'file_information') ? 'block' : 'none'
-                document.getElementById('grid_pattern_section').style.display = (type === 'grid' && gridType === 'box_icon_card') ? 'block' : 'none'
+                document.getElementById('grid_pattern_section').style.display = (type === 'grid' && (gridType === 'box_icon_card' || gridType == 'icon_content_card')) ? 'block' : 'none'
                 document.getElementById('file_information_section').style.display = type === 'file_information' ? 'block' : 'none'
                 document.getElementById('contents').style.display = type === 'grid' ? 'block' : 'none'
                 document.getElementById('swiper_items').style.display = type === 'swiper' ? 'block' : 'none'
