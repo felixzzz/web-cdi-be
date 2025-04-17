@@ -223,6 +223,7 @@ export type PreferenceSustainabilityOverview = {
     sustainability_overview_policy_framework: PreferenceItem | null;
     sustainability_overview_policy_framework_file: PreferenceItem | null;
     sustainability_overview_rating: PreferenceItem | null;
+    sustainability_overview_policy_framework_show: PreferenceItem | null;
 }
 
 export type PreferenceSustainabilityEnvironment = {

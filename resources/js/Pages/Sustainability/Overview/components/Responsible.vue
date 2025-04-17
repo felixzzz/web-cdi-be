@@ -1,5 +1,5 @@
 <template>
-    <div class="text-white bg-blue-dark py-20">
+    <div class="text-white bg-blue-dark py-20" v-if="content.sustainability_overview_policy_framework_show?.content_en == 'show'">
         <container>
             <h2
                 class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] pt-20 mb-4"
