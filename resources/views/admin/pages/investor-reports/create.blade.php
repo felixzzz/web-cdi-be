@@ -22,6 +22,9 @@
                 <option value="gms" {{ old('type') == 'gms' ? 'selected' : '' }}>GMS</option>
                 <option value="disclosure" {{ old('type') == 'disclosure' ? 'selected' : '' }}>Disclosure</option>
             </x-portal::form.select>
+
+            <x-portal::form.input label="Datetime" placeholder="Datetime" name="datetime" value="{{ old('datetime', now()) }}" type="datetime-local" required />
+
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Name" placeholder="Name" name="name_en" :value="old('name_en')" type="text" required />
             <x-portal::form.group

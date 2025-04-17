@@ -35,11 +35,11 @@ class InvestorReportRepository
     {
         return InvestorReport::query()
         ->where("type", InvestorReportType::FinancialReport)
-        ->orderBy("created_at", "DESC")
+        ->orderBy("datetime", "DESC")
         ->limit($limit)->get()->map(function ($row) {
             $row->file = json_decode($row->file);
             $row->name = $row->name;
-            $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
+            $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
             return $row;
         });
     }
@@ -54,7 +54,7 @@ class InvestorReportRepository
         $data = InvestorReport::query()
             ->where("type", $type)
             ->when($search, fn ($q) => $q->where("name_{$locale}", "LIKE", "%$search%"))
-            ->orderBy('created_at','desc')
+            ->orderBy('datetime','desc')
             ->orderBy('id','desc')
             ->paginate($limit);
         return [
@@ -67,7 +67,7 @@ class InvestorReportRepository
                 ->map(function ($row) {
                         $row->name = $row->name;
                         $row->file = json_decode($row->file);
-                        $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
+                        $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
                         return $row;
                 })->values()
         ];
@@ -94,9 +94,9 @@ class InvestorReportRepository
                     ]);
                 }
             })
-            ->when($year, fn ($q) => $q->whereYear("created_at", $year))
+            ->when($year, fn ($q) => $q->whereYear("datetime", $year))
             ->when($search, fn ($q) => $q->where("name_{$locale}", "LIKE", "%$search%"))
-            ->orderBy('created_at','desc')
+            ->orderBy('datetime','desc')
             ->orderBy('id','desc')
             ->paginate($limit);
 
@@ -107,8 +107,8 @@ class InvestorReportRepository
             ->map(function ($row) {
                 $row->name = $row->name;
                 $row->file = json_decode($row->file);
-                $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
-                $row->year = Carbon::parse($row->created_at)->year;
+                $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
+                $row->year = Carbon::parse($row->datetime)->year;
                 return $row;
             });
 
@@ -130,7 +130,7 @@ class InvestorReportRepository
     public function years()
     {
         return InvestorReport::query()
-            ->selectRaw("YEAR(created_at) as year")
+            ->selectRaw("YEAR(datetime) as year")
             ->whereIn("type", [
                 InvestorReportType::AnnualReport,
                 InvestorReportType::FinancialReport

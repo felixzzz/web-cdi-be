@@ -95,6 +95,7 @@ enum PreferenceKey: string
     case sustainability_overview_policy_framework_show = 'sustainability_overview_policy_framework_show';
     case sustainability_overview_policy_framework_file = 'sustainability_overview_policy_framework_file';
     case sustainability_overview_rating = 'sustainability_overview_rating';
+    case sustainability_overview_rating_show = 'sustainability_overview_rating_show';
     case sustainability_environment_banner = 'sustainability_environment_banner';
     case sustainability_environment_overview = 'sustainability_environment_overview';
     case sustainability_social_banner = 'sustainability_social_banner';
@@ -204,7 +205,7 @@ enum PreferenceKey: string
             'sustainability_overview_policy_framework' => PreferenceType::TextContent,
             'sustainability_overview_policy_framework_show' => PreferenceType::TextContent,
             'sustainability_overview_policy_framework_file' => PreferenceType::TextFile,
-            'sustainability_overview_rating' => PreferenceType::TextContent,
+            'sustainability_overview_rating_show' => PreferenceType::TextContent,
 
             'sustainability_environment_banner' => PreferenceType::TextContentImage,
             'sustainability_environment_overview' => PreferenceType::TextContent,
@@ -364,6 +365,7 @@ enum PreferenceKey: string
                     self::sustainability_overview_policy_framework_show->value,
                     self::sustainability_overview_policy_framework_file->value,
                     self::sustainability_overview_rating->value,
+                    self::sustainability_overview_rating_show->value
                 ];
                 break;
 
