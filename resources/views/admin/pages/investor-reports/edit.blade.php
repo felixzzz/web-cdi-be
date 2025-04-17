@@ -17,11 +17,11 @@
                 <option value="Select a type" selected disabled>
                     Select a type
                 </option>
-                <option value="annual_report" {{ $data->type == 'annual_report' ? 'selected' : '' }}>Annual Report</option>
-                <option value="financial_report" {{ $data->type == 'financial_report' ? 'selected' : '' }}>Financial Report</option>
-                <option value="prospectus" {{ $data->type == 'prospectus' ? 'selected' : '' }}>Prospectus</option>
-                <option value="gms" {{ $data->type == 'gms' ? 'selected' : '' }}>GMS</option>
-                <option value="disclosure" {{ $data->type == 'disclosure' ? 'selected' : '' }}>Disclosure</option>
+                <option value="annual_report" {{ $data->type->value == 'annual_report' ? 'selected' : '' }}>Annual Report</option>
+                <option value="financial_report" {{ $data->type->value == 'financial_report' ? 'selected' : '' }}>Financial Report</option>
+                <option value="prospectus" {{ $data->type->value == 'prospectus' ? 'selected' : '' }}>Prospectus</option>
+                <option value="gms" {{ $data->type->value == 'gms' ? 'selected' : '' }}>GMS</option>
+                <option value="disclosure" {{ $data->type->value == 'disclosure' ? 'selected' : '' }}>Disclosure</option>
             </x-portal::form.select>
 
             <x-portal::form.input label="Datetime" placeholder="Datetime" name="datetime" value="{{ $data->datetime }}" type="datetime-local" required />
