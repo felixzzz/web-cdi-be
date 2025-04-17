@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-blue-dark py-20 text-white" v-if="content.sustainability_overview_rating_show?.content_en">
+    <div class="bg-blue-dark py-20 text-white" v-if="content.sustainability_overview_rating_show?.content_en == 'show'">
         <container>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-16 justify-between">
                 <h2 class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-[592px]">
