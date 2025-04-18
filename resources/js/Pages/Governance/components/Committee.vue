@@ -88,9 +88,9 @@
 
             <template v-for="committe in governanceCommittes" :key="committe.ulid">
                 <div v-show="tabActive == committe.ulid" class="py-8">
-                    <p class="font-medium text-[22px] mb-8" v-if="committe?.title">{{ committe?.title }}</p>
-                    <img :src="committe?.image" alt="" class="w-full rounded-3xl" v-if="committe?.image">
-                    <div class="content mt-8" v-html="committe?.content" v-if="committe?.content"></div>
+                    <img :src="committe?.image" alt="" class="w-full rounded-3xl mb-8" v-if="committe?.image">
+                    <p class="font-medium text-[22px] mb-3" v-if="committe?.title">{{ committe?.title }}</p>
+                    <div class="content" v-html="committe?.content" v-if="committe?.content"></div>
 
                     <div class="mt-8 flex flex-col gap-8" v-if="committe.file_name && committe.file">
                         <div class="button-gradient-custom">
