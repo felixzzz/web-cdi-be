@@ -28,7 +28,7 @@ class GovernanceCommitteRepository
         ->where("is_show", 1)
         ->orderBy("sort", "asc")
         ->get()->map(function ($row) {
-            $row->image = previewFile($row->image);
+            $row->image = $row->image ? previewFile($row->image) : '';
             $row->tab_title = $row->tab_title;
             $row->title = $row->title;
             $row->content = $row->content;
