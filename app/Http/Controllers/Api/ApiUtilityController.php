@@ -11,6 +11,7 @@ use App\Repositories\AboutUs\OurHistoryRepository;
 use App\Repositories\Article\ArticleCategoryRepository;
 use App\Repositories\Data\OfficeRepository;
 use App\Repositories\Data\TeamRepository;
+use App\Repositories\Governance\GovernanceCommitteRepository;
 use App\Repositories\Investor\InvestorReportRepository;
 use App\Repositories\Utility\CountryRepository;
 use App\Repositories\Utility\FileRepository;
@@ -135,5 +136,15 @@ class ApiUtilityController extends Controller
     public function whistleblowingTopics(TopicRepository $topicRepository)
     {
         return $topicRepository->list(TopicType::Whistleblowing);
+    }
+
+    public function governanceCommittes(GovernanceCommitteRepository $governanceCommitteRepository)
+    {
+        return $governanceCommitteRepository->list();
+    }
+
+    public function hasGovernanceCommittes(GovernanceCommitteRepository $governanceCommitteRepository)
+    {
+        return $governanceCommitteRepository->check();
     }
 }

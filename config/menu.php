@@ -242,6 +242,11 @@ return [
                     'route' => 'admin.page-management.governance-content.index'
                 ],
                 [
+                    'name' => 'Other Committe',
+                    'active' => 'governance-committes',
+                    'route' => 'admin.governance-committes.index'
+                ],
+                [
                     'name' => 'Files',
                     'active' => 'governance-files',
                     'route' => '',

@@ -261,7 +261,9 @@ const __getSustainabilityOverview = (): PreferenceSustainabilityOverview => {
         sustainability_overview_banner: null,
         sustainability_overview_policy_framework: null,
         sustainability_overview_policy_framework_file: null,
-        sustainability_overview_rating: null
+        sustainability_overview_rating: null,
+        sustainability_overview_policy_framework_show: null,
+        sustainability_overview_rating_show: null,
     }
 }
 

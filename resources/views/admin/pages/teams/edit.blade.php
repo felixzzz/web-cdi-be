@@ -71,6 +71,16 @@
                 <x-editor.quill name="description_id" height="150">{!! $data->description_id !!}</x-editor.quill>
             </x-portal::form.group>
 
+            <x-portal::form.select
+                name="delete_cv_file"
+                label="Delete CV?"
+                description="If you choose Yes, this will permanently delete the file when the form is submitted."
+                description-trailing=""
+            >
+                <option value="no">No</option>
+                <option value="yes">Delete</option>
+            </x-portal::form.select>
+
             <x-portal::form.group
                 label="File CV"
                 name="cv_file"
@@ -91,6 +101,15 @@
                 @endif
             </x-portal::form.group>
 
+            <x-portal::form.select
+                name="delete_resume_file"
+                label="Delete Resume?"
+                description="If you choose Yes, this will permanently delete the file when the form is submitted."
+                description-trailing=""
+            >
+                <option value="no">No</option>
+                <option value="yes">Delete</option>
+            </x-portal::form.select>
             <x-portal::form.group
                 label="File Resume"
                 name="resume_file"

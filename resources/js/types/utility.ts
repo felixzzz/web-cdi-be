@@ -459,3 +459,18 @@ export type SustainabilityReport = {
     pages?: number;
     format?: string;
 }
+
+
+export type GovernanceCommitte = {
+    ulid: string;
+    tab_title: string;
+    title?: string;
+    content?: string;
+    file?: {
+        path: string;
+        size: string;
+        format: string;
+    };
+    file_name?: string;
+    image?: string;
+}

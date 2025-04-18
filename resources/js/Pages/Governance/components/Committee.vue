@@ -85,6 +85,38 @@
                     </div>
                 </div>
             </div>
+
+            <template v-for="committe in governanceCommittes" :key="committe.ulid">
+                <div v-show="tabActive == committe.ulid" class="py-8">
+                    <p class="font-medium text-[22px] mb-8" v-if="committe?.title">{{ committe?.title }}</p>
+                    <img :src="committe?.image" alt="" class="w-full rounded-3xl" v-if="committe?.image">
+                    <div class="content mt-8" v-html="committe?.content" v-if="committe?.content"></div>
+
+                    <div class="mt-8 flex flex-col gap-8" v-if="committe.file_name && committe.file">
+                        <div class="button-gradient-custom">
+                            <div class="flex flex-col gap-2">
+                                <p class="text-[22px] font-medium">{{ committe.file_name }}</p>
+                                <div class="flex items-center text-base text-white gap-3">
+                                    <div class="flex items-baseline gap-3">
+                                        <span>{{ committe.file.size }}</span>
+                                        <span>.</span>
+                                    </div>
+                                    <img :src="asset('assets/frontend/icons/ic_filepdf_white.svg')" alt="">
+                                </div>
+                            </div>
+
+                            <div class="flex lg:items-center gap-8 w-full lg:w-fit">
+                                <a :href="previewFile(committe.file.path)" class="flex items-center gap-2 text-white font-medium" target="_blank">
+                                    <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
+                                </a>
+                                <a :href="downloadFile(committe.file.path)" class="flex items-center gap-2 text-white font-medium" target="_blank">
+                                    <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> {{ $t('Download') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </container>
 
     </div>
@@ -96,7 +128,7 @@
     import { asset, downloadFile, previewFile } from '@/Lib/utils'
     import { onMounted, ref } from 'vue'
 
-    import { AdditionalFile, NameId, PreferenceGovernance, Team } from '@/types/utility'
+    import { AdditionalFile, GovernanceCommitte, NameId, PreferenceGovernance, Team } from '@/types/utility'
     import useRequest from '@/Composables/useRequest'
     import FileZoom from '@/Components/Ui/Utils/FileZoom.vue'
 
@@ -111,6 +143,7 @@
     const audits = ref<Team[]>([])
     const auditFiles = ref<AdditionalFile[]>([])
     const sustainabilityFiles = ref<AdditionalFile[]>([])
+    const governanceCommittes = ref<GovernanceCommitte[]>([])
 
     const changeTab = (id: string) => {
         tabActive.value = id
@@ -145,6 +178,18 @@
         useRequest().get(route('api.utility.additional-file', 'sustainability_committe'))
         .then((result) => {
             sustainabilityFiles.value = result.data
+        })
+
+        useRequest().get(route('api.utility.governance-committes'))
+        .then((result) => {
+            governanceCommittes.value = result.data
+
+            governanceCommittes.value.forEach((row) => {
+                tabs.value.push({
+                    id: row.ulid,
+                    name: row.tab_title
+                })
+            })
         })
     })
 

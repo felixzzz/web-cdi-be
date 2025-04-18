@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\PageManagement\AdminPageOtherController;
 use App\Http\Controllers\Admin\OurBusiness\AdminOurBusinessTabController;
 use App\Http\Controllers\Admin\PageManagement\AdminHomeContentController;
 use App\Http\Controllers\Admin\AboutUs\AdminCertificateCategoryController;
+use App\Http\Controllers\Admin\Governance\AdminGovernanceCommitteController;
 use App\Http\Controllers\Admin\OurBusiness\AdminOurBusinessListController;
 use App\Http\Controllers\Admin\PageManagement\AdminGovernanceFileController;
 use App\Http\Controllers\Admin\PageManagement\AdminGovernanceContentController;
@@ -73,6 +74,8 @@ Route::prefix('admin')
         Route::resource('users', AdminUserController::class)->middleware([OnlySuperadminMiddleware::class]);
 
         Route::resource('sustainability-reports', AdminSustainabilityReportFileController::class)->except(['show']);
+        Route::resource('governance-committes', AdminGovernanceCommitteController::class)->except(['show']);
+        Route::post('/governance-committes/sort', [AdminGovernanceCommitteController::class, 'updateSort'])->name('governance-committes.sort');
 
         Route::resource('quick-links', AdminQuickLinkController::class)->except(['show']);
         Route::post('/quick-links/sort', [AdminQuickLinkController::class, 'updateSort'])->name('quick-links.sort');

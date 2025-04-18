@@ -40,6 +40,8 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/countries', 'countries')->name('countries');
                 Route::get('/whistleblowing-topics', 'whistleblowingTopics')->name('whistleblowing-topics');
                 Route::get('/contact-us-topics', 'contactUsTopics')->name('contact-us-topics');
+                Route::get('/governance-committes', 'governanceCommittes')->name('governance-committes');
+                Route::get('/has-governance-committes', 'hasGovernanceCommittes')->name('has-governance-committes');
 
 
                 Route::get('/additional-page/{type}', 'additionalPage')->name('additional-page');

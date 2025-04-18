@@ -21,6 +21,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+import useRequest from '@/Composables/useRequest';
     import { NameId, PreferenceGovernance } from '@/types/utility'
     import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -55,11 +56,30 @@
         })
     }
 
-    onMounted(() => {
+    const getCommitte = async () => {
+        let needGetCommitte: boolean = true;
+        let showCommitte: boolean = false
+
+        if (props.content.governance_audit_committe_show?.content_en == 'show' || props.content.governance_sustainability_committe_show?.content_en == 'show') {
+            needGetCommitte = false
+            showCommitte = true
+        }
+
+        if (needGetCommitte) {
+            await useRequest().get(route('api.utility.has-governance-committes'))
+            .then((result) => {
+                if (result.data?.length > 0) showCommitte = true
+            })
+        }
+
+        if (showCommitte) tabs.value.push({ id: 'committee', name: $t('Committee' )},)
+    }
+
+    onMounted(async () => {
 
         tabs.value.push({ id: 'corporate-secretary', name: $t('Corporate Secretary' )},)
         tabs.value.push({ id: 'internal-audit-unit', name: $t('Internal Audit Unit' )},)
-        if (props.content.governance_audit_committe_show?.content_en == 'show' || props.content.governance_sustainability_committe_show?.content_en == 'show') tabs.value.push({ id: 'committee', name: $t('Committee' )},)
+        await getCommitte()
         if (props.content.governance_risk_management_show?.content_en == 'show') tabs.value.push({ id: 'risk-management', name: $t('Risk Management' )},)
         tabs.value.push({ id: 'code-of-conduct', name: $t('Code of Conduct' )},)
         if (props.content.governance_policy_show?.content_en == 'show') tabs.value.push({ id: 'policy', name: $t('Policy' )},)
