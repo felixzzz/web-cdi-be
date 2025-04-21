@@ -199,7 +199,8 @@
                     class=""
                     :class="{
                         'grid grid-cols-1 lg:grid-cols-5 gap-16': item.grid_direction != 'row',
-                        'flex flex-col gap-8 lg:max-w-[45%]': item.grid_direction == 'row',
+                        'flex flex-col gap-8 lg:max-w-[45%]': item.grid_direction == 'row' && item.file_information?.title,
+                        'flex flex-col gap-8 lg:max-w-[100%]': item.grid_direction == 'row' && !item.file_information?.title,
                         'me-auto': item.align == 'left',
                         'ms-auto': item.align == 'right',
                     }"
