@@ -55,7 +55,7 @@ class StorageFile
         }
 
         $extension = "." . $file->getClientOriginalExtension();
-        $filename = Str::slug(str_replace($extension, "", $name)) . $extension;
+        $filename = Str::slug(str_replace($extension, "", $name)) . Str::random() . $extension;
         $fileUrl = Storage::disk('local')->putFileAs("{$location}", $file, $filename);
 
         return Helper::shortEncrypt($fileUrl);
@@ -91,7 +91,7 @@ class StorageFile
         }
 
         $extension = $file->getClientOriginalExtension();
-        $filename = Str::slug(pathinfo($name, PATHINFO_FILENAME)) . '.' . $extension;
+        $filename = Str::slug(pathinfo($name, PATHINFO_FILENAME)) . Str::random() . '.' . $extension;
         $filePath = Storage::disk('local')->putFileAs("{$location}", $file, $filename);
         $fileSize = self::formatSize($file->getSize());
 
