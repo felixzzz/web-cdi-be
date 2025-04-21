@@ -204,11 +204,15 @@
                         'ms-auto': item.align == 'right',
                     }"
                 >
-                    <div :class="item.grid_direction != 'row' ? 'lg:col-span-3' : ''">
+                    <div
+                        :class="{
+                            'lg:col-span-3': item.grid_direction != 'row'
+                        }"
+                    >
                         <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">{{ item.title }}</p>
                         <div class="content !text-neutral-6" v-html="item.content"></div>
                     </div>
-                    <div :class="item.grid_direction != 'row' ? 'lg:col-span-2' : ''">
+                    <div :class="item.grid_direction != 'row' ? 'lg:col-span-2' : ''" v-if="item.file_information?.title">
                         <div
                             class="button-gradient-custom !flex-col !items-start"
                             :class="item.grid_direction == 'row' ? 'lg:min-w-[50%] lg:w-fit' : ''"
