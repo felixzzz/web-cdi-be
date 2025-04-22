@@ -4,7 +4,7 @@
             <h2 class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-4 text-center">
                 {{ content.about_us_company_profile?.title }}
             </h2>
-            <div class="content !text-neutral-8 text-center mb-16" v-html="content.about_us_company_profile?.content"></div>
+            <div class="content primary !text-neutral-8 text-center mb-16" v-html="content.about_us_company_profile?.content"></div>
 
             <template v-for="(file, index) in data" :key="index">
                 <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0">
