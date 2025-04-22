@@ -1,16 +1,14 @@
 <x-portal::heading size="lg" class="!font-bold">Corporate Table</x-portal::heading>
-@if ($lang == 'en')
-    <x-portal::form.select
-        name="about_us_corporate_structure_table_show_content_en"
-        label="Show"
-        description=""
-        description-trailing=""
-        required
-    >
-        <option value="show" {{ @$data->about_us_corporate_structure_table_show->content_en == 'show' ? 'selected' : '' }}>Show</option>
-        <option value="hide" {{ @$data->about_us_corporate_structure_table_show->content_en == 'hide' ? 'selected' : '' }}>Hide</option>
-    </x-portal::form.select>
-@endif
+<x-portal::form.select
+    name="about_us_corporate_structure_table_show_content_en"
+    label="Show"
+    description=""
+    description-trailing=""
+    required
+>
+    <option value="show" {{ @$data->about_us_corporate_structure_table_show->content_en == 'show' ? 'selected' : '' }}>Show</option>
+    <option value="hide" {{ @$data->about_us_corporate_structure_table_show->content_en == 'hide' ? 'selected' : '' }}>Hide</option>
+</x-portal::form.select>
 <x-portal::form.input label="Title EN" placeholder="Title EN" name="about_us_corporate_structure_table_title_en" :value="@$data->about_us_corporate_structure_table->title_en" type="text" />
 <x-portal::form.input label="Title ID" placeholder="Title ID" name="about_us_corporate_structure_table_title_id" :value="@$data->about_us_corporate_structure_table->title_id" type="text" />
 
