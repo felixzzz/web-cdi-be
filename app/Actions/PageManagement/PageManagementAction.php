@@ -59,7 +59,12 @@ class PageManagementAction
             }
 
             $data = array_filter($data, function ($value, $key) {
-                return $key === 'content_table' || filled($value);
+                return $key === 'content_table'
+                    || $key === 'content_en'
+                    || $key === 'content_id'
+                    || $key === 'title_en'
+                    || $key === 'title_id'
+                    || filled($value);
             }, ARRAY_FILTER_USE_BOTH);
 
             Preference::updateOrCreate(['key' => $key], $data);
