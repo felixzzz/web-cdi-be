@@ -62,14 +62,15 @@
 
                 <!-- Socials (Pindah ke bawah di layar kecil) -->
                 <div class="flex gap-4 items-center justify-center row-start-3 lg:row-start-1">
-                    <a
-                        v-for="(social, index) in socials"
-                        :key="index"
-                        :href="social.url"
-                        target="_blank"
-                    >
-                        <img :src="social.icon" alt="" class="w-8">
-                    </a>
+                    <template v-for="(social, index) in socials" :key="index">
+                        <a
+                            :href="social.url"
+                            target="_blank"
+                            v-if="social.url"
+                        >
+                            <img :src="social.icon" alt="" class="w-8">
+                        </a>
+                    </template>
                 </div>
 
                 <!-- Menu Links -->
