@@ -5,7 +5,8 @@
         <div>
             <img
                 :src="item.thumbnail" alt=""
-                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-[#f8f192c4] bg-white"
+                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-[#f8f192c4] bg-white cursor-pointer"
+                @click="showImage"
             >
         </div>
         <div>
@@ -26,7 +27,7 @@
 
 <script setup lang="ts">
     import { Certification } from '@/types/utility'
-    const emits = defineEmits(["detail"])
+    const emits = defineEmits(["detail", "image"])
 
     defineProps<{
         item: Certification
@@ -34,6 +35,10 @@
 
     const read = () => {
         emits("detail")
+    }
+
+    const showImage = () => {
+        emits("image")
     }
 
 </script>

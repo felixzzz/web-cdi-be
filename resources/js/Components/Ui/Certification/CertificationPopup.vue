@@ -16,7 +16,8 @@
                             <img
                                 v-if="detail?.files"
                                 :src="detail?.files[pictureSelect]" alt=""
-                                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-[#f8f192c4] bg-white"
+                                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-[#f8f192c4] bg-white cursor-pointer"
+                                @click="showImage(detail, pictureSelect)"
                             >
                             <div class="mt-6 flex gap-3">
                                 <div
@@ -65,6 +66,8 @@ const props = defineProps<{
     data?: Certification | null;
 }>()
 
+const emits = defineEmits(["image"])
+
 const detail = ref<Certification | null>(null)
 const pictureSelect = ref(0)
 
@@ -72,11 +75,16 @@ const changePicture = (index: number) => {
     pictureSelect.value = index
 }
 
+const showImage = (dataDetail: (Certification | null), index: number) => {
+    emits("image", dataDetail, index)
+}
+
 const updateData = () => {
     if (props.data) {
         detail.value = props.data
     }
 }
+
 updateData()
 
 watch(() => props.data, updateData, { deep: true })

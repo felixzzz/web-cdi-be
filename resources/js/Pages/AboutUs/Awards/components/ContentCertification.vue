@@ -5,6 +5,8 @@
                 v-for="(item, i) in paginate.state.items" :key="i"
                 :item="item"
                 @detail="showDetail(item)"
+                @image="showImage(item)"
+
             />
         </div>
 
@@ -21,7 +23,8 @@
             :dark="true"
         />
 
-        <certification-popup v-bind:data="detail" />
+        <certification-popup v-bind:data="detail" @image="showImage" />
+        <certification-image-popup v-bind:data="detail" v-bind:index-image="indexImage" />
 
     </section>
 
@@ -36,6 +39,7 @@
     import PaginationLink from '@/Components/Ui/Utils/PaginationLink.vue'
     import AwardCardLoading from '@/Components/Ui/Award/AwardCardLoading.vue'
     import CertificationPopup from '@/Components/Ui/Certification/CertificationPopup.vue'
+    import CertificationImagePopup from '@/Components/Ui/Certification/CertificationImagePopup.vue'
     import { ref } from 'vue'
     import { triggerClick } from '@/Lib/utils'
 
@@ -45,6 +49,7 @@
     });
 
     const detail = ref<Certification | null>(null)
+    const indexImage = ref(0)
 
     const changePage = () => {
         paginate.fetchData()
@@ -57,6 +62,12 @@
     const showDetail = (data: Certification) => {
         detail.value = data
         triggerClick('#certification-popup')
+    }
+
+    const showImage = (data: Certification, index?: number) => {
+        detail.value = data
+        indexImage.value = index ? index : 0
+        triggerClick('#certification-image-popup')
     }
 
 </script>
