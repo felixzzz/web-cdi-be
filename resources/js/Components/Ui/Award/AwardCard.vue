@@ -5,7 +5,8 @@
         <div>
             <img
                 :src="item.image" alt=""
-                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-gold-1 bg-white"
+                class="aspect-[9/10] object-cover rounded-xl border-2 border-blue-dark outline-2 outline-gold-1 bg-white cursor-pointer"
+                @click="showImage"
             >
         </div>
         <div>
@@ -25,9 +26,14 @@
 
 <script setup lang="ts">
     import { Award } from '@/types/utility'
+    const emits = defineEmits(["image"])
 
     defineProps<{
         item: Award
     }>()
+
+    const showImage = () => {
+        emits("image")
+    }
 
 </script>

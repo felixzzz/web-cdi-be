@@ -31,6 +31,7 @@
             <award-card
                 v-for="(item, i) in paginate.state.items" :key="i"
                 :item="item"
+                @image="showImage(item)"
             />
         </div>
 
@@ -39,6 +40,8 @@
                 v-for="i in 2" :key="i"
             />
         </div>
+
+        <award-image-popup v-bind:data="detail" />
 
         <pagination-link
             :links="paginate.state.links"
@@ -60,8 +63,11 @@
     import { getQueryParam, routeAppendParam } from '@/Lib/utils'
     import { Award } from '@/types/utility'
     import { onBeforeMount, ref } from 'vue'
+    import AwardImagePopup from '@/Components/Ui/Award/AwardImagePopup.vue'
+    import { triggerClick } from '@/Lib/utils'
 
     const years = ref<number[] | string[]>([])
+        const detail = ref<Award | null>(null)
     const selectedYear = ref<number | string>(getQueryParam('year') ||'')
 
     const paginate = usePaginate<Award>({
@@ -86,6 +92,12 @@
         selectedYear.value = year
         routeAppendParam({year: year})
         paginate.fetchData()
+    }
+
+
+    const showImage = (data: Award) => {
+        detail.value = data
+        triggerClick('#award-image-popup')
     }
 
 </script>

@@ -4,6 +4,7 @@
             <award-card
                 v-for="(item, i) in paginate.state.items" :key="i"
                 :item="item"
+                @image="showImage(item)"
             />
         </div>
 
@@ -12,6 +13,8 @@
                 v-for="i in 2" :key="i"
             />
         </div>
+
+        <award-image-popup v-bind:data="detail" />
 
         <pagination-link
             :links="paginate.state.links"
@@ -27,10 +30,14 @@
 <script setup lang="ts">
     import usePaginate from '@/Composables/usePaginate'
     import { Award } from '@/types/utility'
-    import { onBeforeMount } from 'vue'
+    import { onBeforeMount, ref } from 'vue'
     import PaginationLink from '@/Components/Ui/Utils/PaginationLink.vue'
     import AwardCardLoading from '@/Components/Ui/Award/AwardCardLoading.vue'
     import AwardCard from '@/Components/Ui/Award/AwardCard.vue'
+    import AwardImagePopup from '@/Components/Ui/Award/AwardImagePopup.vue'
+    import { triggerClick } from '@/Lib/utils'
+
+    const detail = ref<Award | null>(null)
 
     const paginate = usePaginate<Award>({
         route: route("api.memberships.list"),
@@ -44,5 +51,10 @@
     onBeforeMount(() => {
         paginate.fetchData()
     })
+
+    const showImage = (data: Award) => {
+        detail.value = data
+        triggerClick('#award-image-popup')
+    }
 
 </script>
