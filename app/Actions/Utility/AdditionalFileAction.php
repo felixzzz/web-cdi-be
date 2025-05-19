@@ -21,7 +21,8 @@ class AdditionalFileAction
         $data = [
             ...$request->only(['name_en', 'name_id']),
             'show_on_governance' => $request->input("show_on_governance", 0),
-            'type' => $type ?? $request->type
+            'type' => $type ?? $request->type,
+            'unique_key' => request('unique_key')
         ];
 
         if ($request->hasFile('file_en')) {

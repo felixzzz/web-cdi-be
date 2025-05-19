@@ -7,6 +7,8 @@
         <meta name="application-url" content="{{ url('') }}">
         <meta name="preview-url" content="{{ route('preview.storage') }}">
         <meta name="download-file" content="{{ route('preview.download') }}">
+        <meta name="add-file-preview" content="{{ route('file.preview') }}">
+        <meta name="add-file-download" content="{{ route('file.download') }}">
 
         @include('seo-tag')
         <title inertia>{{ config('app.name', 'Laravel') }} {{ @$pageTitle  ? "| {$pageTitle}" : ''}}</title>

@@ -35,4 +35,44 @@ class AdditionalFile extends Model
             'file_id' => 'array'
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function ($model) {
+            if (empty($model->unique_key)) {
+                $model->unique_key = $model->generateUniqueKey($model->type->value);
+            }
+        });
+
+        static::updating(function ($model) {
+            if (empty($model->unique_key)) {
+                $model->unique_key = $model->generateUniqueKey($model->type->value);
+            }
+        });
+    }
+
+
+    private function generateKey(string $type): string
+    {
+        $formattedType = collect(explode('_', $type))
+            ->map(fn($word) => ucfirst($word))
+            ->implode('_');
+
+        $randomInt = random_int(1000, 9999);
+
+        return "{$formattedType}_{$randomInt}";
+    }
+
+    private function generateUniqueKey(string $type): string
+    {
+        do {
+            $key = $this->generateKey($type);
+        } while (
+            self::where('unique_key', $key)
+                ->where('type', $type)
+                ->exists()
+        );
+
+        return $key;
+    }
 }

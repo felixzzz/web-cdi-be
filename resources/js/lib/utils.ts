@@ -23,6 +23,18 @@ export function downloadFile(prefix?: string) {
     return `${url}/${prefix}.webp`
 }
 
+export function addFilePreview(type?: string, key?: string, selectedLang?: string) {
+    const url = document.querySelector('meta[name="add-file-preview"]')?.getAttribute('content')
+    const lang = selectedLang ? selectedLang : 'default'
+    return `${url}/${lang}/${type}/${key}`
+}
+
+export function addFileDownload(type?: string, key?: string, selectedLang?: string) {
+    const url = document.querySelector('meta[name="add-file-download"]')?.getAttribute('content')
+    const lang = selectedLang ? selectedLang : 'default'
+    return `${url}/${lang}/${type}/${key}`
+}
+
 export function scrollToElement(elementName: string) {
     setTimeout(()=>{
         const element = document.querySelector(elementName)

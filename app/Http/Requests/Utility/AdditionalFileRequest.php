@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Utility;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdditionalFileRequest extends FormRequest
@@ -22,6 +23,12 @@ class AdditionalFileRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'unique_key' => [
+                'nullable',
+                Rule::unique('additional_files')->where(function ($query) {
+                    return $query->where('type', request()->type);
+                }),
+            ],
             'name_en' => 'required',
             'name_id' => 'required'
         ];

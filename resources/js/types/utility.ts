@@ -278,6 +278,8 @@ export type OurHistory = {
 }
 
 export type AdditionalFile = {
+    type: string;
+    unique_key: string;
     name: string;
     file: {
         path: string;
@@ -336,6 +338,8 @@ export type PressRelease = {
     id: string;
     ulid?: string;
     name: string;
+    type?: string;
+    unique_key?: string;
     file?: {
         path: string;
         size: string;

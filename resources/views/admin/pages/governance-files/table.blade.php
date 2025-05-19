@@ -7,6 +7,7 @@
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
                     <th></th>
+                    <x-portal::table.head>Key</x-portal::table.head>
                     <x-portal::table.head>Name EN</x-portal::table.head>
                     <x-portal::table.head>Name ID</x-portal::table.head>
                     <x-portal::table.head>File Information</x-portal::table.head>
@@ -22,6 +23,7 @@
                                 @svg('tabler-arrows-move', ['class' => 'icon'])
                             </a>
                         </x-portal::table.cell>
+                        <x-portal::table.cell class="font-medium">{{ $row->unique_key }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->name_en }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->name_id }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">

@@ -42,13 +42,13 @@
                             </div>
 
                             <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                                <a :href="previewFile(item.file?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                                <a :href="addFilePreview(item.type, item.unique_key)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
                                     <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
                                 </a>
-                                <a :href="downloadFile(item.file_en?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_en">
+                                <a :href="addFileDownload(item.type, item.unique_key, 'en')" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_en">
                                     <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-EN') }}
                                 </a>
-                                <a :href="downloadFile(item.file_id?.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_id">
+                                <a :href="addFileDownload(item.type, item.unique_key, 'id')" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_id">
                                     <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download-ID') }}
                                 </a>
                             </div>
@@ -70,7 +70,7 @@
     import Container from '@/Components/Section/Container.vue'
     import TabMenu from '@/Components/Ui/Governance/TabMenu.vue';
     import Breadcrumb from '@/Components/Ui/Utils/Breadcrumb.vue'
-    import { asset, downloadFile, previewFile } from '@/Lib/utils'
+    import { addFileDownload, addFilePreview, asset } from '@/Lib/utils'
     import { PressRelease } from '@/types/utility'
     import usePaginate from '@/Composables/usePaginate'
     import FileLoading from '@/Components/Ui/Utils/FileLoading.vue'

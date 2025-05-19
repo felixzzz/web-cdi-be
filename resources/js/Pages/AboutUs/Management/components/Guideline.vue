@@ -21,10 +21,10 @@
                     </div>
 
                     <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                        <a :href="previewFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                        <a :href="addFilePreview(file.type, file.unique_key)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
                             <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Guideline') }}
                         </a>
-                        <a :href="downloadFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                        <a :href="addFileDownload(file.type, file.unique_key)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
                             <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download') }}
                         </a>
                     </div>
@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset, downloadFile, previewFile } from '@/Lib/utils'
+    import { addFileDownload, addFilePreview, asset } from '@/Lib/utils'
 
     import { AdditionalFile, PreferenceAboutManagement } from '@/types/utility'
     import useRequest from '@/Composables/useRequest'
