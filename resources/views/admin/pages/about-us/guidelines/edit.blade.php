@@ -25,6 +25,8 @@
                 />
             </x-portal::form.group>
 
+            <x-portal::form.input label="Unique Key" placeholder="Unique Key" :value="$data->unique_key" type="text" readonly />
+
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Name" placeholder="Name" name="name_id" :value="$data->name_id" type="text" required />
             <x-portal::form.group

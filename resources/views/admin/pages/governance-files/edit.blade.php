@@ -21,7 +21,7 @@
                 <option value="1" {{ $data->show_on_governance == 1 ? 'selected' : '' }}>Yes</option>
             </x-portal::form.select>
 
-            <x-portal::form.input label="Unique Key" placeholder="Unique Key" name="unique_key" :value="$data->unique_key" type="text" readonly />
+            <x-portal::form.input label="Unique Key" placeholder="Unique Key" :value="$data->unique_key" type="text" readonly />
 
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Name" placeholder="Name" name="name_en" :value="$data->name_en" type="text" required />
