@@ -21,7 +21,7 @@
                     class="border-l-2 border-l-blue-lighter px-8 py-4 lg:py-0"
                     :key="index"
                 >
-                    <p class="text-shadow-1 font-medium text-4xl lg:text-[80px] mb-2">
+                    <p class="text-shadow-1 font-medium text-4xl md:text-[62px] xl:text-[80px] mb-2">
                         {{ info.title }}
                     </p>
                     <div class="content !font-light text-shadow-1 !text-white leading-[18px]" v-html="info.description"></div>

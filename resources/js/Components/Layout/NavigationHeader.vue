@@ -26,13 +26,13 @@
             id="nav-header"
         >
             <container class="flex justify-between">
-                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-12 cursor-pointer" v-show="isHome ? !scrolledPastHomeBlue : ((!scrolledPast && transparant) || (scrolledPast && stickyBlur))" @click="toHome">
-                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-12 cursor-pointer" v-show="isHome ? scrolledPastHomeBlue : ((scrolledPast || !transparant) && !stickyBlur)" @click="toHome">
+                <img :src="asset('assets/frontend/logo_cdi_white.svg')" alt="" class="h-10 xl:h-12 cursor-pointer" v-show="isHome ? !scrolledPastHomeBlue : ((!scrolledPast && transparant) || (scrolledPast && stickyBlur))" @click="toHome">
+                <img :src="asset('assets/frontend/logo_cdi_colored.svg')" alt="" class="h-10 xl:h-12 cursor-pointer" v-show="isHome ? scrolledPastHomeBlue : ((scrolledPast || !transparant) && !stickyBlur)" @click="toHome">
 
-                <div class="hidden lg:flex items-center gap-6 font-normal text-base">
+                <div class="hidden lg:flex items-center gap-4 xl:gap-6 font-normal text-base">
                     <template v-for="menu in MENU">
                         <Link
-                            :href="menu.route" v-if="!menu.external && !menu.subs.length && menu.name" :key="menu.active" class="nav-item"
+                            :href="menu.route" v-if="!menu.external && !menu.subs.length && menu.name" :key="menu.active" class="nav-item text-sm xl:text-base"
                             :class="{
                                 'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant || stickyBlur,
                                 'nav-blue-base': (!transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue))) && !stickyBlur,
@@ -43,7 +43,7 @@
                         </Link>
                         <div
                             v-if="!menu.external && menu.subs.length" :key="menu.active"
-                            class="nav-item cursor-pointer flex items-center gap-1 relative"
+                            class="nav-item cursor-pointer flex items-center gap-1 relative text-sm xl:text-base"
                             x-data="{ open_menu: false }"
                             x-on:mouseleave="open_menu = false"
                             x-on:mouseover="open_menu = true"
