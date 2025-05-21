@@ -58,24 +58,26 @@ class FileStorageController extends Controller
     public function fileDownload($lang = 'default', $type = null, $key = null)
     {
         try{
+            $fileName = null;
             if ($type == 'committe') {
                 $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
                 $row = GovernanceCommitte::where($field, $key)->first();
                 $file = $row->file;
                 $file = Helper::shortDecrypt($file['path']);
-                return StorageFile::preview($file);
+                $fileName = $key;
             } else {
                 $row = AdditionalFile::where("type", $type)->where("unique_key", $key)->first();
                 if ($lang !=  'default') {
+                    $fileName = $lang == 'id' ? $row->name_id : $row->name_en;
                     $file = $lang == 'id' ? $row->file_id : $row->file_en;
                     $file = Helper::shortDecrypt($file['path']);
                 } else {
+                    $fileName = $row->name;
                     $file = json_decode($row->file);
                     $file = Helper::shortDecrypt($file->path);
                 }
-                return StorageFile::preview($file);
             }
-            return StorageFile::download($file);
+            return StorageFile::download($file, $fileName);
         }catch(\Exception $e){}
         return null;
     }

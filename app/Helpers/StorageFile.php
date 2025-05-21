@@ -137,7 +137,7 @@ class StorageFile
             ]);
     }
 
-    public static function download($filename)
+    public static function download($filename, $downloadName = null)
     {
         $disk = 'local';
 
@@ -148,10 +148,12 @@ class StorageFile
 
         $mimeType = Storage::disk($disk)->mimeType($filename);
 
-        $randomFileName = uniqid('file_', true) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+        $randomFileName = uniqid('file_', true);
+
+        $downloadFileName = ($downloadName ?? $randomFileName) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
 
 
-        return response()->download(Storage::disk($disk)->path($filename), $randomFileName, [
+        return response()->download(Storage::disk($disk)->path($filename), $downloadFileName, [
             'Content-Type' => $mimeType,
             'Cache-Control' => 'public, max-age=31536000, immutable'
         ]);
