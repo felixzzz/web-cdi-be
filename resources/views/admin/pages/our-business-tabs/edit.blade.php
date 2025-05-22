@@ -22,6 +22,18 @@
                 />
             </x-portal::form.group>
 
+            @if ($data->image)
+                <x-portal::form.select
+                    name="delete_image"
+                    label="Delete Image?"
+                    description="If you choose Yes, this will permanently delete the image data when the form is submitted."
+                    description-trailing=""
+                >
+                    <option value="no">No</option>
+                    <option value="yes">Delete</option>
+                </x-portal::form.select>
+            @endif
+
             <div class="flex gap-4">
                 <div class="flex flex-col gap-4 w-full">
                     <!-- EN -->

@@ -37,10 +37,10 @@
                     </div>
 
                     <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                        <a :href="previewFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                        <a :href="addFilePreview('report', file.ulid)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
                             <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
                         </a>
-                        <a :href="downloadFile(file.file.path)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                        <a :href="addFileDownload('report', file.ulid)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
                             <img :src="asset('assets/frontend/icons/ic_download_file.svg')" alt=""> {{ $t('Download') }}
                         </a>
                     </div>
@@ -59,7 +59,7 @@
     import Container from '@/Components/Section/Container.vue'
     import FileLoading from '@/Components/Ui/Utils/FileLoading.vue'
     import useRequest from '@/Composables/useRequest'
-    import { asset, downloadFile, previewFile } from '@/Lib/utils'
+    import { addFileDownload, addFilePreview, asset } from '@/Lib/utils'
     import { InvestorReport } from '@/types/utility'
     import { Link } from '@inertiajs/vue3'
     import { onMounted, ref } from 'vue'

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Helpers\StorageFile;
 use App\Models\Governance\GovernanceCommitte;
+use App\Models\Investor\InvestorReport;
 use App\Models\Utility\AdditionalFile;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,17 @@ class FileStorageController extends Controller
     public function filePreview($lang = 'default', $type = null, $key = null)
     {
         try{
-            if ($type == 'committe') {
+            if ($type == 'report') {
+                $row = InvestorReport::where('ulid', $key)->first();
+                if ($lang !=  'default') {
+                    $file = $lang == 'id' ? $row->file_id : $row->file_en;
+                    $file = Helper::shortDecrypt($file['path']);
+                } else {
+                    $file = json_decode($row->file);
+                    $file = Helper::shortDecrypt($file->path);
+                }
+                return StorageFile::preview($file);
+            } else if ($type == 'committe') {
                 $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
                 $row = GovernanceCommitte::where($field, $key)->first();
                 $file = $row->file;
@@ -59,7 +70,18 @@ class FileStorageController extends Controller
     {
         try{
             $fileName = null;
-            if ($type == 'committe') {
+            if ($type == 'report') {
+                $row = InvestorReport::where('ulid', $key)->first();
+                if ($lang !=  'default') {
+                    $file = $lang == 'id' ? $row->file_id : $row->file_en;
+                    $file = Helper::shortDecrypt($file['path']);
+                    $fileName = $lang == 'id' ? $row->name_id : $row->name_en;
+                } else {
+                    $file = json_decode($row->file);
+                    $file = Helper::shortDecrypt($file->path);
+                    $fileName = $row->name;
+                }
+            } else if ($type == 'committe') {
                 $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
                 $row = GovernanceCommitte::where($field, $key)->first();
                 $file = $row->file;

@@ -308,6 +308,7 @@ export type Team = {
 }
 
 export type InvestorReport = {
+    ulid?: string;
     type: string;
     name: string;
     date: string;

@@ -12,7 +12,7 @@
 <x-portal::form.input label="Title EN" placeholder="Title EN" name="about_us_corporate_structure_table_title_en" :value="@$data->about_us_corporate_structure_table->title_en" type="text" />
 <x-portal::form.input label="Title ID" placeholder="Title ID" name="about_us_corporate_structure_table_title_id" :value="@$data->about_us_corporate_structure_table->title_id" type="text" />
 
-    <x-portal::form.select
+<x-portal::form.select
     name="delete_table_about_us_corporate_structure_table"
     label="Delete Table?"
     description="If you choose Yes, this will permanently delete the table data when the form is submitted."

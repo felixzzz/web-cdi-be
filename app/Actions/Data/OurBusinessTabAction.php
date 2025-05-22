@@ -42,6 +42,10 @@ class OurBusinessTabAction
             $data['image'] = StorageFile::upload($request->file('image'), 'our-business/tabs');
         }
 
+        if ($request->delete_image == 'yes') {
+            $data['image'] = null;
+        }
+
         OurBusinessTab::whereUlid($ulid)->update($data);
         (new OurBusinessRepository())->resetCache();
     }
