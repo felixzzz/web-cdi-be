@@ -401,6 +401,8 @@ export type OurBusinessDetail = {
     overview_image?: string;
     overview_description?: string;
     heading_tab_title?: string;
+    link_url?: string;
+    link_title?: string;
     tabs?: OurBusinessTab[];
 }
 

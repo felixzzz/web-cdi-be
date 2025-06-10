@@ -106,14 +106,14 @@ export const MENU = [
                 name: 'navbar.governance_section',
                 route: route('sustainability.governance')
             },
-            {
-                name: 'navbar.sustainability_in_action',
-                route: route('sustainability.sustainability-in-action')
-            },
-            {
-                name: 'navbar.report_publication',
-                route: route('sustainability.report-and-publication')
-            }
+            // {
+            //     name: 'navbar.sustainability_in_action',
+            //     route: route('sustainability.sustainability-in-action')
+            // },
+            // {
+            //     name: 'navbar.report_publication',
+            //     route: route('sustainability.report-and-publication')
+            // }
         ],
         external: false
     },

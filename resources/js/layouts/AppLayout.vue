@@ -84,4 +84,5 @@
     })
 
     const cookie = useCookie()
+
 </script>

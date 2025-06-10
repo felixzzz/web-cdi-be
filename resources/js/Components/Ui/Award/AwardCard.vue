@@ -13,7 +13,7 @@
             <p class="text-sm text-neutral-6 mb-1">{{ item.year }}</p>
             <p class="text-2xl font-medium text-white mb-4">{{ item.name }}</p>
 
-            <div class="mb-4 content !text-sm !leading-normal" v-html="item.content"></div>
+            <div class="mb-4 content !text-sm !leading-normal" v-html="cleanNbsp(item.content)"></div>
 
             <div class="" v-if="item.awarder">
                 <p class="text-sm font-medium mb-1">{{ $t('Awarder') }}</p>
@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+    import { cleanNbsp } from '@/Lib/utils'
     import { Award } from '@/types/utility'
     const emits = defineEmits(["image"])
 

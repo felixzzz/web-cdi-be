@@ -449,3 +449,31 @@
 .ql-align-left {
     text-align: left;
 }
+
+
+.overflow-y-auto {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 0.2);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.overflow-y-auto:hover::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 0.4);
+}

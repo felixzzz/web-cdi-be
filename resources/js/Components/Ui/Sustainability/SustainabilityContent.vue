@@ -20,7 +20,7 @@
                     }"
                 >
                     <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-6 text-blue-lighter">{{ item.title }}</p>
-                    <div class="content !text-neutral-5" v-html="item.content"></div>
+                    <div class="content !text-neutral-5" v-html="cleanNbsp(item.content)"></div>
                 </div>
             </container>
         </div>
@@ -131,7 +131,7 @@
                                         '!text-neutral-5 lg:!text-sm lg:max-w-[90%]': item.grid_type == 'featured_image_card',
                                         '!text-neutral-6 lg:!text-sm': item.grid_type == 'icon_content_card' || item.grid_type == 'box_icon_card' || item.grid_type == 'image_content_card'
                                     }"
-                                    v-html="content.description"
+                                    v-html="cleanNbsp(content.description)"
                                 >
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                         }"
                     >
                         <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">{{ item.title }}</p>
-                        <div class="content !text-neutral-4" v-html="item.content"></div>
+                        <div class="content !text-neutral-4" v-html="cleanNbsp(item.content)"></div>
                     </div>
                     <div v-if="Array.isArray(item.content_json) && item.content_json?.length > 0">
                         <div class="items-center lg:max-w-[60%] ms-auto grid grid-cols-2 gap-8 lg:gap-x-16">
@@ -211,7 +211,7 @@
                         }"
                     >
                         <p class="text-2xl lg:text-[38px] lg:leading-[44px] font-medium mb-4">{{ item.title }}</p>
-                        <div class="content !text-neutral-6" v-html="item.content"></div>
+                        <div class="content !text-neutral-6" v-html="cleanNbsp(item.content)"></div>
                     </div>
                     <div :class="item.grid_direction != 'row' ? 'lg:col-span-2' : ''" v-if="item.file_information?.title">
                         <div
@@ -257,7 +257,7 @@
                 <div class="flex max-lg:flex-col items-center gap-8 mb-16 justify-between">
                     <div class="flex flex-col gap-1">
                         <p class="text-2xl lg:text-[28px] font-medium">{{ item.title }}</p>
-                        <div class="content !text-neutral-4" v-html="item.content"></div>
+                        <div class="content !text-neutral-4" v-html="(item.content)"></div>
                     </div>
                     <div class="">
                         <div class="flex items-center justify-end gap-4">
@@ -379,7 +379,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset, chunkArray } from '@/Lib/utils'
+    import { asset, chunkArray, cleanNbsp } from '@/Lib/utils'
     import { SustainabilityContent } from '@/types/utility'
     import { Swiper, SwiperSlide } from 'swiper/vue'
     import 'swiper/css'

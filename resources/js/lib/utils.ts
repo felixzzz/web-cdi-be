@@ -129,3 +129,7 @@ export const showAlert = (message: string, type = 'success') => {
         }, 3000);
     }
 }
+
+export const cleanNbsp = (value?: string) => {
+    return (value || '').replace(/&nbsp;/g, ' ')
+}

@@ -35,6 +35,9 @@ class OurBusinessAction
             'overview_description_id' => $request->overview_description_id,
             'heading_tab_title_en' => $request->heading_tab_title_en,
             'heading_tab_title_id' => $request->heading_tab_title_id,
+            'link_title_en' => $request->link_title_en,
+            'link_title_id' => $request->link_title_id,
+            'link_url' => $request->link_url,
         ];
 
         if ($request->hasFile('banner_image')) {

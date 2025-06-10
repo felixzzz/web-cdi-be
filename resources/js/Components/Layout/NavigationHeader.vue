@@ -70,7 +70,7 @@
                                 x-transition:leave-end="opacity-0 transform -translate-y-2"
                             >
                                 <img :src="asset('assets/frontend/icons/polygon.svg')" alt="" class="mx-auto -mb-[6px]">
-                                <div class="p-4 rounded-xl bg-white flex flex-col gap-6 whitespace-nowrap">
+                                <div class="p-4 rounded-xl bg-white flex flex-col gap-6 whitespace-nowrap nav-shadow">
                                     <template v-for="(sub, index) in menu.subs" :key="index">
                                         <Link :href="sub.route" class="text-neutral-13 nav-item nav-blue-base justify-start!" x-on:click="open_menu=false"
                                         >

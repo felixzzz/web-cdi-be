@@ -24,7 +24,7 @@
             >
                 <div class="absolute inset-0 overlay-card-1"></div>
                 <div class="absolute inset-0 flex flex-col justify-between px-5 lg:px-10 pb-5 lg:pb-10 pt-[35%] text-white z-10">
-                    <h1 class="text-2xl lg:text-[52px] lg:leading-[60px] font-medium text-shadow-1">{{ tab.name }}</h1>
+                    <h1 class="text-2xl lg:text-[40px] 2xl:text-[52px] 2xl:leading-[60px] font-medium text-shadow-1">{{ tab.name }}</h1>
                     <div class="content !font-normal text-shadow-1 !text-white" v-html="tab.description"></div>
                 </div>
                 <div

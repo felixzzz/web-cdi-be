@@ -34,7 +34,7 @@
                         <p
                             class="font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-4 text-white"
                         >{{ item.sub_title }}</p>
-                        <div class="content !text-neutral-5" v-html="item.description"></div>
+                        <div class="content !text-neutral-5" v-html="cleanNbsp(item.description)"></div>
                     </div>
                 </container>
             </div>
@@ -65,19 +65,31 @@
                         >
                             <p v-if="content.tagline" class="text-neutral-4 mb-4">{{ content.tagline }}</p>
                             <p class="text-2xl lg:text-[28px] font-medium mb-6 text-blue-lighter">{{ content.title }}</p>
-                            <div class="content !text-neutral-5" v-html="content.description"></div>
+                            <div class="content !text-neutral-5" v-html="cleanNbsp(content.description)"></div>
                         </div>
                     </container>
                 </div>
             </template>
         </section>
     </div>
+    <div class="bg-blue-dark text-white py-20">
+        <container>
+            <a
+                v-if="content.link_url"
+                :href="content.link_url"
+                class="bg-white text-neutral-13 px-3 py-1 lg:px-6 lg:py-2 border border-neutral-13 rounded-full whitespace-nowrap gap-4 flex items-center w-fit text-xs lg:text-base mx-auto"
+                target="_blank"
+            >
+                {{ content.link_title ? content.link_title : $t('Learn More') }} <i class="isax icon-arrow-right-1"></i>
+            </a>
+        </container>
+    </div>
 
 </template>
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { getQueryParam } from '@/Lib/utils'
+    import { cleanNbsp, getQueryParam } from '@/Lib/utils'
     import { OurBusinessDetail } from '@/types/utility'
     import { ref, watch } from 'vue';
 

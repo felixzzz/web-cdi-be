@@ -18,7 +18,7 @@
                     <h2 class="text-[22px] font-medium text-blue-base mb-2">
                         {{ item.title }}
                     </h2>
-                    <div class="content primary !text-neutral-8" v-html="item.description"></div>
+                    <div class="content primary !text-neutral-8" v-html="cleanNbsp(item.description)"></div>
                     <div class="h-[1px] bg-neutral-5 w-full my-6"></div>
                     <table>
                         <tbody>
@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-    import { asset } from '@/Lib/utils'
+    import { asset, cleanNbsp } from '@/Lib/utils'
     import { SustainabilityReport } from '@/types/utility'
 
     defineProps<{

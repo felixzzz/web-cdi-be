@@ -10,7 +10,7 @@
             <container class="relative z-[1]">
                 <div class="lg:max-w-[45%] ms-auto">
                     <p class="text-2xl lg:text-[28px] font-medium mb-6 text-blue-lighter">{{ content?.overview_title }}</p>
-                    <div class="content !text-neutral-5" v-html="content?.overview_description"></div>
+                    <div class="content !text-neutral-5" v-html="cleanNbsp(content?.overview_description)"></div>
                 </div>
             </container>
         </div>
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { cleanNbsp } from '@/Lib/utils'
     import { OurBusinessDetail } from '@/types/utility'
 
 

@@ -17,7 +17,7 @@
 
             <div v-show="tabActive == 'audit-committee'" class="py-8" v-if="content.governance_audit_committe_show?.content_en == 'show'">
                 <p class="font-medium text-[22px] mb-3" v-if="content.governance_audit_committe?.title">{{ content.governance_audit_committe?.title }}</p>
-                <div class="content" v-html="content.governance_audit_committe?.content"></div>
+                <div class="content" v-html="cleanNbsp(content.governance_audit_committe?.content)"></div>
 
                 <div class="mt-8 flex flex-col gap-8 mb-6">
                     <div class="button-gradient-custom" v-for="(file, index) in auditFiles" :key="index">
@@ -44,7 +44,7 @@
                 </div>
 
                 <p class="font-medium text-[22px] mb-3" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'">{{ content.governance_audit_committe_member_text?.title }}</p>
-                <div class="content text-neutral-6 mb-8" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'" v-html="content.governance_audit_committe_member_text?.content"></div>
+                <div class="content text-neutral-6 mb-8" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'" v-html="cleanNbsp(content.governance_audit_committe_member_text?.content)"></div>
 
                 <div class="flex gap-8" v-if="content.governance_audit_committe_member_text_show?.content_en == 'show'">
                     <div class="flex flex-col items-center text-center w-[282px] group transition-all duration-300" v-for="(audit, i) in audits" :key="i">
@@ -90,7 +90,7 @@
                 <div v-show="tabActive == committe.ulid" class="py-8">
                     <img :src="committe?.image" alt="" class="w-full rounded-3xl mb-8" v-if="committe?.image">
                     <p class="font-medium text-[22px] mb-3" v-if="committe?.title">{{ committe?.title }}</p>
-                    <div class="content" v-html="committe?.content" v-if="committe?.content"></div>
+                    <div class="content" v-html="cleanNbsp(committe?.content)" v-if="committe?.content"></div>
 
                     <div class="mt-8 flex flex-col gap-8" v-if="committe.file_name && committe.file">
                         <div class="button-gradient-custom">
@@ -125,7 +125,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { addFileDownload, addFilePreview, asset, previewFile } from '@/Lib/utils'
+    import { addFileDownload, addFilePreview, asset, cleanNbsp, previewFile } from '@/Lib/utils'
     import { onMounted, ref } from 'vue'
 
     import { AdditionalFile, GovernanceCommitte, NameId, PreferenceGovernance, Team } from '@/types/utility'

@@ -11,7 +11,7 @@
                 <h3 class="text-[22px] font-medium mb-2 line-clamp-3">
                     {{ item.title }}
                 </h3>
-                <div class="content primary !text-sm mb-4 line-clamp-3 !text-neutral-8" v-html="item.description"></div>
+                <div class="content primary !text-sm mb-4 line-clamp-3 !text-neutral-8" v-html="cleanNbsp(item.description)"></div>
                 <div class="flex items-center text-base text-neutral-8 gap-3">
                     <div class="flex items-baseline gap-3">
                         <span>{{ item.file?.size }}</span>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-    import { asset, downloadFile, previewFile } from '@/Lib/utils';
+    import { asset, cleanNbsp, downloadFile, previewFile } from '@/Lib/utils'
     import { SustainabilityReport } from '@/types/utility'
     import SustainabilityPopup from './SustainabilityPopup.vue'
 

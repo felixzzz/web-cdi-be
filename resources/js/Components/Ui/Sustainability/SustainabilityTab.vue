@@ -49,7 +49,7 @@
                                 }"
                             >
                                 <p class="text-2xl lg:text-[28px] font-medium mb-6 text-blue-lighter">{{ content.title }}</p>
-                                <div class="content !text-neutral-5" v-html="content.content"></div>
+                                <div class="content !text-neutral-5" v-html="cleanNbsp(content.content)"></div>
                             </div>
                         </container>
                     </div>
@@ -62,6 +62,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
+    import { cleanNbsp } from '@/Lib/utils'
     import { SustainabilityTab } from '@/types/utility'
     import { ref } from 'vue'
 
