@@ -8,8 +8,8 @@
         <container>
             <div class="flex items-center justify-between mb-10">
                 <div>
-                    <p class="text-base mb-4 font-medium">{{ $t('footer.a_member_of') }}</p>
-                    <img :src="asset('assets/frontend/logo_cdi_footer.svg')" alt="" class="h-12 cursor-pointer" @click="toHome">
+                    <!-- <p class="text-base mb-4 font-medium">{{ $t('footer.a_member_of') }}</p> -->
+                    <img :src="asset('assets/frontend/logo_cdi_footer_full.svg')" alt="" class="h-12 cursor-pointer" @click="toHome">
                 </div>
                 <div>
                     <Link :href="route('contact-us')" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
@@ -20,7 +20,10 @@
 
             <div class="flex justify-between flex-col lg:flex-row pb-12 mb-12 border-b border-b-neutral-8 gap-y-10 lg:gap-y-0">
                 <div class="flex flex-col gap-6 max-w-sm" v-if="content.office">
-                    <p class="font-medium text-[22px]">{{ content.office.name }}</p>
+                    <div class="">
+                        <p class="font-medium text-[22px]">{{ content.office.name }}</p>
+                        <p class="text-base font-regular text-neutral-6">{{ content.office.sub_title }}</p>
+                    </div>
                     <div class="text-base">
                         <span class="font-medium">{{ content.office.localized_main.location_name }}</span>
                         <span class="text-neutral-6 block">{{ content.office.localized_main.address }}</span>
