@@ -49,6 +49,10 @@ export default function useCookie() {
     }
 
     const getCookie = (key: string) => {
+        if (location.protocol !== 'https:') {
+            return true;
+        }
+
         const cookies = document.cookie.split("; ");
         const cookie = cookies.find(row => row.startsWith(`${key}=`));
         return cookie
