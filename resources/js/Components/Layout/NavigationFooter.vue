@@ -9,7 +9,7 @@
             <div class="flex items-center justify-between mb-10">
                 <div>
                     <!-- <p class="text-base mb-4 font-medium">{{ $t('footer.a_member_of') }}</p> -->
-                    <img :src="asset('assets/frontend/logo_cdi_footer_full.svg')" alt="" class="h-12 cursor-pointer" @click="toHome">
+                    <img :src="asset('assets/frontend/logo_cdi_footer_new.svg')" alt="" class="h-12 cursor-pointer" @click="toHome">
                 </div>
                 <div>
                     <Link :href="route('contact-us')" class="bg-white text-blue-base px-6 py-2 rounded-full whitespace-nowrap">
