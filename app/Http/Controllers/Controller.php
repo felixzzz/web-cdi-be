@@ -11,8 +11,8 @@ abstract class Controller
         View::share([
             'meta' => [
                 'title' =>  config('app.name'),
-                'description' => '',
-                'keywords' => '',
+                'description' => config('services.meta.description'),
+                'keywords' => config('services.meta.keyword'),
             ],
             'preloads' => []
         ]);
