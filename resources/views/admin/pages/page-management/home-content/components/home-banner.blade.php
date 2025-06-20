@@ -12,7 +12,7 @@
         description=""
         description-trailing=""
         >
-        <x-portal::file-upload
+        <x-file-upload
             icon="file-f"
             maxsize="10"
             name="home_banner_file"
