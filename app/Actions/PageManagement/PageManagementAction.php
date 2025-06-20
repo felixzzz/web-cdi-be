@@ -23,7 +23,8 @@ class PageManagementAction
     public function store(Request $request, $keys = [], $path = 'page-management')
     {
         foreach ($keys as $key) {
-            $file = $request->file("{$key}_file")
+            $requestFile = $request->file("{$key}_file");
+            $file = $requestFile && $requestFile->isValid()
             ? StorageFile::upload($request->file("{$key}_file"), $path)
             : null;
 
