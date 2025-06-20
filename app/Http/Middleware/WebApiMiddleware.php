@@ -16,9 +16,9 @@ class WebApiMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!$request->header('x-xsrf-token')){
-            abort(404);
-        }
+        // if(!$request->header('x-xsrf-token')){
+        //     abort(404);
+        // }
 
         $locale = session('locale', config('app.locale'));
 

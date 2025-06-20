@@ -52,7 +52,7 @@ class PreferenceRepository
 
         $cacheKey = Helper::getPreferenceCacheKey($keys);
 
-        return Optimize::cache($cacheKey, function () use ($keys) {
+        return Optimize::cache($cacheKey, function () use ($keys, $type) {
             $data = [];
 
             foreach ($keys as $key => $value) {
@@ -62,6 +62,9 @@ class PreferenceRepository
                     $preference->title = $preference->title;
                     $preference->content = $preference->content;
                     $preference->content_table_trans = $preference->content_table_trans;
+                    if ($type == 'home') {
+                        $preference->video_url = asset(getPageManagementVideo($preference->file));
+                    }
                 }
 
                 $data[$value] = $preference;

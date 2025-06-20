@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use App\Helpers\Helper;
 
 if (!function_exists('itcan')) {
     function itcan($action)
@@ -82,5 +83,13 @@ if (!function_exists('getYears')) {
     function getYears($start = 2000, $end = null) {
         $end = $end ?? date('Y'); // Default sampai tahun sekarang
         return range($end, $start);
+    }
+}
+
+if (!function_exists('getPageManagementVideo')) {
+    function getPageManagementVideo($path) {
+        $decryptedPath = Helper::shortDecrypt($path);
+
+        return $decryptedPath;
     }
 }

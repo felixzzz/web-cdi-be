@@ -137,40 +137,6 @@ class StorageFile
             ]);
     }
 
-    public static function previewVideo($filename)
-    {
-        $disk = 'local';
-        $cacheTime = 31536000;
-
-        $fullPath = Storage::disk($disk)->path($filename);
-
-        if (!file_exists($fullPath)) {
-            abort(404);
-        }
-
-        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-        $fileName = basename($filename);
-
-        // MIME fallback manual
-        $mimeType = match ($ext) {
-            'mp4' => 'video/mp4',
-            'webm' => 'video/webm',
-            'svg' => 'image/svg+xml',
-            'webp' => 'image/webp',
-            default => mime_content_type($fullPath),
-        };
-
-        return response()->stream(function () use ($fullPath) {
-            readfile($fullPath);
-        }, 200, [
-            'Content-Type' => $mimeType,
-            'Content-Length' => filesize($fullPath),
-            'Cache-Control' => "public, max-age=$cacheTime,immutable",
-            'Content-Disposition' => 'inline; filename="'.$fileName.'"',
-            'Accept-Ranges' => 'bytes',
-        ]);
-    }
-
     public static function download($filename, $downloadName = null)
     {
         $disk = 'local';

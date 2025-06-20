@@ -14,17 +14,9 @@ class FileStorageController extends Controller
     public function preview(Request $request,$file){
         if (!$file) return null;
         try{
-            if (str_contains($file, '.home.mp4')) {
-                $file = str_replace('.webp','',$file);
-                $file = str_replace('.home.mp4','',$file);
-                $file = Helper::shortDecrypt($file);
-                return StorageFile::previewVideo($file);
-            } else {
-                $file = str_replace('.webp','',$file);
-                $file = str_replace('.mp4','',$file);
-                $file = Helper::shortDecrypt($file);
-                return StorageFile::preview($file);
-            }
+            $file = str_replace('.webp','',$file);
+            $file = Helper::shortDecrypt($file);
+            return StorageFile::preview($file);
         }catch(\Exception $e){}
         return null;
     }

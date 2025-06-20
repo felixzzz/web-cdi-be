@@ -118,6 +118,7 @@ export type PreferenceTable = {
 export type PreferenceItem = {
     key: string;
     file_url?: any;
+    video_url?: any;
     title_en: string;
     title_id: string;
     title: string;
