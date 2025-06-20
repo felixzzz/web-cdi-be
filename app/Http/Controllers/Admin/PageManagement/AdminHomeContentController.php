@@ -33,6 +33,11 @@ class AdminHomeContentController extends AdminController
 
             return redirect(route('admin.page-management.home-content.index'))->with(['info' => __("admin.success_update")]);
         } catch (\Throwable $e) {
+             \Log::error('Gagal menyimpan home content', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'request' => $request->all(),
+            ]);
             return redirect()->back()->withInput($request->input())->with(['error' =>  $e->getMessage()]);
         }
     }
