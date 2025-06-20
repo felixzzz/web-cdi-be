@@ -23,12 +23,9 @@ class PageManagementAction
     public function store(Request $request, $keys = [], $path = 'page-management')
     {
         foreach ($keys as $key) {
-            $file = $request->hasFile("{$key}_file")
+            $file = $request->file("{$key}_file")
             ? StorageFile::upload($request->file("{$key}_file"), $path)
             : null;
-
-            logger($request->file("{$key}_file") ? 'has file ' . "{$key}_file" : 'tidak ada file ' . "{$key}_file");
-            logger($file);
 
             $type = constant(PreferenceKey::class . "::$key")?->type();
 
