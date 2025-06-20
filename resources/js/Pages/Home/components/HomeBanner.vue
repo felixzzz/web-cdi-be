@@ -2,10 +2,8 @@
     <div class="relative overflow-hidden aspect-[4/3] lg:aspect-video w-full py-[5%] lg:py-[8%] flex items-end">
         <video
             class="absolute top-0 left-0 right-0 bottom-0 w-full aspect-[4/3] lg:aspect-video object-cover"
-            autoplay muted loop playsinline preload="auto"
-        >
-            <source :src="content.home_banner?.video_url" type="video/mp4">
-        </video>
+            :src="content.home_banner?.video_url" autoplay muted loop playsinline
+        ></video>
         <div class="overlay-banner h-full w-full absolute left-0 right-0 top-0 bottom-0"></div>
         <container>
             <div class="text-white grid lg:grid-cols-2 gap-2 relative z-[1] items-end">
