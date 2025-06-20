@@ -15,6 +15,7 @@ class FileStorageController extends Controller
         if (!$file) return null;
         try{
             $file = str_replace('.webp','',$file);
+            $file = str_replace('.mp4','',$file);
             $file = Helper::shortDecrypt($file);
             return StorageFile::preview($file);
         }catch(\Exception $e){}
