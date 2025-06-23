@@ -88,8 +88,8 @@ Route::prefix('sustainability')
 Route::get('/file-storage/{file?}', [FileStorageController::class, 'preview'])->name('preview.storage');
 Route::get('/file-download/{file?}', [FileStorageController::class, 'download'])->name('preview.download');
 
-Route::get('/file/preview/{lang?}/{type?}/{key?}', [FileStorageController::class, 'filePreview'])->name('file.preview');
-Route::get('/file/download/{lang?}/{type?}/{key?}', [FileStorageController::class, 'fileDownload'])->name('file.download');
+Route::get('/file/preview/{lang?}/{type?}/{key?}/{name?}', [FileStorageController::class, 'filePreview'])->name('file.preview');
+Route::get('/file/download/{lang?}/{type?}/{key?}/{name?}', [FileStorageController::class, 'fileDownload'])->name('file.download');
 
 Route::get('/privacy-policy', [UtilityController::class, 'privacy'])->name('privacy-policy');
 Route::get('/cookies-notice', [UtilityController::class, 'cookie'])->name('cookies-notice');

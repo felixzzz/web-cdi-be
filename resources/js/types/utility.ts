@@ -313,6 +313,9 @@ export type InvestorReport = {
     type: string;
     name: string;
     date: string;
+    name_slug?: string;
+    name_slug_id?: string;
+    name_slug_en?: string;
     file: {
         path: string;
         size: string;
@@ -340,6 +343,9 @@ export type PressRelease = {
     id: string;
     ulid?: string;
     name: string;
+    name_slug?: string;
+    name_slug_id?: string;
+    name_slug_en?: string;
     type?: string;
     unique_key?: string;
     file?: {

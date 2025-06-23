@@ -22,7 +22,7 @@
     </section>
     <section v-if="!paginate.state.loading">
         <div class="py-8 border-b border-b-neutral-5 flex lg:items-center justify-between flex-col lg:flex-row gap-y-2 lg:gap-y-0" v-for="(item, i) in paginate.state.items" :key="i">
-            <div>
+            <div class="lg:max-w-[50%]">
                 <p class="text-neutral-13 mb-2 text-lg font-medium">{{ item.name }}</p>
 
                 <div class="flex items-center text-base text-neutral-8 gap-3">

@@ -4,6 +4,7 @@ namespace App\Repositories\Investor;
 
 use Carbon\Carbon;
 use App\Helpers\Helper;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Enums\InvestorReportType;
 use Illuminate\Support\Facades\App;
@@ -39,6 +40,9 @@ class InvestorReportRepository
         ->limit($limit)->get()->map(function ($row) {
             $row->file = json_decode($row->file);
             $row->name = $row->name;
+            $row->name_slug = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name);
+            $row->name_slug_id = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name_id);
+            $row->name_slug_en = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name_en);
             $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
             return $row;
         });
@@ -66,6 +70,9 @@ class InvestorReportRepository
                 ->reverse()
                 ->map(function ($row) {
                         $row->name = $row->name;
+                        $row->name_slug = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name);
+                        $row->name_slug_id = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name_id);
+                        $row->name_slug_en = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name_en);
                         $row->file = json_decode($row->file);
                         $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
                         return $row;
@@ -106,6 +113,9 @@ class InvestorReportRepository
             ->reverse()
             ->map(function ($row) {
                 $row->name = $row->name;
+                $row->name_slug = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name);
+                $row->name_slug_id = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name_id);
+                $row->name_slug_en = preg_replace('/[^A-Za-z0-9]+/', '_', $row->name_en);
                 $row->file = json_decode($row->file);
                 $row->date = Carbon::parse($row->datetime)->translatedFormat("d F Y");
                 $row->year = Carbon::parse($row->datetime)->year;
