@@ -48,6 +48,7 @@ createInertiaApp({
             app.use(ZiggyVue, Ziggy)
             app.mount(el);
 
+
         router.on('navigate', () => {
             if (typeof window.gtag === 'function') {
                 window.gtag('config', import.meta.env.VITE_GTAG_ID, {
