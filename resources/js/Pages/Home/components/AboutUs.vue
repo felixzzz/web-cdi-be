@@ -1,6 +1,6 @@
 <template>
     <div
-        class="pb-[88px] pt-28 bg-blue-dark relative overflow-hidden bg-cover bg-no-repeat"
+        class="pt-11 pb-11 lg:pb-[88px] lg:pt-28 bg-blue-dark relative overflow-hidden bg-cover bg-no-repeat"
         id="about-us-home"
         :style="{
             'backgroundImage': `url(${asset('assets/frontend/images/homepage/expanding_business.webp')})`

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-blue-dark py-28 text-white bg-contain bg-no-repeat bg-right relative"
+        class="bg-blue-dark pb-12 pt-12 lg:py-28 text-white bg-contain bg-no-repeat bg-right relative"
         :style="{
             'backgroundImage': `url(${content.home_journey_content?.file_url})`
         }"

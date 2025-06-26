@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-20 pb-28 bg-blue-dark text-white">
+    <div class="pt-12 pb-12 lg:pt-20 lg:pb-28 bg-blue-dark text-white">
         <container>
             <h1 class="mb-10 text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-2xl mx-auto text-center">{{ content.home_discover_title?.title }}</h1>
         </container>

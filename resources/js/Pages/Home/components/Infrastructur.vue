@@ -1,7 +1,7 @@
 <template>
-    <div class="relative pt-20 bg-blue-dark text-white">
+    <div class="relative pt-11 lg:pt-20 bg-blue-dark text-white">
         <container>
-            <h1 class="mb-20 text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-2xl mx-auto text-center">{{ content.home_infrastructure_title?.title }}</h1>
+            <h1 class="mb-11 lg:mb-20 text-2xl lg:text-[38px] lg:leading-[44px] font-medium max-w-2xl mx-auto text-center">{{ content.home_infrastructure_title?.title }}</h1>
         </container>
         <!-- <div class="absolute z-[12] text-center w-full py-2 px-10 lg:py-8">
             <h1 class="
