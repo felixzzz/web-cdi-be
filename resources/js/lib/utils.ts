@@ -133,5 +133,8 @@ export const showAlert = (message: string, type = 'success') => {
 }
 
 export const cleanNbsp = (value?: string) => {
-    return (value || '').replace(/&nbsp;/g, ' ')
+    return (value || '')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/\u00A0/g, ' ')
+        .replace(/\s+/g, ' ');
 }
