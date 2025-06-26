@@ -87,4 +87,15 @@ class PreferenceRepository
 
         return $preference;
     }
+
+    public function findMediaStatus()
+    {
+        $blog = $this->find(PreferenceKey::media_blog_status->value);
+
+        return (object) [
+            'blog' => $blog && $blog->content_en == 'show' ? 'show' : 'hide',
+            'news' => 'show',
+            'press_release' => 'show',
+        ];
+    }
 }

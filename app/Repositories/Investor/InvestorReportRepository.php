@@ -2,13 +2,16 @@
 
 namespace App\Repositories\Investor;
 
+use ZipArchive;
 use Carbon\Carbon;
 use App\Helpers\Helper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Enums\InvestorReportType;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
 use App\Models\Investor\InvestorReport;
+use Illuminate\Support\Facades\Storage;
 
 class InvestorReportRepository
 {
@@ -149,6 +152,44 @@ class InvestorReportRepository
             ->orderBy("year", "desc")
             ->pluck("year")
             ->toArray();
+    }
+
+    public function downloadAllNewestReport()
+    {
+        $files = $this->latestReport();
+        $zip = new ZipArchive;
+        $zipFileName = 'latest-report-'.Str::random().'.zip';
+        $zipPath = storage_path('app/temp/'.$zipFileName);
+
+
+        if (!File::exists(storage_path('app/temp'))) {
+            File::makeDirectory(storage_path('app/temp'));
+        }
+
+        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
+            foreach ($files as $row) {
+                $fileData = json_decode($row->file);
+                $decryptedPath = Helper::shortDecrypt($fileData->path);
+                $fullPath = Storage::disk('local')->path($decryptedPath);
+                $fileName = $row->name . '.' . pathinfo($decryptedPath, PATHINFO_EXTENSION);
+
+                if (file_exists($fullPath)) {
+                    $zip->addFile($fullPath, $fileName);
+                }
+            }
+            $zip->close();
+
+            return response()->download($zipPath)->deleteFileAfterSend(true);
+        } else {
+            Log::error('Failed to create ZIP file in downloadAllNewestReport', [
+                'user_id' => auth()->id(),
+                'timestamp' => now()
+            ]);
+
+            throw new Exception('Failed to create ZIP file.');
+
+        }
+
     }
 
 }

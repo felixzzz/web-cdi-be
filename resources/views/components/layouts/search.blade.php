@@ -5,7 +5,9 @@
         </form>
     </div>
 
-    <div x-data="{ alertDialog: '' }">
+    <div x-data="{ alertDialog: '' }" class="flex gap-2 items-center">
+        {{ $slot }}
+
         @if (@$showAdd)
             <x-portal::button href="{{ $routeAdd ?? 'javascript:;' }}"
                 x-on:click="alertDialog='dialog-form-add-popup'"

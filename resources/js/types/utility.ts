@@ -488,3 +488,9 @@ export type GovernanceCommitte = {
     file_name?: string;
     image?: string;
 }
+
+export type MediaStatus = {
+    blog: 'show' | 'hide',
+    news: 'show' | 'hide',
+    press_release: 'show' | 'hide',
+}

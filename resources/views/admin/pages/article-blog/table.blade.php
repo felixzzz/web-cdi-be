@@ -1,7 +1,21 @@
 @extends('admin.layouts.main')
 
 @section('content')
-    <x-layouts.search :route-add="route('admin.article.blog.create')" :show-add="true" />
+    <x-layouts.search :route-add="route('admin.article.blog.create')" :show-add="true">
+        <div class="flex items-center justify-between px-2 gap-2">
+            <h2 class="text-lg font-semibold">Blog Status</h2>
+            <form method="POST" action="{{ route('admin.article.blog.toggle-status') }}">
+                @csrf
+                <input type="hidden" name="current_status" value="{{ $blogActive ? 'show' : 'hide' }}">
+                @if ($blogActive)
+                    <x-portal::button variant="danger">Disable Blog</x-portal::button>
+                @else
+                    <x-portal::button>Enable Blog</x-portal::button>
+                @endif
+            </form>
+        </div>
+    </x-layouts.search>
+
     <div x-data="{ alertDialog: '' }">
         <x-portal::table>
             <thead>

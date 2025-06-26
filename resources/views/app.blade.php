@@ -25,5 +25,14 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.gtag_id') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', "{{ config('services.gtag_id') }}");
+        </script>
     </body>
 </html>

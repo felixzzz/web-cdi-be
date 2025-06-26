@@ -118,6 +118,8 @@ enum PreferenceKey: string
     case social_instagram = 'social_instagram';
     case social_facebook = 'social_facebook';
 
+    case media_blog_status = 'media_blog_status';
+
 
     public function type()
     {

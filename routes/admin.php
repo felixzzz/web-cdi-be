@@ -83,6 +83,7 @@ Route::prefix('admin')
         Route::resource('article-categories', AdminArticleCategoryController::class);
         Route::prefix('article/')->as('article.')->group(function () {
             Route::resource('news', AdminNewsController::class)->except(['show']);
+            Route::post('blog/toggle-status', [AdminBlogController::class, 'toggleStatus'])->name('blog.toggle-status');
             Route::resource('blog', AdminBlogController::class)->except(['show']);
             Route::resource('press-releases', AdminPressReleaseController::class)->except(['show']);
         });

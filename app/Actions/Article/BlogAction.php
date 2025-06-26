@@ -2,11 +2,13 @@
 
 namespace App\Actions\Article;
 
-use App\Enums\ArticleCategory;
+use App\Enums\PreferenceKey;
 use App\Helpers\StorageFile;
-use App\Http\Requests\Article\BlogRequest;
-use App\Models\Article\Article;
 use Illuminate\Http\Request;
+use App\Enums\ArticleCategory;
+use App\Models\Article\Article;
+use App\Models\Utility\Preference;
+use App\Http\Requests\Article\BlogRequest;
 
 class BlogAction
 {
@@ -55,5 +57,15 @@ class BlogAction
 
     public function delete($ulid){
         return Article::where('ulid', $ulid)->delete();
+    }
+
+    public function toggleStatus()
+    {
+        $currentStatus = request()->input('current_status'); // "show" or "hide"
+        $newStatus = $currentStatus === 'show' ? 'hide' : 'show';
+        Preference::updateOrCreate(
+            ["key" => PreferenceKey::media_blog_status->value], [
+            'content_en' => $newStatus
+        ]);
     }
 }

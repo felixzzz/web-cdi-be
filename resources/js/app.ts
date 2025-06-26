@@ -2,7 +2,7 @@ import '../css/app.css';
 
 import axios from 'axios';
 
-import { createInertiaApp } from '@inertiajs/vue3';
+import { createInertiaApp, router } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
@@ -47,8 +47,18 @@ createInertiaApp({
             app.use(pinia)
             app.use(ZiggyVue, Ziggy)
             app.mount(el);
+
+        router.on('navigate', () => {
+            if (typeof window.gtag === 'function') {
+                window.gtag('config', import.meta.env.VITE_GTAG_ID, {
+                    page_path: window.location.pathname + window.location.search,
+                });
+            }
+        });
+
     },
     progress: {
         color: '#2474A5',
     },
 });
+

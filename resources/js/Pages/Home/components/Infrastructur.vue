@@ -51,6 +51,7 @@
     import { ref, watch } from 'vue'
 
     import { PreferenceHome } from '@/types/utility'
+    import Container from '@/Components/Section/Container.vue';
 
     const props = defineProps<{
         content: PreferenceHome

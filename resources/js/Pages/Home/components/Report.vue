@@ -7,9 +7,9 @@
                     <p class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-0">{{ $t('Financial Reports') }}</p>
                 </div>
                 <div class="flex items-center gap-4 justify-start lg:justify-center mt-4 lg:mt-0">
-                    <Link href="" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
+                    <a :href="addFileDownload('report', 'all', 'default')" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base" target="_blank">
                         {{ $t('Download All') }} <img :src="asset('assets/frontend/icons/ic_download.svg')" alt="">
-                    </Link>
+                    </a>
                     <Link :href="route('investor.financial-information')" class="px-6 py-2 rounded-full whitespace-nowrap border border-blue-base flex items-center gap-2 text-blue-base">
                         {{ $t('See All') }} <i class="isax icon-arrow-right-1"></i>
                     </Link>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Article\ArticleRepository;
+use App\Repositories\Utility\PreferenceRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +13,8 @@ class MediaController extends Controller
     public function index($type)
     {
         return Inertia::render("Media/MediaPage", [
-            'type' => $type
+            'type' => $type,
+            'status' => (new PreferenceRepository())->findMediaStatus()
         ]);
     }
 

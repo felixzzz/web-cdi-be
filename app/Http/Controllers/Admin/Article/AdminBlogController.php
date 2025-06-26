@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Article;
 
-use App\Actions\Article\BlogAction;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Article\BlogRequest;
-use App\Repositories\Article\ArticleCategoryRepository;
-use App\Repositories\Article\ArticleRepository;
+use App\Enums\PreferenceKey;
 use Illuminate\Http\Request;
+use App\Actions\Article\BlogAction;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
+use App\Http\Requests\Article\BlogRequest;
+use App\Repositories\Article\ArticleRepository;
+use App\Repositories\Utility\PreferenceRepository;
+use App\Repositories\Article\ArticleCategoryRepository;
 
 class AdminBlogController extends AdminController
 {
@@ -22,8 +24,10 @@ class AdminBlogController extends AdminController
      */
     public function index()
     {
+        $blogActive = (new PreferenceRepository())->find(PreferenceKey::media_blog_status->value);
         return view("admin.pages.article-blog.table", [
-            'data' => (new ArticleRepository())->blogDatatable()
+            'data' => (new ArticleRepository())->blogDatatable(),
+            'blogActive' => $blogActive && $blogActive->content_en == 'show' ? true : false
         ]);
     }
 
@@ -95,6 +99,19 @@ class AdminBlogController extends AdminController
             return redirect(route('admin.article.blog.index'))->with(['info' => __("admin.success_delete")]);
         } catch (\Throwable $e) {
             return redirect()->back()->with(['info' =>  $e->getMessage()]);
+        }
+    }
+
+    public function toggleStatus(Request $request, BlogAction $blog)
+    {
+        try {
+            $blog->toggleStatus();
+            $currentStatus = $request->input('current_status');
+            $newStatus = $currentStatus === 'show' ? 'hide' : 'show';
+
+            return redirect(route('admin.article.blog.index'))->with(['info' => "Blog visibility updated to" . ucfirst($newStatus)]);
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput($request->input())->with(['error' =>  $e->getMessage()]);
         }
     }
 }

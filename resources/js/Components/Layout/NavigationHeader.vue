@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a :href="menu.active == 'career' ? careerUrl : menu.route" target="_blank" v-if="menu.external" :key="menu.active" class="nav-item"
+                        <a :href="menu.active == 'career' ? careerUrl : menu.route" target="_blank" v-if="menu.external" :key="menu.active" class="nav-item text-sm xl:text-base"
                             :class="{
                                 'nav-blue-lighter': (scrolledPast && isHome && !scrolledPastHomeBlue) || transparant || stickyBlur,
                                 'nav-blue-base': (!transparant || (scrolledPast && !(isHome && !scrolledPastHomeBlue))) && !stickyBlur,

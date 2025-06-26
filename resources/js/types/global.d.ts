@@ -10,6 +10,7 @@ declare global {
     interface Window {
         axios: AxiosInstance;
         route: ziggyRoute;
+        gtag: (...args: any[]) => void;
     }
 
     /* eslint-disable no-var */

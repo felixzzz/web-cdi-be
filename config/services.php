@@ -40,6 +40,8 @@ return [
     'meta' => [
         'description' => 'PT Chandra Daya Investasi Tbk (CDI Group) merupakan bagian dari investasi infrastruktur Chandra Asri Group, penyedia bahan kimia energi dan solusi infrastruktur terkemuka di Asia Tenggara dan ECGO, perusahaan induk yang berfokus pada investasi bisnis ketenagalistrikan di Thailand. Beragam operasi CDI Group mencakup termasuk penyediaan dan pengolahan air, energi, kepelabuhanan & penyimpanan, dan logistik.',
         'keyword' => 'Chandra Daya Investasi, CDI, CDIA, PT Chandra Daya Investasi Tbk, CDI Group'
-    ]
+    ],
+
+    'gtag_id' => env("GTAG_ID")
 
 ];
