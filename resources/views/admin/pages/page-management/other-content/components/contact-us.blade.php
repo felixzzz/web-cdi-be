@@ -19,7 +19,7 @@
             class="w-full"
         />
     </x-portal::form.group>
-
+    <x-portal::form.input label="Email PIC Whistleblowing" placeholder="Email PIC Whistleblowing" name="email_pic_whistleblowing_content_{{ $lang }}" :value="@$data->email_pic_whistleblowing->{'content_' . $lang}" type="text"  />
 @endif
 <x-portal::form.input label="Title" placeholder="Title" name="contact_us_main_title_{{ $lang }}" :value="@$data->contact_us_main->{'title_' . $lang}" type="text"  />
 <x-portal::form.input label="Tagline" placeholder="Tagline.. '#Your Growth Partner'" name="contact_us_main_content_{{ $lang }}" :value="@$data->contact_us_main->{'content_' . $lang}" type="text"  />

@@ -40,9 +40,9 @@
                         </div>
                     </div>
 
-                    <Link :href="route('governance.type', { type: 'risk-management' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit">
+                    <!-- <Link :href="route('governance.type', { type: 'risk-management' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit">
                         {{ $t('See All') }} <i class="isax icon-arrow-right-1 -rotate-45"></i>
-                    </Link>
+                    </Link> -->
                 </div>
 
 
@@ -55,7 +55,7 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import { addFileDownload, addFilePreview, asset } from '@/Lib/utils'
-    import { Link } from '@inertiajs/vue3'
+    // import { Link } from '@inertiajs/vue3'
 
     import { AdditionalFile, PreferenceGovernance } from '@/types/utility'
     import { ref } from 'vue'

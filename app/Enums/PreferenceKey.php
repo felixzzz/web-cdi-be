@@ -119,6 +119,7 @@ enum PreferenceKey: string
     case social_facebook = 'social_facebook';
 
     case media_blog_status = 'media_blog_status';
+    case email_pic_whistleblowing = 'email_pic_whistleblowing';
 
 
     public function type()
@@ -425,6 +426,7 @@ enum PreferenceKey: string
             self::social_x->value,
             self::social_instagram->value,
             self::social_facebook->value,
+            self::email_pic_whistleblowing->value
         ];
     }
 

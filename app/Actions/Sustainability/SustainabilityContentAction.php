@@ -140,14 +140,25 @@ class SustainabilityContentAction
         }
 
         if ($request->type == 'file_information') {
-            $fileInformation = [];
-            if ($request->type == 'file_information' && $request->hasFile("file_information_file")) {
-                $fileDetail = StorageFile::uploadWithDetails($request->file("file_information_file"), "sustainability/contents");
-                $fileInformation = $fileDetail;
+            // EN
+            $fileInformationEn = [];
+            if ($request->type == 'file_information' && $request->hasFile("file_information_en_file")) {
+                $fileDetail = StorageFile::uploadWithDetails($request->file("file_information_en_file"), "sustainability/contents");
+                $fileInformationEn = $fileDetail;
             }
-            $fileInformation['title'] = $request->file_information_title;
+            $fileInformationEn['title'] = $request->file_information_en_title;
 
-            $data['file_information'] = $fileInformation;
+            $data['file_information_en'] = $fileInformationEn;
+
+            // ID
+            $fileInformationId = [];
+            if ($request->type == 'file_information' && $request->hasFile("file_information_id_file")) {
+                $fileDetail = StorageFile::uploadWithDetails($request->file("file_information_id_file"), "sustainability/contents");
+                $fileInformationId = $fileDetail;
+            }
+            $fileInformationId['title'] = $request->file_information_id_title;
+
+            $data['file_information_id'] = $fileInformationId;
         }
 
         return SustainabilityContent::create($data);
@@ -272,14 +283,25 @@ class SustainabilityContentAction
         $data['content_json_id'] = $contentJsonId;
 
         if ($request->type == 'file_information') {
-            $fileInformation = $sustainability->file_information ?? [];
-            if ($request->type == 'file_information' && $request->hasFile("file_information_file")) {
-                $fileDetail = StorageFile::uploadWithDetails($request->file("file_information_file"), "sustainability/contents");
-                $fileInformation = $fileDetail;
+            // EN
+            $fileInformationEn = $sustainability->file_information_en ?? [];
+            if ($request->type == 'file_information' && $request->hasFile("file_information_en_file")) {
+                $fileDetail = StorageFile::uploadWithDetails($request->file("file_information_en_file"), "sustainability/contents");
+                $fileInformationEn = $fileDetail;
             }
-            $fileInformation['title'] = $request->file_information_title;
+            $fileInformationEn['title'] = $request->file_information_en_title;
 
-            $data['file_information'] = $fileInformation;
+            $data['file_information_en'] = $fileInformationEn;
+
+            // ID
+            $fileInformationId = $sustainability->file_information_id ?? [];
+            if ($request->type == 'file_information' && $request->hasFile("file_information_id_file")) {
+                $fileDetail = StorageFile::uploadWithDetails($request->file("file_information_id_file"), "sustainability/contents");
+                $fileInformationId = $fileDetail;
+            }
+            $fileInformationId['title'] = $request->file_information_id_title;
+
+            $data['file_information_id'] = $fileInformationId;
         }
 
         return SustainabilityContent::whereUlid($ulid)->update($data);

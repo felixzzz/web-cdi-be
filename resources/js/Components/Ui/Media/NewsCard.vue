@@ -1,5 +1,5 @@
 <template>
-    <Link :href="link" class="flex bg-white rounded-xl shadow-article border border-neutral-5 overflow-hidden">
+    <Link :href="link" class="flex bg-white rounded-xl shadow-article border border-neutral-5 overflow-hidden h-full">
         <div class="flex flex-col text-neutral-13 group cursor-pointer w-full">
             <div class="w-full aspect-square overflow-hidden">
                 <div

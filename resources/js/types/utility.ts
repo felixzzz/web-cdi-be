@@ -88,6 +88,7 @@ type SustainabilityContentGrid = {
 }
 
 export type SustainabilityContent = {
+    ulid: string;
     background?: '' | 'normal' | 'darkest',
     type?: 'content' | 'grid'  | 'simple_text_information' | 'file_information' | 'list_information' | 'content_points' | 'swiper';
     title?: string;

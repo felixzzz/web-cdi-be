@@ -9,6 +9,7 @@ use App\Models\Article\PressRelease;
 use App\Models\Utility\AdditionalFile;
 use App\Models\Investor\InvestorReport;
 use App\Models\Governance\GovernanceCommitte;
+use App\Models\Sustainability\SustainabilityContent;
 use App\Repositories\Investor\InvestorReportRepository;
 
 class FileStorageController extends Controller
@@ -63,6 +64,16 @@ class FileStorageController extends Controller
                 $file = $row->file;
                 $file = Helper::shortDecrypt($file['path']);
                 return StorageFile::preview($file);
+            } else if ($type == 'sustainability-content') {
+                $row = SustainabilityContent::where('ulid', $key)->first();
+                if ($lang !=  'default') {
+                    $file = $lang == 'id' ? $row->file_information_id : $row->file_information_en;
+                    $file = Helper::shortDecrypt($file['path']);
+                } else {
+                    $file = json_decode($row->file_information);
+                    $file = Helper::shortDecrypt($file->path);
+                }
+                return StorageFile::preview($file);
             } else {
                 $row = AdditionalFile::where("type", $type)->where("unique_key", $key)->first();
                 if ($lang !=  'default') {
@@ -113,6 +124,17 @@ class FileStorageController extends Controller
                 $file = $row->file;
                 $file = Helper::shortDecrypt($file['path']);
                 $fileName = $key;
+            } else if ($type == 'sustainability-content') {
+                $row = SustainabilityContent::where('ulid', $key)->first();
+                if ($lang !=  'default') {
+                    $file = $lang == 'id' ? $row->file_information_id : $row->file_information_en;
+                    $fileName = $file['title'];
+                    $file = Helper::shortDecrypt($file['path']);
+                } else {
+                    $file = json_decode($row->file_information);
+                    $fileName = $file->title;
+                    $file = Helper::shortDecrypt($file->path);
+                }
             } else {
                 $row = AdditionalFile::where("type", $type)->where("unique_key", $key)->first();
                 if ($lang !=  'default') {

@@ -122,6 +122,26 @@
                     >
                         <x-editor.quill name="content_en" height="150">{!! old('content_en') !!}</x-editor.quill>
                     </x-portal::form.group>
+
+                    <!-- Show on type File Information -->
+                    <section id="file_information_section_en" class="flex flex-col gap-4">
+                        <x-portal::heading size="lg" class="!font-bold">File Information</x-portal::heading>
+                        <x-portal::form.input label="File Title" placeholder="File Title" name="file_information_en_title" :value="old('file_information_en_title')" type="text" />
+                        <x-portal::form.group
+                            label="File"
+                            name="file_information_en_file"
+                            description=""
+                            description-trailing=""
+                        >
+                            <x-portal::file-upload
+                                icon="file-type-pdf"
+                                maxsize="5"
+                                name="file_information_en_file"
+                                class="w-full"
+                                accept="application/pdf" description="Only PDF file are accepted"
+                            />
+                        </x-portal::form.group>
+                    </section>
                 </div>
                 <div class="max-lg:hidden">
                     <x-portal::separator orientation="vertical" />
@@ -138,28 +158,27 @@
                     >
                         <x-editor.quill name="content_id" height="150">{!! old('content_id') !!}</x-editor.quill>
                     </x-portal::form.group>
+
+                    <!-- Show on type File Information -->
+                    <section id="file_information_section_id" class="flex flex-col gap-4">
+                        <x-portal::heading size="lg" class="!font-bold">File Information</x-portal::heading>
+                        <x-portal::form.input label="File Title" placeholder="File Title" name="file_information_id_title" :value="old('file_information_id_title')" type="text" />
+                        <x-portal::form.group
+                            label="File"
+                            name="file_information_id_file"
+                            description=""
+                            description-trailing=""
+                        >
+                            <x-portal::file-upload
+                                icon="file-type-pdf"
+                                maxsize="5"
+                                name="file_information_id_file"
+                                class="w-full"
+                                accept="application/pdf" description="Only PDF file are accepted"
+                            />
+                        </x-portal::form.group>
+                    </section>
                 </div>
-            </div>
-
-
-            <!-- Show on type File Information -->
-            <div class="flex flex-col gap-4" id="file_information_section">
-                <x-portal::heading size="lg" class="!font-bold">File Information</x-portal::heading>
-                <x-portal::form.input label="File Title" placeholder="File Title" name="file_information_title" :value="old('file_information_title')" type="text" />
-                <x-portal::form.group
-                    label="File"
-                    name="file_information_file"
-                    description=""
-                    description-trailing=""
-                >
-                    <x-portal::file-upload
-                        icon="file-type-pdf"
-                        maxsize="5"
-                        name="file_information_file"
-                        class="w-full"
-                        accept="application/pdf" description="Only PDF file are accepted"
-                    />
-                </x-portal::form.group>
             </div>
 
             <!-- Show on type Grid -->
@@ -406,7 +425,8 @@
                 document.getElementById('list_section').style.display = type === 'list_information' ? 'block' : 'none'
                 document.getElementById('grid_direction_section').style.display = (type === 'grid' || type === 'file_information') ? 'block' : 'none'
                 document.getElementById('grid_pattern_section').style.display = (type === 'grid' && (gridType === 'box_icon_card' || gridType == 'icon_content_card')) ? 'block' : 'none'
-                document.getElementById('file_information_section').style.display = type === 'file_information' ? 'block' : 'none'
+                document.getElementById('file_information_section_en').style.display = type === 'file_information' ? 'flex' : 'none'
+                document.getElementById('file_information_section_id').style.display = type === 'file_information' ? 'flex' : 'none'
                 document.getElementById('contents').style.display = type === 'grid' ? 'block' : 'none'
                 document.getElementById('swiper_items').style.display = type === 'swiper' ? 'block' : 'none'
             }

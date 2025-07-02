@@ -36,9 +36,9 @@
     const tabActive = ref(props.type || '')
     const tabs = ref([
         { id: 'policy', name: 'Policy' },
-        { id: 'risk-management', name: 'Risk Management' },
-        { id: 'code-of-conduct', name: 'Code of Conduct' },
-        { id: 'she-regulation', name: 'SHE Regulation' },
+        // { id: 'risk-management', name: 'Risk Management' },
+        // { id: 'code-of-conduct', name: 'Code of Conduct' },
+        // { id: 'she-regulation', name: 'SHE Regulation' },
     ])
 
 </script>

@@ -23,7 +23,8 @@ class SustainabilityContent extends Model
 
     protected $localizedAttributes = [
         'title',
-        'content'
+        'content',
+        'file_information'
     ];
 
     const SORTABLE_GROUP = 'category';
@@ -40,7 +41,9 @@ class SustainabilityContent extends Model
             'grid_type' => GridType::class,
             'content_json_en' => 'array',
             'content_json_id' => 'array',
-            'file_information' => 'array'
+            'file_information' => 'array',
+            'file_information_en' => 'array',
+            'file_information_id' => 'array'
         ];
     }
 }

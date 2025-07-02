@@ -230,12 +230,12 @@
                             </div>
 
                             <div class="flex items-center gap-8 w-full justify-center">
-                                <Link href="" class="flex items-center gap-2 text-white font-medium">
+                                <a :href="addFilePreview('sustainability-content', item.ulid, 'default', item.file_information.title)" class="flex items-center gap-2 text-white font-medium" target="_blank">
                                     <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> View
-                                </Link>
-                                <Link href="" class="flex items-center gap-2 text-white font-medium">
+                                </a>
+                                <a :href="addFileDownload('sustainability-content', item.ulid, 'default', item.file_information.title)" class="flex items-center gap-2 text-white font-medium" target="_blank">
                                     <img :src="asset('assets/frontend/icons/ic_download_file_white.svg')" alt=""> Download
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -379,13 +379,12 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset, chunkArray, cleanNbsp } from '@/Lib/utils'
+    import { addFileDownload, addFilePreview, asset, chunkArray, cleanNbsp } from '@/Lib/utils'
     import { SustainabilityContent } from '@/types/utility'
     import { Swiper, SwiperSlide } from 'swiper/vue'
     import 'swiper/css'
     import 'swiper/css/navigation'
     import { Navigation } from 'swiper/modules'
-    import { Link } from '@inertiajs/vue3'
 
     defineProps<{
         items: SustainabilityContent[]

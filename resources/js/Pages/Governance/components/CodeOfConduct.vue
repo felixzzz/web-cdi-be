@@ -32,9 +32,9 @@
                 </div>
             </div>
 
-            <Link :href="route('governance.type', { type: 'code-of-conduct' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
+            <!-- <Link :href="route('governance.type', { type: 'code-of-conduct' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
                 {{ $t('See All') }} <i class="isax icon-arrow-right-1 -rotate-45"></i>
-            </Link>
+            </Link> -->
 
             <div class="py-20" v-if="content.governance_she_regulation_show?.content_en == 'show'">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-8">
@@ -68,9 +68,9 @@
                     </div>
                 </div>
 
-                <Link :href="route('governance.type', { type: 'she-regulation' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
+                <!-- <Link :href="route('governance.type', { type: 'she-regulation' })" class="px-6 py-2 rounded-full border border-white flex items-center gap-2 w-fit mt-8">
                     {{ $t("See All") }} <i class="isax icon-arrow-right-1 -rotate-45"></i>
-                </Link>
+                </Link> -->
             </div>
         </container>
     </div>
@@ -80,7 +80,7 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import { addFileDownload, addFilePreview, asset } from '@/Lib/utils'
-    import { Link } from '@inertiajs/vue3'
+    // import { Link } from '@inertiajs/vue3'
 
     import { AdditionalFile, PreferenceGovernance } from '@/types/utility'
     import { onMounted, ref } from 'vue'

@@ -33,6 +33,7 @@ class SustainabilityContentRepository
             $row->content = $row->content;
             $row->content_json = $locale == 'en' ? $row->content_json_en : $row->content_json_id;
             $row->image = $row->image ? previewFile($row->image) : '';
+            $row->file_information = $locale == 'en' ? $row->file_information_en : $row->file_information_id;
             return $row;
         });
     }
