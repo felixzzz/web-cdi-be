@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="flex items-center gap-8 w-full justify-center">
-                                <a :href="addFilePreview(file.type, file.unique_key)" class="flex items-center gap-2 text-white font-medium" target="_blank">
+                                <a :href="addFilePreview(file.type, file.unique_key, 'default', file.name)" class="flex items-center gap-2 text-white font-medium" target="_blank">
                                     <img :src="asset('assets/frontend/icons/ic_eye_white.svg')" alt=""> {{ $t('View') }}
                                 </a>
                                 <a :href="addFileDownload(file.type, file.unique_key)" class="flex items-center gap-2 text-white font-medium" target="_blank">

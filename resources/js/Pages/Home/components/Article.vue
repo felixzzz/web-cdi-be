@@ -51,7 +51,7 @@
                     1280: { slidesPerView: 4 }
                 }"
             >
-                <swiper-slide v-for="(item, index) in items" :key="index">
+                <swiper-slide v-for="(item, index) in items" :key="index" class="h-auto">
                     <news-card :item="item" :link="route('media.detail', { type: 'news', id: item.slug })" />
                 </swiper-slide>
             </swiper>

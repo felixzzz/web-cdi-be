@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="flex lg:items-center gap-8 w-full lg:w-fit">
-                                <a :href="addFilePreview(item.type, item.unique_key)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
+                                <a :href="addFilePreview(item.type, item.unique_key, 'default', item.name)" class="flex items-center gap-2 text-blue-base font-medium" target="_blank">
                                     <img :src="asset('assets/frontend/icons/ic_eye.svg')" alt=""> {{ $t('View Report') }}
                                 </a>
                                 <a :href="addFileDownload(item.type, item.unique_key, 'en')" class="flex items-center gap-2 text-blue-base font-medium" target="_blank" v-if="item.file_en">

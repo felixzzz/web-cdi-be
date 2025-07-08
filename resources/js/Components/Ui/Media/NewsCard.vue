@@ -7,17 +7,19 @@
                     :style="{ backgroundImage: `url(${item.image})` }"
                 ></div>
             </div>
-            <div class="p-6">
-                <span class="bg-neutral-5 px-3 py-1 me-4 text-sm rounded-full" v-if="item.category_name">
-                    {{ item.category_name }}
-                </span>
-                <span class="text-sm text-neutral-10">
-                    {{ item.date }}
-                </span>
+            <div class="p-6 flex flex-col">
+                <div class="flex items-center gap-4">
+                    <span class="bg-neutral-5 px-3 py-1 text-sm rounded-full" v-if="item.category_name">
+                        {{ item.category_name }}
+                    </span>
+                    <span class="text-sm text-neutral-10">
+                        {{ item.date }}
+                    </span>
+                </div>
                 <h3 class="text-[22px] font-medium mt-4 mb-7 line-clamp-3">
                     {{ item.title }}
                 </h3>
-                <div class="text-blue-base flex items-center gap-2 cursor-pointer">
+                <div class="text-blue-base flex items-center gap-2 cursor-pointer mt-auto">
                     {{ $t('Read full article') }}
                     <i class="isax icon-arrow-right-3 text-2xl"></i>
                 </div>
