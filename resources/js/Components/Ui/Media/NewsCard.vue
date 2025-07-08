@@ -7,7 +7,7 @@
                     :style="{ backgroundImage: `url(${item.image})` }"
                 ></div>
             </div>
-            <div class="p-6 flex flex-col">
+            <div class="p-6 flex flex-col grow">
                 <div class="flex items-center gap-4">
                     <span class="bg-neutral-5 px-3 py-1 text-sm rounded-full" v-if="item.category_name">
                         {{ item.category_name }}
