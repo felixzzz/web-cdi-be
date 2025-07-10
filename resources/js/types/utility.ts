@@ -197,6 +197,7 @@ export type PreferenceAboutOverview = {
     about_us_mission: PreferenceItem | null;
     about_us_milestone: PreferenceItem | null;
     about_us_company_profile: PreferenceItem | null;
+    about_us_youtube: PreferenceItem | null;
 }
 
 export type PreferenceOurBusiness = {

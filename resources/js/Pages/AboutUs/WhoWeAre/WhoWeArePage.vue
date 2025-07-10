@@ -4,6 +4,7 @@
         <hero-image :content="content.aboutOverview" />
         <quick-menu :content="content.aboutOverview" />
         <company-overview :content="content.aboutOverview" />
+        <youtube :content="content.aboutOverview" />
         <mission-vision :content="content.aboutOverview" />
         <our-history :content="content.aboutOverview" />
         <milestone :content="content.aboutOverview" />
@@ -23,6 +24,7 @@
     import MissionVision from './components/MissionVision.vue'
     import Milestone from './components/Milestone.vue'
     import CompanyProfile from './components/CompanyProfile.vue'
+    import Youtube from './components/Youtube.vue'
 
     import { onBeforeMount } from 'vue'
     import { useContentStore } from "@/Composables/useContentStore"

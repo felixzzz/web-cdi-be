@@ -26,6 +26,10 @@
                 x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'company-profile' }" x-on:click="tab_page = 'company-profile'">
                 Company Profile
             </button>
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
+                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'youtube' }" x-on:click="tab_page = 'youtube'">
+                Youtube
+            </button>
         </div>
 
         <!-- Tab Content -->
@@ -98,6 +102,9 @@
                     <!-- ID -->
                     @include('admin.pages.page-management.about-us.who-we-are.components.company-profile', ['lang' => 'id'])
                 </div>
+            </div>
+            <div x-show="tab_page === 'youtube'" class="flex flex-col gap-4">
+                @include('admin.pages.page-management.about-us.who-we-are.components.youtube')
             </div>
         </div>
 

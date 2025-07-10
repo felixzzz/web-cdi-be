@@ -35,6 +35,7 @@ enum PreferenceKey: string
     case about_us_mission = 'about_us_mission';
     case about_us_milestone = 'about_us_milestone';
     case about_us_company_profile = 'about_us_company_profile';
+    case about_us_youtube = 'about_us_youtube';
 
     case about_us_management_banner = 'about_us_management_banner';
     case about_us_management_overview = 'about_us_management_overview';
@@ -152,6 +153,7 @@ enum PreferenceKey: string
             'about_us_mission' => PreferenceType::TextContent,
             'about_us_milestone' => PreferenceType::TextContentImage,
             'about_us_company_profile' => PreferenceType::TextContent,
+            'about_us_youtube' => PreferenceType::TextContent,
             'about_us_management_banner' => PreferenceType::TextContent,
             'about_us_management_overview' => PreferenceType::TextContent,
             'about_us_organization_structure' => PreferenceType::Image,
@@ -275,7 +277,8 @@ enum PreferenceKey: string
                 self::about_us_vision->value,
                 self::about_us_mission->value,
                 self::about_us_milestone->value,
-                self::about_us_company_profile->value
+                self::about_us_company_profile->value,
+                self::about_us_youtube->value
             ];
         }
 
