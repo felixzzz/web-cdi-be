@@ -28,6 +28,7 @@
     @endif
 
 @endif
+<x-portal::form.input label="Welcome Text" placeholder="Welcome Text" name="home_banner_tagline_title_{{ $lang }}" :value="@$data->home_banner_tagline->{'title_' . $lang}" type="text"  />
 <x-portal::form.input label="Title" placeholder="Title" name="home_banner_title_{{ $lang }}" :value="@$data->home_banner->{'title_' . $lang}" type="text"  />
 <x-portal::form.group
     label="Description"

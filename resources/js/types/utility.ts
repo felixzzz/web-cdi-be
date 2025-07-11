@@ -132,6 +132,7 @@ export type PreferenceItem = {
 
 export type PreferenceHome = {
     home_banner: PreferenceItem | null;
+    home_banner_tagline: PreferenceItem | null;
     home_about_section: PreferenceItem | null;
     home_infrastructure_title: PreferenceItem | null;
     home_infrastructure_energy: PreferenceItem | null;

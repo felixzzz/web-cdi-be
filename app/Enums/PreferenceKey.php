@@ -6,6 +6,7 @@ enum PreferenceKey: string
 {
     // HOME PAGE
     case home_banner = 'home_banner';
+    case home_banner_tagline = 'home_banner_tagline';
     case home_about_section = 'home_about_section';
 
     case home_infrastructure_title = 'home_infrastructure_title';
@@ -127,6 +128,7 @@ enum PreferenceKey: string
     {
         return match ($this->value) {
             'home_banner' => PreferenceType::TextContentVideo,
+            'home_banner_tagline' => PreferenceType::TextContent,
             'home_about_section' => PreferenceType::TextContentImage,
             'home_infrastructure_title' => PreferenceType::Text,
             'home_infrastructure_energy' => PreferenceType::TextContentImage,
@@ -246,6 +248,7 @@ enum PreferenceKey: string
     {
         return [
             self::home_banner->value,
+            self::home_banner_tagline->value,
             self::home_about_section->value,
             self::home_infrastructure_title->value,
             self::home_infrastructure_energy->value,

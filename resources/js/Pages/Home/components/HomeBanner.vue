@@ -8,6 +8,7 @@
         <container>
             <div class="text-white grid lg:grid-cols-2 gap-2 relative z-[1] items-end">
                 <div>
+                    <h2 class="max-w-md text-xs lg:text-base !text-neutral-6" v-if="content.home_banner_tagline?.title">{{ content.home_banner_tagline?.title }}</h2>
                     <h1 class="text-2xl leading-6  lg:text-[52px] lg:leading-[60px] font-medium lg:mb-6 max-w-2xl" id="home_banner_title">
                         {{ content.home_banner?.title }}
                     </h1>

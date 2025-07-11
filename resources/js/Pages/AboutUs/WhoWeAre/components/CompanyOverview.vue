@@ -8,7 +8,7 @@
         ></div>
 
         <container class="relative z-[1]">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                 <div class="lg:col-span-6">
                     <img :src="content.about_us_company_overview_tagline?.file_url" alt="" class="h-20 mb-4">
                     <p class="font-medium text-[22px] text-blue-lighter mb-[10px]">{{ content.about_us_company_overview_tagline?.title }}</p>
