@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -60,7 +61,8 @@
     --color-red-6: #D3312C;
     --color-yellow: #ECDA19;
     --color-gold-1: #f8f192c4;
-    --font-sans: 'GT Eesti Pro Display';
+    /* --font-sans: 'GT Eesti Pro Display'; */
+    --font-sans: 'Plus Jakarta Sans';
 }
 
 .input-custom {
