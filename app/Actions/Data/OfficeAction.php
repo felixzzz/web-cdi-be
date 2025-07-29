@@ -85,6 +85,8 @@ class OfficeAction
             }
         }
 
+        dd($request->input("is_main"), $offices);
+
         if ($request->input("is_main") == 1 && $offices != 0) {
             Office::where("is_main", 1)->update([
                 'is_main' => 0
