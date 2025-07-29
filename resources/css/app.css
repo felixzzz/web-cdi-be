@@ -479,3 +479,31 @@
 .overflow-y-auto:hover::-webkit-scrollbar-thumb {
     background: rgba(150, 150, 150, 0.4);
 }
+
+
+.overflow-x-auto {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+    height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 0.2);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.overflow-x-auto:hover::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 0.4);
+}

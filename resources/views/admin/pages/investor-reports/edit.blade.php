@@ -22,6 +22,9 @@
                 <option value="prospectus" {{ $data->type->value == 'prospectus' ? 'selected' : '' }}>Prospectus</option>
                 <option value="gms" {{ $data->type->value == 'gms' ? 'selected' : '' }}>GMS</option>
                 <option value="disclosure" {{ $data->type->value == 'disclosure' ? 'selected' : '' }}>Disclosure</option>
+                <option value="company_overview" {{ $data->type->value == 'company_overview' ? 'selected' : '' }}>Company Overview</option>
+                <option value="earnings_update" {{ $data->type->value == 'earnings_update' ? 'selected' : '' }}>Earnings Update</option>
+                <option value="investor_update" {{ $data->type->value == 'investor_update' ? 'selected' : '' }}>Investor Update</option>
             </x-portal::form.select>
 
             <x-portal::form.input label="Datetime" placeholder="Datetime" name="datetime" value="{{ $data->datetime }}" type="datetime-local" required />

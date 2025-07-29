@@ -9,6 +9,9 @@ enum InvestorReportType: string
     case Prospectus = 'prospectus';
     case GMS = 'gms';
     case Disclosure = 'disclosure';
+    case CompanyOverview = 'company_overview';
+    case InvestorUpdate = 'investor_update';
+    case EarningsUpdate = 'earnings_update';
 
     public function word()
     {
@@ -17,7 +20,10 @@ enum InvestorReportType: string
             'financial_report' => 'Financial Report',
             'prospectus' => 'Prospectus',
             'gms' => 'GMS',
-            'disclosure' => 'Disclosure'
+            'disclosure' => 'Disclosure',
+            'company_overview' => 'Company Overview',
+            'investor_update' => 'Investor Update',
+            'earnings_update' => 'Earnings Update'
         };
     }
 }

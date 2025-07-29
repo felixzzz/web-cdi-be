@@ -2,7 +2,7 @@
     <div class="py-20">
         <container>
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
-                <div class="flex lg:flex-col lg:items-start w-full lg:border-t-2 border-t-neutral-4 max-lg:border-b-2 border-b-neutral-4">
+                <div class="flex lg:flex-col lg:items-start w-full lg:border-t-2 border-t-neutral-4 max-lg:border-b-2 border-b-neutral-4 max-md:overflow-x-auto max-md:whitespace-nowrap">
                     <Link
                         v-for="tab in tabs"
                         :key="tab.id"
@@ -48,8 +48,8 @@
     const tabActive = ref(getQueryParam('tab') || 'prospectus')
     const tabs = ref([
         { id: 'prospectus', name: $t('Prospectus') },
-        { id: 'gms', name: $t('GMS') },
-        { id: 'disclosure', name: $t('Disclosure') }
+        { id: 'gms', name: $t('General Meeting of Shareholders') },
+        { id: 'disclosure', name: $t('Public Announcement') }
     ])
 
 </script>
