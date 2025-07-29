@@ -17,7 +17,7 @@ class OfficeAction
 
     public function store(OfficeRequest $request)
     {
-        $offices = Office::query()->where("is_main", 0)->count();
+        $offices = Office::query()->where("is_main", 1)->count();
         $mainData = [
             'location_name_en' => $request->location_en,
             'location_name_id' => $request->location_id,
@@ -60,7 +60,7 @@ class OfficeAction
 
     public function update(OfficeRequest $request, $ulid)
     {
-        $offices = Office::query()->where("is_main", 0)->where("ulid", "!=", $ulid)->count();
+        $offices = Office::query()->where("is_main", 1)->where("ulid", "!=", $ulid)->count();
 
         $mainData = [
             'location_name_en' => $request->location_en,
@@ -84,8 +84,6 @@ class OfficeAction
                 ];
             }
         }
-
-        dd($request->input("is_main"), $offices);
 
         if ($request->input("is_main") == 1 && $offices != 0) {
             Office::where("is_main", 1)->update([
