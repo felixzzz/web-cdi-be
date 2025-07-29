@@ -20,17 +20,17 @@
                     <option value="1" {{ $data->is_main == 1 ? 'selected' : '' }}>Yes</option>
                 </x-portal::form.select>
 
-                <x-portal::form.input label="Phone" placeholder="Phone" name="phone" :value="@$data->main['phone']" type="text" required />
-                <x-portal::form.input label="Fax" placeholder="Fax" name="fax" :value="@$data->main['fax']" type="text" required />
+                <x-portal::form.input label="Phone (Optional)" placeholder="Phone" name="phone" :value="@$data->main['phone']" type="text" />
+                <x-portal::form.input label="Fax (Optional)" placeholder="Fax" name="fax" :value="@$data->main['fax']" type="text" />
 
 
                 <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
-                <x-portal::form.input label="Sub Title" placeholder="Sub Title" name="sub_title_en" :value="$data->sub_title_en" type="text" />
+                <x-portal::form.input label="Sub Title (Optional)" placeholder="Sub Title" name="sub_title_en" :value="$data->sub_title_en" type="text" />
                 <x-portal::form.input label="Location Name" placeholder="Location Name" name="location_en" :value="@$data->main['location_name_en']" type="text" required />
                 <x-portal::form.input label="Address" placeholder="Address" name="address_en" :value="@$data->main['address_en']" type="text" required />
 
                 <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
-                <x-portal::form.input label="Sub Title" placeholder="Sub Title" name="sub_title_id" :value="$data->sub_title_id" type="text" />
+                <x-portal::form.input label="Sub Title (Optional)" placeholder="Sub Title" name="sub_title_id" :value="$data->sub_title_id" type="text" />
                 <x-portal::form.input label="Location Name" placeholder="Location Name" name="location_id" :value="@$data->main['location_name_id']" type="text" required />
                 <x-portal::form.input label="Address" placeholder="Address" name="address_id" :value="@$data->main['address_id']" type="text" required />
 
@@ -54,8 +54,8 @@
                                     <i class="isax icon-trash"></i>
                                 </button>
 
-                                <x-portal::form.input label="Phone" placeholder="Phone" name="branch_phone[]" :value="@$branch['phone']" type="text" required />
-                                <x-portal::form.input label="Fax" placeholder="Fax" name="branch_fax[]" :value="@$branch['fax']" type="text" required />
+                                <x-portal::form.input label="Phone (Optional)" placeholder="Phone" name="branch_phone[]" :value="@$branch['phone']" type="text" />
+                                <x-portal::form.input label="Fax (Optional)" placeholder="Fax" name="branch_fax[]" :value="@$branch['fax']" type="text" />
 
                                 <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
                                 <x-portal::form.input label="Location Name" placeholder="Location Name" name="branch_location_en[]" :value="@$branch['location_name_en']" type="text" required />
@@ -91,8 +91,8 @@
                 <i class="isax icon-trash"></i>
             </button>
 
-            <x-portal::form.input label="Phone" placeholder="Phone" name="branch_phone[]" type="text" required />
-            <x-portal::form.input label="Fax" placeholder="Fax" name="branch_fax[]" type="text" required />
+            <x-portal::form.input label="Phone (Optional)" placeholder="Phone" name="branch_phone[]" type="text" />
+            <x-portal::form.input label="Fax (Optional)" placeholder="Fax" name="branch_fax[]" type="text" />
 
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Location Name" placeholder="Location Name" name="branch_location_en[]" type="text" required />

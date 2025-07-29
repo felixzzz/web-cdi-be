@@ -42,12 +42,12 @@
                                 <p class="text-neutral-8 text-sm">{{ branch.address }}</p>
 
                                 <div class="flex items-center gap-4 text-neutral-8">
-                                    <div class="flex items-center text-sm gap-2" v-if="branch.phone">
+                                    <div class="flex items-center text-xs lg:text-sm gap-2" v-if="branch.phone">
                                         <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
                                         {{ branch.phone }}
                                     </div>
 
-                                    <div class="flex items-center text-sm gap-2" v-if="branch.fax">
+                                    <div class="flex items-center text-xs lg:text-sm gap-2" v-if="branch.fax">
                                         <img :src="asset('assets/frontend/icons/ic_printer.svg')" alt="">
                                         {{ branch.fax }}
                                     </div>

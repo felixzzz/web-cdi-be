@@ -7,6 +7,7 @@
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
                     <x-portal::table.head sortable key="name">Name</x-portal::table.head>
+                    <x-portal::table.head sortable key="name">Is Main Office?</x-portal::table.head>
                     <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
@@ -14,6 +15,13 @@
                 @forelse($data as $row)
                     <x-portal::table.row>
                         <x-portal::table.cell class="font-medium">{{ $row->name }}</x-portal::table.cell>
+                        <x-portal::table.cell class="font-medium">
+                            @if ($row->is_main)
+                                <x-portal::badge variant="solid" color="emerald">Yes</x-portal::badge>
+                            @else
+                                <x-portal::badge variant="solid">No</x-portal::badge>
+                            @endif
+                        </x-portal::table.cell>
                         <x-portal::table.cell class="font-medium text-right">
                             <x-portal::dropdown-menu class="flex justify-end">
                                 <x-portal::dropdown-menu.trigger variant="ghost" class="h-fit !px-1 !py-1">

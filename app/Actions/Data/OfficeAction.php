@@ -41,6 +41,12 @@ class OfficeAction
             }
         }
 
+        if ($request->input("is_main", 0) == 1 && $offices != 0) {
+            Office::where("is_main", 1)->update([
+                'is_main' => 0
+            ]);
+        }
+
         Office::create([
             'name' => $request->name,
             'sub_title_en' => $request->sub_title_en,
@@ -77,6 +83,12 @@ class OfficeAction
                     'fax' => $request->branch_fax[$index] ?? null,
                 ];
             }
+        }
+
+        if ($request->input("is_main", 0) == 1 && $offices != 0) {
+            Office::where("is_main", 1)->update([
+                'is_main' => 0
+            ]);
         }
 
         Office::whereUlid($ulid)->update([
