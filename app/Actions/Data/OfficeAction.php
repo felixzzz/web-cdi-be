@@ -41,7 +41,7 @@ class OfficeAction
             }
         }
 
-        if ($request->input("is_main", 0) == 1 && $offices != 0) {
+        if ($request->input("is_main") == 1 && $offices != 0) {
             Office::where("is_main", 1)->update([
                 'is_main' => 0
             ]);
@@ -53,7 +53,7 @@ class OfficeAction
             'sub_title_id' => $request->sub_title_id,
             'main' => $mainData,
             'branchs' => $branches,
-            'is_main' => $offices == 0 ? 1 : $request->input("is_main", 0)
+            'is_main' => $offices == 0 ? 1 : $request->input("is_main")
         ]);
 
     }
@@ -85,7 +85,7 @@ class OfficeAction
             }
         }
 
-        if ($request->input("is_main", 0) == 1 && $offices != 0) {
+        if ($request->input("is_main") == 1 && $offices != 0) {
             Office::where("is_main", 1)->update([
                 'is_main' => 0
             ]);
@@ -97,7 +97,7 @@ class OfficeAction
             'sub_title_id' => $request->sub_title_id,
             'main' => $mainData,
             'branchs' => $branches,
-            'is_main' => $offices == 0 ? 1 : $request->input("is_main", 0)
+            'is_main' => $offices == 0 ? 1 : $request->input("is_main")
         ]);
 
     }
