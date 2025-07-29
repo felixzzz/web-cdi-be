@@ -372,7 +372,6 @@
     left: 0;
     width: 0px;
     transition: width 0.2s ease, left 0.2s ease;
-    background-color: #2474A5;
 }
 
 .border-l-before::after, .border-l-before-hover:hover::after {
@@ -382,7 +381,16 @@
     top: 0;
     left: 0;
     width: 6px;
-    background-color: #2474A5;
+}
+
+@media (min-width: 1024px) {
+    .border-l-before::after, .border-l-before-hover::after {
+        background-color: #2474A5;
+    }
+
+    .border-l-before::after, .border-l-before-hover:hover::after {
+        background-color: #2474A5;
+    }
 }
 
 .overlay-history {
