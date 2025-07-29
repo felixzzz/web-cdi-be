@@ -25,12 +25,12 @@
 
                 <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
                 <x-portal::form.input label="Sub Title (Optional)" placeholder="Sub Title" name="sub_title_en" :value="old('sub_title_en')" type="text" />
-                <x-portal::form.input label="Location Name" placeholder="Location Name" name="location_en" :value="old('location_en')" type="text" required />
+                <x-portal::form.input label="Location Name (Optional)" placeholder="Location Name" name="location_en" :value="old('location_en')" type="text" />
                 <x-portal::form.input label="Address" placeholder="Address" name="address_en" :value="old('address_en')" type="text" required />
 
                 <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
                 <x-portal::form.input label="Sub Title (Optional)" placeholder="Sub Title" name="sub_title_id" :value="old('sub_title_id')" type="text" />
-                <x-portal::form.input label="Location Name" placeholder="Location Name" name="location_id" :value="old('location_id')" type="text" required />
+                <x-portal::form.input label="Location Name (Optional)" placeholder="Location Name" name="location_id" :value="old('location_id')" type="text" />
                 <x-portal::form.input label="Address" placeholder="Address" name="address_id" :value="old('address_id')" type="text" required />
 
                 <!-- Submit Button -->
@@ -73,12 +73,12 @@
             <x-portal::form.input label="Fax (Optional)" placeholder="Fax" name="branch_fax[]" type="text" />
 
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
-            <x-portal::form.input label="Location Name" placeholder="Location Name" name="branch_location_en[]" type="text" required />
+            <x-portal::form.input label="Location Name (Optional)" placeholder="Location Name" name="branch_location_en[]" type="text" />
             <x-portal::form.input label="Address" placeholder="Address" name="branch_address_en[]" type="text" required />
 
 
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
-            <x-portal::form.input label="Location Name" placeholder="Location Name" name="branch_location_id[]" type="text" required />
+            <x-portal::form.input label="Location Name (Optional)" placeholder="Location Name" name="branch_location_id[]" type="text" />
             <x-portal::form.input label="Address" placeholder="Address" name="branch_address_id[]" type="text" required />
         `;
 
