@@ -31,7 +31,7 @@
 
                 <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
                 <x-portal::form.input label="Sub Title (Optional)" placeholder="Sub Title" name="sub_title_id" :value="$data->sub_title_id" type="text" />
-                <x-portal::form.input label="Location Name" placeholder="Location Name" name="location_id" :value="@$data->main['location_name_id']" type="text" required />
+                <x-portal::form.input label="Location Name (Optional)" placeholder="Location Name" name="location_id" :value="@$data->main['location_name_id']" type="text" />
                 <x-portal::form.input label="Address" placeholder="Address" name="address_id" :value="@$data->main['address_id']" type="text" required />
 
                 <!-- Submit Button -->
