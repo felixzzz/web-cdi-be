@@ -17,7 +17,7 @@
                             <p class="text-neutral-13 text-sm font-medium">{{ content.office.localized_main.location_name }}</p>
                             <p class="text-neutral-8 text-sm">{{ content.office.localized_main.address }}</p>
 
-                            <div class="flex items-center gap-4 text-neutral-8">
+                            <div class="flex items-center gap-x-4 gap-y-2 text-neutral-8 flex-wrap">
                                 <div class="flex items-center text-xs gap-2" v-if="content.office.localized_main.phone">
                                     <img :src="asset('assets/frontend/icons/ic_phone.svg')" alt="">
                                     {{ content.office.localized_main.phone }}
