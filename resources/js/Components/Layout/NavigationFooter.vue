@@ -24,8 +24,8 @@
                         <p class="font-medium text-[22px]">{{ content.office.name }}</p>
                         <p class="text-base font-regular text-neutral-6">{{ content.office.sub_title }}</p>
                     </div>
-                    <div class="text-base">
-                        <span class="font-medium">{{ content.office.localized_main.location_name }}</span>
+                    <div class="text-[15px]">
+                        <span class="font-medium !text-base">{{ content.office.localized_main.location_name }}</span>
                         <span class="text-neutral-6 block">{{ content.office.localized_main.address }}</span>
                     </div>
                     <div class="flex items-center gap-2" v-if="content.office.localized_main.phone">
