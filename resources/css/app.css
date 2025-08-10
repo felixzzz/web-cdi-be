@@ -63,6 +63,8 @@
     --color-gold-1: #f8f192c4;
     /* --font-sans: 'GT Eesti Pro Display'; */
     --font-sans: 'Plus Jakarta Sans';
+
+    --breakpoint-3xl: 115rem;
 }
 
 .input-custom {
