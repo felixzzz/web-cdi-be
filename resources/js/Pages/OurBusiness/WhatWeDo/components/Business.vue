@@ -16,7 +16,7 @@
                 <h1
                     :class="{
                         'font-medium text-2xl lg:text-[38px] lg:leading-[44px]': hoverIndex === index,
-                        'font-medium text-2xl lg:text-[52px] lg:leading-[60px]': hoverIndex !== index,
+                        'font-medium text-2xl lg:text-[32px] 2xl:text-[52px] 2xl:leading-[60px]': hoverIndex !== index,
                     }"
                 >{{ item.title }}</h1>
                 <div
