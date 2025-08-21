@@ -9,7 +9,7 @@
     <meta property="og:image" content="{{ @$meta['image'] }}">
 @endif
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Brand Name">
+<meta property="og:site_name" content="Chandra Daya Investasi">
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
