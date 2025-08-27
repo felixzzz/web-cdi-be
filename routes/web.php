@@ -96,3 +96,8 @@ Route::get('/cookies-notice', [UtilityController::class, 'cookie'])->name('cooki
 Route::get('/terms-and-conditions', [UtilityController::class, 'term'])->name('terms-and-conditions');
 Route::get('/disclaimer', [UtilityController::class, 'disclaimer'])->name('disclaimer');
 Route::get('/switch-lang/{locale}', [UtilityController::class, 'switchLang'])->name('switch-lang');
+
+
+Route::get("googled4f652f8b60be891.html", function () {
+    return asset("googled4f652f8b60be891.html");
+});
