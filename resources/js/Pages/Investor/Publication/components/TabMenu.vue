@@ -24,6 +24,7 @@
                     <content-prospectus v-if="tabActive == 'prospectus'" />
                     <content-gms v-if="tabActive == 'gms'" />
                     <content-disclosure v-if="tabActive == 'disclosure'" />
+                    <content-earnings v-if="tabActive == 'earnings'" />
                 </div>
             </div>
         </container>
@@ -40,6 +41,7 @@
     import ContentGms from './ContentGms.vue'
     import ContentDisclosure from './ContentDisclosure.vue'
     import { PreferenceInvestor } from '@/types/utility'
+    import ContentEarnings from './ContentEarnings.vue'
 
     defineProps<{
         content: PreferenceInvestor | null
@@ -49,7 +51,8 @@
     const tabs = ref([
         { id: 'prospectus', name: $t('Prospectus') },
         { id: 'gms', name: $t('General Meeting of Shareholders') },
-        { id: 'disclosure', name: $t('Public Announcement') }
+        { id: 'disclosure', name: $t('Public Announcement') },
+        { id: 'earnings', name: $t('Earnings Update') },
     ])
 
 </script>

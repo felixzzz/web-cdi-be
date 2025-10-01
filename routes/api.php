@@ -95,6 +95,7 @@ Route::middleware(WebApiMiddleware::class)
             ->group(function () {
                 Route::get("prospectus/list", "prospectusList")->name("prospectus.list");
                 Route::get("gms/list", "gmsList")->name("gms.list");
+                Route::get("earnings/list", "earningsList")->name("earnings.list");
                 Route::get("disclosure/list", "disclosureList")->name("disclosure.list");
                 Route::get("calendar/list", "calendarList")->name("calendar.list");
                 Route::get("calendar/years", "years")->name("calendar.years");

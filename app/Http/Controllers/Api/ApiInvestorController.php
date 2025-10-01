@@ -19,6 +19,11 @@ class ApiInvestorController extends Controller
         return $investorReportRepository->findPaginated($request, InvestorReportType::GMS);
     }
 
+    public function earningsList(Request $request, InvestorReportRepository $investorReportRepository)
+    {
+        return $investorReportRepository->findPaginated($request, InvestorReportType::EarningsUpdate);
+    }
+
     public function disclosureList(Request $request, InvestorReportRepository $investorReportRepository)
     {
         return $investorReportRepository->findPaginated($request, InvestorReportType::Disclosure);
