@@ -15,6 +15,9 @@ use App\Http\Controllers\FrontEnd\ContactUsController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiSustainabilityController;
 
+
+Route::post('contact-us/store', [ContactUsController::class, 'storeContacUsApi'])->name("contact-us.storeContacUsApi");
+
 Route::middleware(WebApiMiddleware::class)
     ->as('api.')
     ->group(function () {
