@@ -25,4 +25,22 @@ class ContactUsController extends Controller
             return back()->with(['error' => $th->getMessage()]);
         }
     }
+
+    public function storeContacUsApi(InboxRequest $request, InboxAction $inboxAction)
+    {
+        try {
+            // Jalankan action seperti biasa
+            $inboxAction->handle($request, TopicType::ContactUs);
+
+            return response()->json([
+                'success' => true,
+                'message' => __('Data successfully submitted'),
+            ], 201); // 201 = Created
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(), // di production biasanya diganti message generic
+            ], 500);
+        }
+    }
 }
