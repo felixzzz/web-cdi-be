@@ -59,10 +59,17 @@ class FileStorageController extends Controller
                 }
                 return StorageFile::preview($file);
             } else if ($type == 'committe') {
-                $field = $lang == 'default' ? 'tab_title_en' : 'tab_title_id';
-                $row = GovernanceCommitte::where($field, $key)->first();
-                $file = $row->file;
-                $file = Helper::shortDecrypt($file['path']);
+                if ($lang !=  'default') {
+                    $field = $lang == 'en' ? 'tab_title_en' : 'tab_title_id';
+                    $row = GovernanceCommitte::where($field, $key)->first();
+                    $file = $row->file;
+                    $file = Helper::shortDecrypt($file['path']);
+                } else {
+                    $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
+                    $row = GovernanceCommitte::where($field, $key)->first();
+                    $file = $row->file;
+                    $file = Helper::shortDecrypt($file['path']);
+                }                
                 return StorageFile::preview($file);
             } else if ($type == 'sustainability-content') {
                 $row = SustainabilityContent::where('ulid', $key)->first();
@@ -119,10 +126,17 @@ class FileStorageController extends Controller
                     $fileName = $row->name;
                 }
             } else if ($type == 'committe') {
-                $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
-                $row = GovernanceCommitte::where($field, $key)->first();
-                $file = $row->file;
-                $file = Helper::shortDecrypt($file['path']);
+                if ($lang !=  'default') {
+                    $field = $lang == 'en' ? 'tab_title_en' : 'tab_title_id';
+                    $row = GovernanceCommitte::where($field, $key)->first();
+                    $file = $row->file;
+                    $file = Helper::shortDecrypt($file['path']);
+                } else {
+                    $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
+                    $row = GovernanceCommitte::where($field, $key)->first();
+                    $file = $row->file;
+                    $file = Helper::shortDecrypt($file['path']);
+                } 
                 $fileName = $key;
             } else if ($type == 'sustainability-content') {
                 $row = SustainabilityContent::where('ulid', $key)->first();
