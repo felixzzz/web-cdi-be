@@ -59,7 +59,7 @@ class FileStorageController extends Controller
                 }
                 return StorageFile::preview($file);
             } else if ($type == 'committe') {
-                $field = app()->currentLocale() == 'en' ? 'tab_title_en' : 'tab_title_id';
+                $field = $lang == 'default' ? 'tab_title_en' : 'tab_title_id';
                 $row = GovernanceCommitte::where($field, $key)->first();
                 $file = $row->file;
                 $file = Helper::shortDecrypt($file['path']);
@@ -83,7 +83,7 @@ class FileStorageController extends Controller
                     $file = json_decode($row->file);
                     $file = Helper::shortDecrypt($file->path);
                 }
-                return StorageFile::preview($file);
+//                return StorageFile::preview($file);
             }
         }catch(\Exception $e){}
         return null;
