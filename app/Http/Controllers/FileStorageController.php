@@ -69,7 +69,7 @@ class FileStorageController extends Controller
                     $row = GovernanceCommitte::where($field, $key)->first();
                     $file = $row->file;
                     $file = Helper::shortDecrypt($file['path']);
-                }                
+                }
                 return StorageFile::preview($file);
             } else if ($type == 'sustainability-content') {
                 $row = SustainabilityContent::where('ulid', $key)->first();
@@ -90,7 +90,7 @@ class FileStorageController extends Controller
                     $file = json_decode($row->file);
                     $file = Helper::shortDecrypt($file->path);
                 }
-//                return StorageFile::preview($file);
+                return StorageFile::preview($file);
             }
         }catch(\Exception $e){}
         return null;
@@ -136,7 +136,7 @@ class FileStorageController extends Controller
                     $row = GovernanceCommitte::where($field, $key)->first();
                     $file = $row->file;
                     $file = Helper::shortDecrypt($file['path']);
-                } 
+                }
                 $fileName = $key;
             } else if ($type == 'sustainability-content') {
                 $row = SustainabilityContent::where('ulid', $key)->first();
