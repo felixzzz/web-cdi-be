@@ -26,6 +26,14 @@ use App\Http\Controllers\FrontEnd\Sustainability\SustainabilityReportPublication
 use App\Http\Controllers\FrontEnd\Sustainability\SustainabilitySocialController;
 use App\Http\Controllers\FrontEnd\UtilityController;
 
+Route::get('/cc', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:cache');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    return "Cache is cleared";
+});
+
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 Route::post('contact-us/store', [ContactUsController::class, 'store'])->name("contact-us.store");

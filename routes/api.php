@@ -12,8 +12,13 @@ use App\Http\Controllers\Api\ApiCertificateController;
 use App\Http\Controllers\Api\ApiInstitutionController;
 use App\Http\Controllers\Api\ApiOurBusinessController;
 use App\Http\Controllers\FrontEnd\ContactUsController;
+use App\Http\Controllers\FrontEnd\GovernanceController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiSustainabilityController;
+
+
+Route::post('contact-us/store', [ContactUsController::class, 'storeContacUsApi'])->name("contact-us.storeContacUsApi");
+Route::post('governance/whistleblowing/store', [GovernanceController::class, 'apiWhistleblowingStore'])->name("governance.apiWhistleblowingStore");
 
 Route::middleware(WebApiMiddleware::class)
     ->as('api.')

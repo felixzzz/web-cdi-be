@@ -58,6 +58,7 @@ class StorageFile
         $filename = Str::slug(str_replace($extension, "", $name)) . Str::random() . $extension;
         $fileUrl = Storage::disk('local')->putFileAs("{$location}", $file, $filename);
 
+
         return Helper::shortEncrypt($fileUrl);
     }
 
@@ -102,40 +103,112 @@ class StorageFile
         ];
     }
 
+//    public static function preview($filename)
+//    {
+//        $disk = 'local';
+//        $cacheTime = 31536000; // 1 tahun
+//
+//        $mimeType = Cache::remember("file_mime_cache_{$filename}", $cacheTime, function () use ($disk, $filename) {
+//            return Storage::disk($disk)->mimeType($filename);
+//        });
+//
+//        $fileBase64 = Cache::remember("file_cache_{$filename}", $cacheTime, function () use ($disk, $filename) {
+//            if (Storage::disk($disk)->exists($filename)) {
+//                $content = Storage::disk($disk)->get($filename);
+//                return base64_encode($content); // Encode binary data
+//            }
+//            return null;
+//        });
+//
+//        if (!$fileBase64) {
+//            abort(404);
+//        }
+//
+//        $fileContent = base64_decode($fileBase64); // Decode to binary
+//
+//        // Ubah ke WebP jika format image (selain SVG)
+//        if (str_contains($mimeType, 'image/') && $mimeType != 'image/svg+xml') {
+//            $mimeType = 'image/webp';
+//        }
+//
+//        $filenames = explode('/', $filename);
+//        $fileName = @$filenames[count($filenames) - 1];
+//
+//        return response($fileContent)
+//            ->withHeaders([
+//                'Content-Type' => $mimeType,
+//                'Cache-Control' => "public, max-age=$cacheTime, immutable",
+//                'Content-disposition' => 'filename="' . $fileName . '"'
+//            ]);
+//    }
 
     public static function preview($filename)
     {
         $disk = 'local';
-        $cacheTime = 31536000; // 24 hour
 
-        $mimeType = Cache::remember("file_mime_cache_{$filename}", $cacheTime, function () use ($disk, $filename) {
-            return Storage::disk($disk)->mimeType($filename);
-        });
-        $fileContent = Cache::remember("file_cache_{$filename}", $cacheTime, function () use ($disk, $filename, $mimeType) {
-            if (Storage::disk($disk)->exists($filename)) {
-                return Storage::disk($disk)->get($filename); // Get file content
-            }
-            return null; // Return null if file doesn't exist
-        });
+        $mimeType = Storage::disk($disk)->mimeType($filename);
 
-        if (!$fileContent) {
+        $fileBase64 = "";
+        if (Storage::disk($disk)->exists($filename)) {
+            $content = Storage::disk($disk)->get($filename);
+            $fileBase64 = base64_encode($content); // Encode binary data
+        }
+
+        if (!$fileBase64) {
             abort(404);
         }
 
+        $fileContent = base64_decode($fileBase64); // Decode to binary
 
+        // Ubah ke WebP jika format image (selain SVG)
         if (str_contains($mimeType, 'image/') && $mimeType != 'image/svg+xml') {
             $mimeType = 'image/webp';
         }
-        $filenames = explode('/',$filename);
-        $fileName = @$filenames[count($filenames)-1];
+
+        $filenames = explode('/', $filename);
+        $fileName = @$filenames[count($filenames) - 1];
 
         return response($fileContent)
             ->withHeaders([
                 'Content-Type' => $mimeType,
-                'Cache-Control' => "public, max-age=$cacheTime,immutable",
-                'Content-disposition' => 'filename="'.$fileName.'"'
+                'Cache-Control' => "public, max-age=86400, immutable",
+                'Content-disposition' => 'filename="' . $fileName . '"'
             ]);
     }
+
+
+//    public static function preview($filename)
+//    {
+//        $disk = 'local';
+//        $path = ltrim($filename, '/');
+//
+//        if (!Storage::disk($disk)->exists($path)) {
+//            abort(404);
+//        }
+//
+//        $mime = Storage::disk($disk)->mimeType($path) ?? 'video/mp4';
+//        $fullPath = Storage::disk($disk)->path($path);
+//        $size = Storage::disk($disk)->size($path);
+//
+//        return response()->stream(function () use ($fullPath) {
+//            $stream = fopen($fullPath, 'rb');
+//            fpassthru($stream);
+//            fclose($stream);
+//        }, 200, [
+//            'Content-Type' => $mime,
+//            'Content-Length' => $size,
+//            'Accept-Ranges' => 'bytes',
+//            'Cache-Control' => 'public, max-age=86400',
+//            'Content-Disposition' => 'inline; filename="' . basename($fullPath) . '"',
+//        ]);
+//
+////        return response($fileContent)
+////            ->withHeaders([
+////                'Content-Type' => $mimeType,
+////                'Cache-Control' => "public, max-age=$cacheTime, immutable",
+////                'Content-disposition' => 'filename="' . $fileName . '"'
+////            ]);
+//    }
 
     public static function download($filename, $downloadName = null)
     {

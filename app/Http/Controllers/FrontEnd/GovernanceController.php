@@ -32,6 +32,23 @@ class GovernanceController extends Controller
         }
     }
 
+    public function apiWhistleblowingStore(InboxRequest $request, InboxAction $inboxAction)
+    {
+        try {
+            $inboxAction->handle($request, TopicType::Whistleblowing);
+
+            return response()->json([
+                'success' => true,
+                'message' => __('Data successfully submitted'),
+            ], 201); // 201 = Created
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(), // di production biasanya diganti message generic
+            ], 500);
+        }
+    }
+
     public function type($type)
     {
         return Inertia::render("Governance/GovernanceTypePage", [

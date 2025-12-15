@@ -10,7 +10,7 @@ import { ZiggyVue, route } from '../../vendor/tightenco/ziggy';
 import { createPinia } from 'pinia'
 
 import Alpine from 'alpinejs'
-import { translate } from './Composables/useTranslation';
+import { translate } from './composables/useTranslation';
 Alpine.start()
 
 const pinia = createPinia()

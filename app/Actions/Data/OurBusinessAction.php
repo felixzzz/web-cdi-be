@@ -46,6 +46,9 @@ class OurBusinessAction
         if ($request->hasFile('overview_image')) {
             $data['overview_image'] = StorageFile::upload($request->file('overview_image'), 'our-business/'.$business->type);
         }
+        if ($request->hasFile('image')) {
+            $data['image'] = StorageFile::upload($request->file('image'), 'our-business/'.$business->type);
+        }
 
         OurBusiness::whereUlid($ulid)->update($data);
         (new OurBusinessRepository())->resetCache();
