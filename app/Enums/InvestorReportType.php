@@ -20,7 +20,7 @@ enum InvestorReportType: string
             'financial_report' => 'Financial Report',
             'prospectus' => 'Prospectus',
             'gms' => 'GMS',
-            'disclosure' => 'Disclosure',
+            'disclosure' => 'Public Announcement',
             'company_overview' => 'Company Overview',
             'investor_update' => 'Investor Update',
             'earnings_update' => 'Earnings Update'

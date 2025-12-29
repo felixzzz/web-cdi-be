@@ -51,7 +51,7 @@ class AwardRepository
                         $row->content = $row->content;
                         $row->awarder = $row->awarder;
                         $row->image = previewFile($row->file);
-                        $row->year = Carbon::parse($row->date)->translatedFormat("Y");
+                        $row->year = Carbon::parse($row->date)->format("Y");
                         return $row;
                 })->values()
         ];
