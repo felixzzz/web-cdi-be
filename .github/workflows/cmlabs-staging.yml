@@ -2,7 +2,7 @@ name: staging-deployment
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   laravel-deploy:
@@ -19,7 +19,8 @@ jobs:
             sudo chown dev:www-data -R ./
             git stash
             git stash clear
-            git pull origin develop
+            git checkout main
+            git pull origin main
             rm -rf package-lock.json composer.lock
             php8.2 /usr/local/bin/composer install
             . ~/.nvm/nvm.sh
