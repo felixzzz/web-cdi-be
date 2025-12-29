@@ -20,7 +20,7 @@
                 <option value="financial_report" {{ old('type') == 'financial_report' ? 'selected' : '' }}>Financial Report</option>
                 <option value="prospectus" {{ old('type') == 'prospectus' ? 'selected' : '' }}>Prospectus</option>
                 <option value="gms" {{ old('type') == 'gms' ? 'selected' : '' }}>GMS</option>
-                <option value="disclosure" {{ old('type') == 'disclosure' ? 'selected' : '' }}>Disclosure</option>
+                <option value="disclosure" {{ old('type') == 'disclosure' ? 'selected' : '' }}>Public Announcement</option>
                 <option value="company_overview" {{ old('type') == 'company_overview' ? 'selected' : '' }}>Company Overview</option>
                 <option value="earnings_update" {{ old('type') == 'earnings_update' ? 'selected' : '' }}>Earnings Update</option>
                 <option value="investor_update" {{ old('type') == 'investor_update' ? 'selected' : '' }}>Investor Update</option>
