@@ -48,7 +48,7 @@ class MembershipRepository
                         $row->name = $row->name;
                         $row->content = $row->content;
                         $row->image = previewFile($row->file);
-                        $row->year = Carbon::parse($row->date)->translatedFormat("d M Y");
+                        $row->year = Carbon::parse($row->date)->translatedFormat("Y");
                         return $row;
                 })->values()
         ];
