@@ -471,6 +471,20 @@ class PageSeeder extends Seeder
                 'content_en' => '',
                 'content_id' => '',
             ],
+            'about_us_corporate_structure_en' => [
+                'file' => asset('assets/frontend/images/about/company_structure.jpg'),
+                'title_en' => '',
+                'title_id' => '',
+                'content_en' => '',
+                'content_id' => '',
+            ],
+            'about_us_corporate_structure_id' => [
+                'file' => asset('assets/frontend/images/about/company_structure.jpg'),
+                'title_en' => '',
+                'title_id' => '',
+                'content_en' => '',
+                'content_id' => '',
+            ],
             'about_us_corporate_structure_table' => [
                 'file' => '',
                 'title_en' => 'List of Subsidiaries & Associate Companies',
@@ -971,7 +985,7 @@ class PageSeeder extends Seeder
             }
 
             // Simpan ke database
-            Preference::updateOrCreate(['key' => $key], [
+            Preference::firstOrCreate(['key' => $key], [
                 ...$value,
                 'type' => $type,
             ]);

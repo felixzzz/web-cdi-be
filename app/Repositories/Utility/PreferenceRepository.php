@@ -51,8 +51,10 @@ class PreferenceRepository
         }
 
         $cacheKey = Helper::getPreferenceCacheKey($keys);
+        $locale = App::getLocale();
+        $locale = in_array($locale, ['en', 'id']) ? $locale : 'en';
 
-        return Optimize::cache($cacheKey, function () use ($keys, $type) {
+        return Optimize::cache($cacheKey, function () use ($keys, $type, $locale) {
             $data = [];
 
             foreach ($keys as $key => $value) {
@@ -68,6 +70,13 @@ class PreferenceRepository
                 }
 
                 $data[$value] = $preference;
+            }
+
+            if ($type === 'about-us-management') {
+                $key = "about_us_corporate_structure_{$locale}";
+                if (isset($data[$key])) {
+                    $data['about_us_corporate_structure'] = $data[$key];
+                }
             }
 
             return (object)$data;
