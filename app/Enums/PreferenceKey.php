@@ -42,6 +42,8 @@ enum PreferenceKey: string
     case about_us_management_overview = 'about_us_management_overview';
     case about_us_organization_structure = 'about_us_organization_structure';
     case about_us_corporate_structure = 'about_us_corporate_structure';
+    case about_us_corporate_structure_en = 'about_us_corporate_structure_en';
+    case about_us_corporate_structure_id = 'about_us_corporate_structure_id';
     case about_us_corporate_structure_table = 'about_us_corporate_structure_table';
     case about_us_guideline = 'about_us_guideline';
     case about_us_corporate_structure_table_show = 'about_us_corporate_structure_table_show';
@@ -160,6 +162,8 @@ enum PreferenceKey: string
             'about_us_management_overview' => PreferenceType::TextContent,
             'about_us_organization_structure' => PreferenceType::Image,
             'about_us_corporate_structure' => PreferenceType::Image,
+            'about_us_corporate_structure_en' => PreferenceType::Image,
+            'about_us_corporate_structure_id' => PreferenceType::Image,
             'about_us_corporate_structure_table' => PreferenceType::Table,
             'about_us_guideline' => PreferenceType::TextContent,
             'about_us_award_banner' => PreferenceType::TextContentImage,
@@ -291,6 +295,8 @@ enum PreferenceKey: string
                 self::about_us_management_overview->value,
                 self::about_us_organization_structure->value,
                 self::about_us_corporate_structure->value,
+                self::about_us_corporate_structure_en->value,
+                self::about_us_corporate_structure_id->value,
                 self::about_us_corporate_structure_table->value,
                 self::about_us_guideline->value,
                 self::about_us_corporate_structure_table_show->value,
