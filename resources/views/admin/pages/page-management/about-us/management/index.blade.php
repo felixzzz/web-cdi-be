@@ -84,7 +84,7 @@
                     <x-portal::separator orientation="vertical" />
                 </div>
                 <div class="flex flex-col gap-4 w-full">
-
+                    @include('admin.pages.page-management.about-us.management.components.corporate-structure', ['lang' => 'id'])
                 </div>
             </div>
 
