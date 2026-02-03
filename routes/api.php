@@ -1,24 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\WebApiMiddleware;
-use App\Http\Controllers\Api\ApiAwardController;
 use App\Http\Controllers\Api\ApiArticleController;
-use App\Http\Controllers\Api\ApiUtilityController;
-use App\Http\Controllers\Api\ApiInvestorController;
-use App\Http\Controllers\Api\ApiGovernanceController;
-use App\Http\Controllers\Api\ApiMembershipController;
+use App\Http\Controllers\Api\ApiAwardController;
 use App\Http\Controllers\Api\ApiCertificateController;
+use App\Http\Controllers\Api\ApiGovernanceController;
 use App\Http\Controllers\Api\ApiInstitutionController;
+use App\Http\Controllers\Api\ApiInvestorController;
+use App\Http\Controllers\Api\ApiMembershipController;
 use App\Http\Controllers\Api\ApiOurBusinessController;
-use App\Http\Controllers\FrontEnd\ContactUsController;
-use App\Http\Controllers\FrontEnd\GovernanceController;
 use App\Http\Controllers\Api\ApiPressReleaseController;
 use App\Http\Controllers\Api\ApiSustainabilityController;
+use App\Http\Controllers\Api\ApiUtilityController;
+use App\Http\Controllers\FrontEnd\ContactUsController;
+use App\Http\Controllers\FrontEnd\GovernanceController;
+use App\Http\Middleware\WebApiMiddleware;
+use Illuminate\Support\Facades\Route;
 
-
-Route::post('contact-us/store', [ContactUsController::class, 'storeContacUsApi'])->name("contact-us.storeContacUsApi");
-Route::post('governance/whistleblowing/store', [GovernanceController::class, 'apiWhistleblowingStore'])->name("governance.apiWhistleblowingStore");
+Route::post('contact-us/store', [ContactUsController::class, 'storeContacUsApi'])->name('contact-us.storeContacUsApi');
+Route::post('governance/whistleblowing/store', [GovernanceController::class, 'apiWhistleblowingStore'])->name('governance.apiWhistleblowingStore');
 
 Route::middleware(WebApiMiddleware::class)
     ->as('api.')
@@ -32,9 +31,9 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/governance', 'governance')->name('governance');
                 Route::get('/investor', 'investor')->name('investor');
                 Route::get('/our-business', 'ourBusiness')->name('our-business');
-                Route::get('/about-us/{type}', 'aboutUs')->name('about-us.index')->whereIn("type", ["award", "management", "who-we-are"]);
-                Route::get('/sustainability/{type}', 'sustainability')->name('sustainability.index')->whereIn("type", ["overview", "environment", "social", "governance", "report", "action"]);
-                Route::get('/quick-link/{type}', 'quickLink')->name('quick-link')->whereIn("type", ["home", "governance", "about-us"]);
+                Route::get('/about-us/{type}', 'aboutUs')->name('about-us.index')->whereIn('type', ['award', 'management', 'who-we-are']);
+                Route::get('/sustainability/{type}', 'sustainability')->name('sustainability.index')->whereIn('type', ['overview', 'environment', 'social', 'governance', 'report', 'action']);
+                Route::get('/quick-link/{type}', 'quickLink')->name('quick-link')->whereIn('type', ['home', 'governance', 'about-us']);
 
                 Route::get('/our-histories', 'ourHistories')->name('our-histories');
                 Route::get('/milestones', 'milestones')->name('milestones');
@@ -48,77 +47,75 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/governance-committes', 'governanceCommittes')->name('governance-committes');
                 Route::get('/has-governance-committes', 'hasGovernanceCommittes')->name('has-governance-committes');
 
-
                 Route::get('/additional-page/{type}', 'additionalPage')->name('additional-page');
                 Route::get('/additional-file/{type}', 'additionalFile')->name('additional-file');
                 Route::get('/teams/{type}', 'teams')->name('teams');
             });
 
-        Route::get("press-releases/list", [ApiPressReleaseController::class, "list"])->name("press-releases.list");
+        Route::get('press-releases/list', [ApiPressReleaseController::class, 'list'])->name('press-releases.list');
 
         Route::controller(ApiArticleController::class)
             ->as('article.')
             ->prefix('article')
             ->group(function () {
-                Route::get("list/{type}", "list")->name("list");
-                Route::get("list-sustainability", "listSustainability")->name("list-sustainability");
-                Route::get("latest", "latest")->name("latest");
-                Route::get("latest-media", "latestMedia")->name("latest-media");
-                Route::get("latest-sustainability", "latestSustainability")->name("latest-sustainability");
-                Route::get("relates/{ulid}", "relates")->name("relates");
+                Route::get('blog-status', 'blogStatus')->name('blog-status');
+                Route::get('list/{type}', 'list')->name('list');
+                Route::get('list-sustainability', 'listSustainability')->name('list-sustainability');
+                Route::get('latest', 'latest')->name('latest');
+                Route::get('latest-media', 'latestMedia')->name('latest-media');
+                Route::get('latest-sustainability', 'latestSustainability')->name('latest-sustainability');
+                Route::get('relates/{ulid}', 'relates')->name('relates');
             });
-
 
         Route::controller(ApiAwardController::class)
             ->as('awards.')
             ->prefix('awards')
             ->group(function () {
-                Route::get("list", "list")->name("list");
-                Route::get("years", "years")->name("years");
+                Route::get('list', 'list')->name('list');
+                Route::get('years', 'years')->name('years');
             });
 
         Route::controller(ApiCertificateController::class)
             ->as('certificates.')
             ->prefix('certificates')
             ->group(function () {
-                Route::get("list", "list")->name("list");
+                Route::get('list', 'list')->name('list');
             });
 
-        Route::get("memberships/list", [ApiMembershipController::class, "list"])->name("memberships.list");
+        Route::get('memberships/list', [ApiMembershipController::class, 'list'])->name('memberships.list');
 
         Route::controller(ApiOurBusinessController::class)
             ->as('business.')
             ->prefix('business')
             ->group(function () {
-                Route::get("overview-list", "overviewList")->name("overview-list");
-                Route::get("detail/{type}", "detail")->name("detail");
+                Route::get('overview-list', 'overviewList')->name('overview-list');
+                Route::get('detail/{type}', 'detail')->name('detail');
             });
 
         Route::controller(ApiInvestorController::class)
             ->as('investor.')
             ->prefix('investor')
             ->group(function () {
-                Route::get("prospectus/list", "prospectusList")->name("prospectus.list");
-                Route::get("gms/list", "gmsList")->name("gms.list");
-                Route::get("earnings/list", "earningsList")->name("earnings.list");
-                Route::get("disclosure/list", "disclosureList")->name("disclosure.list");
-                Route::get("calendar/list", "calendarList")->name("calendar.list");
-                Route::get("calendar/years", "years")->name("calendar.years");
+                Route::get('prospectus/list', 'prospectusList')->name('prospectus.list');
+                Route::get('gms/list', 'gmsList')->name('gms.list');
+                Route::get('earnings/list', 'earningsList')->name('earnings.list');
+                Route::get('disclosure/list', 'disclosureList')->name('disclosure.list');
+                Route::get('calendar/list', 'calendarList')->name('calendar.list');
+                Route::get('calendar/years', 'years')->name('calendar.years');
             });
 
-        Route::get("institutions/list", [ApiInstitutionController::class, "list"])->name("institutions.list");
-        Route::get("governances/files/{type}", [ApiGovernanceController::class, 'files'])->name("governances.files")->whereIn("type", ["policy", "code-of-conduct", "she-regulation", "risk-management"]);
+        Route::get('institutions/list', [ApiInstitutionController::class, 'list'])->name('institutions.list');
+        Route::get('governances/files/{type}', [ApiGovernanceController::class, 'files'])->name('governances.files')->whereIn('type', ['policy', 'code-of-conduct', 'she-regulation', 'risk-management']);
 
         Route::controller(ApiSustainabilityController::class)
             ->as('sustainability.')
             ->prefix('sustainability')
             ->group(function () {
-                Route::get("ratings", "ratings")->name("ratings");
-                Route::get("recognitions", "recognitions")->name("recognitions");
-                Route::get("responsibles", "responsibles")->name("responsibles");
-                Route::get("tab-contents/{type}", "tabContents")->name("tab-contents");
-                Route::get("contents/{type}", "contents")->name("contents");
-                Route::get("reports/{type}", "reports")->name("reports");
+                Route::get('ratings', 'ratings')->name('ratings');
+                Route::get('recognitions', 'recognitions')->name('recognitions');
+                Route::get('responsibles', 'responsibles')->name('responsibles');
+                Route::get('tab-contents/{type}', 'tabContents')->name('tab-contents');
+                Route::get('contents/{type}', 'contents')->name('contents');
+                Route::get('reports/{type}', 'reports')->name('reports');
             });
-
     });
