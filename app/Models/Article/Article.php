@@ -2,21 +2,24 @@
 
 namespace App\Models\Article;
 
-use App\Traits\HasSlug;
-use App\Traits\HasUlid;
-use Illuminate\Support\Str;
-use App\Traits\HasDatatable;
-use Illuminate\Support\Facades\App;
 use App\Enums\ArticleCategory;
 use App\Models\Article\ArticleCategory as ArticleArticleCategory;
+use App\Traits\HasDatatable;
 use App\Traits\HasLocalizedAttributes;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasSlug;
+use App\Traits\HasUlid;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
-    use HasUlid, HasLocalizedAttributes, HasDatatable, HasSlug;
+    use HasUlid;
+    use HasLocalizedAttributes;
+    use HasDatatable;
+    // use HasSlug;
 
     protected $table = 'articles';
 
@@ -28,18 +31,18 @@ class Article extends Model
     protected $slugGroupFields = ['category'];
     protected $append = ['short_content_en', 'short_content'];
 
-
     /**
-    * Get the attributes that should be cast.
-    *
-    * @return array<string, string>
-    */
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [
             'category' => ArticleCategory::class,
             'tags' => 'array',
-            'meta_tag' => 'array'
+            'meta_tag' => 'array',
+            'meta_tag_id' => 'array',
         ];
     }
 
@@ -48,9 +51,9 @@ class Article extends Model
         return Attribute::make(
             get: function () {
                 $locale = App::getLocale();
+
                 return Str::limit(html_entity_decode(strip_tags($this->content."_{$locale}")), 200);
             }
-
         );
     }
 
@@ -60,7 +63,6 @@ class Article extends Model
             get: function () {
                 return Str::limit(html_entity_decode(strip_tags($this->content_en)), 200);
             }
-
         );
     }
 
