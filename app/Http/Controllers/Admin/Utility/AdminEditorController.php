@@ -31,6 +31,9 @@ class AdminEditorController extends AdminController
                 '145' => previewFile($url),
                 '225' => previewFile($url),
                 'default' => previewFile($url),
+                'url' => previewFile($url),
+                'uploaded' => 1,
+                'fileName' => $file->getClientOriginalName(),
             ];
 
             return response()->json($result);
