@@ -24,10 +24,10 @@ class BlogRequest extends FormRequest
         return [
             'thumbnail' => 'nullable|file|max:5120',
             'title_en' => 'required',
-            'slug_en' => 'required|string|max:255',
+            // 'slug_en' => 'required|string|max:255',
             'content_en' => 'required',
             'title_id' => 'required',
-            'slug_id' => 'required|string|max:255',
+            // 'slug_id' => 'required|string|max:255',
             'content_id' => 'required',
             'status' => 'required'
         ];
