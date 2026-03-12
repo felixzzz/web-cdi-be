@@ -22,8 +22,6 @@ class BlogAction
     public function store(BlogRequest $request)
     {
         $category = ArticleCategory::Blog;
-
-        dd($request->slug_en);
         
         $slug = $this->generateUniqueSlug(
             // Str::slug($request->slug_en ?: $request->title_en),
@@ -31,6 +29,8 @@ class BlogAction
             'slug',
             $category
         );
+
+        dd($slug);
 
         $slugId = $this->generateUniqueSlug(
             Str::slug($request->slug_id ?: $request->title_id),
