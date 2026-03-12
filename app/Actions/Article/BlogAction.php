@@ -30,11 +30,9 @@ class BlogAction
             $category
         );
 
-        dd($slug);
-
         $slugId = $this->generateUniqueSlug(
-            Str::slug($request->slug_id ?: $request->title_id),
-            // Str::slug($request->slug_id),
+            // Str::slug($request->slug_id ?: $request->title_id),
+            Str::slug($request->slug_id),
             'slug_id',
             $category
         );
@@ -77,12 +75,14 @@ class BlogAction
         $category = ArticleCategory::Blog;
 
         $slug = $this->generateUniqueSlug(
-            Str::slug($request->slug_en ?: $request->title_en),
-            // Str::slug($request->slug_en),
+            // Str::slug($request->slug_en ?: $request->title_en),
+            Str::slug($request->slug_en),
             'slug',
             $category,
             $article->id
         );
+
+        dd($slug);
 
         $slugId = $this->generateUniqueSlug(
             Str::slug($request->slug_id ?: $request->title_id),
