@@ -24,8 +24,8 @@ class BlogAction
         $category = ArticleCategory::Blog;
 
         $slug = $this->generateUniqueSlug(
-            // Str::slug($request->slug_en ?: $request->title_en),
-            Str::slug($request->slug_en),
+            Str::slug($request->slug_en ?: $request->title_en),
+            // Str::slug($request->slug_en),
             'slug',
             $category
         );
@@ -74,8 +74,8 @@ class BlogAction
         $category = ArticleCategory::Blog;
 
         $slug = $this->generateUniqueSlug(
-            // Str::slug($request->slug_en ?: $request->title_en),
-            Str::slug($request->slug_en),
+            Str::slug($request->slug_en ?: $request->title_en),
+            // Str::slug($request->slug_en),
             'slug',
             $category,
             $article->id
