@@ -100,7 +100,8 @@ class InvestorReportRepository
                 } else {
                     $q->whereIn("type", [
                         InvestorReportType::AnnualReport,
-                        InvestorReportType::FinancialReport
+                        InvestorReportType::FinancialReport,
+                        InvestorReportType::InvestorUpdate 
                     ]);
                 }
             })
@@ -146,7 +147,8 @@ class InvestorReportRepository
             ->selectRaw("YEAR(datetime) as year")
             ->whereIn("type", [
                 InvestorReportType::AnnualReport,
-                InvestorReportType::FinancialReport
+                InvestorReportType::FinancialReport,
+                InvestorReportType::InvestorUpdate 
             ])
             ->groupBy("year")
             ->orderBy("year", "desc")
