@@ -100,7 +100,7 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('gms/list', 'gmsList')->name('gms.list');
                 Route::get('earnings/list', 'earningsList')->name('earnings.list');
                 Route::get('disclosure/list', 'disclosureList')->name('disclosure.list');
-                Route::get('investor/list', 'investorList')->name('investor.list');
+                Route::get('investor-update/list', 'investorList')->name('investor.list');
                 Route::get('calendar/list', 'calendarList')->name('calendar.list');
                 Route::get('calendar/years', 'years')->name('calendar.years');
             });
