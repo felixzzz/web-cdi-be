@@ -29,6 +29,11 @@ class ApiInvestorController extends Controller
         return $investorReportRepository->findPaginated($request, InvestorReportType::Disclosure);
     }
 
+    public function investorList(Request $request, InvestorReportRepository $investorReportRepository)
+    {
+        return $investorReportRepository->findPaginated($request, InvestorReportType::InvestorUpdate);
+    }
+
     public function calendarList(Request $request, InvestorReportRepository $investorReportRepository)
     {
         return $investorReportRepository->findPaginatedCalendar($request);
