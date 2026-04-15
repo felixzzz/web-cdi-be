@@ -76,6 +76,8 @@ class StorageFile
             'image/png',
             'image/gif',
             'image/webp',
+            'video/webm',
+            'video/mp4',
             'application/pdf',
             'application/msword',
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
