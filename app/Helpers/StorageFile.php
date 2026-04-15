@@ -145,46 +145,40 @@ class StorageFile
     //            ]);
     //    }
 
-    public static function preview($filename)
-    {
-        $disk = 'local';
+   public static function preview($filename)
+{
+    $disk = 'local';
 
-        $mimeType = Storage::disk($disk)->mimeType($filename);
-
-        $fileBase64 = "";
-        if (Storage::disk($disk)->exists($filename)) {
-            $content = Storage::disk($disk)->get($filename);
-            $fileBase64 = base64_encode($content); // Encode binary data
-        }
-
-        if (!$fileBase64) {
-            abort(404);
-        }
-
-        $fileContent = base64_decode($fileBase64); // Decode to binary
-
-        // Ubah ke WebP jika format image (selain SVG)
-        // if (str_contains($mimeType, 'image/') && $mimeType != 'image/svg+xml') {
-        //     $mimeType = 'image/webp';
-        // }
-        if (str_contains($mimeType, 'video/')) {
-            $mimeType = 'video/webm';
-        } else if ($mimeType === 'image/svg+xml') {
-            $mimeType = 'image/svg+xml';
-        } else if (str_contains($mimeType, 'image/')) {
-            $mimeType = 'image/webp';
-        }
-
-        $filenames = explode('/', $filename);
-        $fileName = @$filenames[count($filenames) - 1];
-
-        return response($fileContent)
-            ->withHeaders([
-                'Content-Type' => $mimeType,
-                'Cache-Control' => "public, max-age=86400, immutable",
-                'Content-disposition' => 'filename="' . $fileName . '"'
-            ]);
+    if (!Storage::disk($disk)->exists($filename)) {
+        abort(404);
     }
+
+    $mimeType = Storage::disk($disk)->mimeType($filename);
+
+    if ($mimeType === 'image/svg+xml') {
+        $mimeType = 'image/svg+xml';
+    } else if (str_contains($mimeType, 'image/')) {
+        $mimeType = 'image/webp'; 
+    }
+
+    $fullPath = Storage::disk($disk)->path($filename);
+    $size = Storage::disk($disk)->size($filename);
+    $filenames = explode('/', $filename);
+    $fileName = end($filenames);
+
+    return response()->stream(function () use ($fullPath) {
+        $stream = fopen($fullPath, 'rb');
+        fpassthru($stream);
+        fclose($stream);
+    }, 200, [
+        'Content-Type' => $mimeType,
+        'Content-Length' => $size,
+        'Accept-Ranges' => 'bytes', // Wajib untuk video player (seek/forward)
+        'Cache-Control' => "public, max-age=86400, immutable",
+        // Gunakan 'inline' agar video terputar di browser, bukan langsung otomatis ter-download
+        'Content-Disposition' => 'inline; filename="' . $fileName . '"' 
+    ]);
+}
 
 
     //    public static function preview($filename)

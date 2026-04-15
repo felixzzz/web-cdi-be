@@ -20,20 +20,19 @@ if (!function_exists('itcan')) {
 if (!function_exists('previewFile')) {
     function previewFile($prefix)
     {
-        return route('preview.storage', $prefix).".webp";
+        return route('preview.storage', $prefix);
     }
 }
-
 
 if (!function_exists('decryptBase64')) {
     function decryptBase64($str)
     {
-        if(!$str){
+        if (!$str) {
             return null;
         }
-        try{
+        try {
             return base64_decode(urldecode($str));
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return null;
         }
     }
@@ -80,14 +79,16 @@ if (!function_exists('parseDate')) {
 
 
 if (!function_exists('getYears')) {
-    function getYears($start = 2000, $end = null) {
+    function getYears($start = 2000, $end = null)
+    {
         $end = $end ?? date('Y'); // Default sampai tahun sekarang
         return range($end, $start);
     }
 }
 
 if (!function_exists('getPageManagementVideo')) {
-    function getPageManagementVideo($path) {
+    function getPageManagementVideo($path)
+    {
         $decryptedPath = Helper::shortDecrypt($path);
 
         return $decryptedPath;

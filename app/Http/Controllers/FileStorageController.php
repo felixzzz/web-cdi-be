@@ -14,13 +14,15 @@ use App\Repositories\Investor\InvestorReportRepository;
 
 class FileStorageController extends Controller
 {
-    public function preview(Request $request,$file){
+    public function preview(Request $request, $file)
+    {
         if (!$file) return null;
-        try{
-            $file = str_replace('.webp','',$file);
+        try {
+            $file = str_replace(['.webp', '.webm', '.mp4'], '', $file);
             $file = Helper::shortDecrypt($file);
             return StorageFile::preview($file);
-        }catch(\Exception $e){}
+        } catch (\Exception $e) {
+        }
         return null;
     }
 
@@ -28,16 +30,17 @@ class FileStorageController extends Controller
     {
         if (!$file) return null;
         try {
-            $file = str_replace('.webp', '', $file);
+            $file = str_replace(['.webp', '.webm', '.mp4'], '', $file);
             $file = Helper::shortDecrypt($file);
             return StorageFile::download($file);
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
         return null;
     }
 
     public function filePreview($lang = 'default', $type = null, $key = null)
     {
-        try{
+        try {
             if ($type == 'report') {
                 $row = InvestorReport::where('ulid', $key)->first();
                 if ($lang !=  'default') {
@@ -92,13 +95,14 @@ class FileStorageController extends Controller
                 }
                 return StorageFile::preview($file);
             }
-        }catch(\Exception $e){}
+        } catch (\Exception $e) {
+        }
         return null;
     }
 
     public function fileDownload($lang = 'default', $type = null, $key = null)
     {
-        try{
+        try {
             $fileName = null;
             if ($type == 'report') {
                 if ($key == 'all') {
@@ -162,9 +166,8 @@ class FileStorageController extends Controller
                 }
             }
             return StorageFile::download($file, $fileName);
-        }catch(\Exception $e){}
+        } catch (\Exception $e) {
+        }
         return null;
     }
-
-
 }
