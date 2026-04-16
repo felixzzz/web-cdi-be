@@ -60,11 +60,11 @@ export const MENU = [
         active: 'investor',
         subs: [
             {
-                name: 'navbar.report',
+                name: 'navbar.financial_information',
                 route: route('investor.report')
             },
             {
-                name: 'navbar.financial_information',
+                name: 'navbar.report',
                 route: route('investor.financial-information')
             },
             {

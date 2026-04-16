@@ -39,6 +39,7 @@
 
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_en" :value="$data->title_en" type="text" required />
+            <x-portal::form.input label="Slug" placeholder="Slug" name="slug" :value="$data->slug" type="text" required />
             <x-portal::form.group
                 label="Content"
                 name="content_en"
@@ -54,27 +55,30 @@
                     {!! $data->content_en !!}
                 </x-editor.ckeditor>
             </x-portal::form.group>
+            <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description" :value="@$data->meta_tag['description']" type="text" />
+            <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword" :value="@$data->meta_tag['keyword']" type="text" />
 
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_id" :value="$data->title_id" type="text" required />
-                <x-portal::form.group
-                    label="Content"
+            <x-portal::form.input label="Slug" placeholder="Slug" name="slug_id" :value="$data->slug_id" type="text" required />
+            <x-portal::form.group
+                label="Content"
+                name="content_id"
+                description=""
+                description-trailing=""
+            >
+                <x-editor.ckeditor
+                    placeholder=""
                     name="content_id"
-                    description=""
-                    description-trailing=""
+                    height="150"
+                    uploadUrl="{{ route('admin.editor.upload') }}"
                 >
-                    <x-editor.ckeditor
-                        placeholder=""
-                        name="content_id"
-                        height="150"
-                        uploadUrl="{{ route('admin.editor.upload') }}"
-                    >
-                        {!! $data->content_id !!}
-                    </x-editor.ckeditor>
-                </x-portal::form.group>
+                    {!! $data->content_id !!}
+                </x-editor.ckeditor>
+            </x-portal::form.group>
 
-            <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description" :value="@$data->meta_tag['description']" type="text" />
-            <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword" :value="@$data->meta_tag['keyword']" type="text" />
+            <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description_id" :value="@$data->meta_tag_id['description']" type="text" />
+            <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword_id" :value="@$data->meta_tag_id['keyword']" type="text" />
             <x-portal::form.group
                 label="Tags"
                 name="tags"

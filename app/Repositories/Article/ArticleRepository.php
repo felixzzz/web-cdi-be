@@ -17,70 +17,81 @@ class ArticleRepository
      */
     public function __construct()
     {
-        //
     }
 
     public function newsDatatable($perPage = 10)
     {
         $search = request('search');
+
         return Article::query()
-        ->join("article_categories", "article_categories.id", "articles.article_category_id")
+        ->join('article_categories', 'article_categories.id', 'articles.article_category_id')
         ->where(function ($q) use ($search) {
-            $q->where("articles.title_en", "LIKE", "%$search%");
-            $q->orWhere("articles.title_id", "LIKE", "%$search%");
-            $q->orWhere("article_categories.name_en", "LIKE", "%$search%");
+            $q->where('articles.title_en', 'LIKE', "%$search%");
+            $q->orWhere('articles.title_id', 'LIKE', "%$search%");
+            $q->orWhere('article_categories.name_en', 'LIKE', "%$search%");
         })
-        ->where("articles.category", ArticleCategory::News)
+        ->where('articles.category', ArticleCategory::News)
         ->select([
             'articles.*',
-            'article_categories.name_en as category_name'
+            'article_categories.name_en as category_name',
         ])
-        ->datatable($perPage, "articles.created_at");
+        ->datatable($perPage, 'articles.created_at');
     }
 
     public function blogDatatable($perPage = 10)
     {
         $search = request('search');
+
         return Article::query()
         ->where(function ($q) use ($search) {
-            $q->where("articles.title_en", "LIKE", "%$search%");
-            $q->orWhere("articles.title_id", "LIKE", "%$search%");
+            $q->where('articles.title_en', 'LIKE', "%$search%");
+            $q->orWhere('articles.title_id', 'LIKE', "%$search%");
         })
-        ->where("articles.category", ArticleCategory::Blog)
+        ->where('articles.category', ArticleCategory::Blog)
         ->select([
-            'articles.*'
+            'articles.*',
         ])
-        ->datatable($perPage, "articles.created_at");
+        ->datatable($perPage, 'articles.created_at');
     }
 
     public function findDetail($ulid, $category)
     {
         return Article::query()
-        ->where("ulid", $ulid)
-        ->where("category", $category)
+        ->where('ulid', $ulid)
+        ->where('category', $category)
         ->firstOrFail();
     }
 
     public function latestArticle($categoryId = null, $type = 'news', $limit = 8)
     {
-        if ($categoryId == 'all') $categoryId = null;
+        if ($categoryId == 'all') {
+            $categoryId = null;
+        }
+
+        $locale = App::getLocale();
 
         return Article::query()
         ->with([
-            'articleCategory'
+            'articleCategory',
         ])
-        ->where("articles.status", 1)
-        ->where("articles.category", $type)
-        ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
-        ->orderBy("datetime", "desc")
+        ->where('articles.status', 1)
+        ->where('articles.category', $type)
+        ->when($categoryId, fn ($q) => $q->whereRelation('articleCategory', fn ($r) => $r->where('ulid', $categoryId)))
+        ->orderBy('datetime', 'desc')
         ->limit($limit)
-        ->get()->map(function ($row) use ($type) {
+        ->get()->map(function ($row) use ($type, $locale) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
-            $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
-            $row->route = route('media.detail', [ 'type' => $type, 'id' => $row->slug ]);
+            $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+            if ($locale === 'id') {
+                $row->slug = $row->slug_id ?: $row->slug;
+                $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
+            }
+
+            $row->route = route('media.detail', ['type' => $type, 'id' => $row->slug]);
+
             return $row;
         });
     }
@@ -88,15 +99,21 @@ class ArticleRepository
     public function findBySlug($slug)
     {
         $data = Article::query()
-        ->where("slug", $slug)
+        ->where('slug', $slug)
         ->firstOrFail();
 
         if ($data) {
             $data->title = $data->title;
             $data->content = $data->content;
             $data->short_content = $data->short_content;
-            $data->date = Carbon::parse($data->datetime)->translatedFormat("d-m-Y");
+            $data->date = Carbon::parse($data->datetime)->translatedFormat('d-m-Y');
             $data->image = previewFile($data->thumbnail);
+            $locale = App::getLocale();
+            if ($locale === 'id') {
+                $data->slug = $data->slug_id ?: $data->slug;
+                $data->meta_tag = $data->meta_tag_id;
+                $data->meta_tag = $data->meta_tag_id ?: $data->meta_tag;
+            }
         }
 
         return $data;
@@ -104,19 +121,26 @@ class ArticleRepository
 
     public function relates($ulid)
     {
+        $locale = App::getLocale();
+
         return Article::query()
         ->with([
-            'articleCategory'
+            'articleCategory',
         ])
-        ->where("articles.status", 1)
-        ->where("ulid", "!=", $ulid)
-        ->orderBy("datetime", "desc")
+        ->where('articles.status', 1)
+        ->where('ulid', '!=', $ulid)
+        ->orderBy('datetime', 'desc')
         ->limit(3)
-        ->get()->map(function ($row) {
+        ->get()->map(function ($row, $locale) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->image = previewFile($row->thumbnail);
-            $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
+            $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+            if ($locale === 'id') {
+                $row->slug = $row->slug_id ?: $row->slug;
+                $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
+            }
+
             return $row;
         });
     }
@@ -132,14 +156,14 @@ class ArticleRepository
         if (count($news) > 0) {
             $data[] = (object) [
                 'title' => $locale == 'en' ? 'Latest <span class="text-blue-lighter">News</span>' : '<span class="text-blue-lighter">Berita</span> Terbaru',
-                'data' => $news[0]
+                'data' => $news[0],
             ];
         }
 
         if (count($blog) > 0) {
             $data[] = (object) [
                 'title' => $locale == 'en' ? 'Latest <span class="text-blue-lighter">Blog</span>' : '<span class="text-blue-lighter">Blog</span> Terbaru',
-                'data' => $blog[0]
+                'data' => $blog[0],
             ];
         }
 
@@ -151,18 +175,22 @@ class ArticleRepository
         $maxLimit = 15;
         $limit = $request->get('limit', $maxLimit);
         $categoryId = $request->category_id;
-        if ($categoryId == 'null' || $categoryId == 'all') $categoryId = '';
+        if ($categoryId == 'null' || $categoryId == 'all') {
+            $categoryId = '';
+        }
+        $locale = App::getLocale();
 
         $data = Article::query()
             ->with([
-                'articleCategory'
+                'articleCategory',
             ])
-            ->where("category", $type)
-            ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
-            ->where("status", 1)
-            ->orderBy('datetime','desc')
-            ->orderBy('id','desc')
+            ->where('category', $type)
+            ->when($categoryId, fn ($q) => $q->whereRelation('articleCategory', fn ($r) => $r->where('ulid', $categoryId)))
+            ->where('status', 1)
+            ->orderBy('datetime', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($limit);
+
         return [
             'links' => Helper::makePagination($data),
             'meta' => Helper::metaPagination($data),
@@ -170,35 +198,44 @@ class ArticleRepository
                 ->reverse()
                 ->take($maxLimit)
                 ->reverse()
-                ->map(function ($row) {
-                        $row->category_name = $row->articleCategory?->name;
-                        $row->title = $row->title;
-                        $row->image = previewFile($row->thumbnail);
-                        $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
-                        return $row;
-                })->values()
+                ->map(function ($row) use ($locale) {
+                    $row->category_name = $row->articleCategory?->name;
+                    $row->title = $row->title;
+                    $row->image = previewFile($row->thumbnail);
+                    $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+                    if ($locale === 'id') {
+                        $row->slug = $row->slug_id ?: $row->slug;
+                        $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
+                    }
+
+                    return $row;
+                })->values(),
         ];
     }
 
     public function findPaginatedSustainability(Request $request)
     {
-        $categories = ArticleArticleCategory::where("is_sustainability", 1)->pluck("id")->toArray();
+        $categories = ArticleArticleCategory::where('is_sustainability', 1)->pluck('id')->toArray();
         $maxLimit = 15;
         $limit = $request->get('limit', $maxLimit);
         $categoryId = $request->category_id;
-        if ($categoryId == 'null' || $categoryId == 'all') $categoryId = '';
+        if ($categoryId == 'null' || $categoryId == 'all') {
+            $categoryId = '';
+        }
+        $locale = App::getLocale();
 
         $data = Article::query()
             ->with([
-                'articleCategory'
+                'articleCategory',
             ])
-            ->where("category", "news")
-            ->whereIn("articles.article_category_id", $categories)
-            ->when($categoryId, fn ($q) => $q->whereRelation("articleCategory", fn ($r) => $r->where("ulid", $categoryId)))
-            ->where("status", 1)
-            ->orderBy('datetime','desc')
-            ->orderBy('id','desc')
+            ->where('category', 'news')
+            ->whereIn('articles.article_category_id', $categories)
+            ->when($categoryId, fn ($q) => $q->whereRelation('articleCategory', fn ($r) => $r->where('ulid', $categoryId)))
+            ->where('status', 1)
+            ->orderBy('datetime', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($limit);
+
         return [
             'links' => Helper::makePagination($data),
             'meta' => Helper::metaPagination($data),
@@ -206,13 +243,19 @@ class ArticleRepository
                 ->reverse()
                 ->take($maxLimit)
                 ->reverse()
-                ->map(function ($row) {
-                        $row->category_name = $row->articleCategory?->name;
-                        $row->title = $row->title;
-                        $row->image = previewFile($row->thumbnail);
-                        $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
-                        return $row;
-                })->values()
+                ->map(function ($row) use ($locale) {
+                    $row->category_name = $row->articleCategory?->name;
+                    $row->title = $row->title;
+                    $row->image = previewFile($row->thumbnail);
+                    $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+
+                    if ($locale === 'id') {
+                        $row->slug = $row->slug_id ?: $row->slug;
+                        $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
+                    }
+
+                    return $row;
+                })->values(),
         ];
     }
 
@@ -226,7 +269,7 @@ class ArticleRepository
         if (count($news) > 0) {
             $data[] = (object) [
                 'title' => $locale == 'en' ? 'Sustainability <span class="text-blue-lighter">In Action</span>' : 'Keberlanjutan <span class="text-blue-lighter">Dalam Aksi</span>',
-                'data' => $news[0]
+                'data' => $news[0],
             ];
         }
 
@@ -235,24 +278,31 @@ class ArticleRepository
 
     public function findLatestSustainability()
     {
-        $categories = ArticleArticleCategory::where("is_sustainability", 1)->pluck("id")->toArray();
+        $categories = ArticleArticleCategory::where('is_sustainability', 1)->pluck('id')->toArray();
+        $locale = App::getLocale();
 
         return Article::query()
         ->with([
-            'articleCategory'
+            'articleCategory',
         ])
-        ->where("articles.status", 1)
-        ->where("articles.category", 'news')
-        ->whereIn("articles.article_category_id", $categories)
-        ->orderBy("datetime", "desc")
+        ->where('articles.status', 1)
+        ->where('articles.category', 'news')
+        ->whereIn('articles.article_category_id', $categories)
+        ->orderBy('datetime', 'desc')
         ->limit(1)
-        ->get()->map(function ($row) {
+        ->get()->map(function ($row) use ($locale) {
             $row->category_name = $row->articleCategory?->name;
             $row->title = $row->title;
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
-            $row->date = Carbon::parse($row->datetime)->translatedFormat("d-m-Y");
-            $row->route = route('media.detail', [ 'type' => 'news', 'id' => $row->slug ]);
+            $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+            if ($locale === 'id') {
+                $row->slug = $row->slug_id ?: $row->slug;
+                $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
+            }
+
+            $row->route = route('media.detail', ['type' => 'news', 'id' => $row->slug]);
+
             return $row;
         });
     }

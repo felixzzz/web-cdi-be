@@ -2,13 +2,13 @@
 
 namespace App\Actions\Article;
 
+use App\Enums\ArticleCategory;
 use App\Enums\PreferenceKey;
 use App\Helpers\StorageFile;
-use Illuminate\Http\Request;
-use App\Enums\ArticleCategory;
+use App\Http\Requests\Article\BlogRequest;
 use App\Models\Article\Article;
 use App\Models\Utility\Preference;
-use App\Http\Requests\Article\BlogRequest;
+use Illuminate\Support\Str;
 
 class BlogAction
 {
@@ -17,18 +17,48 @@ class BlogAction
      */
     public function __construct()
     {
-        //
     }
 
-    public function store(BlogRequest $request){
+    public function store(BlogRequest $request)
+    {
+        $category = ArticleCategory::Blog;
+        
+        $slug = $this->generateUniqueSlug(
+            // Str::slug($request->slug_en ?: $request->title_en),
+            Str::slug($request->slug_en),
+            'slug',
+            $category
+        );
+
+        $slugId = $this->generateUniqueSlug(
+            // Str::slug($request->slug_id ?: $request->title_id),
+            Str::slug($request->slug_id),
+            'slug_id',
+            $category
+        );
+
         $data = [
-            ...$request->only(['datetime', 'title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
+            ...$request->only([
+                'datetime',
+                'title_en',
+                'title_id',
+                'article_category_id',
+                'content_en',
+                'content_id',
+                'status',
+            ]),
             'meta_tag' => [
                 'description' => $request->meta_description,
                 'keyword' => $request->meta_keyword,
             ],
-            'category' => ArticleCategory::Blog,
-            'tags' => explode(',', $request->tags)
+            'meta_tag_id' => [
+                'description' => $request->meta_description_id,
+                'keyword' => $request->meta_keyword_id,
+            ],
+            'tags' => explode(',', $request->tags),
+            'category' => $category,
+            'slug' => $slug,
+            'slug_id' => $slugId,
         ];
 
         if ($request->hasFile('thumbnail')) {
@@ -38,12 +68,41 @@ class BlogAction
         return Article::create($data);
     }
 
-    public function update(BlogRequest $request, $ulid){
+    public function update(BlogRequest $request, $ulid)
+    {
         $article = Article::whereUlid($ulid)->firstOrFail();
+
+        $category = ArticleCategory::Blog;
+
+        $slug = $this->generateUniqueSlug(
+            // Str::slug($request->slug_en ?: $request->title_en),
+            Str::slug($request->slug),
+            'slug',
+            $category,
+            $article->id
+        );
+
+        $slugId = $this->generateUniqueSlug(
+            Str::slug($request->slug_id ?: $request->title_id),
+            // Str::slug($request->slug_id),
+            'slug_id',
+            $category,
+            $article->id
+        );
+
         $data = [
             ...$request->only(['datetime', 'title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
             'tags' => explode(',', $request->tags),
-            'slug' => $article->slug
+            'meta_tag' => [
+                'description' => $request->meta_description,
+                'keyword' => $request->meta_keyword,
+            ],
+            'meta_tag_id' => [
+                'description' => $request->meta_description_id,
+                'keyword' => $request->meta_keyword_id,
+            ],
+            'slug' => $slug,
+            'slug_id' => $slugId,
         ];
 
         if ($request->hasFile('thumbnail')) {
@@ -52,10 +111,12 @@ class BlogAction
 
         $article->fill($data);
         $article->save();
+
         return $article;
     }
 
-    public function delete($ulid){
+    public function delete($ulid)
+    {
         return Article::where('ulid', $ulid)->delete();
     }
 
@@ -64,8 +125,26 @@ class BlogAction
         $currentStatus = request()->input('current_status'); // "show" or "hide"
         $newStatus = $currentStatus === 'show' ? 'hide' : 'show';
         Preference::updateOrCreate(
-            ["key" => PreferenceKey::media_blog_status->value], [
-            'content_en' => $newStatus
-        ]);
+            ['key' => PreferenceKey::media_blog_status->value], [
+                'content_en' => $newStatus,
+            ]);
+    }
+
+    protected function generateUniqueSlug(string $baseSlug, string $column, $category, $exceptId = null): string
+    {
+        $slug = $baseSlug;
+        $counter = 1;
+
+        while (
+            Article::where($column, $slug)
+                ->where('category', $category)
+                ->when($exceptId, fn ($q) => $q->where('id', '!=', $exceptId))
+                ->exists()
+        ) {
+            $slug = $baseSlug.'-'.$counter;
+            ++$counter;
+        }
+
+        return $slug;
     }
 }

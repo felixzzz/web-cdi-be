@@ -7,7 +7,7 @@
 @if ($lang == 'en')
     <x-portal::form.group
         label="Background"
-        name="about_us_corporate_structure_file"
+        name="about_us_corporate_structure_en_file"
         description=""
         description-trailing=""
         >

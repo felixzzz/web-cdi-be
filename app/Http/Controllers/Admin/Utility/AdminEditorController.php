@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Utility;
 
-use Illuminate\Support\Str;
 use App\Helpers\StorageFile;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminEditorController extends AdminController
 {
@@ -17,15 +16,29 @@ class AdminEditorController extends AdminController
 
     public function upload(Request $request)
     {
+        $file = null;
+
         if ($request->hasFile('file')) {
-            $url = StorageFile::upload($request->file('file'),'editor');
+            $file = $request->file('file');
+        } elseif ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+        }
+
+        if ($file) {
+            $url = StorageFile::upload($file, 'editor');
+
             $result = [
                 '145' => previewFile($url),
                 '225' => previewFile($url),
-                'default' => previewFile($url)
+                'default' => previewFile($url),
+                'url' => previewFile($url),
+                'uploaded' => 1,
+                'fileName' => $file->getClientOriginalName(),
             ];
+
             return response()->json($result);
         }
-        return '';
+
+        return response()->json(['error' => 'No file uploaded'], 400);
     }
 }
