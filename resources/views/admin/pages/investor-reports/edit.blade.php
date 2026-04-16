@@ -39,7 +39,7 @@
             >
                 <x-portal::file-upload
                     icon="file-type-pdf"
-                    maxsize="5"
+                    maxsize="8"
                     name="file_en"
                     class="w-full"
                     accept="application/pdf" description="Only PDF file are accepted"
@@ -56,7 +56,7 @@
             >
                 <x-portal::file-upload
                     icon="file-type-pdf"
-                    maxsize="5"
+                    maxsize="8"
                     name="file_id"
                     class="w-full"
                     accept="application/pdf" description="Only PDF file are accepted"

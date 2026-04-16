@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->about_us_company_overview_background->file)"
-            maxsize="5"
+            maxsize="8"
             name="about_us_company_overview_background_file"
             class="w-full"
         />
@@ -28,7 +28,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->about_us_company_overview_tagline->file)"
-            maxsize="5"
+            maxsize="8"
             name="about_us_company_overview_tagline_file"
             class="w-full"
         />
@@ -42,7 +42,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->about_us_company_overview->file)"
-            maxsize="5"
+            maxsize="8"
             name="about_us_company_overview_file"
             class="w-full"
         />

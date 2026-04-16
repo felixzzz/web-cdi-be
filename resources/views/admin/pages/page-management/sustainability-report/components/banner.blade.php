@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->sustainability_report_banner->file)"
-            maxsize="5"
+            maxsize="8"
             name="sustainability_report_banner_file"
             class="w-full"
         />

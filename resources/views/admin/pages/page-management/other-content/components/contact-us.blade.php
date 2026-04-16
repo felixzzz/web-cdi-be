@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->contact_us_main->file)"
-            maxsize="5"
+            maxsize="8"
             name="contact_us_main_file"
             class="w-full"
         />

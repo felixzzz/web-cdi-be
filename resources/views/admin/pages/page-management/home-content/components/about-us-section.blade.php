@@ -13,7 +13,7 @@
     >
         <x-file-upload.image
             value="{{ previewFile(@$data->home_about_section->file) }}"
-            maxsize="5"
+            maxsize="8"
             name="home_about_section_file"
             class="w-full"
         />

@@ -20,7 +20,7 @@
     >
     <x-file-upload.image
         :value="previewFile($file)"
-        maxsize="5"
+        maxsize="8"
         name="content_json_swiper_icon[]"
         class="w-full"
     />

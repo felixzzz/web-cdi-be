@@ -7,7 +7,7 @@
     >
     <x-file-upload.image
         :value="previewFile(@$data->media_main->file)"
-        maxsize="5"
+        maxsize="8"
         name="media_main_file"
         class="w-full"
     />

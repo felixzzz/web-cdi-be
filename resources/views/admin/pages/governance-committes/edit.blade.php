@@ -21,7 +21,7 @@
     >
         <x-file-upload.image
             value="{{ previewFile($data->image) }}"
-            maxsize="5"
+            maxsize="8"
             name="image"
             class="w-full"
         />
@@ -34,7 +34,7 @@
     >
         <x-portal::file-upload
             icon="file-type-pdf"
-            maxsize="5"
+            maxsize="8"
             name="file"
             class="w-full"
             accept="application/pdf" description="Only PDF file are accepted"

@@ -9,7 +9,7 @@
     description-trailing=""
     >
     <x-file-upload.image
-        maxsize="5"
+        maxsize="8"
         name="content_json_icon[]"
         class="w-full"
     />

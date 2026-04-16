@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_internal_audit_unit->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_internal_audit_unit_file"
             class="w-full"
         />

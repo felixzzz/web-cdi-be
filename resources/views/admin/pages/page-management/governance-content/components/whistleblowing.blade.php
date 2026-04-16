@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_whistleblowing->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_whistleblowing_file"
             class="w-full"
         />
@@ -29,7 +29,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_whistleblowing_id->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_whistleblowing_id_file"
             class="w-full"
         />
@@ -44,7 +44,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_whistleblowing_detail->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_whistleblowing_detail_file"
             class="w-full"
         />

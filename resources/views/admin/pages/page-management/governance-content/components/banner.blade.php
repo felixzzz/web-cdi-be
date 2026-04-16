@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_banner->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_banner_file"
             class="w-full"
         />

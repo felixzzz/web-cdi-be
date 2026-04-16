@@ -15,7 +15,7 @@
                 description-trailing=""
             >
                 <x-file-upload.image
-                    maxsize="5"
+                    maxsize="8"
                     name="file"
                     class="w-full"
                     value="{{ previewFile($data->file) }}"

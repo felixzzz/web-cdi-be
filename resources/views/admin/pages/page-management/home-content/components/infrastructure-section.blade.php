@@ -23,7 +23,7 @@
     <div x-show="tab === 'energy'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_infrastructure_energy_file">
-                <x-file-upload.image  maxsize="5" name="home_infrastructure_energy_file" class="w-full" :value="previewFile(@$data->home_infrastructure_energy->file)" />
+                <x-file-upload.image  maxsize="8" name="home_infrastructure_energy_file" class="w-full" :value="previewFile(@$data->home_infrastructure_energy->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_infrastructure_energy_title_{{ $lang }}" :value="@$data->home_infrastructure_energy->{'title_' . $lang}" type="text"  />
@@ -36,7 +36,7 @@
     <div x-show="tab === 'water'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_infrastructure_water_file">
-                <x-file-upload.image  maxsize="5" name="home_infrastructure_water_file" class="w-full" :value="previewFile(@$data->home_infrastructure_water->file)" />
+                <x-file-upload.image  maxsize="8" name="home_infrastructure_water_file" class="w-full" :value="previewFile(@$data->home_infrastructure_water->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_infrastructure_water_title_{{ $lang }}" :value="@$data->home_infrastructure_water->{'title_' . $lang}" type="text"  />
@@ -49,7 +49,7 @@
     <div x-show="tab === 'port_storage'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_infrastructure_port_storage_file">
-                <x-file-upload.image  maxsize="5" name="home_infrastructure_port_storage_file" class="w-full" :value="previewFile(@$data->home_infrastructure_port_storage->file)" />
+                <x-file-upload.image  maxsize="8" name="home_infrastructure_port_storage_file" class="w-full" :value="previewFile(@$data->home_infrastructure_port_storage->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_infrastructure_port_storage_title_{{ $lang }}" :value="@$data->home_infrastructure_port_storage->{'title_' . $lang}" type="text"  />
@@ -62,7 +62,7 @@
     <div x-show="tab === 'logistic'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_infrastructure_logistic_file">
-                <x-file-upload.image  maxsize="5" name="home_infrastructure_logistic_file" class="w-full" :value="previewFile(@$data->home_infrastructure_logistic->file)" />
+                <x-file-upload.image  maxsize="8" name="home_infrastructure_logistic_file" class="w-full" :value="previewFile(@$data->home_infrastructure_logistic->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_infrastructure_logistic_title_{{ $lang }}" :value="@$data->home_infrastructure_logistic->{'title_' . $lang}" type="text"  />

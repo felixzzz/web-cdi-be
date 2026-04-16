@@ -14,6 +14,11 @@ class StorageFile
             return null;
         }
 
+        $maxSize = 7 * 1024 * 1024; // 8388608 bytes
+        if ($file->getSize() > $maxSize) {
+            throw new \Exception('Ukuran file tidak boleh lebih dari 8MB');
+        }
+
         $mimeType = $file->getMimeType();
         $allowedMimeTypes = [
             // Image
@@ -67,6 +72,11 @@ class StorageFile
     {
         if (!$file) {
             return null;
+        }
+
+        $maxSize = 7 * 1024 * 1024;
+        if ($file->getSize() > $maxSize) {
+            throw new \Exception('Ukuran file tidak boleh lebih dari 8MB');
         }
 
         $mimeType = $file->getMimeType();
@@ -145,40 +155,40 @@ class StorageFile
     //            ]);
     //    }
 
-   public static function preview($filename)
-{
-    $disk = 'local';
+    public static function preview($filename)
+    {
+        $disk = 'local';
 
-    if (!Storage::disk($disk)->exists($filename)) {
-        abort(404);
+        if (!Storage::disk($disk)->exists($filename)) {
+            abort(404);
+        }
+
+        $mimeType = Storage::disk($disk)->mimeType($filename);
+
+        if ($mimeType === 'image/svg+xml') {
+            $mimeType = 'image/svg+xml';
+        } else if (str_contains($mimeType, 'image/')) {
+            $mimeType = 'image/webp';
+        }
+
+        $fullPath = Storage::disk($disk)->path($filename);
+        $size = Storage::disk($disk)->size($filename);
+        $filenames = explode('/', $filename);
+        $fileName = end($filenames);
+
+        return response()->stream(function () use ($fullPath) {
+            $stream = fopen($fullPath, 'rb');
+            fpassthru($stream);
+            fclose($stream);
+        }, 200, [
+            'Content-Type' => $mimeType,
+            'Content-Length' => $size,
+            'Accept-Ranges' => 'bytes', // Wajib untuk video player (seek/forward)
+            'Cache-Control' => "public, max-age=86400, immutable",
+            // Gunakan 'inline' agar video terputar di browser, bukan langsung otomatis ter-download
+            'Content-Disposition' => 'inline; filename="' . $fileName . '"'
+        ]);
     }
-
-    $mimeType = Storage::disk($disk)->mimeType($filename);
-
-    if ($mimeType === 'image/svg+xml') {
-        $mimeType = 'image/svg+xml';
-    } else if (str_contains($mimeType, 'image/')) {
-        $mimeType = 'image/webp'; 
-    }
-
-    $fullPath = Storage::disk($disk)->path($filename);
-    $size = Storage::disk($disk)->size($filename);
-    $filenames = explode('/', $filename);
-    $fileName = end($filenames);
-
-    return response()->stream(function () use ($fullPath) {
-        $stream = fopen($fullPath, 'rb');
-        fpassthru($stream);
-        fclose($stream);
-    }, 200, [
-        'Content-Type' => $mimeType,
-        'Content-Length' => $size,
-        'Accept-Ranges' => 'bytes', // Wajib untuk video player (seek/forward)
-        'Cache-Control' => "public, max-age=86400, immutable",
-        // Gunakan 'inline' agar video terputar di browser, bukan langsung otomatis ter-download
-        'Content-Disposition' => 'inline; filename="' . $fileName . '"' 
-    ]);
-}
 
 
     //    public static function preview($filename)

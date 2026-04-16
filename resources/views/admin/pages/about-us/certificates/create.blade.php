@@ -11,7 +11,7 @@
                 <!-- Elemen pertama tanpa tombol delete -->
                 <div class="x-portal--file-upload-image flex items-center gap-2 w-full">
                     <x-portal::form.group label="Image" name="file" description="" description-trailing="">
-                        <x-portal::file-upload.image required maxsize="5" name="files[]" class="w-full" required />
+                        <x-portal::file-upload.image required maxsize="8" name="files[]" class="w-full" required />
                     </x-portal::form.group>
                 </div>
             </div>

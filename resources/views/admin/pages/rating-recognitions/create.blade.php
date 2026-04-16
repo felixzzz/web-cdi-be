@@ -23,7 +23,7 @@
             >
                 <x-portal::file-upload.image
                     required
-                    maxsize="5"
+                    maxsize="8"
                     name="image"
                     class="w-full"
                 />

@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_corporate_secretary_team->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_corporate_secretary_team_file"
             class="w-full"
         />

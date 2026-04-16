@@ -25,7 +25,7 @@
                 description-trailing=""
                 >
                 <x-file-upload.image
-                    maxsize="5"
+                    maxsize="8"
                     name="image"
                     class="w-full"
                 />
@@ -135,7 +135,7 @@
                         >
                             <x-portal::file-upload
                                 icon="file-type-pdf"
-                                maxsize="5"
+                                maxsize="8"
                                 name="file_information_en_file"
                                 class="w-full"
                                 accept="application/pdf" description="Only PDF file are accepted"
@@ -171,7 +171,7 @@
                         >
                             <x-portal::file-upload
                                 icon="file-type-pdf"
-                                maxsize="5"
+                                maxsize="8"
                                 name="file_information_id_file"
                                 class="w-full"
                                 accept="application/pdf" description="Only PDF file are accepted"
