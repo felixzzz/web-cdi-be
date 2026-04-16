@@ -22,7 +22,7 @@ class AwardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'nullable|file|max:5120',
+            'file' => 'nullable|file|max:7168',
             'name_en' => 'required',
             'awarder_en' => 'required',
             'name_id' => 'required',

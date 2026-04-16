@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->investor_share_banner->file)"
-            maxsize="5"
+            maxsize="8"
             name="investor_share_banner_file"
             class="w-full"
         />

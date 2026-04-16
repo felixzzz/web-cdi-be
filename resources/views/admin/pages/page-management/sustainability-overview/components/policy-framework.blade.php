@@ -23,7 +23,7 @@
         description-trailing=""
         >
         <x-file-upload
-            maxsize="5"
+            maxsize="8"
             name="sustainability_overview_policy_framework_file_file"
             class="w-full"
             accept="application/pdf"

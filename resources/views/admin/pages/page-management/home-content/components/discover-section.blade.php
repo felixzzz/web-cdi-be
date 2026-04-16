@@ -24,7 +24,7 @@
     <div x-show="tab === 'sustainability'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_discover_sustainability_file">
-                <x-file-upload.image  maxsize="5" name="home_discover_sustainability_file" class="w-full" :value="previewFile(@$data->home_discover_sustainability->file)" />
+                <x-file-upload.image  maxsize="8" name="home_discover_sustainability_file" class="w-full" :value="previewFile(@$data->home_discover_sustainability->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_discover_sustainability_title_{{ $lang }}" :value="@$data->home_discover_sustainability->{'title_' . $lang}" type="text"  />
@@ -37,7 +37,7 @@
     <div x-show="tab === 'our_business'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_discover_our_business_file">
-                <x-file-upload.image  maxsize="5" name="home_discover_our_business_file" class="w-full" :value="previewFile(@$data->home_discover_our_business->file)" />
+                <x-file-upload.image  maxsize="8" name="home_discover_our_business_file" class="w-full" :value="previewFile(@$data->home_discover_our_business->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_discover_our_business_title_{{ $lang }}" :value="@$data->home_discover_our_business->{'title_' . $lang}" type="text"  />
@@ -50,7 +50,7 @@
     <div x-show="tab === 'investor'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_discover_investor_file">
-                <x-file-upload.image  maxsize="5" name="home_discover_investor_file" class="w-full" :value="previewFile(@$data->home_discover_investor->file)" />
+                <x-file-upload.image  maxsize="8" name="home_discover_investor_file" class="w-full" :value="previewFile(@$data->home_discover_investor->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_discover_investor_title_{{ $lang }}" :value="@$data->home_discover_investor->{'title_' . $lang}" type="text"  />
@@ -63,7 +63,7 @@
     <div x-show="tab === 'career'" class="flex flex-col gap-4">
         @if ($lang == 'en')
             <x-portal::form.group label="Background" name="home_discover_career_file">
-                <x-file-upload.image  maxsize="5" name="home_discover_career_file" class="w-full" :value="previewFile(@$data->home_discover_career->file)" />
+                <x-file-upload.image  maxsize="8" name="home_discover_career_file" class="w-full" :value="previewFile(@$data->home_discover_career->file)" />
             </x-portal::form.group>
         @endif
         <x-portal::form.input label="Title" placeholder="Title" name="home_discover_career_title_{{ $lang }}" :value="@$data->home_discover_career->{'title_' . $lang}" type="text"  />

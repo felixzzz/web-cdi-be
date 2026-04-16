@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->about_us_milestone->file)"
-            maxsize="5"
+            maxsize="8"
             name="about_us_milestone_file"
             class="w-full"
         />

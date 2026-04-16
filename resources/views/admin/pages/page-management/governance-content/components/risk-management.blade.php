@@ -26,7 +26,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->governance_risk_management->file)"
-            maxsize="5"
+            maxsize="8"
             name="governance_risk_management_file"
             class="w-full"
         />

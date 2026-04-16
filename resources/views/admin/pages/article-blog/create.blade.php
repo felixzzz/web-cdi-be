@@ -15,7 +15,7 @@
             >
                 <x-portal::file-upload.image
                     required
-                    maxsize="5"
+                    maxsize="8"
                     name="thumbnail"
                     class="w-full"
                 />

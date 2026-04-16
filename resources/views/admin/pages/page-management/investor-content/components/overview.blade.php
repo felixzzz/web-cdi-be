@@ -14,7 +14,7 @@
         >
         <x-file-upload.image
             :value="previewFile(@$data->investor_report_overview->file)"
-            maxsize="5"
+            maxsize="8"
             name="investor_report_overview_file"
             class="w-full"
         />

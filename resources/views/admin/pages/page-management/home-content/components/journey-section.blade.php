@@ -20,7 +20,7 @@
         >
             <x-file-upload.image
                 :value="previewFile(@$data->home_journey_content->file)"
-                maxsize="5"
+                maxsize="8"
                 name="home_journey_content_file"
                 class="w-full"
             />
