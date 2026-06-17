@@ -6,7 +6,8 @@
         <x-portal::table>
             <thead>
                 <x-portal::table.row class="!text-neutral-800">
-                    <x-portal::table.head sortable key="name_en">Year</x-portal::table.head>
+                    <x-portal::table.head sortable key="year">Year</x-portal::table.head>
+                    <x-portal::table.head sortable key="priority">Priority</x-portal::table.head>
                     <x-portal::table.head class="flex justify-end">Action</x-portal::table.head>
                 </x-portal::table.row>
             </thead>
@@ -14,6 +15,7 @@
                 @forelse($data as $row)
                     <x-portal::table.row>
                         <x-portal::table.cell class="font-medium">{{ $row->year }}</x-portal::table.cell>
+                        <x-portal::table.cell class="font-medium">{{ $row->priority }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium text-right">
                             <x-portal::dropdown-menu class="flex justify-end">
                                 <x-portal::dropdown-menu.trigger variant="ghost" class="h-fit !px-1 !py-1">
@@ -32,7 +34,7 @@
                     </x-portal::table.row>
                 @empty
                 <x-portal::table.row>
-                    <x-portal::table.cell colspan="2">
+                    <x-portal::table.cell colspan="3">
                         <div class="flex items-center gap-3 justify-center">
                             @svg('tabler-info-circle-f', ['class' => 'icon'])
                             Data Empty

@@ -36,12 +36,12 @@
                             640: { slidesPerView: 2 }
                         }"
                     >
-                        <swiper-slide v-for="(item, index) in data" :key="index">
+                        <swiper-slide v-for="(group, index) in groupedData" :key="group.year">
                             <div class="flex flex-col gap-6 backdrop-blur-sm">
-                                <p class="text-2xl lg:text-[28px] font-medium text-blue-lighter">{{ item.year }}</p>
+                                <p class="text-2xl lg:text-[28px] font-medium text-blue-lighter">{{ group.year }}</p>
                                 <img :src="asset('assets/frontend/icons/ic_timeline.svg')" alt="">
-                                <div class="bg-gradient-1 rounded-lg px-3 py-4">
-                                    <div class="content !text-neutral-5" v-html="item.content"></div>
+                                <div class="bg-gradient-1 rounded-lg px-3 py-4 flex flex-col gap-4">
+                                    <div v-for="item in group.items" :key="item.ulid || item.id" class="content !text-neutral-5" v-html="item.content"></div>
                                 </div>
                             </div>
                         </swiper-slide>
@@ -56,7 +56,7 @@
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
     import { asset } from '@/Lib/utils';
-    import { onMounted, ref } from 'vue'
+    import { onMounted, ref, computed } from 'vue'
     import { Swiper, SwiperSlide } from 'swiper/vue'
     import 'swiper/css'
     import 'swiper/css/navigation'
@@ -70,6 +70,23 @@
     }>()
 
     const data = ref<Milestone[]>([])
+
+    const groupedData = computed(() => {
+        const groups: { [key: string]: Milestone[] } = {}
+        data.value.forEach((item) => {
+            const year = String(item.year)
+            if (!groups[year]) {
+                groups[year] = []
+            }
+            groups[year].push(item)
+        })
+        return Object.keys(groups)
+            .sort((a, b) => parseInt(a) - parseInt(b))
+            .map((year) => ({
+                year,
+                items: groups[year]
+            }))
+    })
 
     onMounted(() => {
         useRequest().get(route('api.utility.milestones'))

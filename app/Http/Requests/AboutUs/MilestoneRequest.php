@@ -23,6 +23,7 @@ class MilestoneRequest extends FormRequest
     {
         return [
             'year' => 'required',
+            'priority' => 'nullable|integer',
             'content_en' => 'required',
             'content_id' => 'required'
         ];

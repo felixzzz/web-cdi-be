@@ -949,6 +949,11 @@ class SustainabilitySeeder extends Seeder
             }
 
             // Simpan ke database
+            if (array_key_exists('file_information', $value)) {
+                $value['file_information_en'] = $value['file_information'];
+                $value['file_information_id'] = $value['file_information'];
+                unset($value['file_information']);
+            }
             SustainabilityContent::create($value);
             sleep(.2);
         }

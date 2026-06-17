@@ -17,17 +17,26 @@ class MilestoneRepository
     public function datatable($perPage = 10)
     {
         $search = request('search');
-        return Milestone::query()
+        $query = Milestone::query()
         ->where(function ($q) use ($search) {
             $q->where("year", "LIKE", "%$search%");
-        })
-        ->datatable($perPage, "created_at");
+        });
+
+        if (!request('filter_column')) {
+            $query->orderBy("year", "asc")->orderBy("priority", "asc");
+            return $query->paginate($perPage);
+        }
+
+        return $query->datatable($perPage, "year", "asc");
     }
 
     public function get()
     {
         return Milestone::query()
-        ->orderBy("year", "asc")->get()->map(function ($row) {
+        ->orderBy("year", "asc")
+        ->orderBy("priority", "asc")
+        ->get()
+        ->map(function ($row) {
             $row->content = $row->content;
             return $row;
         });

@@ -19,6 +19,16 @@
                 @endforeach
             </x-portal::form.select>
 
+            <x-portal::form.input
+                type="number"
+                name="priority"
+                label="Priority"
+                placeholder="0"
+                value="{{ old('priority', $data->priority) }}"
+                description="Lower number means higher priority (e.g. 1 shows before 2)"
+                required
+            />
+
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.group
                 label="Content"

@@ -19,6 +19,7 @@ class MilestoneAction
         $data = [
             ...$request->only([
                 'year',
+                'priority',
                 'content_en',
                 'content_id'
             ])
@@ -31,6 +32,7 @@ class MilestoneAction
         $data = [
             ...$request->only([
                 'year',
+                'priority',
                 'content_en',
                 'content_id'
             ])
