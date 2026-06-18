@@ -41,7 +41,7 @@
                                 <p class="text-2xl lg:text-[28px] font-medium text-blue-lighter">{{ item.year }}</p>
                                 <img :src="asset('assets/frontend/icons/ic_timeline.svg')" alt="">
                                 <div class="bg-gradient-1 rounded-lg px-3 py-4 flex flex-col gap-4">
-                                    <div class="content !text-neutral-5" v-html="item.content"></div>
+                                    <div class="content !text-neutral-5 break-words whitespace-normal" v-html="cleanNbsp(item.content)"></div>
                                 </div>
                             </div>
                         </swiper-slide>
@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
     import Container from '@/Components/Section/Container.vue'
-    import { asset } from '@/Lib/utils';
+    import { asset, cleanNbsp } from '@/Lib/utils';
     import { onMounted, ref, computed } from 'vue'
     import { Swiper, SwiperSlide } from 'swiper/vue'
     import 'swiper/css'
