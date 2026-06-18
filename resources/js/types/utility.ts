@@ -272,6 +272,7 @@ export type Milestone = {
     ulid: string;
     year: string;
     content: string;
+    priority?: number;
 }
 
 export type OurHistory = {

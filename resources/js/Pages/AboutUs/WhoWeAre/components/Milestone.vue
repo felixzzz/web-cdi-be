@@ -36,12 +36,12 @@
                             640: { slidesPerView: 2 }
                         }"
                     >
-                        <swiper-slide v-for="(group, index) in groupedData" :key="group.year">
+                        <swiper-slide v-for="(item, index) in sortedData" :key="item.ulid || item.id">
                             <div class="flex flex-col gap-6 backdrop-blur-sm">
-                                <p class="text-2xl lg:text-[28px] font-medium text-blue-lighter">{{ group.year }}</p>
+                                <p class="text-2xl lg:text-[28px] font-medium text-blue-lighter">{{ item.year }}</p>
                                 <img :src="asset('assets/frontend/icons/ic_timeline.svg')" alt="">
                                 <div class="bg-gradient-1 rounded-lg px-3 py-4 flex flex-col gap-4">
-                                    <div v-for="item in group.items" :key="item.ulid || item.id" class="content !text-neutral-5" v-html="item.content"></div>
+                                    <div class="content !text-neutral-5" v-html="item.content"></div>
                                 </div>
                             </div>
                         </swiper-slide>
@@ -71,21 +71,12 @@
 
     const data = ref<Milestone[]>([])
 
-    const groupedData = computed(() => {
-        const groups: { [key: string]: Milestone[] } = {}
-        data.value.forEach((item) => {
-            const year = String(item.year)
-            if (!groups[year]) {
-                groups[year] = []
-            }
-            groups[year].push(item)
+    const sortedData = computed(() => {
+        return [...data.value].sort((a, b) => {
+            const yearDiff = parseInt(String(a.year)) - parseInt(String(b.year))
+            if (yearDiff !== 0) return yearDiff
+            return (a.priority || 0) - (b.priority || 0)
         })
-        return Object.keys(groups)
-            .sort((a, b) => parseInt(a) - parseInt(b))
-            .map((year) => ({
-                year,
-                items: groups[year]
-            }))
     })
 
     onMounted(() => {
