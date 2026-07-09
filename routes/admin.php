@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\Article\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\Investor\AdminInvestorReportController;
 use App\Http\Controllers\Admin\PageManagement\AdminInvestorController;
 use App\Http\Controllers\Admin\PageManagement\AdminPageOtherController;
+use App\Http\Controllers\Admin\PageManagement\AdminSeoSchemaController;
 use App\Http\Controllers\Admin\OurBusiness\AdminOurBusinessTabController;
 use App\Http\Controllers\Admin\PageManagement\AdminHomeContentController;
 use App\Http\Controllers\Admin\AboutUs\AdminCertificateCategoryController;
@@ -230,6 +231,9 @@ Route::prefix('admin')
 
             Route::get("/other-content", [AdminPageOtherController::class, 'index'])->name("other-content.index");
             Route::post("/other-content", [AdminPageOtherController::class, 'store'])->name("other-content.store");
+
+            Route::get("/seo-schema", [AdminSeoSchemaController::class, 'index'])->name("seo-schema.index");
+            Route::post("/seo-schema", [AdminSeoSchemaController::class, 'store'])->name("seo-schema.store");
         });
     });
 });

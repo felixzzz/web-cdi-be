@@ -55,6 +55,7 @@
             </x-portal::form.group>
             <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description" :value="old('meta_description')" type="text" />
             <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword" :value="old('meta_keyword')" type="text" />
+            <x-editor.json-editor label="JSON-LD Schema (English)" name="json_ld" :value="old('json_ld')" />
 
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_id" :value="old('title_id')" type="text" required />
@@ -77,6 +78,7 @@
 
             <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description_id" :value="old('meta_description_id')" type="text" />
             <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword_id" :value="old('meta_keyword_id')" type="text" />
+            <x-editor.json-editor label="JSON-LD Schema (Indonesian)" name="json_ld_id" :value="old('json_ld_id')" />
             <x-portal::form.group
                 label="Tags"
                 name="tags"

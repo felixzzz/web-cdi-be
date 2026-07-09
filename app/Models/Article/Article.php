@@ -29,7 +29,7 @@ class Article extends Model
 
     protected $slugSourceField = 'title_en';
     protected $slugGroupFields = ['category'];
-    protected $append = ['short_content_en', 'short_content'];
+    protected $append = ['short_content_en', 'short_content', 'json_ld'];
 
     /**
      * Get the attributes that should be cast.
@@ -44,6 +44,12 @@ class Article extends Model
             'meta_tag' => 'array',
             'meta_tag_id' => 'array',
         ];
+    }
+
+    public function getJsonLdAttribute()
+    {
+        $locale = App::getLocale();
+        return $locale === 'id' ? $this->json_ld_id : ($this->attributes['json_ld'] ?? null);
     }
 
     protected function shortContent(): Attribute

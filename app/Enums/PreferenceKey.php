@@ -125,6 +125,13 @@ enum PreferenceKey: string
     case media_blog_status = 'media_blog_status';
     case email_pic_whistleblowing = 'email_pic_whistleblowing';
 
+    case json_ld_homepage = 'json_ld_homepage';
+    case json_ld_about_us = 'json_ld_about_us';
+    case json_ld_governance = 'json_ld_governance';
+    case json_ld_sustainability = 'json_ld_sustainability';
+    case json_ld_contact_us = 'json_ld_contact_us';
+    case json_ld_our_business = 'json_ld_our_business';
+
 
     public function type()
     {
@@ -242,6 +249,12 @@ enum PreferenceKey: string
             'social_x' => PreferenceType::TextContent,
             'social_instagram' => PreferenceType::TextContent,
             'social_facebook' => PreferenceType::TextContent,
+            'json_ld_homepage' => PreferenceType::TextContent,
+            'json_ld_about_us' => PreferenceType::TextContent,
+            'json_ld_governance' => PreferenceType::TextContent,
+            'json_ld_sustainability' => PreferenceType::TextContent,
+            'json_ld_contact_us' => PreferenceType::TextContent,
+            'json_ld_our_business' => PreferenceType::TextContent,
 
             default => PreferenceType::Text
         };
@@ -268,7 +281,8 @@ enum PreferenceKey: string
             self::home_journey_content->value,
             self::home_journey_info_1->value,
             self::home_journey_info_2->value,
-            self::home_journey_info_3->value
+            self::home_journey_info_3->value,
+            self::json_ld_homepage->value
         ];
     }
 
@@ -285,7 +299,8 @@ enum PreferenceKey: string
                 self::about_us_mission->value,
                 self::about_us_milestone->value,
                 self::about_us_company_profile->value,
-                self::about_us_youtube->value
+                self::about_us_youtube->value,
+                self::json_ld_about_us->value
             ];
         }
 
@@ -358,6 +373,7 @@ enum PreferenceKey: string
             self::governance_risk_management_show->value,
             self::governance_she_regulation_show->value,
             self::governance_policy_show->value,
+            self::json_ld_governance->value,
         ];
     }
 
@@ -365,7 +381,8 @@ enum PreferenceKey: string
     {
         return [
             self::our_business_banner->value,
-            self::our_business_overview->value
+            self::our_business_overview->value,
+            self::json_ld_our_business->value
         ];
     }
 
@@ -380,7 +397,8 @@ enum PreferenceKey: string
                     self::sustainability_overview_policy_framework_show->value,
                     self::sustainability_overview_policy_framework_file->value,
                     self::sustainability_overview_rating->value,
-                    self::sustainability_overview_rating_show->value
+                    self::sustainability_overview_rating_show->value,
+                    self::json_ld_sustainability->value
                 ];
                 break;
 
@@ -438,7 +456,8 @@ enum PreferenceKey: string
             self::social_x->value,
             self::social_instagram->value,
             self::social_facebook->value,
-            self::email_pic_whistleblowing->value
+            self::email_pic_whistleblowing->value,
+            self::json_ld_contact_us->value
         ];
     }
 

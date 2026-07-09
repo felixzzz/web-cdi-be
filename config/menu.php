@@ -408,6 +408,13 @@ return [
             'icon' => 'align-box-left-middle',
             'sub' => []
         ],
+        [
+            'name' => 'SEO & Schema',
+            'active' => 'seo-schema',
+            'route' => 'admin.page-management.seo-schema.index',
+            'icon' => 'code',
+            'sub' => []
+        ],
 
 
     ]

@@ -20,7 +20,8 @@ class OurBusiness extends Model
         'title', 'description',
         'banner_title', 'banner_description',
         'overview_title', 'overview_description',
-        'heading_tab_title', 'link_title'
+        'heading_tab_title', 'link_title',
+        'json_ld'
     ];
 
     public function tabs(): HasMany

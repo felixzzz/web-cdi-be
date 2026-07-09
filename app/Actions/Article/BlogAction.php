@@ -55,6 +55,8 @@ class BlogAction
                 'description' => $request->meta_description_id,
                 'keyword' => $request->meta_keyword_id,
             ],
+            'json_ld' => $request->json_ld,
+            'json_ld_id' => $request->json_ld_id,
             'tags' => explode(',', $request->tags),
             'category' => $category,
             'slug' => $slug,
@@ -101,6 +103,8 @@ class BlogAction
                 'description' => $request->meta_description_id,
                 'keyword' => $request->meta_keyword_id,
             ],
+            'json_ld' => $request->json_ld,
+            'json_ld_id' => $request->json_ld_id,
             'slug' => $slug,
             'slug_id' => $slugId,
         ];

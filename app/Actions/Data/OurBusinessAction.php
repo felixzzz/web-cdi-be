@@ -38,6 +38,8 @@ class OurBusinessAction
             'link_title_en' => $request->link_title_en,
             'link_title_id' => $request->link_title_id,
             'link_url' => $request->link_url,
+            'json_ld_en' => $request->json_ld_en,
+            'json_ld_id' => $request->json_ld_id,
         ];
 
         if ($request->hasFile('banner_image')) {
