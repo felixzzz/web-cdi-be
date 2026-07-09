@@ -343,7 +343,7 @@ class PageSeeder extends Seeder
                 'content_id' => '',
             ],
             'home_journey_content' => [
-                'file' => asset('assets/frontend/images/homepage/journey.png'),
+                'file' => asset('assets/frontend/images/homepage/journey.webp'),
                 'title_en' => 'Expanding Infrastructure, Powering Progress',
                 'title_id' => 'Memperluas Infrastruktur, Mendorong Kemajuan',
                 'content_en' => '<p>Chandra Asri Group, through its subsidiary CDI, is driving infrastructure development in Cilegon, a rapidly growing industrial hub. With a diversified portfolio in industrial water, energy, port & storage services, and logistics, CDI is strategically positioned for long-term success. Supported by stable cash flows from long-term contracts with reputable partners, CDI ensures sustainable growth and enhanced margins.</p>',
@@ -465,21 +465,21 @@ class PageSeeder extends Seeder
                 'content_id' => '',
             ],
             'about_us_corporate_structure' => [
-                'file' => asset('assets/frontend/images/about/company_structure.jpg'),
+                'file' => asset('assets/frontend/images/about/company_structure.webp'),
                 'title_en' => '',
                 'title_id' => '',
                 'content_en' => '',
                 'content_id' => '',
             ],
             'about_us_corporate_structure_en' => [
-                'file' => asset('assets/frontend/images/about/company_structure.jpg'),
+                'file' => asset('assets/frontend/images/about/company_structure.webp'),
                 'title_en' => '',
                 'title_id' => '',
                 'content_en' => '',
                 'content_id' => '',
             ],
             'about_us_corporate_structure_id' => [
-                'file' => asset('assets/frontend/images/about/company_structure.jpg'),
+                'file' => asset('assets/frontend/images/about/company_structure.webp'),
                 'title_en' => '',
                 'title_id' => '',
                 'content_en' => '',
