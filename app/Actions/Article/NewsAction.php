@@ -45,6 +45,9 @@ class NewsAction
             ],
             'json_ld' => $request->json_ld,
             'json_ld_id' => $request->json_ld_id,
+            'references' => is_array($request->references) 
+                ? array_values(array_filter($request->references, fn($item) => !empty($item['title']) || !empty($item['url'])))
+                : (is_string($request->references) ? json_decode($request->references, true) : null),
             'tags' => explode(',', $request->tags),
             'category' => $category,
             'slug' => $slug,
@@ -91,6 +94,9 @@ class NewsAction
             ],
             'json_ld' => $request->json_ld,
             'json_ld_id' => $request->json_ld_id,
+            'references' => is_array($request->references) 
+                ? array_values(array_filter($request->references, fn($item) => !empty($item['title']) || !empty($item['url'])))
+                : (is_string($request->references) ? json_decode($request->references, true) : null),
             'slug' => $slug,
             'slug_id' => $slugId,
         ];

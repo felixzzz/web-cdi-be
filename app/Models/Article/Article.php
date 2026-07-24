@@ -43,6 +43,8 @@ class Article extends Model
             'tags' => 'array',
             'meta_tag' => 'array',
             'meta_tag_id' => 'array',
+            'references' => 'array',
+            'sources' => 'array',
         ];
     }
 

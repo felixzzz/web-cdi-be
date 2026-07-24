@@ -79,6 +79,7 @@
             <x-portal::form.input label="Meta Description" placeholder="Meta Description" name="meta_description_id" :value="old('meta_description_id')" type="text" />
             <x-portal::form.input label="Meta Keyword" placeholder="Meta Keyword" name="meta_keyword_id" :value="old('meta_keyword_id')" type="text" />
             <x-editor.json-editor label="JSON-LD Schema (Indonesian)" name="json_ld_id" :value="old('json_ld_id')" />
+            <x-editor.references-repeater label="Article References / Sources" :value="old('references')" />
             <x-portal::form.group
                 label="Tags"
                 name="tags"
