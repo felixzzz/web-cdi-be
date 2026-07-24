@@ -13,66 +13,151 @@
     }
 @endphp
 
-<div class="space-y-3 p-4 border border-gray-200 rounded-lg bg-gray-50/50">
-    <div class="flex items-center justify-between">
+<style>
+    .ref-repeater-box {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background-color: #f9fafb;
+        padding: 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .ref-btn-add {
+        background-color: #2474A5 !important;
+        color: #ffffff !important;
+        padding: 7px 16px !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
+        border: none !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+        transition: background-color 0.2s ease-in-out !important;
+    }
+    .ref-btn-add:hover {
+        background-color: #1b5b82 !important;
+    }
+    .ref-btn-delete {
+        background-color: #fef2f2 !important;
+        color: #dc2626 !important;
+        border: 1px solid #fca5a5 !important;
+        padding: 6px 14px !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease-in-out !important;
+        white-space: nowrap !important;
+    }
+    .ref-btn-delete:hover {
+        background-color: #fee2e2 !important;
+        color: #991b1b !important;
+        border-color: #f87171 !important;
+    }
+    .ref-row-item {
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-end;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .ref-input-group {
+        flex: 1 1 200px;
+        min-width: 200px;
+    }
+    .ref-input-label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 4px;
+    }
+    .ref-input-field {
+        width: 100%;
+        font-size: 13px;
+        color: #1f2937;
+        background-color: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 7px 10px;
+        outline: none;
+        transition: border-color 0.15s ease-in-out;
+    }
+    .ref-input-field:focus {
+        border-color: #2474A5;
+        box-shadow: 0 0 0 2px rgba(36, 116, 165, 0.15);
+    }
+</style>
+
+<div class="ref-repeater-box">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
         <div>
-            <label class="block text-sm font-semibold text-gray-700">
+            <label style="font-size: 14px; font-weight: 700; color: #1f2937; margin: 0;">
                 {{ $label }}
             </label>
-            <p class="text-xs text-gray-500 mt-0.5">
+            <p style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">
                 Tambahkan referensi / sumber data rujukan untuk artikel ini.
             </p>
         </div>
         <button
             type="button"
             onclick="addReferenceRow()"
-            class="px-3 py-1.5 text-xs font-semibold text-white bg-[#2474A5] rounded-md hover:bg-blue-700 transition flex items-center gap-1 shadow-sm"
+            class="ref-btn-add"
         >
-            + Tambah Referensi
+            <span style="font-size: 15px; font-weight: 700;">+</span> Tambah Referensi
         </button>
     </div>
 
-    <div id="references-container" class="space-y-3 mt-3">
+    <div id="references-container" style="display: flex; flex-direction: column; gap: 12px;">
         @if(count($references) > 0)
             @foreach($references as $index => $ref)
-                <div class="reference-row p-3.5 bg-white border border-gray-200 rounded-md flex flex-col md:flex-row gap-3 items-start md:items-center relative shadow-sm">
-                    <div class="flex-1 w-full">
-                        <label class="block text-xs font-semibold text-gray-600 mb-1">Penerbit / Instansi</label>
+                <div class="ref-row-item">
+                    <div class="ref-input-group">
+                        <label class="ref-input-label">Penerbit / Instansi</label>
                         <input
                             type="text"
                             name="references[{{ $index }}][publisherName]"
                             value="{{ $ref['publisherName'] ?? $ref['publisher_name'] ?? '' }}"
                             placeholder="Contoh: Kementerian Perindustrian RI"
-                            class="w-full text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 px-3 py-2 border text-gray-800"
+                            class="ref-input-field"
                         />
                     </div>
-                    <div class="flex-1 w-full">
-                        <label class="block text-xs font-semibold text-gray-600 mb-1">Judul Artikel / Laporan *</label>
+                    <div class="ref-input-group">
+                        <label class="ref-input-label">Judul Artikel / Laporan *</label>
                         <input
                             type="text"
                             name="references[{{ $index }}][title]"
                             value="{{ $ref['title'] ?? '' }}"
                             placeholder="Contoh: Laporan Kinerja Logistik 2025"
-                            class="w-full text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 px-3 py-2 border text-gray-800"
+                            class="ref-input-field"
                         />
                     </div>
-                    <div class="flex-1 w-full">
-                        <label class="block text-xs font-semibold text-gray-600 mb-1">URL Link *</label>
+                    <div class="ref-input-group">
+                        <label class="ref-input-label">URL Link *</label>
                         <input
                             type="url"
                             name="references[{{ $index }}][url]"
                             value="{{ $ref['url'] ?? '' }}"
                             placeholder="https://..."
-                            class="w-full text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 px-3 py-2 border text-gray-800"
+                            class="ref-input-field"
                         />
                     </div>
-                    <button
-                        type="button"
-                        onclick="removeReferenceRow(this)"
-                        class="mt-4 md:mt-5 text-red-600 hover:text-red-800 text-xs font-medium px-2.5 py-2 rounded hover:bg-red-50 border border-red-200 self-end md:self-auto shrink-0 transition"
-                    >
-                        Hapus
-                    </button>
+                    <div>
+                        <button
+                            type="button"
+                            onclick="removeReferenceRow(this)"
+                            class="ref-btn-delete"
+                        >
+                            Hapus
+                        </button>
+                    </div>
                 </div>
             @endforeach
         @endif
@@ -82,51 +167,53 @@
 <script>
     function addReferenceRow() {
         const container = document.getElementById('references-container');
-        const index = container.querySelectorAll('.reference-row').length;
+        const index = container.querySelectorAll('.ref-row-item').length;
         
         const row = document.createElement('div');
-        row.className = 'reference-row p-3.5 bg-white border border-gray-200 rounded-md flex flex-col md:flex-row gap-3 items-start md:items-center relative shadow-sm';
+        row.className = 'ref-row-item';
         row.innerHTML = `
-            <div class="flex-1 w-full">
-                <label class="block text-xs font-semibold text-gray-600 mb-1">Penerbit / Instansi</label>
+            <div class="ref-input-group">
+                <label class="ref-input-label">Penerbit / Instansi</label>
                 <input
                     type="text"
                     name="references[${index}][publisherName]"
                     placeholder="Contoh: Kementerian Perindustrian RI"
-                    class="w-full text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 px-3 py-2 border text-gray-800"
+                    class="ref-input-field"
                 />
             </div>
-            <div class="flex-1 w-full">
-                <label class="block text-xs font-semibold text-gray-600 mb-1">Judul Artikel / Laporan *</label>
+            <div class="ref-input-group">
+                <label class="ref-input-label">Judul Artikel / Laporan *</label>
                 <input
                     type="text"
                     name="references[${index}][title]"
                     placeholder="Contoh: Laporan Kinerja Logistik 2025"
-                    class="w-full text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 px-3 py-2 border text-gray-800"
+                    class="ref-input-field"
                 />
             </div>
-            <div class="flex-1 w-full">
-                <label class="block text-xs font-semibold text-gray-600 mb-1">URL Link *</label>
+            <div class="ref-input-group">
+                <label class="ref-input-label">URL Link *</label>
                 <input
                     type="url"
                     name="references[${index}][url]"
                     placeholder="https://..."
-                    class="w-full text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 px-3 py-2 border text-gray-800"
+                    class="ref-input-field"
                 />
             </div>
-            <button
-                type="button"
-                onclick="removeReferenceRow(this)"
-                class="mt-4 md:mt-5 text-red-600 hover:text-red-800 text-xs font-medium px-2.5 py-2 rounded hover:bg-red-50 border border-red-200 self-end md:self-auto shrink-0 transition"
-            >
-                Hapus
-            </button>
+            <div>
+                <button
+                    type="button"
+                    onclick="removeReferenceRow(this)"
+                    class="ref-btn-delete"
+                >
+                    Hapus
+                </button>
+            </div>
         `;
         container.appendChild(row);
     }
 
     function removeReferenceRow(btn) {
-        const row = btn.closest('.reference-row');
+        const row = btn.closest('.ref-row-item');
         if (row) {
             row.remove();
         }

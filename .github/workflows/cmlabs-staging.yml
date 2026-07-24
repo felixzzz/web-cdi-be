@@ -2,11 +2,10 @@ name: staging-deployment
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   laravel-deploy:
-
     runs-on: ubuntu-latest
     steps:
       - name: SSH remote command executer
@@ -43,7 +42,7 @@ jobs:
           key: ${{secrets.PRIVATE_KEY}}
           # Password for authentication.
           pass: ${{secrets.HOST_PASS}}
-          
+
       - name: Google Chat Notification
         uses: Co-qn/google-chat-notification@releases/v1
         with:
