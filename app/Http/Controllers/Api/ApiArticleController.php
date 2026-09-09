@@ -40,6 +40,16 @@ class ApiArticleController extends Controller
         return $articleRepository->findPaginatedSustainability($request);
     }
 
+    public function detail(ArticleRepository $articleRepository, $type, $slug)
+    {
+        $article = $articleRepository->findBySlug($slug, $type);
+        if (!$article) {
+            return response()->json(['message' => 'Article not found'], 404);
+        }
+
+        return response()->json($article);
+    }
+
     public function blogStatus()
     {
         $blogActive = (new PreferenceRepository())->find(PreferenceKey::media_blog_status->value);

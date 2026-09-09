@@ -60,6 +60,7 @@ Route::middleware(WebApiMiddleware::class)
             ->group(function () {
                 Route::get('blog-status', 'blogStatus')->name('blog-status');
                 Route::get('list/{type}', 'list')->name('list');
+                Route::get('detail/{type}/{slug}', 'detail')->name('detail');
                 Route::get('list-sustainability', 'listSustainability')->name('list-sustainability');
                 Route::get('latest', 'latest')->name('latest');
                 Route::get('latest-media', 'latestMedia')->name('latest-media');

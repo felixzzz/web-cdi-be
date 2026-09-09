@@ -85,6 +85,7 @@ class ArticleRepository
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
             $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+            $row->slug_en = $row->getOriginal('slug') ?: $row->slug;
             if ($locale === 'id') {
                 $row->slug = $row->slug_id ?: $row->slug;
                 $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
@@ -96,22 +97,29 @@ class ArticleRepository
         });
     }
 
-    public function findBySlug($slug)
+    public function findBySlug($slug, $type = null)
     {
         $data = Article::query()
-        ->where('slug', $slug)
-        ->firstOrFail();
+        ->with(['articleCategory'])
+        ->where(function ($q) use ($slug) {
+            $q->where('slug', $slug)
+              ->orWhere('slug_id', $slug);
+        })
+        ->where('status', 1)
+        ->when($type, fn ($q) => $q->where('category', $type))
+        ->first();
 
         if ($data) {
+            $data->category_name = $data->articleCategory?->name;
             $data->title = $data->title;
             $data->content = $data->content;
             $data->short_content = $data->short_content;
             $data->date = Carbon::parse($data->datetime)->translatedFormat('d-m-Y');
             $data->image = previewFile($data->thumbnail);
+            $data->slug_en = $data->getOriginal('slug') ?: $data->slug;
             $locale = App::getLocale();
             if ($locale === 'id') {
                 $data->slug = $data->slug_id ?: $data->slug;
-                $data->meta_tag = $data->meta_tag_id;
                 $data->meta_tag = $data->meta_tag_id ?: $data->meta_tag;
             }
         }
@@ -136,6 +144,7 @@ class ArticleRepository
             $row->title = $row->title;
             $row->image = previewFile($row->thumbnail);
             $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+            $row->slug_en = $row->getOriginal('slug') ?: $row->slug;
             if ($locale === 'id') {
                 $row->slug = $row->slug_id ?: $row->slug;
                 $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
@@ -203,6 +212,7 @@ class ArticleRepository
                     $row->title = $row->title;
                     $row->image = previewFile($row->thumbnail);
                     $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+                    $row->slug_en = $row->getOriginal('slug') ?: $row->slug;
                     if ($locale === 'id') {
                         $row->slug = $row->slug_id ?: $row->slug;
                         $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
@@ -248,6 +258,7 @@ class ArticleRepository
                     $row->title = $row->title;
                     $row->image = previewFile($row->thumbnail);
                     $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+                    $row->slug_en = $row->getOriginal('slug') ?: $row->slug;
 
                     if ($locale === 'id') {
                         $row->slug = $row->slug_id ?: $row->slug;
@@ -296,6 +307,7 @@ class ArticleRepository
             $row->short_content = $row->short_content;
             $row->image = previewFile($row->thumbnail);
             $row->date = Carbon::parse($row->datetime)->translatedFormat('d-m-Y');
+            $row->slug_en = $row->getOriginal('slug') ?: $row->slug;
             if ($locale === 'id') {
                 $row->slug = $row->slug_id ?: $row->slug;
                 $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
