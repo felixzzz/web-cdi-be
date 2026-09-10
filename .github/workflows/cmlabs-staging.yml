@@ -14,7 +14,7 @@ jobs:
         with:
           # Command to execute on the remote server.
           command: |
-            cd /home/dev/server-code/external/chandra/cdi-be
+            cd /var/www/html/chandradaya-investasi/cdi-compro
             sudo chown dev:www-data -R ./
             git stash
             git stash clear

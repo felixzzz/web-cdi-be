@@ -20,6 +20,12 @@ if (!function_exists('itcan')) {
 if (!function_exists('previewFile')) {
     function previewFile($prefix)
     {
+        if (empty($prefix)) {
+            return '';
+        }
+        if (str_starts_with($prefix, 'http://') || str_starts_with($prefix, 'https://') || str_starts_with($prefix, '/assets/')) {
+            return $prefix;
+        }
         return route('preview.storage', $prefix);
     }
 }

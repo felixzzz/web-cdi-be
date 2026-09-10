@@ -31,7 +31,18 @@ class SustainabilityContentRepository
         ->get()->map(function ($row) use ($locale) {
             $row->title = $row->title;
             $row->content = $row->content;
-            $row->content_json = $locale == 'en' ? $row->content_json_en : $row->content_json_id;
+
+            $contentJson = $locale == 'en' ? $row->content_json_en : $row->content_json_id;
+            if (is_array($contentJson)) {
+                $contentJson = array_map(function ($item) {
+                    if (is_array($item) && !empty($item['icon'])) {
+                        $item['icon'] = previewFile($item['icon']);
+                    }
+                    return $item;
+                }, $contentJson);
+            }
+            $row->content_json = $contentJson;
+
             $row->image = $row->image ? previewFile($row->image) : '';
             $row->file_information = $locale == 'en' ? $row->file_information_en : $row->file_information_id;
             return $row;

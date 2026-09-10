@@ -4,23 +4,24 @@
 
 <x-portal::form.group
     label="Image Or Icon"
-    name="content_json_icon[]"
+    name="content_json_icon[{{ $rand }}]"
     description=""
     description-trailing=""
     >
     <x-file-upload.image
         maxsize="8"
-        name="content_json_icon[]"
+        name="content_json_icon[{{ $rand }}]"
         class="w-full"
     />
 </x-portal::form.group>
+<input type="hidden" name="content_json_icon_existing[{{ $rand }}]" value="">
 <div class="flex max-lg:flex-col w-full gap-4">
     <div class="flex flex-col gap-4 w-full lg:max-w-[48%]">
         <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
-        <x-portal::form.input label="Title" placeholder="Title" name="content_json_title_en[]" type="text" />
+        <x-portal::form.input label="Title" placeholder="Title" name="content_json_title_en[{{ $rand }}]" type="text" />
         <x-portal::form.group
             label="Content"
-            name="content_json_description_en[]"
+            name="content_json_description_en[{{ $rand }}]"
             description=""
             description-trailing=""
         >
@@ -29,7 +30,7 @@
                     class="!border-input rounded-b-md">
 
                 </div>
-                <textarea name="content_json_description_en[]" id="quill_editor_content_json_description_en_{{ $rand }}_value" class="hidden"></textarea>
+                <textarea name="content_json_description_en[{{ $rand }}]" id="quill_editor_content_json_description_en_{{ $rand }}_value" class="hidden"></textarea>
             </div>
         </x-portal::form.group>
     </div>
@@ -38,10 +39,10 @@
     </div>
     <div class="flex flex-col gap-4 w-full lg:max-w-[48%]">
         <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
-        <x-portal::form.input label="Title" placeholder="Title" name="content_json_title_id[]" type="text" />
+        <x-portal::form.input label="Title" placeholder="Title" name="content_json_title_id[{{ $rand }}]" type="text" />
         <x-portal::form.group
             label="Content"
-            name="content_json_description_id"
+            name="content_json_description_id[{{ $rand }}]"
             description=""
             description-trailing=""
         >
@@ -50,7 +51,7 @@
                     class="!border-input rounded-b-md">
 
                 </div>
-                <textarea name="content_json_description_id[]" id="quill_editor_content_json_description_id_{{ $rand }}_value" class="hidden"></textarea>
+                <textarea name="content_json_description_id[{{ $rand }}]" id="quill_editor_content_json_description_id_{{ $rand }}_value" class="hidden"></textarea>
             </div>
         </x-portal::form.group>
     </div>
