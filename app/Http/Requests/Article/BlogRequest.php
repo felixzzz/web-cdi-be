@@ -23,6 +23,8 @@ class BlogRequest extends FormRequest
     {
         return [
             'thumbnail' => 'nullable|file|max:5120',
+            'thumbnail_alt_en' => 'nullable|string|max:255',
+            'thumbnail_alt_id' => 'nullable|string|max:255',
             'title_en' => 'required',
             // 'slug_en' => 'required|string|max:255',
             'content_en' => 'required',

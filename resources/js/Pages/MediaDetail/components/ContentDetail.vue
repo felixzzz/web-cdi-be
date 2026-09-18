@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <img :src="data.image" alt="" class="w-full rounded-xl mb-10">
+            <img :src="data.image" :alt="data.thumbnail_alt || data.title" class="w-full rounded-xl mb-10">
             <h1 class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-6">
                 {{ data.title }}
             </h1>

@@ -23,6 +23,8 @@ class NewsRequest extends FormRequest
     {
         return [
             'thumbnail' => 'nullable|file|max:5120',
+            'thumbnail_alt_en' => 'nullable|string|max:255',
+            'thumbnail_alt_id' => 'nullable|string|max:255',
             'article_category_id' => 'required',
             'title_en' => 'required',
             'content_en' => 'required',

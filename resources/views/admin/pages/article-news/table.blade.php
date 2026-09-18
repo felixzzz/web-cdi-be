@@ -19,7 +19,7 @@
                 @forelse($data as $row)
                     <x-portal::table.row>
                         <x-portal::table.cell class="font-medium">
-                            <img src="{{ previewFile($row->thumbnail) }}" alt="" class="h-[60px] rounded-md">
+                            <img src="{{ previewFile($row->thumbnail) }}" alt="{{ $row->thumbnail_alt_en ?: $row->title_en }}" class="h-[60px] rounded-md">
                         </x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->datetime }}</x-portal::table.cell>
                         <x-portal::table.cell class="font-medium">{{ $row->title_en }}</x-portal::table.cell>

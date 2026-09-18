@@ -32,6 +32,9 @@ export type News = {
     slug?: string;
     title: string;
     image: string;
+    thumbnail_alt?: string;
+    thumbnail_alt_en?: string;
+    thumbnail_alt_id?: string;
     date: string;
     category_name?: string;
     content?: string;

@@ -46,6 +46,8 @@ class BlogAction
                 'content_en',
                 'content_id',
                 'status',
+                'thumbnail_alt_en',
+                'thumbnail_alt_id',
             ]),
             'meta_tag' => [
                 'description' => $request->meta_description,
@@ -96,7 +98,7 @@ class BlogAction
         );
 
         $data = [
-            ...$request->only(['datetime', 'title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status']),
+            ...$request->only(['datetime', 'title_en', 'title_id', 'article_category_id', 'content_en', 'content_id', 'status', 'thumbnail_alt_en', 'thumbnail_alt_id']),
             'tags' => explode(',', $request->tags),
             'meta_tag' => [
                 'description' => $request->meta_description,

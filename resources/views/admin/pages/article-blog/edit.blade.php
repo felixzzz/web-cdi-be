@@ -27,6 +27,7 @@
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_en" :value="$data->title_en" type="text" required />
             <x-portal::form.input label="Slug" placeholder="Slug" name="slug" :value="$data->slug" type="text" required />
+            <x-portal::form.input label="Thumbnail Alt Text" placeholder="Thumbnail Alt Text" name="thumbnail_alt_en" :value="old('thumbnail_alt_en', $data->thumbnail_alt_en)" type="text" />
             <x-portal::form.group
                 label="Content"
                 name="content_en"
@@ -49,6 +50,7 @@
             <img src="{{ asset('assets/frontend/icons/flag_id.svg') }}" alt="" class="w-5">
             <x-portal::form.input label="Title" placeholder="Title" name="title_id" :value="$data->title_id" type="text" required />
             <x-portal::form.input label="Slug" placeholder="Slug" name="slug_id" :value="$data->slug_id" type="text" required />
+            <x-portal::form.input label="Thumbnail Alt Text" placeholder="Thumbnail Alt Text" name="thumbnail_alt_id" :value="old('thumbnail_alt_id', $data->thumbnail_alt_id)" type="text" />
             <x-portal::form.group
                 label="Content"
                 name="content_id"
