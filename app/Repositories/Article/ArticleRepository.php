@@ -91,6 +91,7 @@ class ArticleRepository
                 $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
             }
             $row->thumbnail_alt = $row->thumbnail_alt;
+            $row->thumbnail_caption = $row->thumbnail_caption;
 
             $row->route = route('media.detail', ['type' => $type, 'id' => $row->slug]);
 
@@ -124,6 +125,7 @@ class ArticleRepository
                 $data->meta_tag = $data->meta_tag_id ?: $data->meta_tag;
             }
             $data->thumbnail_alt = $data->thumbnail_alt;
+            $data->thumbnail_caption = $data->thumbnail_caption;
         }
 
         return $data;
@@ -152,6 +154,7 @@ class ArticleRepository
                 $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
             }
             $row->thumbnail_alt = $row->thumbnail_alt;
+            $row->thumbnail_caption = $row->thumbnail_caption;
 
             return $row;
         });
@@ -221,6 +224,7 @@ class ArticleRepository
                         $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
                     }
                     $row->thumbnail_alt = $row->thumbnail_alt;
+                    $row->thumbnail_caption = $row->thumbnail_caption;
 
                     return $row;
                 })->values(),
@@ -269,6 +273,7 @@ class ArticleRepository
                         $row->meta_tag = $row->meta_tag_id ?: $row->meta_tag;
                     }
                     $row->thumbnail_alt = $row->thumbnail_alt;
+                    $row->thumbnail_caption = $row->thumbnail_caption;
 
                     return $row;
                 })->values(),

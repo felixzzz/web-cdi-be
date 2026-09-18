@@ -25,11 +25,11 @@ class Article extends Model
 
     protected $guarded = [];
 
-    protected $localizedAttributes = ['title', 'content', 'thumbnail_alt'];
+    protected $localizedAttributes = ['title', 'content', 'thumbnail_alt', 'thumbnail_caption'];
 
     protected $slugSourceField = 'title_en';
     protected $slugGroupFields = ['category'];
-    protected $append = ['short_content_en', 'short_content', 'json_ld', 'thumbnail_alt'];
+    protected $append = ['short_content_en', 'short_content', 'json_ld', 'thumbnail_alt', 'thumbnail_caption'];
 
     /**
      * Get the attributes that should be cast.
@@ -68,6 +68,14 @@ class Article extends Model
         return $locale === 'id'
             ? ($this->attributes['title_id'] ?? $this->attributes['title_en'] ?? '')
             : ($this->attributes['title_en'] ?? $this->attributes['title_id'] ?? '');
+    }
+
+    public function getThumbnailCaptionAttribute()
+    {
+        $locale = App::getLocale();
+        return $locale === 'id'
+            ? ($this->attributes['thumbnail_caption_id'] ?? $this->attributes['thumbnail_caption_en'] ?? null)
+            : ($this->attributes['thumbnail_caption_en'] ?? $this->attributes['thumbnail_caption_id'] ?? null);
     }
 
     protected function shortContent(): Attribute

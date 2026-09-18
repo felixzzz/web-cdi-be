@@ -13,7 +13,12 @@
                 </div>
             </div>
 
-            <img :src="data.image" :alt="data.thumbnail_alt || data.title" class="w-full rounded-xl mb-10">
+            <figure class="mb-10">
+                <img :src="data.image" :alt="data.thumbnail_alt || data.title" class="w-full rounded-xl">
+                <figcaption v-if="data.thumbnail_caption" class="mt-3 text-sm text-neutral-500 italic text-center">
+                    {{ data.thumbnail_caption }}
+                </figcaption>
+            </figure>
             <h1 class="text-neutral-13 font-medium text-2xl lg:text-[38px] lg:leading-[44px] mb-6">
                 {{ data.title }}
             </h1>

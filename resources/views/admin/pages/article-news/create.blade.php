@@ -39,6 +39,7 @@
             <x-portal::form.input label="Title" placeholder="Title" name="title_en" :value="old('title_en')" type="text" required />
             <x-portal::form.input label="Slug" placeholder="Slug" name="slug_en" :value="old('slug_en')" type="text" required />
             <x-portal::form.input label="Thumbnail Alt Text" placeholder="Thumbnail Alt Text" name="thumbnail_alt_en" :value="old('thumbnail_alt_en')" type="text" />
+            <x-portal::form.input label="Thumbnail Caption" placeholder="Thumbnail Caption" name="thumbnail_caption_en" :value="old('thumbnail_caption_en')" type="text" />
             <x-portal::form.group
                 label="Content"
                 name="content_en"
@@ -62,6 +63,7 @@
             <x-portal::form.input label="Title" placeholder="Title" name="title_id" :value="old('title_id')" type="text" required />
             <x-portal::form.input label="Slug" placeholder="Slug" name="slug_id" :value="old('slug_id')" type="text" required />
             <x-portal::form.input label="Thumbnail Alt Text" placeholder="Thumbnail Alt Text" name="thumbnail_alt_id" :value="old('thumbnail_alt_id')" type="text" />
+            <x-portal::form.input label="Thumbnail Caption" placeholder="Thumbnail Caption" name="thumbnail_caption_id" :value="old('thumbnail_caption_id')" type="text" />
                 <x-portal::form.group
                     label="Content"
                     name="content_id"

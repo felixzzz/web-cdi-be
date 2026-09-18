@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-test('articles table has thumbnail_alt_en and thumbnail_alt_id columns', function () {
+test('articles table has thumbnail_alt and thumbnail_caption columns', function () {
     expect(Schema::hasColumn('articles', 'thumbnail_alt_en'))->toBeTrue();
     expect(Schema::hasColumn('articles', 'thumbnail_alt_id'))->toBeTrue();
+    expect(Schema::hasColumn('articles', 'thumbnail_caption_en'))->toBeTrue();
+    expect(Schema::hasColumn('articles', 'thumbnail_caption_id'))->toBeTrue();
 });
 
 test('article model localizes thumbnail_alt attribute and falls back properly', function () {
@@ -24,6 +26,8 @@ test('article model localizes thumbnail_alt attribute and falls back properly', 
         'thumbnail' => 'thumbnails/test.jpg',
         'thumbnail_alt_en' => 'Alternative text for English',
         'thumbnail_alt_id' => 'Teks alternatif untuk Indonesia',
+        'thumbnail_caption_en' => 'English Caption',
+        'thumbnail_caption_id' => 'Keterangan Indonesia',
         'category' => ArticleCategory::News,
         'datetime' => now(),
         'title_en' => 'English News Title',
@@ -35,9 +39,11 @@ test('article model localizes thumbnail_alt attribute and falls back properly', 
 
     App::setLocale('en');
     expect($article->thumbnail_alt)->toBe('Alternative text for English');
+    expect($article->thumbnail_caption)->toBe('English Caption');
 
     App::setLocale('id');
     expect($article->thumbnail_alt)->toBe('Teks alternatif untuk Indonesia');
+    expect($article->thumbnail_caption)->toBe('Keterangan Indonesia');
 
     // Test fallback to title when alt text is null
     $articleWithoutAlt = Article::create([
@@ -80,6 +86,8 @@ test('news action stores and updates thumbnail_alt fields', function () {
         'content_id' => '<p>Content</p>',
         'thumbnail_alt_en' => 'News Alt EN',
         'thumbnail_alt_id' => 'News Alt ID',
+        'thumbnail_caption_en' => 'News Caption EN',
+        'thumbnail_caption_id' => 'News Caption ID',
         'tags' => 'tag1,tag2',
         'status' => 1,
     ]);
@@ -90,6 +98,8 @@ test('news action stores and updates thumbnail_alt fields', function () {
 
     expect($article->thumbnail_alt_en)->toBe('News Alt EN');
     expect($article->thumbnail_alt_id)->toBe('News Alt ID');
+    expect($article->thumbnail_caption_en)->toBe('News Caption EN');
+    expect($article->thumbnail_caption_id)->toBe('News Caption ID');
 
     $updateRequest = new NewsRequest();
     $updateRequest->merge([
@@ -103,6 +113,8 @@ test('news action stores and updates thumbnail_alt fields', function () {
         'content_id' => '<p>Content</p>',
         'thumbnail_alt_en' => 'Updated Alt EN',
         'thumbnail_alt_id' => 'Updated Alt ID',
+        'thumbnail_caption_en' => 'Updated Caption EN',
+        'thumbnail_caption_id' => 'Updated Caption ID',
         'tags' => 'tag1',
         'status' => 1,
     ]);
@@ -110,6 +122,8 @@ test('news action stores and updates thumbnail_alt fields', function () {
     $updated = $action->update($updateRequest, $article->ulid);
     expect($updated->thumbnail_alt_en)->toBe('Updated Alt EN');
     expect($updated->thumbnail_alt_id)->toBe('Updated Alt ID');
+    expect($updated->thumbnail_caption_en)->toBe('Updated Caption EN');
+    expect($updated->thumbnail_caption_id)->toBe('Updated Caption ID');
 });
 
 test('blog action stores and updates thumbnail_alt fields', function () {
@@ -128,6 +142,8 @@ test('blog action stores and updates thumbnail_alt fields', function () {
         'content_id' => '<p>Content</p>',
         'thumbnail_alt_en' => 'Blog Alt EN',
         'thumbnail_alt_id' => 'Blog Alt ID',
+        'thumbnail_caption_en' => 'Blog Caption EN',
+        'thumbnail_caption_id' => 'Blog Caption ID',
         'tags' => 'tech',
         'status' => 1,
     ]);
@@ -138,6 +154,8 @@ test('blog action stores and updates thumbnail_alt fields', function () {
 
     expect($article->thumbnail_alt_en)->toBe('Blog Alt EN');
     expect($article->thumbnail_alt_id)->toBe('Blog Alt ID');
+    expect($article->thumbnail_caption_en)->toBe('Blog Caption EN');
+    expect($article->thumbnail_caption_id)->toBe('Blog Caption ID');
 
     $updateRequest = new BlogRequest();
     $updateRequest->merge([
@@ -150,6 +168,8 @@ test('blog action stores and updates thumbnail_alt fields', function () {
         'content_id' => '<p>Content</p>',
         'thumbnail_alt_en' => 'Updated Blog Alt EN',
         'thumbnail_alt_id' => 'Updated Blog Alt ID',
+        'thumbnail_caption_en' => 'Updated Blog Caption EN',
+        'thumbnail_caption_id' => 'Updated Blog Caption ID',
         'tags' => 'tech',
         'status' => 1,
     ]);
@@ -157,4 +177,6 @@ test('blog action stores and updates thumbnail_alt fields', function () {
     $updated = $action->update($updateRequest, $article->ulid);
     expect($updated->thumbnail_alt_en)->toBe('Updated Blog Alt EN');
     expect($updated->thumbnail_alt_id)->toBe('Updated Blog Alt ID');
+    expect($updated->thumbnail_caption_en)->toBe('Updated Blog Caption EN');
+    expect($updated->thumbnail_caption_id)->toBe('Updated Blog Caption ID');
 });
