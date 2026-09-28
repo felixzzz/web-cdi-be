@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Enums\PreferenceKey;
 use App\Enums\QuickLinkCategory;
 use App\Enums\TopicType;
+use App\Helpers\LlmsDefaultContent;
 use App\Http\Controllers\Controller;
 use App\Repositories\AboutUs\MilestoneRepository;
 use App\Repositories\AboutUs\OurHistoryRepository;
@@ -146,5 +147,20 @@ class ApiUtilityController extends Controller
     public function hasGovernanceCommittes(GovernanceCommitteRepository $governanceCommitteRepository)
     {
         return $governanceCommitteRepository->check();
+    }
+
+    public function llms(PreferenceRepository $preferenceRepository)
+    {
+        $llmsTxt = $preferenceRepository->find(PreferenceKey::llms_txt->value);
+        $llmsFullTxt = $preferenceRepository->find(PreferenceKey::llms_full_txt->value);
+
+        return response()->json([
+            'llms_txt' => ($llmsTxt && filled($llmsTxt->content_en)) ? $llmsTxt->content_en : LlmsDefaultContent::llmsTxt(),
+            'llms_full_txt' => ($llmsFullTxt && filled($llmsFullTxt->content_en)) ? $llmsFullTxt->content_en : LlmsDefaultContent::llmsFullTxt(),
+            'raw' => [
+                'llms_txt' => $llmsTxt,
+                'llms_full_txt' => $llmsFullTxt,
+            ],
+        ]);
     }
 }

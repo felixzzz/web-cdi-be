@@ -109,3 +109,18 @@ Route::get('/switch-lang/{locale}', [UtilityController::class, 'switchLang'])->n
 Route::get("googled4f652f8b60be891.html", function () {
     return asset("googled4f652f8b60be891.html");
 });
+
+Route::get('/llms.txt', function (\App\Repositories\Utility\PreferenceRepository $preferenceRepository) {
+    $pref = $preferenceRepository->find(\App\Enums\PreferenceKey::llms_txt->value);
+    $content = ($pref && filled($pref->content_en)) ? $pref->content_en : \App\Helpers\LlmsDefaultContent::llmsTxt();
+
+    return response($content, 200)->header('Content-Type', 'text/plain; charset=utf-8');
+})->name('llms.txt');
+
+Route::get('/llms-full.txt', function (\App\Repositories\Utility\PreferenceRepository $preferenceRepository) {
+    $pref = $preferenceRepository->find(\App\Enums\PreferenceKey::llms_full_txt->value);
+    $content = ($pref && filled($pref->content_en)) ? $pref->content_en : \App\Helpers\LlmsDefaultContent::llmsFullTxt();
+
+    return response($content, 200)->header('Content-Type', 'text/plain; charset=utf-8');
+})->name('llms-full.txt');
+

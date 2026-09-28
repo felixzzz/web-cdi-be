@@ -131,6 +131,8 @@ enum PreferenceKey: string
     case json_ld_sustainability = 'json_ld_sustainability';
     case json_ld_contact_us = 'json_ld_contact_us';
     case json_ld_our_business = 'json_ld_our_business';
+    case llms_txt = 'llms_txt';
+    case llms_full_txt = 'llms_full_txt';
 
 
     public function type()
@@ -255,6 +257,8 @@ enum PreferenceKey: string
             'json_ld_sustainability' => PreferenceType::TextContent,
             'json_ld_contact_us' => PreferenceType::TextContent,
             'json_ld_our_business' => PreferenceType::TextContent,
+            'llms_txt' => PreferenceType::TextContent,
+            'llms_full_txt' => PreferenceType::TextContent,
 
             default => PreferenceType::Text
         };
@@ -458,6 +462,14 @@ enum PreferenceKey: string
             self::social_facebook->value,
             self::email_pic_whistleblowing->value,
             self::json_ld_contact_us->value
+        ];
+    }
+
+    public static function getLlmsKeys()
+    {
+        return [
+            self::llms_txt->value,
+            self::llms_full_txt->value,
         ];
     }
 

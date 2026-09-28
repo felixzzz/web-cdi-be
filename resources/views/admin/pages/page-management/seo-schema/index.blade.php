@@ -30,6 +30,14 @@
                 x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'our-business' }" x-on:click="tab_page = 'our-business'">
                 Our Business
             </button>
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none whitespace-nowrap"
+                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'llms-txt' }" x-on:click="tab_page = 'llms-txt'">
+                llms.txt
+            </button>
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none whitespace-nowrap"
+                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'llms-full-txt' }" x-on:click="tab_page = 'llms-full-txt'">
+                llms-full.txt
+            </button>
         </div>
 
         <!-- Tab Content -->
@@ -109,6 +117,32 @@
                 </div>
                 <div class="flex flex-col gap-4 w-full">
                     <x-editor.json-editor label="Our Business JSON-LD (Indonesian)" name="json_ld_our_business_content_id" :value="old('json_ld_our_business_content_id', @$data->json_ld_our_business->content_id)" />
+                </div>
+            </div>
+
+            <!-- llms.txt -->
+            <div x-show="tab_page === 'llms-txt'" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4 w-full">
+                    <x-editor.markdown-editor
+                        label="llms.txt Content (Served at /llms.txt)"
+                        name="llms_txt_content_en"
+                        :value="old('llms_txt_content_en', @$data->llms_txt->content_en)"
+                        :defaultValue="$defaultLlmsTxt ?? ''"
+                        height="480px"
+                    />
+                </div>
+            </div>
+
+            <!-- llms-full.txt -->
+            <div x-show="tab_page === 'llms-full-txt'" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4 w-full">
+                    <x-editor.markdown-editor
+                        label="llms-full.txt Content (Served at /llms-full.txt)"
+                        name="llms_full_txt_content_en"
+                        :value="old('llms_full_txt_content_en', @$data->llms_full_txt->content_en)"
+                        :defaultValue="$defaultLlmsFullTxt ?? ''"
+                        height="560px"
+                    />
                 </div>
             </div>
         </div>

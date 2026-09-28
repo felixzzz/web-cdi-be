@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin\PageManagement;
 
 use App\Actions\PageManagement\PageManagementAction;
 use App\Enums\PreferenceKey;
+use App\Helpers\Helper;
+use App\Helpers\LlmsDefaultContent;
+use App\Helpers\Optimize;
 use App\Http\Controllers\AdminController;
 use App\Repositories\Utility\PreferenceRepository;
 use Illuminate\Http\Request;
@@ -23,6 +26,8 @@ class AdminSeoSchemaController extends AdminController
             PreferenceKey::json_ld_sustainability->value,
             PreferenceKey::json_ld_contact_us->value,
             PreferenceKey::json_ld_our_business->value,
+            PreferenceKey::llms_txt->value,
+            PreferenceKey::llms_full_txt->value,
         ];
     }
 
@@ -32,7 +37,9 @@ class AdminSeoSchemaController extends AdminController
     public function index()
     {
         return view("admin.pages.page-management.seo-schema.index", [
-            'data' => (new PreferenceRepository())->getAllContentPage('', $this->getSeoSchemaKeys())
+            'data' => (new PreferenceRepository())->getAllContentPage('', $this->getSeoSchemaKeys()),
+            'defaultLlmsTxt' => LlmsDefaultContent::llmsTxt(),
+            'defaultLlmsFullTxt' => LlmsDefaultContent::llmsFullTxt(),
         ]);
     }
 
@@ -40,6 +47,10 @@ class AdminSeoSchemaController extends AdminController
     {
         try {
             $action->store($request, $this->getSeoSchemaKeys(), 'page-management/seo-schema');
+
+            $llmsKeys = PreferenceKey::getLlmsKeys();
+            Optimize::delete(Helper::getPreferenceCacheKey($llmsKeys, 'en'));
+            Optimize::delete(Helper::getPreferenceCacheKey($llmsKeys, 'id'));
 
             return redirect(route('admin.page-management.seo-schema.index'))->with(['info' => __("admin.success_update")]);
         } catch (\Throwable $e) {
