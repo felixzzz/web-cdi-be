@@ -4,9 +4,9 @@ namespace App\Helpers;
 
 class LlmsDefaultContent
 {
-  public static function llmsTxt(): string
-  {
-    return <<<'MARKDOWN'
+    public static function llmsTxt(): string
+    {
+        return <<<'MARKDOWN'
 # Chandra Daya Investasi
 
 > Chandra Daya Investasi (CDI) adalah perusahaan investasi infrastruktur yang berfokus pada pengembangan dan pengelolaan bisnis infrastruktur di sektor energi, air, pelabuhan dan penyimpanan, serta logistik dan infrastruktur industri di Asia Tenggara.
@@ -203,5 +203,10 @@ class LlmsDefaultContent
 - [Indonesia](https://chandradaya-investasi.com/id)
 - [English](https://chandradaya-investasi.com/en)
 MARKDOWN;
-  }
+    }
+
+    public static function llmsFullTxt(): string
+    {
+        return self::llmsTxt();
+    }
 }

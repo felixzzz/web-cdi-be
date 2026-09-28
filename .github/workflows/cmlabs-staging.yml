@@ -25,6 +25,8 @@ jobs:
             . ~/.nvm/nvm.sh
             nvm exec v22.17.1 npm install
             nvm exec v22.17.1 npm run build
+            npm install
+            npm run build
             php artisan queue:restart
             php artisan cache:clear 
             php artisan route:clear

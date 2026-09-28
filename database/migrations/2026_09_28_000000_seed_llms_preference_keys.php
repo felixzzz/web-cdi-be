@@ -25,7 +25,7 @@ return new class extends Migration
         foreach ($defaults as $key => $values) {
             $enumCase = PreferenceKey::tryFrom($key);
             if ($enumCase) {
-                Preference::firstOrCreate(['key' => $key], [
+                Preference::updateOrCreate(['key' => $key], [
                     'type' => $enumCase->type(),
                     'title_en' => $values['title_en'],
                     'title_id' => $values['title_id'],
