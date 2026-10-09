@@ -51,6 +51,7 @@ Route::middleware(WebApiMiddleware::class)
                 Route::get('/additional-file/{type}', 'additionalFile')->name('additional-file');
                 Route::get('/teams/{type}', 'teams')->name('teams');
                 Route::get('/llms', 'llms')->name('llms');
+                Route::get('/seo-metadata', 'seoMetadata')->name('seo-metadata');
             });
 
         Route::get('press-releases/list', [ApiPressReleaseController::class, 'list'])->name('press-releases.list');

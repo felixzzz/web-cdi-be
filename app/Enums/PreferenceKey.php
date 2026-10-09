@@ -134,6 +134,33 @@ enum PreferenceKey: string
     case llms_txt = 'llms_txt';
     case llms_full_txt = 'llms_full_txt';
 
+    // SEO Meta Keys
+    case meta_home = 'meta_home';
+    case meta_about_us = 'meta_about_us';
+    case meta_about_us_management = 'meta_about_us_management';
+    case meta_about_us_awards = 'meta_about_us_awards';
+    case meta_our_business = 'meta_our_business';
+    case meta_our_business_energy = 'meta_our_business_energy';
+    case meta_our_business_water = 'meta_our_business_water';
+    case meta_our_business_ports = 'meta_our_business_ports';
+    case meta_our_business_logistics = 'meta_our_business_logistics';
+    case meta_governance = 'meta_governance';
+    case meta_governance_policy = 'meta_governance_policy';
+    case meta_governance_whistleblowing = 'meta_governance_whistleblowing';
+    case meta_sustainability = 'meta_sustainability';
+    case meta_sustainability_environment = 'meta_sustainability_environment';
+    case meta_sustainability_social = 'meta_sustainability_social';
+    case meta_sustainability_governance = 'meta_sustainability_governance';
+    case meta_investor_report = 'meta_investor_report';
+    case meta_investor_financial = 'meta_investor_financial';
+    case meta_investor_shares = 'meta_investor_shares';
+    case meta_investor_publications = 'meta_investor_publications';
+    case meta_contact_us = 'meta_contact_us';
+    case meta_media_news = 'meta_media_news';
+    case meta_terms = 'meta_terms';
+    case meta_privacy = 'meta_privacy';
+    case meta_cookies = 'meta_cookies';
+    case meta_disclaimer = 'meta_disclaimer';
 
     public function type()
     {
@@ -259,6 +286,33 @@ enum PreferenceKey: string
             'json_ld_our_business' => PreferenceType::TextContent,
             'llms_txt' => PreferenceType::TextContent,
             'llms_full_txt' => PreferenceType::TextContent,
+
+            'meta_home' => PreferenceType::TextContent,
+            'meta_about_us' => PreferenceType::TextContent,
+            'meta_about_us_management' => PreferenceType::TextContent,
+            'meta_about_us_awards' => PreferenceType::TextContent,
+            'meta_our_business' => PreferenceType::TextContent,
+            'meta_our_business_energy' => PreferenceType::TextContent,
+            'meta_our_business_water' => PreferenceType::TextContent,
+            'meta_our_business_ports' => PreferenceType::TextContent,
+            'meta_our_business_logistics' => PreferenceType::TextContent,
+            'meta_governance' => PreferenceType::TextContent,
+            'meta_governance_policy' => PreferenceType::TextContent,
+            'meta_governance_whistleblowing' => PreferenceType::TextContent,
+            'meta_sustainability' => PreferenceType::TextContent,
+            'meta_sustainability_environment' => PreferenceType::TextContent,
+            'meta_sustainability_social' => PreferenceType::TextContent,
+            'meta_sustainability_governance' => PreferenceType::TextContent,
+            'meta_investor_report' => PreferenceType::TextContent,
+            'meta_investor_financial' => PreferenceType::TextContent,
+            'meta_investor_shares' => PreferenceType::TextContent,
+            'meta_investor_publications' => PreferenceType::TextContent,
+            'meta_contact_us' => PreferenceType::TextContent,
+            'meta_media_news' => PreferenceType::TextContent,
+            'meta_terms' => PreferenceType::TextContent,
+            'meta_privacy' => PreferenceType::TextContent,
+            'meta_cookies' => PreferenceType::TextContent,
+            'meta_disclaimer' => PreferenceType::TextContent,
 
             default => PreferenceType::Text
         };
@@ -470,6 +524,38 @@ enum PreferenceKey: string
         return [
             self::llms_txt->value,
             self::llms_full_txt->value,
+        ];
+    }
+
+    public static function getSeoMetaKeys(): array
+    {
+        return [
+            self::meta_home->value,
+            self::meta_about_us->value,
+            self::meta_about_us_management->value,
+            self::meta_about_us_awards->value,
+            self::meta_our_business->value,
+            self::meta_our_business_energy->value,
+            self::meta_our_business_water->value,
+            self::meta_our_business_ports->value,
+            self::meta_our_business_logistics->value,
+            self::meta_governance->value,
+            self::meta_governance_policy->value,
+            self::meta_governance_whistleblowing->value,
+            self::meta_sustainability->value,
+            self::meta_sustainability_environment->value,
+            self::meta_sustainability_social->value,
+            self::meta_sustainability_governance->value,
+            self::meta_investor_report->value,
+            self::meta_investor_financial->value,
+            self::meta_investor_shares->value,
+            self::meta_investor_publications->value,
+            self::meta_contact_us->value,
+            self::meta_media_news->value,
+            self::meta_terms->value,
+            self::meta_privacy->value,
+            self::meta_cookies->value,
+            self::meta_disclaimer->value,
         ];
     }
 

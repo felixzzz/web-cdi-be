@@ -163,4 +163,9 @@ class ApiUtilityController extends Controller
             ],
         ]);
     }
+
+    public function seoMetadata(PreferenceRepository $preferenceRepository)
+    {
+        return response()->json($preferenceRepository->getAllContentPage("", PreferenceKey::getSeoMetaKeys()));
+    }
 }

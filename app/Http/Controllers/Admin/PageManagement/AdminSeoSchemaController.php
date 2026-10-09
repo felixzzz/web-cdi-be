@@ -19,7 +19,7 @@ class AdminSeoSchemaController extends AdminController
 
     protected function getSeoSchemaKeys(): array
     {
-        return [
+        return array_merge([
             PreferenceKey::json_ld_homepage->value,
             PreferenceKey::json_ld_about_us->value,
             PreferenceKey::json_ld_governance->value,
@@ -28,7 +28,7 @@ class AdminSeoSchemaController extends AdminController
             PreferenceKey::json_ld_our_business->value,
             PreferenceKey::llms_txt->value,
             PreferenceKey::llms_full_txt->value,
-        ];
+        ], PreferenceKey::getSeoMetaKeys());
     }
 
     /**
@@ -51,6 +51,11 @@ class AdminSeoSchemaController extends AdminController
             $llmsKeys = PreferenceKey::getLlmsKeys();
             Optimize::delete(Helper::getPreferenceCacheKey($llmsKeys, 'en'));
             Optimize::delete(Helper::getPreferenceCacheKey($llmsKeys, 'id'));
+
+            $seoMetaKeys = PreferenceKey::getSeoMetaKeys();
+            Optimize::delete(Helper::getPreferenceCacheKey($seoMetaKeys, 'en'));
+            Optimize::delete(Helper::getPreferenceCacheKey($seoMetaKeys, 'id'));
+            Optimize::delete('api_seo_metadata');
 
             return redirect(route('admin.page-management.seo-schema.index'))->with(['info' => __("admin.success_update")]);
         } catch (\Throwable $e) {
