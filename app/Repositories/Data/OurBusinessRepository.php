@@ -72,7 +72,7 @@ class OurBusinessRepository
                 });
 
                 $route = '';
-                if($row->type == 'energy') $route = route('our-business.energy');
+                if($row->type == 'energy') $route = route('our-business.power');
                 if($row->type == 'water') $route = route('our-business.water');
                 if($row->type == 'port_storage') $route = route('our-business.ports-and-storage');
                 if($row->type == 'logistic') $route = route('our-business.logistics');
@@ -88,8 +88,9 @@ class OurBusinessRepository
 
     public function detailByType($type)
     {
+        $businessType = ($type === 'power') ? 'energy' : $type;
         $data = OurBusiness::with(["tabs", "tabs.contents"])
-        ->where("type", $type)
+        ->where("type", $businessType)
         ->firstOrFail();
 
         $locale = App::currentLocale();
@@ -133,12 +134,14 @@ class OurBusinessRepository
     {
         Optimize::delete($this->listKey."_en");
         Optimize::delete($this->detailKey."_en_"."energy");
+        Optimize::delete($this->detailKey."_en_"."power");
         Optimize::delete($this->detailKey."_en_"."water");
         Optimize::delete($this->detailKey."_en_"."port_storage");
         Optimize::delete($this->detailKey."_en_"."logistic");
 
         Optimize::delete($this->listKey."_id");
         Optimize::delete($this->detailKey."_id_"."energy");
+        Optimize::delete($this->detailKey."_id_"."power");
         Optimize::delete($this->detailKey."_id_"."water");
         Optimize::delete($this->detailKey."_id_"."port_storage");
         Optimize::delete($this->detailKey."_id_"."logistic");

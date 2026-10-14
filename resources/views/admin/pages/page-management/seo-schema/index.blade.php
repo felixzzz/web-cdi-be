@@ -163,7 +163,7 @@
                     ],
                     'Our Business' => [
                         ['key' => 'meta_our_business', 'label' => 'Our Business - Overview', 'route' => '/our-business'],
-                        ['key' => 'meta_our_business_energy', 'label' => 'Energy Solutions', 'route' => '/our-business/energy'],
+                        ['key' => 'meta_our_business_energy', 'label' => 'Power Solutions', 'route' => '/our-business/power'],
                         ['key' => 'meta_our_business_water', 'label' => 'Water Solutions', 'route' => '/our-business/water'],
                         ['key' => 'meta_our_business_ports', 'label' => 'Ports & Storage Solutions', 'route' => '/our-business/ports-and-storage'],
                         ['key' => 'meta_our_business_logistics', 'label' => 'Logistics Solutions', 'route' => '/our-business/logistics'],

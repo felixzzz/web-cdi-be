@@ -78,7 +78,10 @@ Route::prefix('our-business')
     Route::get('/', [OurBusinessController::class, 'index'])->name('what-we-do');
     Route::get('/logistics', [LogisticController::class, 'index'])->name('logistics');
     Route::get('/water', [WaterController::class, 'index'])->name('water');
-    Route::get('/energy', [EnergyController::class, 'index'])->name('energy');
+    Route::get('/power', [EnergyController::class, 'index'])->name('power');
+    Route::get('/energy', function () {
+        return redirect()->route('our-business.power', [], 301);
+    })->name('energy');
     Route::get('/ports-and-storage', [PortStorageController::class, 'index'])->name('ports-and-storage');
 });
 
