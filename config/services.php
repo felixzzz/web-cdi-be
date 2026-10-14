@@ -42,6 +42,11 @@ return [
         'keyword' => 'Chandra Daya Investasi, CDI, CDIA, PT Chandra Daya Investasi Tbk, CDI Group'
     ],
 
-    'gtag_id' => env("GTAG_ID")
+    'gtag_id' => env("GTAG_ID"),
+
+    'frontend' => [
+        'url' => env('FRONTEND_URL', 'http://localhost:3000'),
+        'revalidate_secret' => env('REVALIDATION_SECRET_TOKEN', 'cdi-revalidate-secret-token-2026'),
+    ],
 
 ];
