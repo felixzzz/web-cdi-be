@@ -40,6 +40,10 @@ class OurBusinessAction
             'link_url' => $request->link_url,
             'json_ld_en' => $request->json_ld_en,
             'json_ld_id' => $request->json_ld_id,
+            'meta_title_en' => $request->meta_title_en,
+            'meta_title_id' => $request->meta_title_id,
+            'meta_description_en' => $request->meta_description_en,
+            'meta_description_id' => $request->meta_description_id,
         ];
 
         if ($request->hasFile('banner_image')) {
@@ -53,6 +57,33 @@ class OurBusinessAction
         }
 
         OurBusiness::whereUlid($ulid)->update($data);
+
+        // Sync to preferences table so SEO metadata remains unified
+        $prefKeyMap = [
+            'energy' => \App\Enums\PreferenceKey::meta_our_business_energy->value,
+            'water' => \App\Enums\PreferenceKey::meta_our_business_water->value,
+            'port_storage' => \App\Enums\PreferenceKey::meta_our_business_ports->value,
+            'logistic' => \App\Enums\PreferenceKey::meta_our_business_logistics->value,
+        ];
+
+        if ($business && isset($prefKeyMap[$business->type])) {
+            $prefKey = $prefKeyMap[$business->type];
+            \App\Models\Preference::updateOrCreate(
+                ['key' => $prefKey],
+                [
+                    'title_en' => $request->meta_title_en,
+                    'title_id' => $request->meta_title_id,
+                    'content_en' => $request->meta_description_en,
+                    'content_id' => $request->meta_description_id,
+                ]
+            );
+
+            $seoMetaKeys = \App\Enums\PreferenceKey::getSeoMetaKeys();
+            \App\Helpers\Optimize::delete(\App\Helpers\Helper::getPreferenceCacheKey($seoMetaKeys, 'en'));
+            \App\Helpers\Optimize::delete(\App\Helpers\Helper::getPreferenceCacheKey($seoMetaKeys, 'id'));
+            \App\Helpers\Optimize::delete('api_seo_metadata');
+        }
+
         (new OurBusinessRepository())->resetCache();
 
     }

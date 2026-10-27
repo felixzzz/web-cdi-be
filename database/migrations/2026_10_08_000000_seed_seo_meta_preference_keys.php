@@ -94,8 +94,8 @@ return new class extends Migration
                 'content_id' => 'CDI Group menyediakan solusi infrastruktur di sektor energi, air, logistik, serta kepelabuhanan & penyimpanan untuk pertumbuhan yang berkelanjutan.',
             ],
             PreferenceKey::meta_our_business_energy->value => [
-                'title_en' => 'Energy Solutions | Chandra Daya Investasi',
-                'title_id' => 'Solusi Energi | Chandra Daya Investasi',
+                'title_en' => 'Power Solutions | Chandra Daya Investasi',
+                'title_id' => 'Solusi Daya | Chandra Daya Investasi',
                 'content_en' => "CDI Group's energy infrastructure through KCE delivers power supply, electricity services, and renewable energy for industry and the public.",
                 'content_id' => 'Solusi infrastruktur energi CDI Group melalui KCE menghadirkan penyediaan listrik, layanan kelistrikan, dan energi terbarukan untuk industri & publik.',
             ],

@@ -125,6 +125,9 @@ class OurBusinessRepository
             $data->overview_title = $data->overview_title;
             $data->overview_description = $data->overview_description;
 
+            $data->meta_title = $data->meta_title;
+            $data->meta_description = $data->meta_description;
+
             return $data;
 
         }, config('cache.content_lifetime'));

@@ -21,7 +21,8 @@ class OurBusiness extends Model
         'banner_title', 'banner_description',
         'overview_title', 'overview_description',
         'heading_tab_title', 'link_title',
-        'json_ld'
+        'json_ld',
+        'meta_title', 'meta_description'
     ];
 
     public function tabs(): HasMany

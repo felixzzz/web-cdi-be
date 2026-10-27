@@ -89,14 +89,14 @@
             <div x-show="tab_page === 'seo'" class="flex gap-4">
                 <div class="flex flex-col gap-4 w-full">
                     <!-- EN -->
-                    <x-editor.json-editor label="JSON-LD Schema (English)" name="json_ld_en" :value="$data->json_ld_en" />
+                    @include('admin.pages.our-business.components.seo')
                 </div>
                 <div class="max-lg:hidden">
                     <x-portal::separator orientation="vertical" />
                 </div>
                 <div class="flex flex-col gap-4 w-full">
                     <!-- ID -->
-                    <x-editor.json-editor label="JSON-LD Schema (Indonesian)" name="json_ld_id" :value="$data->json_ld_id" />
+                    @include('admin.pages.our-business.components.seo', ['lang' => 'id'])
                 </div>
             </div>
         </div>
