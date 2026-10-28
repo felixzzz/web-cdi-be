@@ -7,6 +7,7 @@ use App\Enums\TopicType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Utility\InboxRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ContactUsController extends Controller
@@ -22,7 +23,11 @@ class ContactUsController extends Controller
             $inboxAction->handle($request, TopicType::ContactUs);
             return back()->with(['success' => __("Data successfully submitted")]);
         } catch (\Throwable $th) {
-            return back()->with(['error' => $th->getMessage()]);
+            Log::error('Failed to store contact us message: ' . $th->getMessage(), [
+                'exception' => $th,
+            ]);
+
+            return back()->with(['error' => __('Failed to submit data. Please try again later.')]);
         }
     }
 
@@ -37,9 +42,13 @@ class ContactUsController extends Controller
                 'message' => __('Data successfully submitted'),
             ], 201); // 201 = Created
         } catch (\Throwable $th) {
+            Log::error('Failed to store contact us message via API: ' . $th->getMessage(), [
+                'exception' => $th,
+            ]);
+
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage(), // di production biasanya diganti message generic
+                'message' => __('Failed to submit data. Please try again later.'),
             ], 500);
         }
     }
