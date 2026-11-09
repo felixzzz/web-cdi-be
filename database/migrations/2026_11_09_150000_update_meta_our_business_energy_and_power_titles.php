@@ -9,8 +9,7 @@ use App\Repositories\Data\OurBusinessRepository;
 use App\Services\FrontendRevalidationService;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,8 +20,8 @@ return new class extends Migration
             ->update([
                 'title_en' => 'Power Solutions | Chandra Daya Investasi',
                 'title_id' => 'Solusi Daya | Chandra Daya Investasi',
-                'content_en' => "CDI Group's energy infrastructure through KCE delivers power supply, electricity services, and renewable energy for industry and the public.",
-                'content_id' => "Solusi infrastruktur energi CDI Group melalui KCE menghadirkan penyediaan listrik, layanan kelistrikan, dan energi terbarukan untuk industri & publik.",
+                'content_en' => "CDI Group's power infrastructure through KCE delivers power supply, electricity services, and renewable energy for industry and the public.",
+                'content_id' => "Solusi infrastruktur Daya CDI Group melalui KCE menghadirkan penyediaan listrik, layanan kelistrikan, dan energi terbarukan untuk industri & publik.",
             ]);
 
         // 2. Update home_infrastructure_energy in preferences
@@ -39,8 +38,8 @@ return new class extends Migration
                 'title_id' => 'Daya',
                 'meta_title_en' => 'Power Solutions | Chandra Daya Investasi',
                 'meta_title_id' => 'Solusi Daya | Chandra Daya Investasi',
-                'meta_description_en' => "CDI Group's energy infrastructure through KCE delivers power supply, electricity services, and renewable energy for industry and the public.",
-                'meta_description_id' => "Solusi infrastruktur energi CDI Group melalui KCE menghadirkan penyediaan listrik, layanan kelistrikan, dan energi terbarukan untuk industri & publik.",
+                'meta_description_en' => "CDI Group's power infrastructure through KCE delivers power supply, electricity services, and renewable energy for industry and the public.",
+                'meta_description_id' => "Solusi infrastruktur Daya CDI Group melalui KCE menghadirkan penyediaan listrik, layanan kelistrikan, dan energi terbarukan untuk industri & publik.",
             ]);
 
         // 4. Invalidate caches so APIs immediately return fresh data
