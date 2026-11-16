@@ -102,6 +102,7 @@ Route::prefix('admin')
         });
 
         Route::resource('offices', AdminOfficeController::class)->except(['show']);
+        Route::post('/teams/sort', [AdminTeamController::class, 'updateSort'])->name('teams.sort');
         Route::resource('teams', AdminTeamController::class)->except(['show']);
 
         Route::controller(AdminEditorController::class)

@@ -47,6 +47,7 @@
 
             <x-portal::form.input label="Name" placeholder="Name" name="name" :value="old('name')" type="text" required />
             <x-portal::form.input label="Position" placeholder="Position" name="position" :value="old('position')" type="text" required />
+            <x-portal::form.input label="Sort Order" placeholder="Sort Order (e.g. 1)" name="sort" :value="old('sort', 0)" type="number" />
 
             <img src="{{ asset('assets/frontend/icons/flag_en.svg') }}" alt="" class="w-5">
             <x-portal::form.group

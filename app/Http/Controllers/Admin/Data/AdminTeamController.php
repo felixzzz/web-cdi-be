@@ -97,4 +97,11 @@ class AdminTeamController extends AdminController
             return redirect()->back()->with(['info' =>  $e->getMessage()]);
         }
     }
+
+    public function updateSort(Request $request, TeamAction $action)
+    {
+        $action->updateSort($request);
+
+        return response()->json(['success' => true, 'message' => 'Sorting updated successfully']);
+    }
 }
