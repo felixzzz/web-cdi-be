@@ -31,8 +31,8 @@ class SecurityHeadersMiddleware
 
         $csp = [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://muhammadlailil.github.io",
             "img-src 'self' data: blob: https:",
             "font-src 'self' data: https://fonts.gstatic.com",
             "connect-src 'self' https://chandradaya-investasi.com https://cdi-be.cmlabs.dev https://analytics.google.com https://*.analytics.google.com https://www.google-analytics.com https://*.google-analytics.com https://googletagmanager.com https://*.googletagmanager.com http://localhost:* http://127.0.0.1:*",

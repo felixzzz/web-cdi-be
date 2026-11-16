@@ -17,12 +17,24 @@ class TeamRepository
     public function datatable($perPage = 10)
     {
         $search = request('search');
-        return Team::query()
-        ->where(function ($q) use ($search) {
-            $q->where("name", "LIKE", "%$search%");
-            $q->orWhere("position", "LIKE", "%$search%");
-        })
-        ->datatable($perPage, "sort", "asc");
+        return collect(\App\Enums\TeamType::cases())->map(function ($type) use ($search) {
+            $query = Team::query()
+                ->where('type', $type->value)
+                ->orderBy('sort', 'asc')
+                ->orderBy('created_at', 'asc');
+
+            if ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'LIKE', "%$search%")
+                      ->orWhere('position', 'LIKE', "%$search%");
+                });
+            }
+
+            return (object) [
+                'type' => $type,
+                'items' => $query->get()
+            ];
+        });
     }
 
     public function get($type)
