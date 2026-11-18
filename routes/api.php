@@ -109,7 +109,7 @@ Route::middleware(WebApiMiddleware::class)
             });
 
         Route::get('institutions/list', [ApiInstitutionController::class, 'list'])->name('institutions.list');
-        Route::get('governances/files/{type}', [ApiGovernanceController::class, 'files'])->name('governances.files')->whereIn('type', ['policy', 'code-of-conduct', 'she-regulation', 'risk-management']);
+        Route::get('governances/files/{type}', [ApiGovernanceController::class, 'files'])->name('governances.files')->whereIn('type', ['policy', 'code-of-conduct', 'she-regulation', 'risk-management', 'guideline', 'governance-guideline']);
 
         Route::controller(ApiSustainabilityController::class)
             ->as('sustainability.')

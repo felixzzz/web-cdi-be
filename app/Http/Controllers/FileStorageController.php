@@ -85,7 +85,14 @@ class FileStorageController extends Controller
                 }
                 return StorageFile::preview($file);
             } else {
-                $row = AdditionalFile::where("type", $type)->where("unique_key", $key)->first();
+                $row = AdditionalFile::where(function ($q) use ($type) {
+                    $q->where("type", $type);
+                    if ($type === 'guideline') {
+                        $q->orWhere("type", 'governance_guideline');
+                    } else if ($type === 'governance_guideline' || $type === 'governance-guideline') {
+                        $q->orWhere("type", 'guideline');
+                    }
+                })->where("unique_key", $key)->first();
                 if ($lang !=  'default') {
                     $file = $lang == 'id' ? $row->file_id : $row->file_en;
                     $file = Helper::shortDecrypt($file['path']);
@@ -154,7 +161,14 @@ class FileStorageController extends Controller
                     $file = Helper::shortDecrypt($file->path);
                 }
             } else {
-                $row = AdditionalFile::where("type", $type)->where("unique_key", $key)->first();
+                $row = AdditionalFile::where(function ($q) use ($type) {
+                    $q->where("type", $type);
+                    if ($type === 'guideline') {
+                        $q->orWhere("type", 'governance_guideline');
+                    } else if ($type === 'governance_guideline' || $type === 'governance-guideline') {
+                        $q->orWhere("type", 'guideline');
+                    }
+                })->where("unique_key", $key)->first();
                 if ($lang !=  'default') {
                     $fileName = $lang == 'id' ? $row->name_id : $row->name_en;
                     $file = $lang == 'id' ? $row->file_id : $row->file_en;

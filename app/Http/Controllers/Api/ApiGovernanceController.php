@@ -10,6 +10,9 @@ class ApiGovernanceController extends Controller
 {
     public function files(FileRepository $fileRepository, $type)
     {
+        if ($type === 'guideline' || $type === 'governance-guideline') {
+            $type = 'governance_guideline';
+        }
         return $fileRepository->findPaginated($type);
     }
 }

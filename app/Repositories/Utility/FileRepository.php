@@ -20,6 +20,24 @@ class FileRepository
     public function getByType($type)
     {
         $type = str_replace("-", "_", $type);
+
+        if ($type === 'governance_guideline') {
+            return AdditionalFile::query()
+                ->where(function ($q) {
+                    $q->where("type", "governance_guideline")
+                      ->orWhere(function ($sub) {
+                          $sub->where("type", "guideline")->where("show_on_governance", 1);
+                      });
+                })
+                ->where("show_on_governance", 1)
+                ->orderBy("sort", "asc")
+                ->get()->map(function ($row) {
+                    $row->file = is_string($row->file) ? json_decode($row->file) : $row->file;
+                    $row->name = $row->name;
+                    return $row;
+                });
+        }
+
         return AdditionalFile::query()
         ->where("type", $type)
         ->where(function ($q) use ($type) {
@@ -29,7 +47,7 @@ class FileRepository
         })
         ->orderBy("sort", "asc")
         ->get()->map(function ($row) {
-            $row->file = json_decode($row->file);
+            $row->file = is_string($row->file) ? json_decode($row->file) : $row->file;
             $row->name = $row->name;
             return $row;
         });
@@ -44,7 +62,16 @@ class FileRepository
         $locale = App::currentLocale();
 
         $data = AdditionalFile::query()
-        ->where("type", $type)
+        ->where(function ($q) use ($type) {
+            if ($type === 'governance_guideline') {
+                $q->where("type", "governance_guideline")
+                  ->orWhere(function ($sub) {
+                      $sub->where("type", "guideline")->where("show_on_governance", 1);
+                  });
+            } else {
+                $q->where("type", $type);
+            }
+        })
         ->when($search, fn ($q) => $q->where("name_{$locale}", "LIKE", "%$search%"))
         ->orderBy("created_at", "desc")
         ->orderBy("id", "desc")
@@ -59,7 +86,7 @@ class FileRepository
                 ->reverse()
                 ->map(function ($row) {
                         $row->name = $row->name;
-                        $row->file = json_decode($row->file);
+                        $row->file = is_string($row->file) ? json_decode($row->file) : $row->file;
                         $row->date = Carbon::parse($row->created_at)->translatedFormat("d F Y");
                         return $row;
                 })->values()

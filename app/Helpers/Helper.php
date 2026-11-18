@@ -64,6 +64,10 @@ class Helper
             case 'she-regulation':
                 return "head_title.governance_she_regulation";
                 break;
+            case 'guideline':
+            case 'governance-guideline':
+                return "head_title.governance_guideline";
+                break;
 
             default:
                 return '';

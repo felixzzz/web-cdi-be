@@ -6,6 +6,7 @@ enum AdditionalFileType: string
 {
     case CompanyProfile = 'company_profile';
     case Guideline = 'guideline';
+    case GovernanceGuideline = 'governance_guideline';
     case InternalAudit = 'internal_audit';
     case CorporateSecretary = 'corporate_secretary';
     case AuditCommitte = 'audit_committe';
@@ -20,6 +21,7 @@ enum AdditionalFileType: string
         return match ($this->value) {
             'company_profile' => 'Company Profile',
             'guideline' => 'Guideline',
+            'governance_guideline' => 'Guideline',
             'internal_audit' => 'Internal Audit',
             'corporate_secretary' => 'Corporate Secretary',
             'audit_committe' => 'Audit Committe',

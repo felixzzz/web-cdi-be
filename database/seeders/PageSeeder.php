@@ -740,6 +740,13 @@ class PageSeeder extends Seeder
                     <p>Chandra Asri Group berkomitmen untuk melaksanakan Kode Etik Chandra Asri, serta menjunjung tinggi dan mematuhi ketentuan-ketentuan terkait yang berlaku baik di dalam negeri maupun di luar negeri. Kebijakan ini didukung oleh praktik bisnis yang baik dan tata kelola perusahaan yang etis untuk memenuhi kewajiban kepada pemegang saham dan pemangku kepentingan dan harus dipatuhi oleh seluruh karyawan Chandra Asri Group.</p>
                 ',
             ],
+            'governance_guideline' => [
+                'file' => '',
+                'title_en' => 'Guideline',
+                'title_id' => 'Panduan',
+                'content_en' => '',
+                'content_id' => '',
+            ],
             'governance_whistleblowing' => [
                 'file' => asset('assets/frontend/images/governance/whistleblowing.webp'),
                 'title_en' => 'Whistleblowing',
@@ -950,6 +957,13 @@ class PageSeeder extends Seeder
                 'content_id' => '',
             ],
             'governance_policy_show' => [
+                'file' => '',
+                'title_en' => 'Disclaimer',
+                'title_id' => 'Penafian',
+                'content_en' => 'show',
+                'content_id' => '',
+            ],
+            'governance_guideline_show' => [
                 'file' => '',
                 'title_en' => 'Disclaimer',
                 'title_id' => 'Penafian',

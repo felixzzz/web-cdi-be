@@ -299,6 +299,12 @@ return [
                             'route' => 'admin.page-management.governance-files.index',
                             'route_params' => ['type' => 'policy']
                         ],
+                        [
+                            'name' => 'Guideline',
+                            'active' => 'governance_guideline',
+                            'route' => 'admin.page-management.governance-files.index',
+                            'route_params' => ['type' => 'governance_guideline']
+                        ],
                     ]
                 ],
             ]

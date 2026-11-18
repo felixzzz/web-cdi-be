@@ -79,7 +79,7 @@
             </x-sidebar.content>
 
             <x-sidebar.footer>
-                @if (auth()->user()->role->is_superadmin)
+                @if (auth()->user()->role?->is_superadmin)
                     <x-sidebar.items>
                         <x-sidebar.item href="{{ route('admin.users.index') }}" label="User Admin" :active="isset($pageActive) && $pageActive == 'users' ? true : false">
                             <x-tabler-user class="icon" />

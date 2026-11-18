@@ -79,6 +79,7 @@ enum PreferenceKey: string
     case governance_code_of_conduct = 'governance_code_of_conduct';
     case governance_she_regulation = 'governance_she_regulation';
     case governance_policy = 'governance_policy';
+    case governance_guideline = 'governance_guideline';
     case governance_whistleblowing = 'governance_whistleblowing';
     case governance_whistleblowing_id = 'governance_whistleblowing_id';
     case governance_whistleblowing_detail = 'governance_whistleblowing_detail';
@@ -89,6 +90,7 @@ enum PreferenceKey: string
     case governance_risk_management_show = 'governance_risk_management_show';
     case governance_she_regulation_show = 'governance_she_regulation_show';
     case governance_policy_show = 'governance_policy_show';
+    case governance_guideline_show = 'governance_guideline_show';
 
     case our_business_banner = 'our_business_banner';
     case our_business_overview = 'our_business_overview';
@@ -233,6 +235,7 @@ enum PreferenceKey: string
             'governance_code_of_conduct' => PreferenceType::TextContent,
             'governance_she_regulation' => PreferenceType::TextContent,
             'governance_policy' => PreferenceType::TextContent,
+            'governance_guideline' => PreferenceType::TextContent,
             'governance_whistleblowing' => PreferenceType::TextContentImage,
             'governance_whistleblowing_id' => PreferenceType::TextContentImage,
             'governance_whistleblowing_detail' => PreferenceType::TextImage,
@@ -242,6 +245,7 @@ enum PreferenceKey: string
             'governance_risk_management_show' => PreferenceType::TextContent,
             'governance_she_regulation_show' => PreferenceType::TextContent,
             'governance_policy_show' => PreferenceType::TextContent,
+            'governance_guideline_show' => PreferenceType::TextContent,
 
             'our_business_banner' => PreferenceType::TextContentImage,
             'our_business_overview' => PreferenceType::TextContent,
@@ -422,6 +426,7 @@ enum PreferenceKey: string
             self::governance_code_of_conduct->value,
             self::governance_she_regulation->value,
             self::governance_policy->value,
+            self::governance_guideline->value,
             self::governance_whistleblowing->value,
             self::governance_whistleblowing_id->value,
             self::governance_whistleblowing_detail->value,
@@ -431,6 +436,7 @@ enum PreferenceKey: string
             self::governance_risk_management_show->value,
             self::governance_she_regulation_show->value,
             self::governance_policy_show->value,
+            self::governance_guideline_show->value,
             self::json_ld_governance->value,
         ];
     }
