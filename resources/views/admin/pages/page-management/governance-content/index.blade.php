@@ -43,12 +43,12 @@
                 Policy
             </button>
             <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
-                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'whistleblowing' }" x-on:click="tab_page = 'whistleblowing'">
-                Whistleblowing
-            </button>
-            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
                 x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'guideline' }" x-on:click="tab_page = 'guideline'">
                 Guideline
+            </button>
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none"
+                x-bind:class="{ 'border-b-2 !font-bold': tab_page === 'whistleblowing' }" x-on:click="tab_page = 'whistleblowing'">
+                Whistleblowing
             </button>
         </div>
 
@@ -181,20 +181,6 @@
                 </div>
             </div>
 
-            <div x-show="tab_page === 'whistleblowing'" class="flex gap-4">
-                <div class="flex flex-col gap-4 w-full">
-                    <!-- EN -->
-                    @include('admin.pages.page-management.governance-content.components.whistleblowing')
-                </div>
-                <div class="max-lg:hidden">
-                    <x-portal::separator orientation="vertical" />
-                </div>
-                <div class="flex flex-col gap-4 w-full">
-                    <!-- ID -->
-                    @include('admin.pages.page-management.governance-content.components.whistleblowing', ['lang' => 'id'])
-                </div>
-            </div>
-
             <div x-show="tab_page === 'guideline'" class="flex gap-4">
                 <div class="flex flex-col gap-4 w-full">
                     <!-- EN -->
@@ -206,6 +192,20 @@
                 <div class="flex flex-col gap-4 w-full">
                     <!-- ID -->
                     @include('admin.pages.page-management.governance-content.components.guideline', ['lang' => 'id'])
+                </div>
+            </div>
+
+            <div x-show="tab_page === 'whistleblowing'" class="flex gap-4">
+                <div class="flex flex-col gap-4 w-full">
+                    <!-- EN -->
+                    @include('admin.pages.page-management.governance-content.components.whistleblowing')
+                </div>
+                <div class="max-lg:hidden">
+                    <x-portal::separator orientation="vertical" />
+                </div>
+                <div class="flex flex-col gap-4 w-full">
+                    <!-- ID -->
+                    @include('admin.pages.page-management.governance-content.components.whistleblowing', ['lang' => 'id'])
                 </div>
             </div>
 
